@@ -44,19 +44,23 @@
                 $.ajax({
                     url: "login.php",
                     type: "post",
-                    data: "usuario="+usuario+"&senha="+senha,
+                    data: "usuario="+usuario+
+                          "&senha="+senha+
+                          "&funcao="+0,
                     success: function(result){
-                        alert(result);
                         if(result==1){
                             location.href='#';
-                        }else{
-                            $('#errolog').show();
+                        }
+                        if(result==0){
+                            $('#errologin').show();
                         }
                     }
                 })
+
                 return false;
             })
         })
+
     </script>
 
 </body>
