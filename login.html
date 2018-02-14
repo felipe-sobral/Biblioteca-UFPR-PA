@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang='pt-br'>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Biblioteca UFPR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="js/main.js"></script>
+    <script src="js/jquery-3.3.1.js"></script>
+
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body style="background-color: black; background-image: url('img/bg.jpg'); background-attachment: fixed;">
+
+    <div class="container-fluid login-cabec">
+        <h1 style="filter: invert();">BIBLIOTECA UFPR</h1>
+    </div>
+
+    <div class="container-fluid text-light">
+        <div id="errologin" class="alert alert-danger" role="alert">
+            <b>Algo está errado</b>. Pode ser suas informações que estejam incorretas ou apenas algum campo está vazio!
+        </div>
+        <form id="loginform">
+            <div class="form-group">
+                <label for="usuario">Usuário</label>
+                <input type="text" class="form-control" id="usuario" placeholder="Digite o usuário">
+            </div>
+            <div class="form-group">
+                <label for="senha">Senha</label>
+                <input type="password" class="form-control" id="senha" placeholder="Digite sua senha">
+            </div>    
+                <button type="submit" class="btn btn-primary">Entrar</button>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $('#errologin').hide();
+            $('#loginform').submit(function(){
+                var usuario=$('#usuario').val();
+                var senha=$('#senha').val();
+                $.ajax({
+                    url: "login.php",
+                    type: "post",
+                    data: "usuario="+usuario+"&senha="+senha,
+                    success: function(result){
+                        alert(result);
+                        if(result==1){
+                            location.href='#';
+                        }else{
+                            $('#errolog').show();
+                        }
+                    }
+                })
+                return false;
+            })
+        })
+    </script>
+
+</body>
+</html>
