@@ -17,23 +17,15 @@
             $retorno = 0;
         } else {
             if(!isset($_SESSION)){
-                session_start;
+                session_start();
                 $_SESSION['id'] = $dado['id'];
                 $_SESSION['nome'] = $dado['nome'];
+                $_SESSION['senha'] = $dado['senha'];
                 $_SESSION['usuario'] = $dado['usuario'];
                 $_SESSION['nivel'] = $dado['nivel'];
             }
             $retorno = 1;
         } 
-    }
-
-    if($funcao == 1){
-        if($isset($_SESSION)){
-            session_start;
-            echo $_SESSION['nome'];
-        } else {
-            echo "USUÁRIO NÃO LOGADO";
-        }
     }
 
     echo $retorno;
