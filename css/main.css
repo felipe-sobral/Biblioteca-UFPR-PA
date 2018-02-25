@@ -37,3 +37,13 @@
     padding-top: 1%;
     font-size: 42px;
 }
+
+#registrarUsuarioDiv{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background: #fff;
+    display: none;
+}
