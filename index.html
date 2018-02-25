@@ -7,33 +7,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <script src="js/main.js"></script>
-    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery-3.3.1.js"></script>
 
     <link rel="stylesheet" href="css/main.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 </head>
 <body>
+    <div class="container-fluid barraCima" style="text-align: right">
+        <a href="login.html"><button class="btn btn-dark btn-sm">Login</button></a>
+        
+    </div>
 
     <div class="container-fluid cabecalho">
         <h1 style="filter: invert();">BIBLIOTECA UFPR</h1>
     </div>
 
     <div class="container">
-        <form>
+        <form id="buscarLivro">
             <div class="form-group" style="padding-top: 3%">
-                <label for="search">CÓDIGO DO LIVRO</label>
-                <input class="form-control" id="search" aria-describedby="emailHelp" placeholder="Exemplo: 000">
-                <small id="searchHelp" class="form-text text-muted">Em construção</small>
+                <div id="erroBuscar" class="alert alert-danger" role="alert">
+                    <b>Algo está errado</b>. O livro não pode ser encontrado ou ainda não está disponível!
+                </div>
+                <label for="barra">CÓDIGO DO LIVRO</label>
+                <input type="text" class="form-control" id="barra" placeholder="Exemplo: 000">
             </div>
   
-            <button type="submit" onclick="procurar()" class="btn btn-primary">Procurar</button>
+            <button type="submit" class="btn btn-primary">Procurar</button>
         </form>
     </div>
 
-    <div class="container-fluid espacoLogin">
-    <a href="login.html"><button class="btn btn-dark btn-sm">Login</button></a>
+    <div class="resultado">PRATELEIRA <p id="resultado"></p></div>
+
+    <div class="container-fluid footer text-light" style="text-align: center">
+        UFPR Biblioteca PA
         
     </div>
+
+    <script>
+        $(document).ready(function(){
+            $('#erroBuscar').hide();
+            $('#buscarLivro').submit(function(){
+                var barra=$('#barra').val();
+                $.ajax({
+                    url: "buscarLivro.php",
+                    type: "post",
+                    data: "barra="+barra,
+                    success: function(result){
+                        if(result==0){
+                            $('#erroBuscar').show();
+                            jQuery("#resultado").html("<p>ERRO</p>");
+                        } else {
+                            jQuery("#resultado").html("<p>"+result.toString()+"</p>");
+                            $('#erroBuscar').hide();
+                        }
+                        
+                    }
+                })
+
+                return false;
+            })
+        })
+
+    </script>
 
 </body>
 </html>
