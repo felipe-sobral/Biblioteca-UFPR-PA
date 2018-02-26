@@ -1,8 +1,6 @@
 <?php
     session_start();
 
-    $executarFuncao = $_POST['executarFuncao'];
-
     function login_erro(){
         header("Location: login.html");
     }
@@ -20,14 +18,8 @@
     $sql = mysqli_query($conectar, "SELECT * FROM usuarios WHERE usuario = '{$usuario}' AND senha = '{$senha}'");
     $login_check = mysqli_num_rows($sql);
         
-    if($login_check == 0){
+    if($login_check != 1){
         login_erro();
-    }
-
-    if(executarFuncao == 1){
-        if($nivel>0){
-            echo $nivel;
-        }
     }
 ?>
 
@@ -61,26 +53,34 @@
 
             <div id="registrarUsuarioDiv">
                 <center>
-                <form style="padding-top: 5%; width: 35%;">
+                <form id="registrarForm" style="padding-top: 5%; width: 35%;">
+                    <div id="erroRegistrar" class="alert alert-danger" role="alert">
+                        <b>Algo está errado</b>. O usuário já existe ou campos estão vazios!
+                    </div>
+                    <div id="registroRealizado" class="alert alert-success" role="alert">
+                        <b>Algo está errado</b>. Usuário cadastrado! Para fechar esta janela clique em <b>cancelar</b>
+                    </div>
+
                     <h1>REGISTRAR USUÁRIO</h1>
                     <div class="form-group">
                         <label for="usuario">Usuário</label>
-                        <input type="text" class="form-control" id="usuario" placeholder="Ex: maria">
+                        <input type="text" class="form-control" id="r_usuario" placeholder="Ex: maria">
                     </div>
                     <div class="form-group">
                         <label for="nome">Nome</label>
-                        <input type="text" class="form-control" id="nome" placeholder="Ex: Maria">
+                        <input type="text" class="form-control" id="r_nome" placeholder="Ex: Maria">
                     </div>
                     <div class="form-group">
                         <label for="senha">Senha</label>
-                        <input type="text" class="form-control" id="senha" placeholder="Senha">
+                        <input type="text" class="form-control" id="r_senha" placeholder="Senha">
                     </div>
                     <div class="form-group">
                         <label for="nivel">Nível do usuário</label>
-                        <input type="number" class="form-control" id="nivel" placeholder="Min: 1 ~ Max: 5" min="1" max="5">
+                        <input type="number" class="form-control" id="r_nivel" placeholder="Min: 1 ~ Max: 5" min="1" max="5">
                     </div>
                
                     <button type="submit" class="btn btn-primary">Registrar</button>
+                    <button type="button" id="cancel" class="btn btn-danger">Cancelar</button>
                 </form>
                 </center>
             </div>
@@ -95,24 +95,61 @@
 
     <script>
         $(document).ready(function(){
-            $("#registrarUsuario").attr("disabled","disabled");
+            // ARRUMAR DESATIVAR BOTÃO
+
+            $("registrarUsuario").prop('disabled', true);
+            $('#erroRegistrar').hide();
+            $('#registroRealizado').hide();
             $.ajax({
-                url: "area_restrita.php",
+                url: "verificar.php",
                 type: "post",
                 data: "executarFuncao="+1,
                 success: function(result){
                     if(result==5){
-                        $("#registrarUsuario").attr("enable","enable");
+                        
                         
                     }
                 }
             
+            })
+
+            $('#registrarForm').submit(function(){
+                var r_usuario=$('#r_usuario').val();
+                var r_nome=$('#r_nome').val();
+                var r_senha=$('#r_senha').val();
+                var r_nivel=$('#r_nivel').val();
+
+                $.ajax({
+                    url: "verificar.php",
+                    type: "post",
+                    data: "r_usuario="+r_usuario+
+                          "&r_senha="+r_senha+
+                          "&r_nome="+r_nome+
+                          "&r_nivel="+r_nivel+
+                          "&executarFuncao="+2,
+                    success: function(result){
+                        if(result==1){
+                            $('#erroRegistrar').hide();
+                            $('#registroRealizado').show();
+                        }
+                        if(result==0){
+                            $('#erroRegistrar').show();
+                            $('#registroRealizado').hide();
+                        }
+                    }
+                })
+
+                return false;
             })
             
         })
         
         $("#registrarUsuario").click(function() {
             $("#registrarUsuarioDiv").css("display", "block");
+        });
+
+        $("#registrarUsuarioDiv #cancel").click(function() {
+            $(this).parent().parent().parent().hide();
         });
     </script>
 
