@@ -3,13 +3,7 @@
 
       NOTAS:
 
-      ** Arrumar o porquê que a janela não está sendo exibida no botão "REGISTRAR LIVRO"
-
-      ** ACRESCENTAR ESTILO PARA ALINHAR BOTÕES OU BUSCAR OUTRO MEIO (EXEMPLO: NAVBAR)
-
-      ** COLOCAR NOME DOS LIVROS QUANDO ACHADOS NO INDEX
-
-      ** CONFIRMAR PRATELEIRA DO ITEM "2" DO BANCO DE DADOS (LIVROS) - Histologia básica - 611.018 J95 11.ed
+      ** ARRUMAR MODALS DO BOTÃO COM BOOSTRAP (MELHOR OPÇÃO)
 
     */
 
@@ -63,10 +57,83 @@
 
 
     <!-- BOTÕES -->
-    <div id="botoes" class="container-fluid" style="padding-top: 2%">
+    <div id="botoes" class="card" style="padding-top: 2%">
+      <h5 class="card-header">Opções</h5>
+      <div class="card-body">
         <!-- BOTÃO PARA CADASTRAR USUÁRIO | NÍVEL 5 -->
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          Launch demo modal
+        </button>
+
+        <!-- Modal COMEÇAR EDITAR DAQUIIIIIIIIIIIIIIIIIIIIIIIIIIIII -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+            <button id="registrarUsuario" type="button" class="btn btn-dark btn-block" data-toggle="modal" data-target=".registrarUsuario">Registrar Usuário</button>
+
+            <div class="modal fade registrarUsuario" tabindex="-1" role="dialog" aria-labelledby="registrarUsuario" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+
+                  <center>
+                  <form id="registrarForm" style="padding-top: 5%; width: 35%;">
+                      <div id="erroRegistrar" class="alert alert-danger" role="alert">
+                          <b>Algo está errado</b>. O usuário já existe ou campos estão vazios!
+                      </div>
+                      <div id="registroRealizado" class="alert alert-success" role="alert">
+                          <b>Usuário cadastrado!</b> Para fechar esta janela clique em <b>cancelar</b>
+                      </div>
+
+                      <h1>REGISTRAR USUÁRIO</h1>
+                      <div class="form-group">
+                          <label for="usuario">Usuário</label>
+                          <input type="text" class="form-control" id="r_usuario" placeholder="Ex: maria">
+                      </div>
+                      <div class="form-group">
+                          <label for="nome">Nome</label>
+                          <input type="text" class="form-control" id="r_nome" placeholder="Ex: Maria">
+                      </div>
+                      <div class="form-group">
+                          <label for="senha">Senha</label>
+                          <input type="password" class="form-control" id="r_senha" placeholder="Senha">
+                      </div>
+                      <div class="form-group">
+                          <label for="nivel">Nível do usuário</label>
+                          <input type="number" class="form-control" id="r_nivel" placeholder="Min: 1 ~ Max: 5" min="1" max="5">
+                      </div>
+
+                      <button type="submit" class="btn btn-primary">Registrar</button>
+                      <button type="button" id="cancel" class="btn btn-danger">Cancelar</button>
+                  </form>
+                  </center>
+
+
+                </div>
+              </div>
+            </div>
+
+
+        <!--
         <div id="botaoRegistrar">
-            <button id="registrarUsuario" type="button" class="btn btn-dark">Registrar Usuário</button>
+            <button id="registrarUsuario" type="button" class="btn btn-dark btn-block">Registrar Usuário</button>
 
             <div id="registrarUsuarioDiv">
                 <center>
@@ -89,7 +156,7 @@
                     </div>
                     <div class="form-group">
                         <label for="senha">Senha</label>
-                        <input type="text" class="form-control" id="r_senha" placeholder="Senha">
+                        <input type="password" class="form-control" id="r_senha" placeholder="Senha">
                     </div>
                     <div class="form-group">
                         <label for="nivel">Nível do usuário</label>
@@ -102,11 +169,10 @@
                 </center>
             </div>
         </div>
-        <!-- BOTÃO PARA CADASTRAR USUÁRIO | NÍVEL 5 | FIM -->
 
-        <!-- BOTÃO PARA CADASTRAR LIVRO | NÍVEL 1 -->
+
         <div id="botaoRegistrarLivro">
-            <button id="registrarLivro" type="button" class="btn btn-dark">Registrar Livro</button>
+            <button id="registrarLivro" type="button" class="btn btn-dark btn-block">Registrar Livro</button>
 
             <div id="registrarLivroDiv">
                 <center>
@@ -121,11 +187,19 @@
                     <h1>REGISTRAR LIVRO</h1>
                     <div class="form-group">
                         <label for="l_nome">Nome</label>
-                        <input type="text" class="form-control" id="l_nome" placeholder="Ex: Manual de normalização de documentos científicos">
+                        <input type="text" class="form-control" id="l_nome" placeholder="Ex: Histologia básica">
+                    </div>
+                    <div class="form-group">
+                        <label for="l_codigo">Codigo (ISBN)</label>
+                        <input type="text" class="form-control" id="l_codigo" placeholder="Ex: 9788527714020">
                     </div>
                     <div class="form-group">
                         <label for="l_barra">Endereço</label>
                         <input type="text" class="form-control" id="l_barra" placeholder="Ex: 001.8 M294">
+                    </div>
+                    <div class="form-group">
+                        <label for="l_link">Link do título (Sophia)</label>
+                        <input type="text" class="form-control" id="l_link" placeholder="Ex: http://200.17.203.155/index.php?codigo_sophia=233296">
                     </div>
                     <div class="form-group">
                         <label for="l_estante">Estante</label>
@@ -133,7 +207,7 @@
                     </div>
                     <div class="form-group">
                         <label for="l_ativo">Ativo (0 = NÃO | 1 = SIM)</label>
-                        <input type="number" class="form-control" id="r_nivel" placeholder="Min: 0 ~ Max: 1" min="0" max="1">
+                        <input type="number" class="form-control" id="l_ativo" placeholder="Min: 0 ~ Max: 1" min="0" max="1">
                     </div>
 
                     <button type="submit" class="btn btn-primary">Registrar</button>
@@ -142,12 +216,10 @@
                 </center>
             </div>
           </div>
-        <!-- BOTÃO PARA CADASTRAR LIVRO | NÍVEL 1 | FIM -->
 
+        -->
+      </div>
     </div>
-
-
-
 
     <div class="container-fluid footer text-light" style="text-align: center">
         UFPR Biblioteca PA
@@ -210,7 +282,9 @@
 
             $('#registrarFormLivro').submit(function(){
                 var l_nome=$('#l_nome').val();
+                var l_codigo=$('#l_codigo').val();
                 var l_barra=$('#l_barra').val();
+                var l_link=$('#l_link').val();
                 var l_estante=$('#l_estante').val();
                 var l_ativo=$('#l_ativo').val();
 
@@ -218,7 +292,9 @@
                     url: "verificar.php",
                     type: "post",
                     data: "l_nome="+l_nome+
+                          "&l_codigo="+l_codigo+
                           "&l_barra="+l_barra+
+                          "&l_link="+l_link+
                           "&l_estante="+l_estante+
                           "&l_ativo="+l_ativo+
                           "&executarFuncao="+3,
