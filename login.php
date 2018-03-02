@@ -25,7 +25,7 @@
                 $_SESSION['nivel'] = $dado['nivel'];
             }
             $retorno = 1;
-        } 
+        }
     }
 
     echo $retorno;

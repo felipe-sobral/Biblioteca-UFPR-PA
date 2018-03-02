@@ -18,22 +18,43 @@
         <h1>BIBLIOTECA UFPR</h1>
     </div>
 
-    <div class="container-fluid text-light">
-        <div id="errologin" class="alert alert-danger" role="alert">
-            <b>Algo está errado</b>. Pode ser suas informações que estejam incorretas ou apenas algum campo está vazio!
-        </div>
-        <form id="loginform">
-            <div class="form-group">
-                <label for="usuario">Usuário</label>
-                <input type="text" class="form-control" id="usuario" placeholder="Digite o usuário">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+
+          <div class="card mb-3">
+            <img class="card-img-top" src="https://www.pshmavlc.com/assets/img/rigpass-featured.jpg" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Bem-vindo</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
-            <div class="form-group">
-                <label for="senha">Senha</label>
-                <input type="password" class="form-control" id="senha" placeholder="Digite sua senha">
-            </div>    
-                <button type="submit" class="btn btn-primary">Entrar</button>
-        </form>
+          </div>
+
+        </div>
+        <div class="col-sm-4 text-light">
+
+          <div id="errologin" class="alert alert-danger" role="alert">
+              <b>Algo está errado</b>. Pode ser suas informações que estejam incorretas ou apenas algum campo está vazio!
+          </div>
+          <form id="loginform">
+              <div class="form-group">
+                  <label for="usuario">Usuário</label>
+                  <input type="text" class="form-control" id="usuario" placeholder="Digite o usuário">
+              </div>
+              <div class="form-group">
+                  <label for="senha">Senha</label>
+                  <input type="password" class="form-control" id="senha" placeholder="Digite sua senha">
+              </div>
+              <center>
+                <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+              </center>
+          </form>
+
+        </div>
+      </div>
     </div>
+
 
     <script>
         $(document).ready(function(){
