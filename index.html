@@ -16,7 +16,7 @@
 <body>
     <div class="container-fluid barraCima" style="text-align: right">
         <a href="login.html"><button class="btn btn-dark btn-sm">Login</button></a>
-        
+
     </div>
 
     <div class="container-fluid cabecalho text-light">
@@ -24,26 +24,40 @@
     </div>
 
     <div class="container">
-        <form id="buscarLivro">
-            <div class="form-group" style="padding-top: 3%">
-                <div id="erroBuscar" class="alert alert-danger" role="alert">
-                    <b>Algo está errado</b>. O livro não pode ser encontrado ou ainda não está disponível!
-                </div>
-                <label for="barra">CÓDIGO DO LIVRO</label>
-                <input type="text" class="form-control" id="barra" placeholder="Exemplo: 000">
-            </div>
-  
-            <button type="submit" class="btn btn-primary">Procurar</button>
-        </form>
+      <div class="row">
+        <div class="col-sm">
+
+          <form id="buscarLivro">
+              <div class="form-group" style="padding-top: 3%">
+                  <div id="erroBuscar" class="alert alert-danger" role="alert">
+                      <b>Algo está errado</b>. O livro não pode ser encontrado ou ainda não está disponível!
+                  </div>
+                  <label for="barra">CÓDIGO DO LIVRO</label>
+                  <input type="text" class="form-control" id="barra" placeholder="Exemplo: 000">
+              </div>
+
+              <button type="submit" class="btn btn-primary">Procurar</button>
+          </form>
+
+        </div>
+        <div class="col-sm">
+
+          <div class="container-fluid">
+              <div><p><h4>Prateleira: <a id="prateleira"> ... </a></h4></p></div>
+              <div><p><h4>Nome: <a id="nome"> ... </a></h4></p></div>
+              <div><p><h4>Link: <a id="link"> ... </a></h4></p></div>
+              <div><p><h4>Chamada: <a id="chamada"> ... </a></h4></p></div>
+              <div><p><h4>Codigo: <a id="codigo"> ... </a></h4></p></div>
+          </div>
+
+        </div>
+      </div>
     </div>
 
-    <div class="container-fluid">
-        <div class="resultado">PRATELEIRA <p id="resultado"></p></div>
-    </div>
 
     <div class="container-fluid footer text-light" style="text-align: center">
         UFPR Biblioteca PA
-        
+
     </div>
 
     <script>
@@ -54,18 +68,89 @@
                 $.ajax({
                     url: "buscarLivro.php",
                     type: "post",
-                    data: "barra="+barra,
+                    data: "barra="+barra+
+                          "&item="+0,
                     success: function(result){
                         if(result==0){
                             $('#erroBuscar').show();
-                            jQuery("#resultado").html("<p>ERRO</p>");
+                            jQuery("#prateleira").html("<a>ERRO</a>");
                         } else {
-                            jQuery("#resultado").html("<p>"+result.toString()+"</p>");
+                            jQuery("#prateleira").html("<a>"+result.toString()+"</a>");
                             $('#erroBuscar').hide();
                         }
-                        
+
                     }
                 })
+
+                $.ajax({
+                    url: "buscarLivro.php",
+                    type: "post",
+                    data: "barra="+barra+
+                          "&item="+1,
+                    success: function(result){
+                        if(result==0){
+                            $('#erroBuscar').show();
+                            jQuery("#nome").html("<a>ERRO</a>");
+                        } else {
+                            jQuery("#nome").html("<a>"+result.toString()+"</a>");
+                            $('#erroBuscar').hide();
+                        }
+
+                    }
+                })
+
+                $.ajax({
+                    url: "buscarLivro.php",
+                    type: "post",
+                    data: "barra="+barra+
+                          "&item="+2,
+                    success: function(result){
+                        if(result==0){
+                            $('#erroBuscar').show();
+                            jQuery("#link").html("<a>ERRO</a>");
+                        } else {
+                            jQuery("#link").html("<a href='"+result.toString()+"' target='_blank'>Ir para página</a>");
+                            $('#erroBuscar').hide();
+                        }
+
+                    }
+                })
+
+                $.ajax({
+                    url: "buscarLivro.php",
+                    type: "post",
+                    data: "barra="+barra+
+                          "&item="+3,
+                    success: function(result){
+                        if(result==0){
+                            $('#erroBuscar').show();
+                            jQuery("#chamada").html("<a>ERRO</a>");
+                        } else {
+                            jQuery("#chamada").html("<a>"+result.toString()+"</a>");
+                            $('#erroBuscar').hide();
+                        }
+
+                    }
+                })
+
+                $.ajax({
+                    url: "buscarLivro.php",
+                    type: "post",
+                    data: "barra="+barra+
+                          "&item="+4,
+                    success: function(result){
+                        if(result==0){
+                            $('#erroBuscar').show();
+                            jQuery("#codigo").html("<a>ERRO</a>");
+                        } else {
+                            jQuery("#codigo").html("<a>"+result.toString()+"</a>");
+                            $('#erroBuscar').hide();
+                        }
+
+                    }
+                })
+
+
 
                 return false;
             })
