@@ -2,5 +2,7 @@
     include "cfg.php";
     session_start();
     session_destroy();
-    echo "Você saiu! <a href='index.html'>Clique aqui</a> para voltar a página incial. ";
+    header('location: index.html');
+    echo "<script> alert('Você desconectou!') </script>";
+    exit;
 ?>

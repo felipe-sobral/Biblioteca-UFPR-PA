@@ -1,88 +1,88 @@
-<!DOCTYPE html>
-<html lang='pt-br'>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Biblioteca UFPR</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <script src="js/main.js"></script>
-    <script src="js/jquery-3.3.1.js"></script>
-
-    <link rel="stylesheet" href="css/main.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-</head>
-<body style="background-color: black; background-image: url('img/bg.jpg'); background-attachment: fixed;">
-
-    <div class="container-fluid cabecalho text-light">
-        <h1>BIBLIOTECA UFPR</h1>
-    </div>
-
-    <div class="container">
-      <div class="row">
-        <div class="col-sm">
-
-          <div class="card mb-3">
-            <img class="card-img-top" src="https://www.pshmavlc.com/assets/img/rigpass-featured.jpg" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Bem-vindo</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-          </div>
-
-        </div>
-        <div class="col-sm-4 text-light">
-
-          <div id="errologin" class="alert alert-danger" role="alert">
-              <b>Algo está errado</b>. Pode ser suas informações que estejam incorretas ou apenas algum campo está vazio!
-          </div>
-          <form id="loginform">
-              <div class="form-group">
-                  <label for="usuario">Usuário</label>
-                  <input type="text" class="form-control" id="usuario" placeholder="Digite o usuário">
-              </div>
-              <div class="form-group">
-                  <label for="senha">Senha</label>
-                  <input type="password" class="form-control" id="senha" placeholder="Digite sua senha">
-              </div>
-              <center>
-                <button type="submit" class="btn btn-primary btn-block">Entrar</button>
-              </center>
-          </form>
-
-        </div>
-      </div>
-    </div>
-
-
-    <script>
-        $(document).ready(function(){
-            $('#errologin').hide();
-            $('#loginform').submit(function(){
-                var usuario=$('#usuario').val();
-                var senha=$('#senha').val();
-                $.ajax({
-                    url: "login.php",
-                    type: "post",
-                    data: "usuario="+usuario+
-                          "&senha="+senha+
-                          "&funcao="+0,
-                    success: function(result){
-                        if(result==1){
-                            location.href='area_restrita.php';
-                        }
-                        if(result==0){
-                            $('#errologin').show();
-                        }
-                    }
-                })
-
-                return false;
-            })
-        })
-
-    </script>
-
-</body>
-</html>
+<!DOCTYPE html>
+<html lang='pt-br'>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Biblioteca UFPR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="js/main.js"></script>
+    <script src="js/jquery-3.3.1.js"></script>
+
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body style="background-color: black; background-image: url('img/bg.jpg'); background-attachment: fixed;">
+
+    <div class="container-fluid cabecalho text-light">
+        <h1>BIBLIOTECA UFPR</h1>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+
+          <div class="card mb-3">
+            <img class="card-img-top" src="img/bg-login.jpg" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Bem-vindo</h5>
+              <p class="card-text">Esta área é reservada a servidores.</p>
+              <p class="card-text"><small class="text-muted"><a href="index.html">Clique aqui para voltar</a></small></p>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-sm-4 text-light">
+
+          <div id="errologin" class="alert alert-danger" role="alert">
+              <b>Algo está errado</b>. Pode ser suas informações que estejam incorretas ou apenas algum campo está vazio!
+          </div>
+          <form id="loginform">
+              <div class="form-group">
+                  <label for="usuario">Usuário</label>
+                  <input type="text" class="form-control" id="usuario" placeholder="Digite o usuário">
+              </div>
+              <div class="form-group">
+                  <label for="senha">Senha</label>
+                  <input type="password" class="form-control" id="senha" placeholder="Digite sua senha">
+              </div>
+              <center>
+                <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+              </center>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+
+    <script>
+        $(document).ready(function(){
+            $('#errologin').hide();
+            $('#loginform').submit(function(){
+                var usuario=$('#usuario').val();
+                var senha=$('#senha').val();
+                $.ajax({
+                    url: "login.php",
+                    type: "post",
+                    data: "usuario="+usuario+
+                          "&senha="+senha+
+                          "&funcao="+0,
+                    success: function(result){
+                        if(result==1){
+                            location.href='area_restrita.php';
+                        }
+                        if(result==0){
+                            $('#errologin').show();
+                        }
+                    }
+                })
+
+                return false;
+            })
+        })
+
+    </script>
+
+</body>
+</html>

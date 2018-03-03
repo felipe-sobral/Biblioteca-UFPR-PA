@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Bowlby+One+SC');
+
 .cabecalho {
     text-align: center;
     padding-top: 6%;
@@ -5,6 +7,7 @@
     background-color: #0c0c0c;
     background-image: url("../img/bg.jpg");
     background-attachment: fixed;
+    font-family: 'Bowlby One SC', cursive;
 }
 
 .barraCima{
