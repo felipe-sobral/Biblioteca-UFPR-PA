@@ -196,7 +196,7 @@
 
 
           <div class="card mb-3">
-            <img class="card-img-top" src="https://www.pshmavlc.com/assets/img/rigpass-featured.jpg" alt="Card image cap">
+            <img class="card-img-top" src="img/bg-adm.jpg">
             <div class="card-body">
               <h5 class="card-title">Em construção</h5>
               <p class="card-text">Página em construção</p>

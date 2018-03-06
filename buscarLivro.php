@@ -9,15 +9,31 @@
 	$check = mysqli_num_rows($sql);
 
 	$retorno = 0;
-        
+
     if($check == 0){
-    	
+
     	$retorno = 0;
 
     } else {
-    	$dado = mysqli_fetch_array($sql);
+			$dado = mysqli_fetch_array($sql);
 
-    	$retorno = $dado['estante'];
+			switch ($item) {
+				case 0:
+					$retorno = $dado['estante'];
+					break;
+				case 1:
+					$retorno = $dado['nome'];
+					break;
+				case 2:
+					$retorno = $dado['link'];
+					break;
+				case 3:
+					$retorno = $dado['barra'];
+					break;
+				case 4:
+					$retorno = $dado['codigo'];
+					break;
+			}
 
     }
 

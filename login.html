@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/main.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
-<body style="background-color: black; background-image: url('img/bg.jpg'); background-attachment: fixed;">
+<body style="background-color: black; background-image: url('img/bg.jpg'); background-attachment: fixed;" onload="document.getElementById('usuario').focus();">
 
     <div class="container-fluid cabecalho text-light">
         <h1>BIBLIOTECA UFPR</h1>
@@ -23,11 +23,11 @@
         <div class="col-sm">
 
           <div class="card mb-3">
-            <img class="card-img-top" src="https://www.pshmavlc.com/assets/img/rigpass-featured.jpg" alt="Card image cap">
+            <img class="card-img-top" src="img/bg-login.jpg">
             <div class="card-body">
               <h5 class="card-title">Bem-vindo</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              <p class="card-text">Esta área é reservada a servidores.</p>
+              <p class="card-text"><small class="text-muted"><a href="index.html">Clique aqui para voltar</a></small></p>
             </div>
           </div>
 
@@ -46,9 +46,9 @@
                   <label for="senha">Senha</label>
                   <input type="password" class="form-control" id="senha" placeholder="Digite sua senha">
               </div>
-              <center>
-                <button type="submit" class="btn btn-primary btn-block">Entrar</button>
-              </center>
+
+              <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+
           </form>
 
         </div>
