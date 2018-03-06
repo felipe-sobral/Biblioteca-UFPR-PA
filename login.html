@@ -15,7 +15,7 @@
 <body style="background-color: black; background-image: url('img/bg.jpg'); background-attachment: fixed;" onload="document.getElementById('usuario').focus();">
 
     <div id="carregando" style="display: block">
-      <img src="img/loading.gif"/> ARRUMAR 
+      <img src="img/loading.gif"/> ARRUMAR
     </div>
 
     <div id="passou" style="display: none">
@@ -70,8 +70,11 @@
               data: "executarFuncao="+5,
               success: function(result){
                 if(result == 1){
-                  location.href='area_restrita.php';
+                  window.location='area_restrita.php';
                 }
+
+                document.getElementById("carregando").style.display = "none";
+                document.getElementById("passou").style.display = "block";
               }
 
             })
