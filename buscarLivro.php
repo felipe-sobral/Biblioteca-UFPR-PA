@@ -5,7 +5,7 @@
 
 	$codigo = $_POST['barra'];
 
-	$sql = mysqli_query($conectar, "SELECT * FROM livros WHERE barra = '{$codigo}' AND ativo = '1'") or die (mysql_error());
+	$sql = mysqli_query($conectar, "SELECT * FROM livros WHERE barra='{$codigo}' OR codigo='{$codigo}' AND ativo = '1'") or die (mysql_error());
 	$check = mysqli_num_rows($sql);
 
 	$retorno = 0;
@@ -16,6 +16,7 @@
 
     } else {
 			$dado = mysqli_fetch_array($sql);
+			$item = $_POST['item'];
 
 			switch ($item) {
 				case 0:

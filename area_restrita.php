@@ -56,12 +56,19 @@
     </div>
 
     <div class="container">
-      <div class="row">
-        <div class="col-sm">
-          Seu nome + Seu nivel;
+      <div class="row" style="padding-top: 1%">
+        <div class="col-sm d-block">
+
+          <div class="card">
+              <div class="card-body">
+                <h5 class="card-title" id="bemvindo">Bem-vindo</h5>
+             </div>
+          </div>
+
         </div>
       </div>
-      <div class="row">
+
+      <div class="row" style= "padding-top: 1%">
         <div class="col-sm-3">
 
           <!-- BOTÕES -->
@@ -240,6 +247,16 @@
                       $("#registrarUsuarioBtn").prop('disabled', false);
                     }
                 }
+
+            })
+
+            $.ajax({
+              url: "verificar.php",
+              type: "post",
+              data: "executarFuncao="+4,
+              success: function(result){
+                jQuery("#bemvindo").html("<h5 class='card-title' id='bemvindo'>Bem-vindo, "+result.toString()+".</h5>");
+              }
 
             })
 

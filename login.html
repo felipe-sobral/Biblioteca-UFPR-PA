@@ -14,6 +14,11 @@
 </head>
 <body style="background-color: black; background-image: url('img/bg.jpg'); background-attachment: fixed;" onload="document.getElementById('usuario').focus();">
 
+    <div id="carregando" style="display: block">
+      <img src="img/loading.gif"/> ARRUMAR 
+    </div>
+
+    <div id="passou" style="display: none">
     <div class="container-fluid cabecalho text-light">
         <h1>BIBLIOTECA UFPR</h1>
     </div>
@@ -54,10 +59,23 @@
         </div>
       </div>
     </div>
+    </div>
 
 
     <script>
         $(document).ready(function(){
+            $.ajax({
+              url: "verificar.php",
+              type: "post",
+              data: "executarFuncao="+5,
+              success: function(result){
+                if(result == 1){
+                  location.href='area_restrita.php';
+                }
+              }
+
+            })
+
             $('#errologin').hide();
             $('#loginform').submit(function(){
                 var usuario=$('#usuario').val();
@@ -80,6 +98,7 @@
 
                 return false;
             })
+
         })
 
     </script>
