@@ -8,14 +8,15 @@
 
     <script src="js/main.js"></script>
     <script src="js/jquery-3.3.1.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
     <link rel="stylesheet" href="css/main.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 </head>
 <body>
-    <div class="container-fluid barraCima" style="text-align: right">
-        <a href="login.html"><button class="btn btn-dark btn-sm">Login</button></a>
+    <div class="container-fluid barraCima" style="text-align: right" onload="document.getElementById('barra').focus();">
+        <a href="login.html"><button class="btn btn-dark btn-sm"> <i class="fas fa-sign-in-alt"></i> Login</button></a>
 
     </div>
 
@@ -32,25 +33,26 @@
                   <div id="erroBuscar" class="alert alert-danger" role="alert">
                       <b>Algo está errado</b>. O livro não pode ser encontrado ou ainda não está disponível!
                   </div>
-                  <label for="barra">CÓDIGO DO LIVRO</label>
+                  <label for="barra">CÓDIGO OU CHAMADA DO LIVRO</label>
                   <input type="text" class="form-control" id="barra" placeholder="Exemplo: 000">
               </div>
 
-              <button type="submit" class="btn btn-primary">Procurar</button>
+              <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Procurar</button>
           </form>
 
         </div>
         <div class="col-sm">
 
           <div class="container-fluid">
-              <div><p><h4>Prateleira: <a id="prateleira"> ... </a></h4></p></div>
-              <div><p><h4>Nome: <a id="nome"> ... </a></h4></p></div>
-              <div><p><h4>Link: <a id="link"> ... </a></h4></p></div>
-              <div><p><h4>Chamada: <a id="chamada"> ... </a></h4></p></div>
-              <div><p><h4>Codigo: <a id="codigo"> ... </a></h4></p></div>
+              <div><p><h5> <i class="fas fa-location-arrow"></i> <a id="prateleira"> Prateleira </a></h4></p></div>
+              <div><p><h5> <i class="fas fa-book"></i> <a id="nome"> Nome </a></h4></p></div>
+              <div><p><h5> <i class="fas fa-link"></i> <a id="link"> Link </a></h4></p></div>
+              <div><p><h5> <i class="fas fa-map-marker"></i> <a id="chamada"> Chamada </a></h4></p></div>
+              <div><p><h5> <i class="fas fa-qrcode"></i> <a id="codigo"> Código </a></h4></p></div>
           </div>
 
         </div>
+
       </div>
     </div>
 
@@ -61,6 +63,7 @@
     </div>
 
     <script>
+
         $(document).ready(function(){
             $('#erroBuscar').hide();
             $('#buscarLivro').submit(function(){
@@ -155,6 +158,7 @@
                 return false;
             })
         })
+
 
     </script>
 

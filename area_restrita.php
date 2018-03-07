@@ -1,12 +1,4 @@
 <?php
-    /*
-
-      NOTAS:
-
-      ** ARRUMAR MODALS DO BOTÃO COM BOOSTRAP (MELHOR OPÇÃO)
-
-    */
-
     session_start();
 
     function login_erro(){
@@ -41,13 +33,14 @@
 
     <script src="js/main.js"></script>
     <script src="js/jquery-3.3.1.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
     <link rel="stylesheet" href="css/main.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
 </head>
 <body>
     <div class="container-fluid barraCima" style="text-align: right">
-        <a href="logout.php"><button class="btn btn-dark btn-sm">Sair</button></a>
+        <a href="logout.php"><button class="btn btn-dark btn-sm"> <i class="fas fa-sign-in-alt"></i> Sair</button></a>
 
     </div>
 
@@ -56,26 +49,33 @@
     </div>
 
     <div class="container">
-      <div class="row">
-        <div class="col-sm">
-          Seu nome + Seu nivel;
+      <div class="row" style="padding-top: 1%">
+        <div class="col-sm d-block">
+
+          <div class="card">
+              <div class="card-body">
+                <h5 class="card-title" id="bemvindo">Bem-vindo</h5>
+             </div>
+          </div>
+
         </div>
       </div>
-      <div class="row">
+
+      <div class="row" style= "padding-top: 1%">
         <div class="col-sm-3">
 
           <!-- BOTÕES -->
           <div id="botoes" class="card">
-            <h5 class="card-header">Opções</h5>
+            <h5 class="card-header"><i class="fas fa-cog"></i> Opções</h5>
             <div class="card-body">
 
               <div class="btn-group-vertical btn-block">
                 <button id="registrarUsuarioBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#registrarUsuario">
-                  Registrar Usuário
+                  <i class="fas fa-user-plus"></i> Registrar Usuário
                 </button>
 
                 <button id="registrarLivroBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#registrarLivro">
-                  Registrar Livro
+                  <i class="fas fa-plus-square"></i> Registrar Livro
                 </button>
               </div>
 
@@ -84,7 +84,7 @@
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h3 class="modal-title" id="registrarUsuario">Registrar Usuário</h3>
+                      <h3 class="modal-title" id="registrarUsuario"> Registrar Usuário</h3>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -117,8 +117,8 @@
                           </div>
 
                           <center>
-                            <button type="submit" class="btn btn-success">Registrar</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-success"> <i class="fas fa-check"></i> Registrar</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fas fa-times"></i> Cancelar</button>
                           </center>
                       </form>
 
@@ -175,8 +175,8 @@
                           </div>
 
                           <center>
-                            <button type="submit" class="btn btn-success">Registrar</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-success"> <i class="fas fa-check"></i> Registrar</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fas fa-times"></i> Cancelar</button>
                           </center>
                       </form>
 
@@ -196,10 +196,14 @@
 
 
           <div class="card mb-3">
-            <img class="card-img-top" src="https://www.pshmavlc.com/assets/img/rigpass-featured.jpg" alt="Card image cap">
+            <img class="card-img-top" src="img/bg-adm.jpg">
             <div class="card-body">
-              <h5 class="card-title">Em construção</h5>
-              <p class="card-text">Página em construção</p>
+              <h5 class="card-title">Livros Pendentes</h5>
+              <p class="card-text">
+
+                alouuu
+
+              </p>
               <p class="card-text"><small class="text-muted">Previsão?</small></p>
             </div>
           </div>
@@ -240,6 +244,16 @@
                       $("#registrarUsuarioBtn").prop('disabled', false);
                     }
                 }
+
+            })
+
+            $.ajax({
+              url: "verificar.php",
+              type: "post",
+              data: "executarFuncao="+4,
+              success: function(result){
+                jQuery("#bemvindo").html("<h5 class='card-title' id='bemvindo'><i class='fas fa-user'></i> Bem-vindo, "+result.toString()+".</h5>");
+              }
 
             })
 
@@ -304,6 +318,17 @@
 
                 return false;
             })
+
+            $.ajax({
+              url: "livrosPendentes.php",
+              type: "post",
+              data: "ativo="+true,
+              success: function(result){
+                alert(result);
+              }
+
+            })
+
 
         })
     </script>

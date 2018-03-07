@@ -7,7 +7,7 @@
 
     $resultado = 0;
 
-    if($funcao == 1){ // PARA VERIFICAR NÍVEL
+    if($funcao == 1){ // RETORNA NÍVEL
         $user = $_SESSION['usuario'];
         $pass = $_SESSION['senha'];
 
@@ -61,6 +61,26 @@
 
         }
 
+    }
+
+    if($funcao == 4){ // RETORNA NOME
+
+      if(isset($_SESSION['usuario'])){
+        $usuario = $_SESSION['usuario'];
+        $sql = mysqli_query($conectar, "SELECT * FROM usuarios WHERE usuario = '{$usuario}'") or die(mysql_error());
+
+        $dado = mysqli_fetch_array($sql);
+
+        $resultado = $dado['nome'];
+
+      }
+
+    }
+
+    if($funcao == 5){ // VERIFICAR SE JÁ TEM SESSÃO
+      if(isset($_SESSION['usuario'])){
+        $resultado = 1;
+      }
     }
 
     echo $resultado;

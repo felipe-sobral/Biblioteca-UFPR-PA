@@ -8,12 +8,18 @@
 
     <script src="js/main.js"></script>
     <script src="js/jquery-3.3.1.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
     <link rel="stylesheet" href="css/main.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
-<body style="background-color: black; background-image: url('img/bg.jpg'); background-attachment: fixed;">
+<body style="background-color: black; background-image: url('img/bg.jpg'); background-attachment: fixed;" onload="document.getElementById('usuario').focus();">
 
+    <div id="carregando" style="display: block">
+      <center><img style="padding-top: 3%" src="img/loading.gif" width="260" height="300"/></center>
+    </div>
+
+    <div id="passou" style="display: none">
     <div class="container-fluid cabecalho text-light">
         <h1>BIBLIOTECA UFPR</h1>
     </div>
@@ -23,11 +29,11 @@
         <div class="col-sm">
 
           <div class="card mb-3">
-            <img class="card-img-top" src="https://www.pshmavlc.com/assets/img/rigpass-featured.jpg" alt="Card image cap">
+            <img class="card-img-top" src="img/bg-login.jpg">
             <div class="card-body">
               <h5 class="card-title">Bem-vindo</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              <p class="card-text">Esta área é reservada a servidores.</p>
+              <p class="card-text"><small class="text-muted"><a href="index.html">Clique aqui para voltar</a></small></p>
             </div>
           </div>
 
@@ -39,25 +45,42 @@
           </div>
           <form id="loginform">
               <div class="form-group">
-                  <label for="usuario">Usuário</label>
+                  <label for="usuario"> <i class="fas fa-user"></i> Usuário</label>
                   <input type="text" class="form-control" id="usuario" placeholder="Digite o usuário">
               </div>
               <div class="form-group">
-                  <label for="senha">Senha</label>
+                  <label for="senha"> <i class="fas fa-key"></i> Senha</label>
                   <input type="password" class="form-control" id="senha" placeholder="Digite sua senha">
               </div>
-              <center>
-                <button type="submit" class="btn btn-primary btn-block">Entrar</button>
-              </center>
+
+              <button type="submit" class="btn btn-primary btn-block"> <i class="fas fa-sign-in-alt"></i> Entrar</button>
+
           </form>
 
         </div>
       </div>
     </div>
+    </div>
 
 
     <script>
         $(document).ready(function(){
+            $.ajax({
+              url: "verificar.php",
+              type: "post",
+              data: "executarFuncao="+5,
+              success: function(result){
+                if(result == 0){
+                  document.getElementById("carregando").style.display = "none";
+                  document.getElementById("passou").style.display = "block";
+                }else{
+                  window.location='area_restrita.php';
+                }
+
+              }
+
+            })
+
             $('#errologin').hide();
             $('#loginform').submit(function(){
                 var usuario=$('#usuario').val();
@@ -80,6 +103,7 @@
 
                 return false;
             })
+
         })
 
     </script>

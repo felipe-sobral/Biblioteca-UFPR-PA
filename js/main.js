@@ -1,6 +1,1 @@
-function procurar(){
-        var data = new Date();
-        alert(data.toString());
-}
-
-
+// NADA AINDA
