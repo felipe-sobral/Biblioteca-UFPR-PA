@@ -100,16 +100,16 @@
                           </div>
 
                           <div class="form-group">
-                              <label for="usuario">Usuário</label>
-                              <input type="text" class="form-control" id="r_usuario" placeholder="Ex: maria">
+                              <label for="usuario">Usuário <small class="text-muted">Máximo de caracteres: 20</small></label>
+                              <input type="text" maxlength="20" class="form-control" id="r_usuario" placeholder="Ex: maria">
                           </div>
                           <div class="form-group">
-                              <label for="nome">Nome</label>
-                              <input type="text" class="form-control" id="r_nome" placeholder="Ex: Maria">
+                              <label for="nome">Nome <small class="text-muted">Máximo de caracteres: 60</small></label>
+                              <input type="text" maxlength="60" class="form-control" id="r_nome" placeholder="Ex: Maria">
                           </div>
                           <div class="form-group">
-                              <label for="senha">Senha</label>
-                              <input type="password" class="form-control" id="r_senha" placeholder="Senha">
+                              <label for="senha">Senha <small class="text-muted">Máximo de caracteres: 10</small></label>
+                              <input type="password" maxlength="10" class="form-control" id="r_senha" placeholder="Senha">
                           </div>
                           <div class="form-group">
                               <label for="nivel">Nível do usuário</label>
@@ -150,24 +150,24 @@
                           </div>
 
                           <div class="form-group">
-                              <label for="l_nome">Nome</label>
-                              <input type="text" class="form-control" id="l_nome" placeholder="Ex: Histologia básica">
+                              <label for="l_nome">Nome <small class="text-muted">Máximo de caracteres: 100</small></label>
+                              <input type="text" maxlength="100" class="form-control" id="l_nome" placeholder="Ex: Histologia básica">
                           </div>
                           <div class="form-group">
-                              <label for="l_codigo">Codigo (ISBN)</label>
-                              <input type="text" class="form-control" id="l_codigo" placeholder="Ex: 9788527714020">
+                              <label for="l_codigo">Codigo (ISBN) <small class="text-muted">Máximo de caracteres: 20</small></label>
+                              <input type="text" maxlength="20" class="form-control" id="l_codigo" placeholder="Ex: 9788527714020">
                           </div>
                           <div class="form-group">
-                              <label for="l_barra">Endereço</label>
-                              <input type="text" class="form-control" id="l_barra" placeholder="Ex: 001.8 M294">
+                              <label for="l_barra">Endereço <small class="text-muted">Máximo de caracteres: 30</small></label>
+                              <input type="text" maxlength="30" class="form-control" id="l_barra" placeholder="Ex: 001.8 M294">
                           </div>
                           <div class="form-group">
-                              <label for="l_link">Link do título (Sophia)</label>
-                              <input type="text" class="form-control" id="l_link" placeholder="Ex: http://200.17.203.155/index.php?codigo_sophia=233296">
+                              <label for="l_link">Link do título (Sophia) <small class="text-muted">Máximo de caracteres: 60</small></label>
+                              <input type="text" maxlength="60" class="form-control" id="l_link" placeholder="Ex: http://200.17.203.155/index.php?codigo_sophia=233296">
                           </div>
                           <div class="form-group">
-                              <label for="l_estante">Estante</label>
-                              <input type="text" class="form-control" id="l_estante" placeholder="Ex: 1A">
+                              <label for="l_estante">Estante <small class="text-muted">Máximo de caracteres: 5</small></label>
+                              <input type="text" maxlength="5" class="form-control" id="l_estante" placeholder="Ex: 1A">
                           </div>
                           <div class="form-group">
                               <label for="l_ativo">Ativo (0 = NÃO | 1 = SIM)</label>
@@ -201,7 +201,7 @@
               <h5 class="card-title">Livros Pendentes</h5>
               <p class="card-text">
 
-                alouuu
+                <a id="livrosPendentes"></a>
 
               </p>
               <p class="card-text"><small class="text-muted">Previsão?</small></p>
@@ -324,7 +324,7 @@
               type: "post",
               data: "ativo="+true,
               success: function(result){
-                alert(result);
+                 jQuery("#livrosPendentes").html(result);
               }
 
             })

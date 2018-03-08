@@ -6,27 +6,29 @@
   $ativo = $_POST['ativo'];
 
   if($ativo){
-    quantidade();
+    quantidade($conectar);
   }
 
-  function quantidade(){
+  function quantidade($conectar){
 
-    $tamanho = mysqli_query($conectar, "SELECT COUNT(ativo) FROM livros");
+    $sql = mysqli_query($conectar, "SELECT id, nome, barra, link, codigo FROM livros WHERE ativo = '0' ORDER BY id");
 
-    for ($i=0; $i <= $tamanho ; $i++) {
-      $sql = mysqli_query($conectar, "SELECT * FROM livros WHERE ativo='{1}'");
-      $ativo_check = mysqli_num_rows($sql);
+    $livros_check = mysqli_num_rows($sql);
 
-      if($ativo_check != 1){
-          $dado = mysqli_fetch_array($sql);
+    if($livros_check == 0){
+        echo "NENHUM LIVRO ESPERANDO SER ATIVADO!";
+    } else {
 
-          echo "<p>=================</p>";
-          echo "<p>Nome: "+$_dado['nome']+"</p>";
-          echo "<p>Barra: "+$_dado['barra']+"</p>";
-          echo "<p>Link: "+$_dado['link']+"</p>";
-          echo "<p>Codigo: "+$_dado['codigo']+"</p>";
-          echo "<p>=================</p>";
+      while ($dado = mysqli_fetch_array($sql)) {
+        printf("<p>-----</p>");
+        printf("<p>Nome: %s </p>", $dado['nome']);
+        printf("<p>Barra: %s </p>", $dado['barra']);
+        printf("<p>Link: %s </p>", $dado['link']);
+        printf("<p>Codigo: %s </p>", $dado['codigo']);
+        printf("<p>-----</p>");
+
       }
+
     }
 
 

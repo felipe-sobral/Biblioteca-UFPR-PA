@@ -16,9 +16,7 @@
     	$retorno = 0;
 
     } else {
-
-    	$dado = mysqli_fetch_array($sql);
-
+			
 			$dado = mysqli_fetch_array($sql);
 			$item = $_POST['item'];
 
