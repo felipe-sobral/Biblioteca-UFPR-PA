@@ -77,6 +77,10 @@
                 <button id="registrarLivroBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#registrarLivro">
                   <i class="fas fa-plus-square"></i> Registrar Livro
                 </button>
+
+                <button id="registrarLivroBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#registrarLivro">
+                  <i class="fas fa-pencil-alt"></i> Alterar Livro
+                </button>
               </div>
 
               <!-- MODAL REGISTRAR USUARIO -->
@@ -118,7 +122,7 @@
 
                           <center>
                             <button type="submit" class="btn btn-success"> <i class="fas fa-check"></i> Registrar</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fas fa-times"></i> Cancelar</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fas fa-times"></i> Fechar</button>
                           </center>
                       </form>
 
@@ -169,14 +173,10 @@
                               <label for="l_estante">Estante <small class="text-muted">Máximo de caracteres: 5</small></label>
                               <input type="text" maxlength="5" class="form-control" id="l_estante" placeholder="Ex: 1A">
                           </div>
-                          <div class="form-group">
-                              <label for="l_ativo">Ativo (0 = NÃO | 1 = SIM)</label>
-                              <input type="number" class="form-control" id="l_ativo" placeholder="Min: 0 ~ Max: 1" min="0" max="1">
-                          </div>
 
                           <center>
                             <button type="submit" class="btn btn-success"> <i class="fas fa-check"></i> Registrar</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fas fa-times"></i> Cancelar</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fas fa-times"></i> Fechar</button>
                           </center>
                       </form>
 
@@ -197,14 +197,30 @@
 
           <div class="card mb-3">
             <img class="card-img-top" src="img/bg-adm.jpg">
-            <div class="card-body">
+            <div id="livrosP" class="card-body">
               <h5 class="card-title">Livros Pendentes</h5>
               <p class="card-text">
+
+                <div>
+
+                  <form id="alterarVisibilidade" class="form-inline">
+                    <div class="form-group mx-sm-3 mb-2 col-auto my-1">
+                      <input type="text" class="form-control" id="id_l" placeholder="ID do Livro">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2 col-auto my-1">
+                      <select class="custom-select mr-sm-2" id="valor_l">
+                        <option selected value="1">Ativar</option>
+                        <option value="2">Excluir</option>
+                      </select>
+                    </div>
+                    <button id="sub_livro" type="submit" class="btn btn-primary mb-2">Aplicar</button>
+                  </form>
+
+                </div>
 
                 <a id="livrosPendentes"></a>
 
               </p>
-              <p class="card-text"><small class="text-muted">Previsão?</small></p>
             </div>
           </div>
 
@@ -292,7 +308,6 @@
                 var l_barra=$('#l_barra').val();
                 var l_link=$('#l_link').val();
                 var l_estante=$('#l_estante').val();
-                var l_ativo=$('#l_ativo').val();
 
                 $.ajax({
                     url: "verificar.php",
@@ -302,7 +317,6 @@
                           "&l_barra="+l_barra+
                           "&l_link="+l_link+
                           "&l_estante="+l_estante+
-                          "&l_ativo="+l_ativo+
                           "&executarFuncao="+3,
                     success: function(result){
                         if(result==1){
@@ -322,11 +336,29 @@
             $.ajax({
               url: "livrosPendentes.php",
               type: "post",
-              data: "ativo="+true,
+              data: "ativo="+1,
               success: function(result){
                  jQuery("#livrosPendentes").html(result);
               }
 
+            })
+
+            $('#alterarVisibilidade').submit(function(){
+                var l_valor=$('#valor_l').val();
+                var l_id=$('#id_l').val();
+
+                $.ajax({
+                    url: "livrosPendentes.php",
+                    type: "post",
+                    data: "ativo="+2+
+                          "&l_valor="+l_valor+
+                          "&l_id="+l_id,
+                    success: function(result){
+                      window.location.reload();
+                    }
+                })
+
+                return false;
             })
 
 

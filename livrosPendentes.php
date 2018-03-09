@@ -20,12 +20,15 @@
     } else {
 
       while ($dado = mysqli_fetch_array($sql)) {
-        printf("<p>-----</p>");
-        printf("<p>Nome: %s </p>", $dado['nome']);
-        printf("<p>Barra: %s </p>", $dado['barra']);
-        printf("<p>Link: %s </p>", $dado['link']);
-        printf("<p>Codigo: %s </p>", $dado['codigo']);
-        printf("<p>-----</p>");
+        printf("
+                <p>-----</p>
+                <p>Nome: %s </p>
+                <p>Barra: %s </p>
+                <p>Link: %s </p>
+                <p>Codigo: %s </p>
+                <p>-----</p>
+
+                ", $dado['nome'], $dado['barra'], $dado['link'], $dado['codigo']);
 
       }
 
