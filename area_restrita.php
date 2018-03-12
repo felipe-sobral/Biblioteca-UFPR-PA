@@ -87,7 +87,7 @@
                         <i class="fas fa-plus-square"></i> Registrar Livro
                       </button>
 
-                      <button id="registrarLivroBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#registrarLivro">
+                      <button id="alterarLivroBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#alterarLivro">
                         <i class="fas fa-pencil-alt"></i> Alterar Livro
                       </button>
                     </div>
@@ -196,6 +196,54 @@
                 </div>
                 <!-- FIM MODAL -->
 
+                <!-- MODAL ALTERAR LIVRO -->
+                <div class="modal fade" id="alterarLivro" tabindex="-1" role="dialog" aria-labelledby="alterarLivro" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h3 class="modal-title" id="alterarLivro">Alterar Livro</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+
+                        <form id="registrarFormLivro">
+                            <div id="erroAlterarLivro" class="alert alert-danger" role="alert" style="display: none">
+                                <b>Algo está errado</b>. Não foi possível realizar alterações!
+                            </div>
+                            <div id="errorProcurarLivro" class="alert alert-danger" role="alert" style="display: none">
+                              <b>Algo está errado</b>. Não foi possível encontrar o livro!
+                            </div>
+                            <div id="certoAlterarLivro" class="alert alert-success" role="alert" style="display: none">
+                                <b>Modificações cadastradas!</b>
+                            </div>
+
+                            <div id="procurarLivro" style="display: block">
+                              <div class="form-group">
+                                <label for="l_nome">Codigo do livro</label>
+                                <input type="text" class="form-control" id="c_livro" placeholder="Ex: 9788527714020">
+                              </div>
+
+
+                              <center>
+                                <button type="submit" class="btn btn-success"> <i class="fas fa-check"></i> Procurar</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fas fa-times"></i> Fechar</button>
+                              </center>
+                            </div>
+                        </form>
+
+                        <div id="aposProcurar"  style="display: none">
+                          <p id="formularioDoLivro">:)</p>
+                        </div>
+
+                      </div>
+                      <!-- FOOTER AQUI -->
+                    </div>
+                  </div>
+                </div>
+                <!-- FIM MODAL -->
+
               </div>
             </div>
 
@@ -224,7 +272,7 @@
                       </div>
                       <button id="sub_livro" type="submit" class="btn btn-primary mb-2">Aplicar</button>
                     </form>
-
+                  <hr>
                   </div>
 
                   <a id="livrosPendentes"></a>
@@ -258,6 +306,7 @@
         $(document).ready(function(){
             $('#registrarUsuarioBtn').prop('disabled', true);
             $('#registrarLivro').prop('disabled', true);
+            $('#alterarLivroBtn').prop('disabled', true);
             $('#erroRegistrar').hide();
             $('#registroRealizado').hide();
             $('#erroRegistrarLivro').hide();
@@ -270,6 +319,10 @@
                 success: function(result){
                     if(result>0){
                       $('#registrarLivro').prop('disabled', false);
+                    }
+
+                    if(result>=3){
+                      $('#alterarLivroBtn').prop('disabled', false);
                     }
 
                     if(result==5){

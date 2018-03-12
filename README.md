@@ -1,6 +1,6 @@
 + Site = https://biblioufpr.000webhostapp.com/
 
 + --
-+ Arrumar layout
-+ Adicionar botão de alteração de livros
++ Continuar funções para alterar livro
++ Implementar funções ajax na "area_restrita.php"
 + --
