@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Bowlby+One+SC');
+@import url('https://fonts.googleapis.com/css?family=Quattrocento+Sans');
 
 .cabecalho {
     text-align: center;
@@ -11,6 +12,10 @@
 
 .fonte-bw{
     font-family: 'Bowlby One SC', cursive;
+}
+
+.fonte-qs{
+    font-family: 'Quattrocento Sans', sans-serif;
 }
 
 .barraCima{

@@ -38,67 +38,76 @@
     <link rel="stylesheet" href="css/main.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
 </head>
-<body>
-    <div class="container-fluid barraCima" style="text-align: right">
-        <a href="logout.php"><button class="btn btn-dark btn-sm"> <i class="fas fa-sign-in-alt"></i> Sair</button></a>
+<body style="padding-top: 2%; background-color: #f2f2f2; background-image: url('img/bg-2.jpg')">
 
-    </div>
+    <div class="container" style="-webkit-box-shadow: 0px 0px 25px #1a1a1a; -moz-box-shadow: 0px 0px 25px #1a1a1a; box-shadow: 0px 0px 25px #1a1a1a;">
+      <div class="row" style="background-image: url('img/bg.jpg');">
+        <div class="col-sm text-light" style="padding-top: 6%; text-align: center; padding-bottom: 7.5%;">
 
-    <div class="container-fluid cabecalho text-light">
-        <h1>BIBLIOTECA UFPR</h1>
-    </div>
-
-    <div class="container">
-      <div class="row" style="padding-top: 1%">
-        <div class="col-sm d-block">
-
-          <div class="card">
-              <div class="card-body">
-                <h5 class="card-title" id="bemvindo">Bem-vindo</h5>
-             </div>
+          <div>
+            <h1>BIBLIOTECA UFPR</h1>
           </div>
+
+          <a href="logout.php"><button class="btn btn-dark btn-sm"> <i class="fas fa-sign-in-alt"></i> Sair</button></a>
 
         </div>
       </div>
 
-      <div class="row" style= "padding-top: 1%">
-        <div class="col-sm-3">
 
-          <!-- BOTÕES -->
-          <div id="botoes" class="card">
-            <h5 class="card-header"><i class="fas fa-cog"></i> Opções</h5>
-            <div class="card-body">
+      <div class="row" style="background-color: #fff; padding-top: 2%;">
+        <div class="col-sm">
 
-              <div class="btn-group-vertical btn-block">
-                <button id="registrarUsuarioBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#registrarUsuario">
-                  <i class="fas fa-user-plus"></i> Registrar Usuário
-                </button>
+          <div class="container">
+            <div class="row" style="padding-top: 1%">
+              <div class="col-sm d-block">
 
-                <button id="registrarLivroBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#registrarLivro">
-                  <i class="fas fa-plus-square"></i> Registrar Livro
-                </button>
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title" id="bemvindo">Bem-vindo</h5>
+                  </div>
+                </div>
 
-                <button id="registrarLivroBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#registrarLivro">
-                  <i class="fas fa-pencil-alt"></i> Alterar Livro
-                </button>
               </div>
+            </div>
 
-              <!-- MODAL REGISTRAR USUARIO -->
-              <div class="modal fade" id="registrarUsuario" tabindex="-1" role="dialog" aria-labelledby="registrarUsuario" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h3 class="modal-title" id="registrarUsuario"> Registrar Usuário</h3>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+            <div class="row" style= "padding-top: 1%">
+              <div class="col-sm-3">
+
+                <!-- BOTÕES -->
+                <div id="botoes" class="card">
+                  <h5 class="card-header"><i class="fas fa-cog"></i> Opções</h5>
+                  <div class="card-body">
+
+                    <div class="btn-group-vertical btn-block">
+                      <button id="registrarUsuarioBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#registrarUsuario">
+                        <i class="fas fa-user-plus"></i> Registrar Usuário
+                      </button>
+
+                      <button id="registrarLivroBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#registrarLivro">
+                        <i class="fas fa-plus-square"></i> Registrar Livro
+                      </button>
+
+                      <button id="registrarLivroBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#registrarLivro">
+                        <i class="fas fa-pencil-alt"></i> Alterar Livro
                       </button>
                     </div>
-                    <div class="modal-body">
 
-                      <form id="registrarForm">
-                          <div id="erroRegistrar" class="alert alert-danger" role="alert">
-                              <b>Algo está errado</b>. O usuário já existe ou campos estão vazios!
+                    <!-- MODAL REGISTRAR USUARIO -->
+                    <div class="modal fade" id="registrarUsuario" tabindex="-1" role="dialog" aria-labelledby="registrarUsuario" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h3 class="modal-title" id="registrarUsuario"> Registrar Usuário</h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
                           </div>
+                          <div class="modal-body">
+
+                            <form id="registrarForm">
+                              <div id="erroRegistrar" class="alert alert-danger" role="alert">
+                                <b>Algo está errado</b>. O usuário já existe ou campos estão vazios!
+                              </div>
                           <div id="registroRealizado" class="alert alert-success" role="alert">
                               <b>Usuário cadastrado!</b>
                           </div>
@@ -126,117 +135,124 @@
                           </center>
                       </form>
 
+                      </div>
+                      <!-- FOOTER AQUI -->
                     </div>
-                    <!-- FOOTER AQUI -->
                   </div>
                 </div>
-              </div>
-              <!-- FIM MODAL -->
+                <!-- FIM MODAL -->
 
-              <!-- MODAL REGISTRAR LIVRO -->
-              <div class="modal fade" id="registrarLivro" tabindex="-1" role="dialog" aria-labelledby="registrarLivro" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h3 class="modal-title" id="registrarLivro">Registrar Livro</h3>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
+                <!-- MODAL REGISTRAR LIVRO -->
+                <div class="modal fade" id="registrarLivro" tabindex="-1" role="dialog" aria-labelledby="registrarLivro" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h3 class="modal-title" id="registrarLivro">Registrar Livro</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+
+                        <form id="registrarFormLivro">
+                            <div id="erroRegistrarLivro" class="alert alert-danger" role="alert">
+                                <b>Algo está errado</b>. O livro já foi cadastrado ou campos estão vazios!
+                            </div>
+                            <div id="registroRealizadoLivro" class="alert alert-success" role="alert">
+                                <b>Livro cadastrado!</b>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="l_nome">Nome <small class="text-muted">Máximo de caracteres: 100</small></label>
+                                <input type="text" maxlength="100" class="form-control" id="l_nome" placeholder="Ex: Histologia básica">
+                            </div>
+                            <div class="form-group">
+                                <label for="l_codigo">Codigo (ISBN) <small class="text-muted">Máximo de caracteres: 20</small></label>
+                                <input type="text" maxlength="20" class="form-control" id="l_codigo" placeholder="Ex: 9788527714020">
+                            </div>
+                            <div class="form-group">
+                                <label for="l_barra">Endereço <small class="text-muted">Máximo de caracteres: 30</small></label>
+                                <input type="text" maxlength="30" class="form-control" id="l_barra" placeholder="Ex: 001.8 M294">
+                            </div>
+                            <div class="form-group">
+                                <label for="l_link">Link do título (Sophia) <small class="text-muted">Máximo de caracteres: 60</small></label>
+                                <input type="text" maxlength="60" class="form-control" id="l_link" placeholder="Ex: http://200.17.203.155/index.php?codigo_sophia=233296">
+                            </div>
+                            <div class="form-group">
+                                <label for="l_estante">Estante <small class="text-muted">Máximo de caracteres: 5</small></label>
+                                <input type="text" maxlength="5" class="form-control" id="l_estante" placeholder="Ex: 1A">
+                            </div>
+
+                            <center>
+                              <button type="submit" class="btn btn-success"> <i class="fas fa-check"></i> Registrar</button>
+                              <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fas fa-times"></i> Fechar</button>
+                            </center>
+                        </form>
+
+                      </div>
+                      <!-- FOOTER AQUI -->
                     </div>
-                    <div class="modal-body">
-
-                      <form id="registrarFormLivro">
-                          <div id="erroRegistrarLivro" class="alert alert-danger" role="alert">
-                              <b>Algo está errado</b>. O livro já foi cadastrado ou campos estão vazios!
-                          </div>
-                          <div id="registroRealizadoLivro" class="alert alert-success" role="alert">
-                              <b>Livro cadastrado!</b>
-                          </div>
-
-                          <div class="form-group">
-                              <label for="l_nome">Nome <small class="text-muted">Máximo de caracteres: 100</small></label>
-                              <input type="text" maxlength="100" class="form-control" id="l_nome" placeholder="Ex: Histologia básica">
-                          </div>
-                          <div class="form-group">
-                              <label for="l_codigo">Codigo (ISBN) <small class="text-muted">Máximo de caracteres: 20</small></label>
-                              <input type="text" maxlength="20" class="form-control" id="l_codigo" placeholder="Ex: 9788527714020">
-                          </div>
-                          <div class="form-group">
-                              <label for="l_barra">Endereço <small class="text-muted">Máximo de caracteres: 30</small></label>
-                              <input type="text" maxlength="30" class="form-control" id="l_barra" placeholder="Ex: 001.8 M294">
-                          </div>
-                          <div class="form-group">
-                              <label for="l_link">Link do título (Sophia) <small class="text-muted">Máximo de caracteres: 60</small></label>
-                              <input type="text" maxlength="60" class="form-control" id="l_link" placeholder="Ex: http://200.17.203.155/index.php?codigo_sophia=233296">
-                          </div>
-                          <div class="form-group">
-                              <label for="l_estante">Estante <small class="text-muted">Máximo de caracteres: 5</small></label>
-                              <input type="text" maxlength="5" class="form-control" id="l_estante" placeholder="Ex: 1A">
-                          </div>
-
-                          <center>
-                            <button type="submit" class="btn btn-success"> <i class="fas fa-check"></i> Registrar</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fas fa-times"></i> Fechar</button>
-                          </center>
-                      </form>
-
-                    </div>
-                    <!-- FOOTER AQUI -->
                   </div>
                 </div>
-              </div>
-              <!-- FIM MODAL -->
+                <!-- FIM MODAL -->
 
+              </div>
             </div>
+
+          </div>
+
+          <div class="col-sm padding-bottom: 2%;">
+
+
+            <div class="card mb-3">
+              <img class="card-img-top" src="img/bg-adm.jpg">
+              <div id="livrosP" class="card-body">
+                <h5 class="card-title">Livros Pendentes</h5>
+                <p class="card-text">
+
+                  <div>
+
+                    <form id="alterarVisibilidade" class="form-inline">
+                      <div class="form-group mx-sm-3 mb-2 col-auto my-1">
+                        <input type="text" class="form-control" id="id_l" placeholder="ID do Livro">
+                      </div>
+                      <div class="form-group mx-sm-3 mb-2 col-auto my-1">
+                        <select class="custom-select mr-sm-2" id="valor_l">
+                          <option selected value="1">Ativar</option>
+                          <option value="2">Excluir</option>
+                        </select>
+                      </div>
+                      <button id="sub_livro" type="submit" class="btn btn-primary mb-2">Aplicar</button>
+                    </form>
+
+                  </div>
+
+                  <a id="livrosPendentes"></a>
+
+                </p>
+              </div>
+            </div>
+
+
           </div>
 
         </div>
+      </div>
 
-        <div class="col-sm">
 
 
-          <div class="card mb-3">
-            <img class="card-img-top" src="img/bg-adm.jpg">
-            <div id="livrosP" class="card-body">
-              <h5 class="card-title">Livros Pendentes</h5>
-              <p class="card-text">
 
-                <div>
-
-                  <form id="alterarVisibilidade" class="form-inline">
-                    <div class="form-group mx-sm-3 mb-2 col-auto my-1">
-                      <input type="text" class="form-control" id="id_l" placeholder="ID do Livro">
-                    </div>
-                    <div class="form-group mx-sm-3 mb-2 col-auto my-1">
-                      <select class="custom-select mr-sm-2" id="valor_l">
-                        <option selected value="1">Ativar</option>
-                        <option value="2">Excluir</option>
-                      </select>
-                    </div>
-                    <button id="sub_livro" type="submit" class="btn btn-primary mb-2">Aplicar</button>
-                  </form>
-
-                </div>
-
-                <a id="livrosPendentes"></a>
-
-              </p>
-            </div>
+      <div class="row text-light" style="background-image: url('img/bg.jpg');">
+          <div class="col-sm">
+              <div class="container-fluid" style="text-align: center">
+                  <a href="https://www.facebook.com/krepper.fs" target="_blank"><img src="img/minha_logo.png" alt="Felipe Sobral" style="padding-top: 0.5%; padding-bottom: 0.5%"/></a>  UFPR Biblioteca PA
+              </div>
           </div>
-
-
-        </div>
+      </div>
 
       </div>
     </div>
-
-
-
-
-    <div class="container-fluid footer text-light" style="text-align: center">
-        UFPR Biblioteca PA
-
-    </div>
+  </div>
 
     <script>
         $(document).ready(function(){
