@@ -7,11 +7,11 @@
   $verificar = $_POST['verificar'];
 
   if($verificar == 0){
-    $codigo_procurar = $_POST['codigo'];
+    $codigo_procurar = $_POST['c_livro'];
     $usuario = $_SESSION['usuario'];
     $senha = $_SESSION['senha'];
 
-    $verificar_nivel = mysqli_query($conectar, "SELECT * FROM livros WHERE usuario = '{$usuario}' AND senha = '{$senha}'");
+    $verificar_nivel = mysqli_query($conectar, "SELECT * FROM usuarios WHERE usuario = '{$usuario}' AND senha = '{$senha}'");
     $verificar_nivel_x = mysqli_num_rows($verificar_nivel);
 
     if($verificar_nivel_x==1){
@@ -33,56 +33,36 @@
           $codigo = $dados['codigo'];
 
           printf("
+                    <hr>
 
-          <!-- MODAL REGISTRAR LIVRO -->
-          <div class='modal fade' id='alterarLivro' tabindex='-1' role='dialog' aria-labelledby='alterarLivro' aria-hidden='true'>
-            <div class='modal-dialog' role='document'>
-              <div class='modal-content'>
-                <div class='modal-header'>
-                  <h3 class='modal-title' id='alterarLivro'>Alterar Livro</h3>
-                  <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                    <span aria-hidden='true'>&times;</span>
-                  </button>
-                </div>
-                <div class='modal-body'>
+                    <form id='alterarFormLivroX'>
 
-                  <form id='alterarFormLivro'>
+                      <input type='text' id='a_codigoAlterar' value='%s' style='display: none'>
 
                       <div class='form-group'>
                           <label for='a_nome'>Nome <small class='text-muted'>Máximo de caracteres: 100</small></label>
-                          <input type='text' maxlength='100' class='form-control' id='a_nome' placeholder='%s'>
+                          <input type='text' maxlength='100' class='form-control' id='a_nome' value='%s'>
                       </div>
                       <div class='form-group'>
                           <label for='a_codigo'>Codigo (ISBN) <small class='text-muted'>Máximo de caracteres: 20</small></label>
-                          <input type='text' maxlength='20' class='form-control' id='a_codigo' placeholder='%s'>
+                          <input type='text' maxlength='20' class='form-control' id='a_codigo' value='%s'>
                       </div>
                       <div class='form-group'>
                           <label for='a_barra'>Endereço <small class='text-muted'>Máximo de caracteres: 30</small></label>
-                          <input type='text' maxlength='30' class='form-control' id='a_barra' placeholder='%s'>
+                          <input type='text' maxlength='30' class='form-control' id='a_barra' value='%s'>
                       </div>
                       <div class='form-group'>
                           <label for='a_link'>Link do título (Sophia) <small class='text-muted'>Máximo de caracteres: 60</small></label>
-                          <input type='text' maxlength='60' class='form-control' id='a_link' placeholder='%s'>
+                          <input type='text' maxlength='60' class='form-control' id='a_link' value='%s'>
                       </div>
                       <div class='form-group'>
                           <label for='a_estante'>Estante <small class='text-muted'>Máximo de caracteres: 5</small></label>
-                          <input type='text' maxlength='5' class='form-control' id='a_estante' placeholder='%s'>
+                          <input type='text' maxlength='5' class='form-control' id='a_estante' value='%s'>
                       </div>
 
-                      <center>
-                        <button type='submit' class='btn btn-success'> <i class='fas fa-check'></i> Registrar</button>
-                        <button type='button' class='btn btn-danger' data-dismiss='modal'> <i class='fas fa-times'></i> Fechar</button>
-                      </center>
                   </form>
 
-                </div>
-                <!-- FOOTER AQUI -->
-              </div>
-            </div>
-          </div>
-          <!-- FIM MODAL -->
-
-                  ", $dados['nome'], $dados['codigo'], $dados['barra'], $dados['link'], $dados['estante']);
+                  ", $dados['codigo'], $dados['nome'], $dados['codigo'], $dados['barra'], $dados['link'], $dados['estante']);
         } else {
           echo 0;
           exit;
@@ -98,5 +78,50 @@
     }
   }
 
+  if($verificar == 1){
 
+    $usuario = $_SESSION['usuario'];
+    $senha = $_SESSION['senha'];
+
+    $a_codigo = $_POST['a_codigoAlterar'];
+
+    $verificar_nivel = mysqli_query($conectar, "SELECT * FROM usuarios WHERE usuario = '{$usuario}' AND senha = '{$senha}'");
+    $verificar_nivel_x = mysqli_num_rows($verificar_nivel);
+
+    if($verificar_nivel_x==1){
+      $obter_dado = mysqli_fetch_array($verificar_nivel);
+      $nivel = $obter_dado['nivel'];
+
+      if($nivel >= 3){
+        $sql = mysqli_query($conectar, "SELECT * FROM livros WHERE codigo = '{$a_codigo}'");
+        $verificar_livro = mysqli_num_rows($sql);
+
+        if($verificar_livro == 1){
+
+          $nome = $_POST['a_nome'];
+          $barra = $_POST['a_barra'];
+          $estante = $_POST['a_estante'];
+          $link = $_POST['a_link'];
+          $codigo = $_POST['a_codigo'];
+          $codigo_a = $_POST['a_codigoAlterar'];
+
+          mysqli_query($conectar, "UPDATE livros SET nome ='{$nome}', barra = '{$barra}', estante = '{$estante}', link = '{$link}', codigo = '{$codigo}' WHERE livros.codigo = '{$codigo_a}'");
+
+          echo 1;
+
+        } else {
+          echo 0;
+          exit;
+        }
+
+      } else {
+        echo 0;
+        exit;
+      }
+    } else {
+      echo 0;
+      exit;
+    }
+
+  }
 ?>

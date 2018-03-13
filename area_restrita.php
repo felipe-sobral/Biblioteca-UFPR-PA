@@ -64,6 +64,7 @@
                 <div class="card">
                   <div class="card-body">
                     <h5 class="card-title" id="bemvindo">Bem-vindo</h5>
+                    <a><i class="fas fa-exclamation-triangle"></i> Para melhor utilização, é recomendado que use o navegador <b><i class="fab fa-chrome"></i> Google Chrome</b> ou <b><i class="fab fa-firefox"></i> Firefox</b>.</a>
                   </div>
                 </div>
 
@@ -208,33 +209,64 @@
                       </div>
                       <div class="modal-body">
 
-                        <form id="registrarFormLivro">
-                            <div id="erroAlterarLivro" class="alert alert-danger" role="alert" style="display: none">
+                        <form id="alterarFormLivro">
+                            <div id="erroAlterarLivro" class="alert alert-danger" role="alert">
                                 <b>Algo está errado</b>. Não foi possível realizar alterações!
                             </div>
-                            <div id="errorProcurarLivro" class="alert alert-danger" role="alert" style="display: none">
+                            <div id="errorProcurarLivro" class="alert alert-danger" role="alert">
                               <b>Algo está errado</b>. Não foi possível encontrar o livro!
                             </div>
-                            <div id="certoAlterarLivro" class="alert alert-success" role="alert" style="display: none">
+                            <div id="certoAlterarLivro" class="alert alert-success" role="alert">
                                 <b>Modificações cadastradas!</b>
                             </div>
 
                             <div id="procurarLivro" style="display: block">
                               <div class="form-group">
-                                <label for="l_nome">Codigo do livro</label>
+                                <label for="c_livro">Codigo do livro</label>
                                 <input type="text" class="form-control" id="c_livro" placeholder="Ex: 9788527714020">
                               </div>
 
 
                               <center>
-                                <button type="submit" class="btn btn-success"> <i class="fas fa-check"></i> Procurar</button>
-                                <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fas fa-times"></i> Fechar</button>
+                                <button type="submit" class="btn btn-outline-primary"> <i class="fas fa-search"></i> Procurar</button>
                               </center>
                             </div>
                         </form>
 
                         <div id="aposProcurar"  style="display: none">
-                          <p id="formularioDoLivro">:)</p>
+                            <form id='alterarFormLivroX'>
+
+                                <a id="formularioDoLivro">
+                                <!--
+                                    <div class='form-group'>
+                                        <label for='a_nome'>Nome <small class='text-muted'>Máximo de caracteres: 100</small></label>
+                                        <input type='text' maxlength='100' class='form-control' id='a_nome' placeholder='%s'>
+                                    </div>
+                                    <div class='form-group'>
+                                        <label for='a_codigo'>Codigo (ISBN) <small class='text-muted'>Máximo de caracteres: 20</small></label>
+                                        <input type='text' maxlength='20' class='form-control' id='a_codigo' placeholder='%s'>
+                                    </div>
+                                    <div class='form-group'>
+                                        <label for='a_barra'>Endereço <small class='text-muted'>Máximo de caracteres: 30</small></label>
+                                        <input type='text' maxlength='30' class='form-control' id='a_barra' placeholder='%s'>
+                                    </div>
+                                    <div class='form-group'>
+                                        <label for='a_link'>Link do título (Sophia) <small class='text-muted'>Máximo de caracteres: 60</small></label>
+                                        <input type='text' maxlength='60' class='form-control' id='a_link' placeholder='%s'>
+                                    </div>
+                                    <div class='form-group'>
+                                        <label for='a_estante'>Estante <small class='text-muted'>Máximo de caracteres: 5</small></label>
+                                        <input type='text' maxlength='5' class='form-control' id='a_estante' placeholder='%s'>
+                                    </div>
+                                -->
+
+                                </a>
+
+                            <center>
+                              <button type='submit' class='btn btn-success'> <i class='fas fa-check'></i> Registrar</button>
+                              <button type='button' class='btn btn-danger' data-dismiss='modal'> <i class='fas fa-times'></i> Fechar</button>
+                            </center>
+                          </form>
                         </div>
 
                       </div>
@@ -270,7 +302,7 @@
                           <option value="2">Excluir</option>
                         </select>
                       </div>
-                      <button id="sub_livro" type="submit" class="btn btn-primary mb-2">Aplicar</button>
+                      <button id="sub_livro" type="submit" class="btn btn-outline-info mb-2"><i class='fas fa-check'></i> Aplicar</button>
                     </form>
                   <hr>
                   </div>
@@ -307,10 +339,15 @@
             $('#registrarUsuarioBtn').prop('disabled', true);
             $('#registrarLivro').prop('disabled', true);
             $('#alterarLivroBtn').prop('disabled', true);
+
             $('#erroRegistrar').hide();
             $('#registroRealizado').hide();
             $('#erroRegistrarLivro').hide();
             $('#registroRealizadoLivro').hide();
+
+            $('#erroAlterarLivro').hide();
+            $('#errorProcurarLivro').hide();
+            $('#certoAlterarLivro').hide();
 
             $.ajax({
                 url: "verificar.php",
@@ -395,6 +432,81 @@
                         if(result==0){
                             $('#erroRegistrarLivro').show();
                             $('#registroRealizadoLivro').hide();
+                        }
+                    }
+                })
+
+                return false;
+            })
+
+            $('#alterarFormLivro').submit(function(){
+                $('#erroAlterarLivro').hide();
+                $('#errorProcurarLivro').hide();
+                $('#certoAlterarLivro').hide();
+
+                var c_livro=$('#c_livro').val();
+
+                $.ajax({
+                    url: "alterarLivro.php",
+                    type: "post",
+                    data: "c_livro="+c_livro+
+                          "&verificar="+0,
+                    success: function(result){
+                        if(result == 0){
+                            document.getElementById("aposProcurar").style.display = "none";
+                            $('#errorProcurarLivro').show();
+                            $('#erroAlterarLivro').hide();
+                            $('#certoAlterarLivro').hide();
+
+                        } else {
+                            //document.getElementById("procurarLivro").style.display = "none";
+                            $('#erroAlterarLivro').hide();
+                            $('#errorProcurarLivro').hide();
+                            $('#certoAlterarLivro').hide();
+
+                            document.getElementById("aposProcurar").style.display = "block";
+                            jQuery("#formularioDoLivro").html(result);
+                            /*
+                            if(result==0){
+                                document.getElementById("certoAlterarLivro").style.display = "none";
+                                document.getElementById("errorProcurarLivro").style.display = "block";
+                            }*/
+
+                        }
+                    }
+                })
+
+                return false;
+            })
+
+            // alterarFormLivroX
+            $('#alterarFormLivroX').submit(function(){
+                var a_nome=$('#a_nome').val();
+                var a_codigo=$('#a_codigo').val();
+                var a_barra=$('#a_barra').val();
+                var a_link=$('#a_link').val();
+                var a_estante=$('#a_estante').val();
+                var a_codigoAlterar=$('#a_codigoAlterar').val();
+
+                $.ajax({
+                    url: "alterarLivro.php",
+                    type: "post",
+                    data: "a_nome="+a_nome+
+                          "&a_codigo="+a_codigo+
+                          "&a_barra="+a_barra+
+                          "&a_link="+a_link+
+                          "&a_estante="+a_estante+
+                          "&a_codigoAlterar="+a_codigoAlterar+
+                          "&verificar="+1,
+                    success: function(result){
+                        if(result == 1){
+                            $('#erroAlterarLivro').hide();
+                            $('#errorProcurarLivro').hide();
+                            $('#certoAlterarLivro').show();
+                        } else {
+                            $('#erroAlterarLivro').show();
+                            $('#errorProcurarLivro').hide();
+                            $('#certoAlterarLivro').hide();
                         }
                     }
                 })

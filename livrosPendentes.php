@@ -39,7 +39,7 @@
                     <p class='card-text'><i class='fas fa-user'></i> <b>Responsável:</b> %s</p>
                     <p class='card-text'><i class='fas fa-link'></i> <b>Link:</b> <a href='%s' target='_blank'>Ir para página</a></p>
                     <p class='card-text'><i class='fas fa-qrcode'></i> <b>Codigo:</b> %s</p>
-                    <p class='card-text'><i class='fas fa-id-card'></i> <b>ID:</b> %d</p>
+                    <p class='card-text'><i class='fas fa-id-card' style='color: #B00B0B'></i> <b>ID:</b> %d</p>
 
 
                   </div>
