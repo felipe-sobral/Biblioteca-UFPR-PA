@@ -42,13 +42,12 @@
 
     <div class="container" style="-webkit-box-shadow: 0px 0px 25px #1a1a1a; -moz-box-shadow: 0px 0px 25px #1a1a1a; box-shadow: 0px 0px 25px #1a1a1a;">
       <div class="row" style="background-image: url('img/bg.jpg');">
-        <div class="col-sm text-light" style="padding-top: 6%; text-align: center; padding-bottom: 7.5%;">
+        <div class="col-sm">
 
-          <div>
+          <div class="text-light" style="padding-top: 6%; text-align: center; padding-bottom: 7.5%;">
             <h1>BIBLIOTECA UFPR</h1>
+            <a href="logout.php"><button class="btn btn-dark btn-sm"> <i class="fas fa-sign-in-alt"></i> Sair</button></a>
           </div>
-
-          <a href="logout.php"><button class="btn btn-dark btn-sm"> <i class="fas fa-sign-in-alt"></i> Sair</button></a>
 
         </div>
       </div>
