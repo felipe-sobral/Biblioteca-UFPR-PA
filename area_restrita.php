@@ -90,6 +90,10 @@
                       <button id="alterarLivroBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#alterarLivro">
                         <i class="fas fa-pencil-alt"></i> Alterar Livro
                       </button>
+
+                      <a href="listarLivros.php" target="_blank" class="btn btn-primary">
+                        <i class="fas fa-clipboard-list"></i> Livros Registrados
+                     </a>
                     </div>
 
                     <!-- MODAL REGISTRAR USUARIO -->
