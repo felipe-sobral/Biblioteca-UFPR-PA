@@ -7,7 +7,9 @@
 
     $resultado = 0;
 
-    if($funcao == 1){ // RETORNA NÍVEL
+    switch ($funcao) {
+
+      case 1: // RETORNA NÍVEL
         $user = $_SESSION['usuario'];
         $pass = $_SESSION['senha'];
 
@@ -15,9 +17,9 @@
 
         $dado = mysqli_fetch_array($sql);
         $resultado = $dado['nivel'];
-    }
+        break;
 
-    if($funcao == 2){ // PARA CADASTRAR USUÁRIO
+      case 2: // REGISTRAR USUÁRIO
         $r_usuario = $_POST['r_usuario'];
         $r_senha = $_POST['r_senha'];
         $r_nome = $_POST['r_nome'];
@@ -35,10 +37,9 @@
           }
 
         }
+        break;
 
-    }
-
-    if($funcao == 3){ // PARA CADASTRAR LIVRO
+      case 3: // REGISTRAR LIVRO
         $l_nome = $_POST['l_nome'];
         $l_codigo = $_POST['l_codigo'];
         $l_barra = $_POST['l_barra'];
@@ -58,28 +59,28 @@
           }
 
         }
+        break;
 
+      case 4: // RETORNA NOME
+
+        if(isset($_SESSION['usuario'])){
+          $usuario = $_SESSION['usuario'];
+          $sql = mysqli_query($conectar, "SELECT * FROM usuarios WHERE usuario = '{$usuario}'") or die(mysql_error());
+
+          $dado = mysqli_fetch_array($sql);
+
+          $resultado = $dado['nome'];
+
+        }
+        break;
+
+      case 5: // VERIFICAR SE JÁ TEM SESSÃO
+        if(isset($_SESSION['usuario'])){
+          $resultado = 1;
+        }
+        break;
     }
 
-    if($funcao == 4){ // RETORNA NOME
-
-      if(isset($_SESSION['usuario'])){
-        $usuario = $_SESSION['usuario'];
-        $sql = mysqli_query($conectar, "SELECT * FROM usuarios WHERE usuario = '{$usuario}'") or die(mysql_error());
-
-        $dado = mysqli_fetch_array($sql);
-
-        $resultado = $dado['nome'];
-
-      }
-
-    }
-
-    if($funcao == 5){ // VERIFICAR SE JÁ TEM SESSÃO
-      if(isset($_SESSION['usuario'])){
-        $resultado = 1;
-      }
-    }
 
     echo $resultado;
     exit;

@@ -31,11 +31,11 @@
     <title>Biblioteca UFPR</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script src="js/main.js"></script>
-    <script src="js/jquery-3.3.1.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/jquery-3.3.1.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
-    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="../css/main.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
 </head>
 <body style="padding-top: 2%; background-color: #f2f2f2; background-image: url('../img/bg-2.jpg')">
@@ -46,7 +46,7 @@
 
           <div class="text-light" style="padding-top: 6%; text-align: center; padding-bottom: 7.5%;">
             <h1>BIBLIOTECA UFPR</h1>
-            <a href="logout.php"><button class="btn btn-dark btn-sm"> <i class="fas fa-sign-in-alt"></i> Sair</button></a>
+            <a href="../logout.php"><button class="btn btn-dark btn-sm"> <i class="fas fa-sign-in-alt"></i> Sair</button></a>
           </div>
 
         </div>
@@ -91,7 +91,7 @@
                         <i class="fas fa-pencil-alt"></i> Alterar Livro
                       </button>
 
-                      <a href="listarLivros.php" target="_blank" class="btn btn-primary">
+                      <a href="../listarLivros.php" target="_blank" class="btn btn-primary">
                         <i class="fas fa-clipboard-list"></i> Livros Registrados
                      </a>
                     </div>
@@ -266,7 +266,7 @@
                                 </a>
 
                             <center>
-                              <button type='submit' class='btn btn-success'> <i class='fas fa-check'></i> Registrar</button>
+                              <button type='submit' class='btn btn-success'> <i class='fas fa-check'></i> Alterar</button>
                               <button type='button' class='btn btn-danger' data-dismiss='modal'> <i class='fas fa-times'></i> Fechar</button>
                             </center>
                           </form>

@@ -1,7 +1,7 @@
 <?php
 	session_start();
 
-	include "../cfg.php";
+	include "cfg.php";
 
 	$codigo = $_POST['barra'];
 	$item = $_POST['item'];
