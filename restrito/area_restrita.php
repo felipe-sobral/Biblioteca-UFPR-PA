@@ -353,7 +353,7 @@
             $('#certoAlterarLivro').hide();
 
             $.ajax({
-                url: "verificar.php",
+                url: "../verificar.php",
                 type: "post",
                 data: "executarFuncao="+1,
                 success: function(result){
@@ -373,7 +373,7 @@
             })
 
             $.ajax({
-              url: "verificar.php",
+              url: "../verificar.php",
               type: "post",
               data: "executarFuncao="+4,
               success: function(result){
@@ -389,7 +389,7 @@
                 var r_nivel=$('#r_nivel').val();
 
                 $.ajax({
-                    url: "verificar.php",
+                    url: "../verificar.php",
                     type: "post",
                     data: "r_usuario="+r_usuario+
                           "&r_senha="+r_senha+
@@ -419,7 +419,7 @@
                 var l_estante=$('#l_estante').val();
 
                 $.ajax({
-                    url: "verificar.php",
+                    url: "../verificar.php",
                     type: "post",
                     data: "l_nome="+l_nome+
                           "&l_codigo="+l_codigo+

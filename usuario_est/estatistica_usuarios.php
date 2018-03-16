@@ -1,7 +1,7 @@
 <?php
   session_start();
 
-  include "cfg.php";
+  include "../cfg.php";
 
   $funcao = 0;
   $numero = 1;
