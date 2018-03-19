@@ -26,15 +26,35 @@
       </div>
 
       <div class="row" style="background-color: #fff; padding-top: 2%; padding-bottom: 2%;">
-        <div class="col-sm-3">
+        <div class="col-sm">
 
-            MENU
+            <div class="card text-center">
+              <div class="card-header">
+                <!--- TURNOS
+                    <i class="far fa-sun"></i> >> MANHÃ
+                    <i class="fas fa-sun"></i> >> TARDE
+                    <i class="fas fa-moon"></i> >> NOITE
+                -->
+                <i class="fas fa-cloud"></i> <i>Turno</i>
+
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Contador de usuários</h5>
+                <div id="contador"><h1 class="card-text">00</h1></div>
+                <a href="#" class="btn btn-success"><i class="fas fa-plus" style="color: #BBE2B8"></i></a>
+                <a href="#" class="btn btn-danger"><i class="fas fa-minus" style="color: #E8BEBE"></i></a>
+
+              </div>
+              <div class="card-footer text-muted">
+                <i>Última atualização</i>
+              </div>
+            </div>
 
         </div>
 
-        <div class="col-sm">
+        <div class="col-sm-3">
 
-            CONTADOR
+            MENU
 
         </div>
      </div>
@@ -49,5 +69,35 @@
       </div>
     </div>
 
+
+    <script>
+        //$(document).ready(function(){
+
+        $.ajax(){
+            url: "estatistica_usuarios.php",
+            type: "post"  // CONTINUAR..... (ATUALZIAR CONTADOR)
+        }
+
+        $(document).ready(function(){
+
+            function adicionar(){
+
+                $.ajax({
+                    url: "estatistica_usuarios.php",
+                    type: "post",
+                    data: "funcao="+0+
+                    "&numero="+1,
+                    success: function(result){
+                        $('#contador').load("estatistica_usuarios.html");
+
+                    }
+                })
+
+            }
+
+        })
+
+
+    </script>
 </body>
 </html>
