@@ -40,7 +40,7 @@
               </div>
               <div class="card-body">
                 <h5 class="card-title">Contador de usuários</h5>
-                <div id="contador"><h1 class="card-text">00</h1></div>
+                <h1 class="card-text" id="contador">00</h1>
                 <a href="#" class="btn btn-success"><i class="fas fa-plus" style="color: #BBE2B8"></i></a>
                 <a href="#" class="btn btn-danger"><i class="fas fa-minus" style="color: #E8BEBE"></i></a>
 
@@ -72,28 +72,39 @@
 
     <script>
         //$(document).ready(function(){
-
-        $.ajax(){
-            url: "estatistica_usuarios.php",
-            type: "post"  // CONTINUAR..... (ATUALZIAR CONTADOR)
-        }
-
         $(document).ready(function(){
 
-            function adicionar(){
 
-                $.ajax({
+            function atualizaContador(){
+
+                $.ajax(){
                     url: "estatistica_usuarios.php",
                     type: "post",
-                    data: "funcao="+0+
-                    "&numero="+1,
+                    data: "funcao="+1+,
+                    "&numero="+0,
                     success: function(result){
-                        $('#contador').load("estatistica_usuarios.html");
-
+                        $("#contador").html("<h1 id='contador'>"+result.toString()+"</h1>");
                     }
-                })
+                }
 
             }
+
+          atualizaContador();
+
+          function adicionar(){
+
+              $.ajax({
+                  url: "estatistica_usuarios.php",
+                  type: "post",
+                  data: "funcao="+0+
+                  "&numero="+1,
+                  success: function(result){
+                      atualizaContador();
+
+                  }
+              })
+
+          }
 
         })
 

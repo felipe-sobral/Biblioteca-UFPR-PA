@@ -19,7 +19,7 @@
   $sql = mysqli_query($conectar, "SELECT data FROM estatistica_usuarios WHERE data = '{$data[0]}'");
   $verificarDataExiste = mysqli_num_rows($sql); // RETORNO != 0 == EXISTE
 
-  if($funcao == 0){
+  if($funcao == 0){ // BOTAO ADICIONAR NORMAL
     if($verificarDataExiste == 0){
 
       mysqli_query($conectar, "INSERT INTO estatistica_usuarios(manha, tarde, noite, data) VALUES ('0', '0', '0', '{$data[0]}') ");
@@ -49,6 +49,35 @@
         }
 
     }
+  }
+
+  if($funcao == 1){
+
+    $sql = mysqli_query($conectar, "SELECT * FROM estatistica_usuarios WHERE data = '{$data[0]}'");
+    $contagem = mysqli_fetch_array($sql);
+
+    switch ($hora_br) {
+
+      case ($hora_br >= 7 && $hora_br < 12):
+
+        echo $contagem['manha'];
+
+      break;
+
+      case ($hora_br >= 12 && $hora_br < 18):
+
+        echo $contagem['tarde'];
+
+      break;
+
+      case ($hora_br >= 18 && $hora_br < 20):
+
+        echo $contagem['noite'];
+
+      break;
+
+      }
+
   }
 
  ?>
