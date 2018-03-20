@@ -3,8 +3,8 @@
 
   include "../cfg.php";
 
-  $funcao = 0;
-  $numero = 1;
+  $funcao = $_POST['funcao'];
+  $numero = $_POST['numero'];
 
   $sql_data = mysqli_query($conectar, "SELECT DATE(CURRENT_TIMESTAMP)"); // RETORNA DATA ATUAL
   $sql_hora = mysqli_query($conectar, "SELECT HOUR(CURRENT_TIMESTAMP)"); // RETORNA HORA ATUAL
@@ -14,12 +14,29 @@
 
   $hora_br = $hora[0]-3;
 
-  printf("Data: %s, Horas: %s", $data[0], $hora[0]-3);
-
   $sql = mysqli_query($conectar, "SELECT data FROM estatistica_usuarios WHERE data = '{$data[0]}'");
   $verificarDataExiste = mysqli_num_rows($sql); // RETORNO != 0 == EXISTE
 
-  if($funcao == 0){ // BOTAO ADICIONAR NORMAL
+  switch ($funcao) {
+    case 0:
+      adicionar($numero, $conectar, $hora_br, $data, $verificarDataExiste);
+    break;
+    case 1:
+      atualizarContador($conectar, $hora_br, $data);
+    break;
+    case 2;
+      remover($numero, $conectar, $hora_br, $data, $verificarDataExiste);
+   break;
+   case 3:
+      turno($conectar, $hora_br, $data);
+   break;
+   case 4:
+      datahora($conectar);
+   break;
+  }
+
+  // ADICIONAR PESSOAS
+  function adicionar($pessoas, $conectar, $hora_br, $data, $verificarDataExiste){
     if($verificarDataExiste == 0){
 
       mysqli_query($conectar, "INSERT INTO estatistica_usuarios(manha, tarde, noite, data) VALUES ('0', '0', '0', '{$data[0]}') ");
@@ -31,27 +48,102 @@
       switch ($hora_br) {
 
         case ($hora_br >= 7 && $hora_br < 12):
-          $numero = $numero + $contagem['manha'];
-          echo $numero;
-          mysqli_query($conectar, "UPDATE estatistica_usuarios SET manha = '{$numero}' WHERE data = '{$data[0]}'");
+
+          if($contagem['manha'] == 0){
+            $pessoas = ($pessoas+1) + $contagem['manha'];
+          } else {
+            $pessoas = $pessoas + $contagem['manha'];
+          }
+
+          mysqli_query($conectar, "UPDATE estatistica_usuarios SET manha = '{$pessoas}' WHERE data = '{$data[0]}'");
+
         break;
 
         case ($hora_br >= 12 && $hora_br < 18):
-          $numero = $numero + $contagem['tarde'];
-          mysqli_query($conectar, "UPDATE estatistica_usuarios SET tarde = '{$numero}' WHERE data = '{$data[0]}'");
+
+          if($contagem['tarde'] == 0){
+            $pessoas = ($pessoas+1) + $contagem['tarde'];
+          } else {
+            $pessoas = $pessoas + $contagem['tarde'];
+          }
+
+          mysqli_query($conectar, "UPDATE estatistica_usuarios SET tarde = '{$pessoas}' WHERE data = '{$data[0]}'");
+
         break;
 
         case ($hora_br >= 18 && $hora_br < 20):
-          $numero = $numero + $contagem['noite'];
-          mysqli_query($conectar, "UPDATE estatistica_usuarios SET noite = '{$numero}' WHERE data = '{$data[0]}'");
+
+          if($contagem['noite'] == 0){
+            $pessoas = ($pessoas+1) + $contagem['noite'];
+          } else {
+            $pessoas = $pessoas + $contagem['noite'];
+          }
+
+          mysqli_query($conectar, "UPDATE estatistica_usuarios SET noite = '{$pessoas}' WHERE data = '{$data[0]}'");
+
         break;
 
-        }
+      }
 
     }
+
   }
 
-  if($funcao == 1){
+  // REMOVER PESSOAS
+  function remover($pessoas, $conectar, $hora_br, $data, $verificarDataExiste){
+
+    if($verificarDataExiste == 0){
+
+      echo 0;
+
+    } else {
+
+      $sql = mysqli_query($conectar, "SELECT * FROM estatistica_usuarios WHERE data = '{$data[0]}'");
+      $contagem = mysqli_fetch_array($sql);
+
+      switch ($hora_br) {
+
+        case ($hora_br >= 7 && $hora_br < 12):
+
+          if($contagem['manha'] != 0){
+            $pessoas = $contagem['manha'] - $pessoas;
+            mysqli_query($conectar, "UPDATE estatistica_usuarios SET manha = '{$pessoas}' WHERE data = '{$data[0]}'");
+          } else {
+            echo 0;
+          }
+
+        break;
+
+        case ($hora_br >= 12 && $hora_br < 18):
+
+          if($contagem['tarde'] != 0){
+            $pessoas = $contagem['tarde'] - $pessoas;
+            mysqli_query($conectar, "UPDATE estatistica_usuarios SET tarde = '{$pessoas}' WHERE data = '{$data[0]}'");
+          } else {
+            echo 0;
+          }
+
+        break;
+
+        case ($hora_br >= 18 && $hora_br < 20):
+
+          if($contagem['noite'] != 0){
+            $pessoas = $contagem['noite'] - $pessoas;
+            mysqli_query($conectar, "UPDATE estatistica_usuarios SET noite = '{$pessoas}' WHERE data = '{$data[0]}'");
+          } else {
+            echo 0;
+          }
+
+        break;
+
+      }
+
+    }
+
+  }
+
+  // ATUALIZAR CONTADOR
+  function atualizarContador($conectar, $hora_br, $data){
 
     $sql = mysqli_query($conectar, "SELECT * FROM estatistica_usuarios WHERE data = '{$data[0]}'");
     $contagem = mysqli_fetch_array($sql);
@@ -76,8 +168,50 @@
 
       break;
 
-      }
+    }
 
   }
+
+  // ATUALIZA TURNO
+  function turno($conectar, $hora_br, $data){
+
+    $sql = mysqli_query($conectar, "SELECT * FROM estatistica_usuarios WHERE data = '{$data[0]}'");
+    $contagem = mysqli_fetch_array($sql);
+
+    switch ($hora_br) {
+
+      case ($hora_br >= 7 && $hora_br < 12):
+
+        echo "<a id='turno'><i class='far fa-sun'></i> <i>Manhã</i></a>";
+
+      break;
+
+      case ($hora_br >= 12 && $hora_br < 18):
+
+        echo "<a id='turno'><i class='fas fa-sun'></i> <i>Tarde</i></a>";
+
+      break;
+
+      case ($hora_br >= 18 && $hora_br < 20):
+
+        echo "<a id='turno'><i class='fas fa-moon'></i> <i>Noite</i></a>";
+
+      break;
+
+
+    }
+
+  }
+
+  // DATA E HORA DO SERVIDOR
+  function datahora($conectar){
+    $sql = mysqli_query($conectar, "SELECT CURRENT_TIMESTAMP");
+    $data = mysqli_fetch_row($sql);
+
+    printf("<i id='ultAtualizacao'>%s</i>", $data[0]);
+
+  }
+
+  // ++ CONDIÇÕES $conectar, $hora_br, $data
 
  ?>

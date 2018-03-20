@@ -94,6 +94,10 @@
                       <a href="../listarLivros.php" target="_blank" class="btn btn-primary">
                         <i class="fas fa-clipboard-list"></i> Livros Registrados
                      </a>
+
+                     <a href="../usuario_est/estatistica_usuarios.html" target="_blank" class="btn btn-primary">
+                       Contador de Usuários
+                    </a>
                     </div>
 
                     <!-- MODAL REGISTRAR USUARIO -->
