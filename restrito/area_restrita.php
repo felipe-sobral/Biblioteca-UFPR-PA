@@ -95,7 +95,7 @@
                         <i class="fas fa-clipboard-list"></i> Livros Registrados
                      </a>
 
-                     <a href="../usuario_est/estatistica_usuarios.html" target="_blank" class="btn btn-primary">
+                     <a href="../usuario_est/estatistica_usuarios.html" class="btn btn-primary">
                        Contador de Usuários
                     </a>
                     </div>
