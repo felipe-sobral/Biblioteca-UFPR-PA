@@ -38,9 +38,9 @@
     <link rel="stylesheet" href="../css/main.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
 </head>
-<body style="padding-top: 2%; background-color: #f2f2f2; background-image: url('../img/bg-2.jpg')">
+<body class="bodyPadrao">
 
-    <div class="container" style="-webkit-box-shadow: 0px 0px 25px #1a1a1a; -moz-box-shadow: 0px 0px 25px #1a1a1a; box-shadow: 0px 0px 25px #1a1a1a;">
+    <div class="container" style="-webkit-box-shadow: 0px 0px 25px #4D4D4D; -moz-box-shadow: 0px 0px 25px #4D4D4D; box-shadow: 0px 0px 25px #4D4D4D;">
       <div class="row" style="background-image: url('../img/bg.jpg');">
         <div class="col-sm">
 

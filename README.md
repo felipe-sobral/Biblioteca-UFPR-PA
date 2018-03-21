@@ -1,7 +1,10 @@
-+ Site = https://biblioufpr.000webhostapp.com/
++ Site = biblioteca.felipesobral.xyz
 
 + --
-+ CRIAR PÁGINA DE ESTATÍSTICA DE USUÁRIOS
-+ CRIAR ALTERAR DIA DA ESTATÍSTICA
-+ CRIAR MOSTRAR USUARIOS NO MÊS
++ Paleta de cores!
++ #00487F
++ #CCE9FF
++ #0090FF
++ #315D7F
++ #0073CC
 + --

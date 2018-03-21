@@ -48,3 +48,10 @@
     padding-top: 1%;
     font-size: 42px;
 }
+
+
+.bodyPadrao{
+    padding-top: 2%;
+    background-color: #f2f2f2;
+    background-image: url('../img/bg_teste.jpg')
+}

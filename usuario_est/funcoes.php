@@ -33,13 +33,18 @@
    case 4:
       datahora($conectar);
    break;
+   case 5:
+      verificarLogin($conectar);
+   break;
   }
 
   // ADICIONAR PESSOAS
   function adicionar($pessoas, $conectar, $hora_br, $data, $verificarDataExiste){
     if($verificarDataExiste == 0){
+      $sql_mes = mysqli_query($conectar, "SELECT MONTH(CURRENT_TIMESTAMP)"); // RETORNA MÊS ATUAL
+      $mes = mysqli_fetch_row($sql_mes);
 
-      mysqli_query($conectar, "INSERT INTO estatistica_usuarios(manha, tarde, noite, data) VALUES ('0', '0', '0', '{$data[0]}') ");
+      mysqli_query($conectar, "INSERT INTO estatistica_usuarios(manha, tarde, noite, n_mes, data) VALUES ('0', '0', '0', '{$mes[0]}', '{$data[0]}') ");
 
     } else {
       $sql = mysqli_query($conectar, "SELECT * FROM estatistica_usuarios WHERE data = '{$data[0]}'");
@@ -50,7 +55,7 @@
         case ($hora_br >= 7 && $hora_br < 12):
 
           if($contagem['manha'] == 0){
-            $pessoas = ($pessoas+1) + $contagem['manha'];
+            $pessoas = $pessoas + $contagem['manha'];
           } else {
             $pessoas = $pessoas + $contagem['manha'];
           }
@@ -208,10 +213,26 @@
     $sql = mysqli_query($conectar, "SELECT CURRENT_TIMESTAMP");
     $data = mysqli_fetch_row($sql);
 
-    printf("<i id='ultAtualizacao'>%s</i>", $data[0]);
+    printf("<i id='ultAtualizacao'>%s (Horas -3)</i>", $data[0]);
 
   }
 
+  // VERIFICAR SE JÁ EXISTE SESSÃO
+  function verificarLogin($conectar){
+    if(isset($_SESSION)){
+      $user = $_SESSION['usuario'];
+
+      $sql = mysqli_query($conectar, "SELECT nivel FROM usuarios WHERE usuario='{$user}'");
+      $dado = mysqli_fetch_array($sql);
+
+      if($dado['nivel'] >= 3){
+        echo 1;
+      }
+
+    } else {
+      echo 0;
+    }
+  }
   // ++ CONDIÇÕES $conectar, $hora_br, $data
 
  ?>
