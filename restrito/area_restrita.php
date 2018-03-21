@@ -40,13 +40,12 @@
 </head>
 <body class="bodyPadrao">
 
-    <div class="container" style="-webkit-box-shadow: 0px 0px 25px #4D4D4D; -moz-box-shadow: 0px 0px 25px #4D4D4D; box-shadow: 0px 0px 25px #4D4D4D;">
+    <div class="container containerSombra">
       <div class="row" style="background-image: url('../img/bg.jpg');">
         <div class="col-sm">
 
-          <div class="text-light" style="padding-top: 6%; text-align: center; padding-bottom: 7.5%;">
-            <h1>BIBLIOTECA UFPR</h1>
-            <a href="../logout.php"><button class="btn btn-dark btn-sm"> <i class="fas fa-sign-in-alt"></i> Sair</button></a>
+          <div class="text-light container-principal-espacemento">
+            <img src="../img/branco_UFPR.png"/>
           </div>
 
         </div>
@@ -329,10 +328,10 @@
 
 
 
-      <div class="row text-light" style="background-image: url('../img/bg.jpg');">
+      <div class="row text-light rodape">
           <div class="col-sm">
-              <div class="container-fluid" style="text-align: center">
-                  <a href="https://www.facebook.com/krepper.fs" target="_blank"><img src="../img/minha_logo.png" alt="Felipe Sobral" style="padding-top: 0.5%; padding-bottom: 0.5%"/></a>  UFPR Biblioteca PA
+              <div class="container-fluid rodape-texto">
+                  <a href="https://www.facebook.com/krepper.fs" target="_blank"><img src="../img/minha_logo.png" alt="Felipe Sobral"/></a>  UFPR Biblioteca PA - <a href="../logout.php">Sair</a>
               </div>
           </div>
       </div>
