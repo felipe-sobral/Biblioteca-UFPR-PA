@@ -41,7 +41,7 @@
 <body class="bodyPadrao">
 
     <div class="container containerSombra">
-      <div class="row" style="background-image: url('../img/bg.jpg');">
+      <div class="row" style="background-image: url('../img/bg-azul.jpg');">
         <div class="col-sm">
 
           <div class="text-light container-principal-espacemento">
