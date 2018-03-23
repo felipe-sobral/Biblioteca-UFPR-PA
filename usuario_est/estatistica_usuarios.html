@@ -70,7 +70,7 @@
                               <i class="fas fa-history"></i> Histórico
                           </button>
 
-                          <button id="registrarLivroBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#registrarLivro">
+                          <button id="alterarDiaBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#alterarDia">
                               <i class="fas fa-pencil-alt"></i> Alterar Dia
                           </button>
 
@@ -124,7 +124,7 @@
                                               <input type="text" class="form-control" id="anoHistorico" value="2018">
 
                                           </div>
-                                          <button type="submit" class="btn btn-outline-primary mb-2">Buscar</button>
+                                          <button type="submit" class="btn btn-outline-primary mb-2"><i class="fas fa-search"></i> Buscar</button>
                                       </form>
 
                                       <div id="aposProcurar"  style="display: none">
@@ -143,6 +143,64 @@
                           </div>
                       </div>
                       <!--- fim Histórico usuarios -->
+
+                      <!-- Alterar Dia -->
+                      <div class="modal fade" id="alterarDia" tabindex="-1" role="dialog" aria-labelledby="alterarDiaTittle" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h3 class="modal-title" id="alterarDiaTitlle">Alterar histórico do dia</h3>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+
+                              <form id="alterarDiaForm">
+                                  <div id="certoAlterarDia" class="alert alert-success" role="alert">
+                                      <b>Modificações cadastradas!</b>
+                                  </div>
+
+                                  <div id="procurarDia" style="display: block">
+                                    <div class="form-group">
+                                      <label for="data">Insira uma data (YYYY-MM-DD): </label>
+                                      <input type="text" class="form-control" id="data" placeholder="Ex: 2018-03-23">
+                                    </div>
+
+
+                                    <center>
+                                      <button type="submit" class="btn btn-outline-primary"> <i class="fas fa-search"></i> Procurar</button>
+                                    </center>
+                                  </div>
+                              </form>
+
+                              <div id="aposProcurarData"  style="display: none">
+                                  <form id='alterarDiaFormX'>
+
+                                      <a id="diaHistorico">
+
+                                  <center>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                          <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input" value="0">
+                                          <label class="custom-control-label" for="customRadioInline1">Alterar dados</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                          <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input" value="1">
+                                          <label class="custom-control-label" for="customRadioInline2">Excluir</label>
+                                        </div>
+                                        <hr>
+                                    <button type='submit' class='btn btn-success'> <i class='fas fa-check'></i> Confirmar</button>
+                                    <button type='button' class='btn btn-danger' data-dismiss='modal'> <i class='fas fa-times'></i> Fechar</button>
+                                  </center>
+                                </form>
+                              </div>
+
+                            </div>
+                            <!-- FOOTER AQUI -->
+                          </div>
+                        </div>
+                      </div>
+                      <!-- FIM Alterar dia -->
 
                   </div>
               </div>
@@ -258,6 +316,37 @@
                     return false;
 
               })
+
+              $('#alterarDiaForm').submit(function(){
+                  var data=$('#data').val();
+
+                  $.ajax({
+                      url: "alterarDia.php",
+                      type: "post",
+                      data: "data="+data+
+                            "&verificar="+0,
+                      success: function(result){
+                         console.log(result);
+                          if(result != 1){
+                              document.getElementById("aposProcurarData").style.display = "none";
+
+                          } else {
+
+                              document.getElementById("aposProcurarData").style.display = "block";
+                              jQuery("#diaHistorico").html(result);
+                              /*
+                              if(result==0){
+                                  document.getElementById("certoAlterarLivro").style.display = "none";
+                                  document.getElementById("errorProcurarLivro").style.display = "block";
+                              }*/
+
+                          }
+                      }
+                  })
+
+                  return false;
+              })
+
 
           })
 

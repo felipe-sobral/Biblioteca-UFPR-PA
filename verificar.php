@@ -2,6 +2,7 @@
     session_start();
 
     include "cfg.php";
+    include "funcoesGerais.php";
 
     $funcao = $_POST['executarFuncao'];
 
@@ -63,15 +64,8 @@
 
       case 4: // RETORNA NOME
 
-        if(isset($_SESSION['usuario'])){
-          $usuario = $_SESSION['usuario'];
-          $sql = mysqli_query($conectar, "SELECT * FROM usuarios WHERE usuario = '{$usuario}'") or die(mysql_error());
+        $resultado = retornaNome();
 
-          $dado = mysqli_fetch_array($sql);
-
-          $resultado = $dado['nome'];
-
-        }
         break;
 
       case 5: // VERIFICAR SE JÁ TEM SESSÃO
