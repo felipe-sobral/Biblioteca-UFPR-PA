@@ -22,7 +22,7 @@
       adicionar($numero, $conectar, $hora_br, $data, $verificarDataExiste);
     break;
     case 1:
-      atualizarContador($conectar, $hora_br, $data);
+      atualizarContador($conectar, $hora_br, $data, $verificarDataExiste);
     break;
     case 2;
       remover($numero, $conectar, $hora_br, $data, $verificarDataExiste);
@@ -41,10 +41,8 @@
   // ADICIONAR PESSOAS
   function adicionar($pessoas, $conectar, $hora_br, $data, $verificarDataExiste){
     if($verificarDataExiste == 0){
-      $sql_mes = mysqli_query($conectar, "SELECT MONTH(CURRENT_TIMESTAMP)"); // RETORNA MÊS ATUAL
-      $mes = mysqli_fetch_row($sql_mes);
 
-      mysqli_query($conectar, "INSERT INTO estatistica_usuarios(manha, tarde, noite, n_mes, data) VALUES ('0', '0', '0', '{$mes[0]}', '{$data[0]}') ");
+      echo 0;
 
     } else {
       $sql = mysqli_query($conectar, "SELECT * FROM estatistica_usuarios WHERE data = '{$data[0]}'");
@@ -148,7 +146,16 @@
   }
 
   // ATUALIZAR CONTADOR
-  function atualizarContador($conectar, $hora_br, $data){
+  function atualizarContador($conectar, $hora_br, $data, $verificarDataExiste){
+    if($verificarDataExiste == 0){
+      $sql_mes = mysqli_query($conectar, "SELECT MONTH(CURRENT_TIMESTAMP)"); // RETORNA MÊS ATUAL
+      $sql_ano = mysqli_query($conectar, "SELECT YEAR(CURRENT_TIMESTAMP)"); // RETORNA ANO ATUAL
+      $mes = mysqli_fetch_row($sql_mes);
+      $ano = mysqli_fetch_row($sql_ano);
+
+      mysqli_query($conectar, "INSERT INTO estatistica_usuarios(manha, tarde, noite, n_mes, ano, data) VALUES ('0', '0', '0', '{$mes[0]}', '{$ano[0]}','{$data[0]}') ");
+
+    }
 
     $sql = mysqli_query($conectar, "SELECT * FROM estatistica_usuarios WHERE data = '{$data[0]}'");
     $contagem = mysqli_fetch_array($sql);
