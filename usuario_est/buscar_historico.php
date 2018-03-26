@@ -37,27 +37,36 @@
   ");
   while($dado = mysqli_fetch_array($sql)){
 
-    printf("
+    if(($dado['manha']+$dado['tarde']+$dado['noite']) == 0){
+      
+      $data = $dado['data'];
+      mysqli_query($conectar, "DELETE FROM estatistica_usuarios WHERE data='{$data}'");
 
-          <tr>
-            <td>%s</td>
-            <td>%d</td>
-            <td>%d</td>
-            <td>%d</td>
-            <td>%d</td>
-          </tr>
+    } else {
 
-    ", $dado['data'], $dado['manha'], $dado['tarde'], $dado['noite'], $dado['manha']+$dado['tarde']+$dado['noite']);
+      printf("
 
-    $manha = $manha + $dado['manha'];
-    $tarde = $tarde + $dado['tarde'];
-    $noite = $noite + $dado['noite'];
-    $total = $total + ($dado['manha']+$dado['tarde']+$dado['noite']);
+            <tr>
+              <td>%s</td>
+              <td>%d</td>
+              <td>%d</td>
+              <td>%d</td>
+              <td>%d</td>
+            </tr>
+
+      ", $dado['data'], $dado['manha'], $dado['tarde'], $dado['noite'], $dado['manha']+$dado['tarde']+$dado['noite']);
+
+      $manha = $manha + $dado['manha'];
+      $tarde = $tarde + $dado['tarde'];
+      $noite = $noite + $dado['noite'];
+      $total = $total + ($dado['manha']+$dado['tarde']+$dado['noite']);
+
+    }
 
   }
 
   printf("
-        <tr class='bg-info text-light'>
+        <tr class='bg-primary text-light'>
           <td>TOTAL</td>
           <td>%d</td>
           <td>%d</td>

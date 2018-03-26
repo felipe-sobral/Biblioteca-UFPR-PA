@@ -10,17 +10,21 @@
     if(isset($_SESSION)){
       if($_SESSION['nivel'] >= $nivel){
         return true;
+      } else {
+        return false;
       }
     }
   }
 
-  function verificarSql($sql_f){
-    $v_sql = mysqli_fetch_row($sql_f);
+  function verificarSql($sql){
+    $v_sql = mysqli_num_rows($sql);
     if($v_sql>0){
       return true;
+    } else {
+      return false;
     }
   }
-  /*
+
   function retornaNome(){
     if(isset($_SESSION['usuario'])){
       $usuario = $_SESSION['usuario'];
@@ -31,6 +35,6 @@
       return $dado['nome'];
 
     }
-  }*/
+  }
 
 ?>

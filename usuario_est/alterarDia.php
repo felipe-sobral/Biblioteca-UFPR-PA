@@ -14,17 +14,19 @@
       break;
 
     case 1;
-        echo 0;
+        alterarDiaFuncao($data_procurar);
       break;
   }
 
   function procurarData($codigo_procurar){
     $autorizar = verificarNivel('3');
+    $falhou = 0;
 
     if($autorizar){
       $sql = mysqli_query($GLOBALS['conectar'], "SELECT * FROM estatistica_usuarios WHERE data='{$codigo_procurar}'");
 
       if(verificarSql($sql)){
+
         $dado = mysqli_fetch_array($sql);
 
           $manha = $dado['manha'];
@@ -37,90 +39,94 @@
           printf("
                     <hr>
 
-                    <form id='alterarDiaFormX'>
-
                       <div class='form-group'>
                           <label for='manha'>Quantidade/ Manhã</label>
-                          <input type='number' class='form-control' id='manha' value='%d'>
+                          <input type='number' min='0' class='form-control' id='manha' value='%d'>
                       </div>
                       <div class='form-group'>
                           <label for='tarde'>Quantidade/ Tarde</label>
-                          <input type='number' class='form-control' id='tarde' value='%d'>
+                          <input type='number' min='0' class='form-control' id='tarde' value='%d'>
                       </div>
                       <div class='form-group'>
                           <label for='noite'>Quantidade/ Noite</label>
-                          <input type='number' class='form-control' id='noite' value='%d'>
+                          <input type='number' min='0' class='form-control' id='noite' value='%d'>
                       </div>
-                      <div class='form-group'>
+                      <fieldset disabled>
+                        <div class='form-group'>
                           <label for='mes'>Mês (Número)</label>
-                          <input type='number' class='form-control' id='mes' value='%d'>
-                      </div>
-                      <div class='form-group'>
+                          <input type='number' min='0' max='12' class='form-control' id='mes' value='%d'>
+                        </div>
+
+                        <div class='form-group'>
                           <label for='ano'>Ano</label>
-                          <input type='number' class='form-control' id='ano' value='%d'>
-                      </div>
-                      <div class='form-group'>
+                          <input type='number' min='0' class='form-control' id='ano' value='%d'>
+                        </div>
+
+                        <div class='form-group'>
                           <label for='data'>Data (AAAA-MM-DD)</label>
                           <input type='text' maxlength='10' class='form-control' id='data' value='%s'>
-                      </div>
+                        </div>
+                      </fieldset disabled>
 
-                  </form>
 
                   ", $manha, $tarde, $noite, $mes, $ano, $data);
 
 
+        } else {
+          $falhou = 1;
         }
 
+
+      } else {
+        $falhou = 1;
       }
+
+      if($falhou == 1){
+        echo 0;
+      }
+
     }
 
 
-  /*
-  if($verificar == 1){
 
-    $usuario = $_SESSION['usuario'];
-    $senha = $_SESSION['senha'];
+  function alterarDiaFuncao($data){
 
-    $a_codigo = $_POST['a_codigoAlterar'];
+    $sql = mysqli_query($GLOBALS['conectar'], "SELECT * FROM estatistica_usuarios WHERE data = '{$data}'");
 
-    $verificar_nivel = mysqli_query($conectar, "SELECT * FROM usuarios WHERE usuario = '{$usuario}' AND senha = '{$senha}'");
-    $verificar_nivel_x = mysqli_num_rows($verificar_nivel);
+    if(verificarNivel(3)){
 
-    if($verificar_nivel_x==1){
-      $obter_dado = mysqli_fetch_array($verificar_nivel);
-      $nivel = $obter_dado['nivel'];
+      if(verificarSql($sql)){
 
-      if($nivel >= 3){
-        $sql = mysqli_query($conectar, "SELECT * FROM livros WHERE codigo = '{$a_codigo}'");
-        $verificar_livro = mysqli_num_rows($sql);
+        $alterarDados = $_POST['alterarDados'];
+        $excluirDados = $_POST['excluirDados'];
 
-        if($verificar_livro == 1){
-
-          $nome = $_POST['a_nome'];
-          $barra = $_POST['a_barra'];
-          $estante = $_POST['a_estante'];
-          $link = $_POST['a_link'];
-          $codigo = $_POST['a_codigo'];
-          $codigo_a = $_POST['a_codigoAlterar'];
-
-          mysqli_query($conectar, "UPDATE livros SET nome ='{$nome}', barra = '{$barra}', estante = '{$estante}', link = '{$link}', codigo = '{$codigo}' WHERE livros.codigo = '{$codigo_a}'");
-
-          echo 1;
-
-        } else {
+        if(($excluirDados == false) && ($alterarDados == false)){
           echo 0;
           exit;
+        }
+
+        if($excluirDados){
+          mysqli_query($GLOBALS['conectar'], "DELETE FROM estatistica_usuarios WHERE data = '{$data}'");
+        }
+
+        if($alterarDados){
+          $manha = $_POST['manha'];
+          $tarde = $_POST['tarde'];
+          $noite = $_POST['noite'];
+
+          mysqli_query($GLOBALS['conectar'], "UPDATE estatistica_usuarios SET manha = '{$manha}', tarde = '{$tarde}', noite = '{$noite}' WHERE data = '{$data}'");
         }
 
       } else {
         echo 0;
         exit;
       }
+
     } else {
       echo 0;
-      exit;
+        exit;
+      }
+
     }
 
-  }
-  */
 ?>

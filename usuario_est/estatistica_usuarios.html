@@ -160,6 +160,9 @@
                                   <div id="certoAlterarDia" class="alert alert-success" role="alert">
                                       <b>Modificações cadastradas!</b>
                                   </div>
+                                  <div id="erroAlterarDia" class="alert alert-danger" role="alert">
+                                      <b>Algo está errado, verifique suas permissões ou a data se está correta.</b>
+                                  </div>
 
                                   <div id="procurarDia" style="display: block">
                                     <div class="form-group">
@@ -173,22 +176,29 @@
                                     </center>
                                   </div>
                               </form>
-
+                              CHAUSHDUAHUC CONTINUAR AQUI huahuHAUHAUHAUHU
                               <div id="aposProcurarData"  style="display: none">
                                   <form id='alterarDiaFormX'>
 
-                                      <a id="diaHistorico">
+                                       <div id="alterarDiaX"></div>
 
                                   <center>
-                                        <div class="custom-control custom-radio custom-control-inline">
-                                          <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input" value="0">
-                                          <label class="custom-control-label" for="customRadioInline1">Alterar dados</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                            <label class="form-check-label" for="exampleRadios1">
+                                                Alterar
+                                            </label>
                                         </div>
-                                        <div class="custom-control custom-radio custom-control-inline">
-                                          <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input" value="1">
-                                          <label class="custom-control-label" for="customRadioInline2">Excluir</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                            <label class="form-check-label" for="exampleRadios2">
+                                                Excluir
+                                            </label>
                                         </div>
-                                        <hr>
+
+                                    </div>
+
+                                    <hr>
                                     <button type='submit' class='btn btn-success'> <i class='fas fa-check'></i> Confirmar</button>
                                     <button type='button' class='btn btn-danger' data-dismiss='modal'> <i class='fas fa-times'></i> Fechar</button>
                                   </center>
@@ -296,8 +306,6 @@
                     var anoHistorico=$('#anoHistorico').val();
                     var mesHistorico=$('#mesHistorico').val();
 
-
-
                     $.ajax({
                         url: "buscar_historico.php",
                         type: "post",
@@ -309,6 +317,7 @@
                             } else {
                                 $("#historicoLista").html(result);
                                 document.getElementById("aposProcurar").style.display = "block";
+                                $('#erroHistorico').hide();
                             }
                         }
                     })
@@ -317,6 +326,8 @@
 
               })
 
+              $('#erroAlterarDia').hide();
+              $('#certoAlterarDia').hide();
               $('#alterarDiaForm').submit(function(){
                   var data=$('#data').val();
 
@@ -326,14 +337,16 @@
                       data: "data="+data+
                             "&verificar="+0,
                       success: function(result){
-                         console.log(result);
-                          if(result != 1){
+                          if(result == 0){
+                              $('#erroAlterarDia').show();
+                              $('#certoAlterarDia').hide();
                               document.getElementById("aposProcurarData").style.display = "none";
 
                           } else {
-
+                              $('#certoAlterarDia').hide();
+                              $('#erroAlterarDia').hide();
                               document.getElementById("aposProcurarData").style.display = "block";
-                              jQuery("#diaHistorico").html(result);
+                              $('#alterarDiaX').html(result);
                               /*
                               if(result==0){
                                   document.getElementById("certoAlterarLivro").style.display = "none";
@@ -345,6 +358,42 @@
                   })
 
                   return false;
+              })
+
+              $('#alterarDiaFormX').submit(function(){
+                  var data=$('#data').val();
+                  var manha=$('#manha').val();
+                  var tarde=$('#tarde').val();
+                  var noite=$('#noite').val();
+                  var alterarDados=$('#alterarDados.checked').val();
+                  var excluirDados=$('#excluirDados.checked').val();
+                  alert(alterarDados);
+                  alert(excluirDados);
+
+                  $.ajax({
+                      url: "alterarDia.php",
+                      type: "post",
+                      data: "data="+data+
+                            "&manha="+manha+
+                            "&tarde="+tarde+
+                            "&noite="+noite+
+                            "&alterarDados="+alterarDados+
+                            "&excluirDados="+excluirDados+
+                            "&verificar="+1,
+                            success: function(result){
+                                console.log(result);
+                                if(result != 0){
+                                    $('#certoAlterarDia').show();
+                                    $('#erroAlterarDia').hide();
+                                } else {
+                                    $('#erroAlterarDia').show();
+                                    $('#certoAlterarDia').hide();
+                                }
+                            }
+                  })
+
+                  return false;
+
               })
 
 
@@ -379,24 +428,6 @@
 
                   }
               })
-          }
-
-          function calcularTotalHistorico(anoHistorico, mesHistorico){
-
-              $.ajax({
-                  url: "buscar_historico.php",
-                  type: "post",
-                  data: "anoHistorico="+anoHistorico+
-                        "&mesHistorico="+mesHistorico+
-                        "&funcao="+1,
-                  success: function(result){
-
-                      $("#historicoListaT").html(result);
-
-                  }
-              })
-
-              return false;
           }
 
 
