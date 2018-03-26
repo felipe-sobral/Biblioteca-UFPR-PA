@@ -98,23 +98,19 @@
       if(verificarSql($sql)){
 
         $alterarDados = $_POST['alterarDados'];
-        $excluirDados = $_POST['excluirDados'];
 
-        if(($excluirDados == false) && ($alterarDados == false)){
-          echo 0;
-          exit;
-        }
-
-        if($excluirDados){
+        if($alterarDados == 2){
           mysqli_query($GLOBALS['conectar'], "DELETE FROM estatistica_usuarios WHERE data = '{$data}'");
+          echo 1;
         }
 
-        if($alterarDados){
+        if($alterarDados == 1){
           $manha = $_POST['manha'];
           $tarde = $_POST['tarde'];
           $noite = $_POST['noite'];
 
           mysqli_query($GLOBALS['conectar'], "UPDATE estatistica_usuarios SET manha = '{$manha}', tarde = '{$tarde}', noite = '{$noite}' WHERE data = '{$data}'");
+          echo 1;
         }
 
       } else {
@@ -124,9 +120,9 @@
 
     } else {
       echo 0;
-        exit;
-      }
-
+      exit;
     }
+
+  }
 
 ?>
