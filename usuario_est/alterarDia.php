@@ -36,35 +36,37 @@
           $ano = $dado['ano'];
           $data = $dado['data'];
 
+
+
           printf("
                     <hr>
 
                       <div class='form-group'>
                           <label for='manha'>Quantidade/ Manhã</label>
-                          <input type='number' min='0' class='form-control' id='manha' value='%d'>
+                          <input type='number' min='0' class='form-control' id='manha_alterar' value='%d'>
                       </div>
                       <div class='form-group'>
                           <label for='tarde'>Quantidade/ Tarde</label>
-                          <input type='number' min='0' class='form-control' id='tarde' value='%d'>
+                          <input type='number' min='0' class='form-control' id='tarde_alterar' value='%d'>
                       </div>
                       <div class='form-group'>
                           <label for='noite'>Quantidade/ Noite</label>
-                          <input type='number' min='0' class='form-control' id='noite' value='%d'>
+                          <input type='number' min='0' class='form-control' id='noite_alterar' value='%d'>
                       </div>
                       <fieldset disabled>
                         <div class='form-group'>
                           <label for='mes'>Mês (Número)</label>
-                          <input type='number' min='0' max='12' class='form-control' id='mes' value='%d'>
+                          <input type='number' min='0' max='12' class='form-control' id='mes_alterar' value='%d'>
                         </div>
 
                         <div class='form-group'>
                           <label for='ano'>Ano</label>
-                          <input type='number' min='0' class='form-control' id='ano' value='%d'>
+                          <input type='number' min='0' class='form-control' id='ano_alterar' value='%d'>
                         </div>
 
                         <div class='form-group'>
                           <label for='data'>Data (AAAA-MM-DD)</label>
-                          <input type='text' maxlength='10' class='form-control' id='data' value='%s'>
+                          <input type='text' maxlength='10' class='form-control' id='data_alterar' value='%s'>
                         </div>
                       </fieldset disabled>
 
@@ -123,6 +125,6 @@
       exit;
     }
 
-  }
+}
 
 ?>

@@ -52,36 +52,21 @@
 
         case ($hora_br >= 7 && $hora_br < 12):
 
-          if($contagem['manha'] == 0){
-            $pessoas = $pessoas + $contagem['manha'];
-          } else {
-            $pessoas = $pessoas + $contagem['manha'];
-          }
-
+          $pessoas = $pessoas + $contagem['manha'];
           mysqli_query($conectar, "UPDATE estatistica_usuarios SET manha = '{$pessoas}' WHERE data = '{$data[0]}'");
 
         break;
 
         case ($hora_br >= 12 && $hora_br < 18):
 
-          if($contagem['tarde'] == 0){
-            $pessoas = ($pessoas+1) + $contagem['tarde'];
-          } else {
-            $pessoas = $pessoas + $contagem['tarde'];
-          }
-
+          $pessoas = $pessoas + $contagem['tarde'];
           mysqli_query($conectar, "UPDATE estatistica_usuarios SET tarde = '{$pessoas}' WHERE data = '{$data[0]}'");
 
         break;
 
         case ($hora_br >= 18 && $hora_br < 20):
 
-          if($contagem['noite'] == 0){
-            $pessoas = ($pessoas+1) + $contagem['noite'];
-          } else {
-            $pessoas = $pessoas + $contagem['noite'];
-          }
-
+          $pessoas = $pessoas + $contagem['noite'];
           mysqli_query($conectar, "UPDATE estatistica_usuarios SET noite = '{$pessoas}' WHERE data = '{$data[0]}'");
 
         break;

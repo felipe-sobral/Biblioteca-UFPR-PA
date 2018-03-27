@@ -38,7 +38,7 @@
   while($dado = mysqli_fetch_array($sql)){
 
     if(($dado['manha']+$dado['tarde']+$dado['noite']) == 0){
-      
+
       $data = $dado['data'];
       mysqli_query($conectar, "DELETE FROM estatistica_usuarios WHERE data='{$data}'");
 
