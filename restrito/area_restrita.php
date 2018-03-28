@@ -62,7 +62,7 @@
                 <div class="card">
                   <div class="card-body">
                     <h5 class="card-title" id="bemvindo">Bem-vindo</h5>
-                    <a><i class="fas fa-exclamation-triangle"></i> Para melhor utilização, é recomendado que use o navegador <b><i class="fab fa-chrome"></i> Google Chrome</b> ou <b><i class="fab fa-firefox"></i> Firefox</b>.</a>
+                    <a><i class="fas fa-exclamation-triangle"></i> Para melhor utilização, é recomendado que use o navegador <b><i class="fab fa-chrome"></i> Google Chrome</b>.</a>
                   </div>
                 </div>
 
@@ -94,9 +94,13 @@
                         <i class="fas fa-clipboard-list"></i> Livros Registrados
                      </a>
 
-                     <a href="../usuario_est/estatistica_usuarios.html" class="btn btn-primary">
-                       Contador de Usuários
+                     <a id="contadorUsuariosBtn" href="../usuario_est/estatistica_usuarios.html" class="btn btn-primary">
+                       <i class="fas fa-users"></i> Contador de Usuários
                     </a>
+
+                    <a id="contadorUsuariosBtn" href="../livro_est/consulta_local.html" class="btn btn-primary">
+                      Consulta Local
+                   </a>
                     </div>
 
                     <!-- MODAL REGISTRAR USUARIO -->
@@ -366,6 +370,7 @@
 
                     if(result>=3){
                       $('#alterarLivroBtn').prop('disabled', false);
+                      $('#contadorUsuariosBtn').prop('disabled', false);
                     }
 
                     if(result==5){

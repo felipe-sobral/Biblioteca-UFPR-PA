@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang='pt-br'>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Biblioteca UFPR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="../js/main.js"></script>
+    <script src="../js/jquery-3.3.1.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+    <link rel="stylesheet" href="../css/main.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body class="bodyPadrao">
+
+    <!-- LOADING CASO PRECISE PERMISSÃO PARA ENTRAR
+    <div id="carregando" style="display: block; padding-top: 10%;">
+
+        <center><i class="fas fa-spinner fa-spin fa-10x" style="color: #00487F;"></i></center>
+
+    </div>
+    -->
+
+      <!-- CABEÇALHO -->
+      <div class="container containerSombra">
+        <div class="row" style="background-image: url('../img/bg-azul.jpg');">
+          <div class="col-sm">
+            <div class="text-light container-principal-espacemento">
+              <img src="../img/branco_UFPR.png"/>
+            </div>
+          </div>
+      	</div>
+        <!-- FIM CABEÇALHO -->
+
+        <div class="row" style="background-color: #fff; padding-top: 2%; padding-bottom: 2%">
+          <div class="col-sm">
+
+            <div class="card">
+              <div class="card-header">
+                <b>Consulta Local</b>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Insira o código do livro</h5>
+
+                <form id="inserirCodigo">
+
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fas fa-barcode"></i></div>
+                    </div>
+                    <input type="text" maxlength="8" id="codigo_consulta" class="form-control" placeholder="00329902">
+                  </div>
+
+                  </br>
+                  <center><button type="submit" class="btn btn-primary">Registrar</button></center>
+
+                </form>
+
+                <hr>
+                <center>
+
+                  <h5>Últimos códigos registrados</h1>
+                  <p id="tresCodigos">Nenhum código registrado esse mês.</p>
+
+                </center>
+
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-sm-3">
+
+            <div class="card">
+              <div class="card-header">
+                Menu
+              </div>
+              <div class="card-body">
+
+                <div class="btn-group-vertical btn-block">
+                  <button id="registrarUsuarioBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#registrarUsuario">
+                    #
+                  </button>
+
+                  <a id="contadorUsuariosBtn" href="../livro_est/consulta_local.html" class="btn btn-danger">
+                    #
+                  </a>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="row text-light grid" style="background-image: url('../img/bg.jpg');">
+          <div class="col-sm">
+            <div class="container-fluid" style="text-align: center">
+              <a href="https://www.facebook.com/krepper.fs" target="_blank"><img src="../img/minha_logo.png" alt="Felipe Sobral" style="padding-top: 0.5%; padding-bottom: 0.5%"/></a>  UFPR Biblioteca PA
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- FIM FOOTER -->
+
+        <script>
+          $(document).ready(function(){
+
+              $('#inserirCodigo').submit(function(){
+                  var codigoBarras = $('#codigo_consulta').val();
+
+                  $.ajax({
+                      url: "inserir.php",
+                      type: "post",
+                      data: "codigoBarras="+codigoBarras,
+                      success: function(result){
+                          console.log(result);
+                      }
+                  })
+
+                  return false;
+              })
+
+
+          })
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

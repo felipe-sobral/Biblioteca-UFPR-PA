@@ -86,3 +86,15 @@
     padding-top: 0.5%;
     padding-bottom: 0.5%;
 }
+
+.botao-normal{
+    color: #fff;
+		background-color: #0073CC;
+		border-color: #0073CC;
+}
+
+.botao-normal:hover {
+		color: #fff;
+		background-color: #00487F;
+		border-color: #00487F;
+}
