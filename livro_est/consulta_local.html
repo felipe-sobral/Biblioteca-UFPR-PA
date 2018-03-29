@@ -47,6 +47,14 @@
 
                 <form id="inserirCodigo">
 
+                  <div class="alert alert-danger" role="alert" id="erroCodigo">
+                        <b>ERRO</b>. Por favor, reinsira o código!
+                  </div>
+
+                  <div class="alert alert-danger" role="alert" id="successCodigo">
+                        Código inserido com sucesso!
+                  </div>
+
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <div class="input-group-text"><i class="fas fa-barcode"></i></div>
@@ -63,7 +71,7 @@
                 <center>
 
                   <h5>Últimos códigos registrados</h1>
-                  <p id="tresCodigos">Nenhum código registrado esse mês.</p>
+                  <p id="tresCodigos">Nenhum código registrado hoje.</p>
 
                 </center>
 
@@ -108,7 +116,22 @@
       <!-- FIM FOOTER -->
 
         <script>
+
+          function atualizarUltimosLivros(){
+              $.ajax({
+                  url: "codigos_registrados.php",
+                  success: function(result){
+                      if(result != 0){
+                         $("#tresCodigos").html(result);
+                      }
+                  }
+              })
+          }
+
           $(document).ready(function(){
+              $('#erroCodigo').hide();
+              $('#successCodigo').hide();
+              $('#codigo_consulta').focus();
 
               $('#inserirCodigo').submit(function(){
                   var codigoBarras = $('#codigo_consulta').val();
@@ -118,12 +141,25 @@
                       type: "post",
                       data: "codigoBarras="+codigoBarras,
                       success: function(result){
-                          console.log(result);
+                          if(result != 1){
+                              $('#erroCodigo').show();
+                              $('#codigo_consulta').focus();
+                              document.getElementById('codigo_consulta').value = "";
+                          } else {
+                              $('#erroCodigo').hide();
+                              $('#codigo_consulta').focus();
+                              document.getElementById('codigo_consulta').value = "";
+                              atualizarUltimosLivros();
+                          }
                       }
                   })
 
                   return false;
-              })
+             })
+
+
+             atualizarUltimosLivros();
+
 
 
           })

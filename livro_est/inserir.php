@@ -13,38 +13,44 @@
     $dia = mysqli_fetch_row($sql_dia); $dia = $dia[0];
     $ano = mysqli_fetch_row($sql_ano); $ano = $ano[0];
 
-    $codigo = $_POST['codigoBarras']."/n";
+    $codigo = $_POST['codigoBarras'];
 
-    $sql = mysqli_query($conectar, "SELECT * FROM consulta_local WHERE mes='{$mes}' AND dia='{$dia}' AND ano='{$ano}'");
+    $ehNumero = intval($codigo); // TRANSFORMA STRING EM NÚMERO
+    $ehNumeroConf = is_numeric($ehNumero); // RETORNA SE É NUMERO
+    $ehNumero = strval($ehNumero); // TRANSFORMA NOVAMENTE O NÚMERO EM STRING
+    $tamanhoString = strlen($ehNumero); // VERIFICA TAMANHO DA STRING
 
-    if(verificarSql($sql)){
+    if(($tamanhoString == 8 || $tamanhoString == 6) && $ehNumeroConf == 1){
 
-      $dado = mysqli_fetch_array($sql);
+      $sql = mysqli_query($conectar, "SELECT * FROM consulta_local WHERE mes='{$mes}' AND dia='{$dia}' AND ano='{$ano}'");
 
-      $novo_text = $dado['codigos']."/n".$codigo;
-      echo $novo_text;
+      if(verificarSql($sql)){
 
+        $dado = mysqli_fetch_array($sql);
 
-      mysqli_query($conectar, "UPDATE consulta_local SET codigos='{$novo_text}' WHERE mes='{$mes}' AND dia='{$dia}' AND ano='{$ano}'");
+        $novo_text = $dado['codigos']."\r\n".$codigo;
 
-      echo 1;
-      echo "veioAqui2";
+        mysqli_query($conectar, "UPDATE consulta_local SET codigos='{$novo_text}' WHERE mes='{$mes}' AND dia='{$dia}' AND ano='{$ano}'");
+
+        echo 1;
+        exit;
+
+      } else {
+
+        mysqli_query($conectar, "INSERT INTO `consulta_local`(`dia`, `ano`, `mes`, `codigos`) VALUES ('$dia', '$ano', '$mes','$codigo')");
+
+        echo 1;
+        exit;
+
+      }
+
+    }else{
+      echo 0;
       exit;
-
-    } else {
-
-      mysqli_query($conectar, "INSERT INTO consulta_local(dia, ano, mes, codigos) VALUES ($dia, $ano, $mes, $codigo)");
-
-      echo 1;
-      echo "veioAqui";
-      exit;
-
     }
 
-  } else {
-    echo 0;
-    echo "ErroNivel";
-    exit;
-  }
+}
+
+
 
 ?>
