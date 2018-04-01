@@ -4,13 +4,9 @@
   include "../cfg.php";
   include "../funcoesGerais.php";
 
-  $sql_mes = mysqli_query($conectar, "SELECT MONTH(CURRENT_TIMESTAMP)"); // RETORNA MES ATUAL
-  $sql_dia = mysqli_query($conectar, "SELECT DAY(CURRENT_TIMESTAMP)"); // RETORNA DIA ATUAL
-  $sql_ano = mysqli_query($conectar, "SELECT YEAR(CURRENT_TIMESTAMP)"); // RETORNA ANO ATUAL
-
-  $mes = mysqli_fetch_row($sql_mes); $mes = $mes[0];
-  $dia = mysqli_fetch_row($sql_dia); $dia = $dia[0];
-  $ano = mysqli_fetch_row($sql_ano); $ano = $ano[0];
+  $mes = retornaData(mysqli_query($conectar, "SELECT MONTH(CURRENT_TIMESTAMP)"));
+  $dia = retornaData(mysqli_query($conectar, "SELECT DAY(CURRENT_TIMESTAMP)"));
+  $ano = retornaData(mysqli_query($conectar, "SELECT YEAR(CURRENT_TIMESTAMP)"));
 
   $sql = mysqli_query($conectar, "SELECT codigos FROM consulta_local WHERE mes='{$mes}' AND dia='{$dia}' AND ano='{$ano}'");
 
@@ -29,7 +25,11 @@
     $ii = $i-3;
 
     while($i > $ii){
-      echo $dados[$i]."</br>";
+      if($i >= 0){
+        echo $dados[$i]."</br>";
+      } else {
+        return;
+      }
       $i--;
     }
 

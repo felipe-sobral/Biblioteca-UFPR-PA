@@ -37,4 +37,11 @@
     }
   }
 
+  function retornaData($sql_retorno){
+    $resultado = mysqli_fetch_row($sql_retorno);
+    $resultado = $resultado[0];
+
+    return $resultado;
+  }
+
 ?>
