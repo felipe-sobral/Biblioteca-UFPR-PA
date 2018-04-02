@@ -89,14 +89,72 @@
               <div class="card-body">
 
                 <div class="btn-group-vertical btn-block">
-                  <button id="registrarUsuarioBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#registrarUsuario">
-                    #
+                  <button id="downloadBtn" type="button" class="btn btn-success" data-toggle="modal" data-target="#download">
+                    Baixar
                   </button>
 
-                  <a id="contadorUsuariosBtn" href="../livro_est/consulta_local.html" class="btn btn-danger">
-                    #
+                  <a id="contadorUsuariosBtn" href="../restrito/area_restrita.php" class="btn btn-danger">
+                    Sair
                   </a>
                 </div>
+
+                <!-- Histórico usuarios -->
+                <div class="modal fade" id="download" tabindex="-1" role="dialog" aria-labelledby="downloadTittle" aria-hidden="true">
+                 <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="downloadTittle">Fazer Download</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+
+                          <form id="downloadForm" class="form-inline">
+
+                              <div id="erroDownload" class="alert alert-danger" role="alert">
+                                  <b>Algo está errado</b>. Não foi possível encontrar históricos da data desejada!
+                              </div>
+
+                              <div class="form-group mb-2">
+
+                                  <select id="mesDownload" class="form-control">
+                                      <option selected>Mês</option>
+                                      <option value="1">Janeiro</option>
+                                      <option value="2">Fevereiro</option>
+                                      <option value="3">Março</option>
+                                      <option value="4">Abril</option>
+                                      <option value="5">Maio</option>
+                                      <option value="6">Junho</option>
+                                      <option value="7">Julho</option>
+                                      <option value="8">Agosto</option>
+                                      <option value="9">Setembro</option>
+                                      <option value="10">Outubro</option>
+                                      <option value="11">Novembro</option>
+                                      <option value="12">Dezembro</option>
+                                  </select>
+
+                              </div>
+
+                              <div class="form-group mx-sm-3 mb-2">
+
+                                  <label for="anoDownload" class="sr-only">Ano</label>
+                                  <input type="text" class="form-control" id="anoDownload" value="2018">
+
+                              </div>
+
+                              <button type="submit" class="btn btn-outline-primary mb-2">Baixar</button>
+
+                          </form>
+
+                      </div>
+                  </div>
+                 </div>
+                </div>
+                <!--- fim Histórico usuarios -->
+
+
+
 
               </div>
             </div>
@@ -131,6 +189,7 @@
           $(document).ready(function(){
               $('#erroCodigo').hide();
               $('#successCodigo').hide();
+              $('#erroDownload').hide();
               $('#codigo_consulta').focus();
 
               $('#inserirCodigo').submit(function(){
@@ -155,6 +214,26 @@
                   })
 
                   return false;
+             })
+
+             $('#downloadForm').submit(function(){
+                 var anoDownload = $('#anoDownload').val();
+                 var mesDownload = $('#mesDownload').val();
+
+                 $.ajax({
+                     url: "download.php",
+                     type: "POST",
+                     data: "ano="+anoDownload+"&mes="+mesDownload,
+                     success: function(result){
+                         if(result == 0){
+                             $('#erroDownload').show();
+                         } else {
+                             $('#erroDownload').hide();
+                         }
+                     }
+                 })
+
+                 return false;
              })
 
 

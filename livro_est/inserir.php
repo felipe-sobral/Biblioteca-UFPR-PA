@@ -11,12 +11,16 @@
 
     $codigo = $_POST['codigoBarras'];
 
+    if(strlen($codigo) != 8){
+      echo 0;
+      exit;
+    }
+
     $ehNumero = intval($codigo); // TRANSFORMA STRING EM NÚMERO
-    $ehNumeroConf = is_numeric($ehNumero); // RETORNA SE É NUMERO
     $ehNumero = strval($ehNumero); // TRANSFORMA NOVAMENTE O NÚMERO EM STRING
     $tamanhoString = strlen($ehNumero); // VERIFICA TAMANHO DA STRING
 
-    if(($tamanhoString >= 5) && $ehNumeroConf == 1){
+    if($tamanhoString >= 5){
 
       $sql = mysqli_query($conectar, "SELECT * FROM consulta_local WHERE mes='{$mes}' AND dia='{$dia}' AND ano='{$ano}'");
 
