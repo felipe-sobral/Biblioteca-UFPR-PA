@@ -6,19 +6,9 @@
     }
 
     include "../cfg.php";
+    include "../funcoesGerais.php";
 
-    if(!isset($_SESSION['usuario'], $_SESSION['senha'], $_SESSION['nivel'])){
-        login_erro();
-    }
-
-    $usuario = $_SESSION['usuario'];
-    $senha = $_SESSION['senha'];
-    $nivel = $_SESSION['nivel'];
-
-    $sql = mysqli_query($conectar, "SELECT * FROM usuarios WHERE usuario = '{$usuario}' AND senha = '{$senha}'");
-    $login_check = mysqli_num_rows($sql);
-
-    if($login_check != 1){
+    if(!verificarLogin(1)){
         login_erro();
     }
 ?>
@@ -98,8 +88,8 @@
                        <i class="fas fa-users"></i> Contador de Usuários
                     </a>
 
-                    <a id="contadorUsuariosBtn" href="../livro_est/consulta_local.html" class="btn btn-primary">
-                      Consulta Local
+                    <a id="consultaLocalBtn" href="../livro_est/consulta_local.html" class="btn btn-primary">
+                      <i class="fas fa-file-alt"></i> Consulta Local
                    </a>
                     </div>
 

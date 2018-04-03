@@ -1,9 +1,13 @@
 <?php
-
   session_start();
 
   include "../cfg.php";
   include "../funcoesGerais.php";
+
+  if(!verificarLogin(3)){
+    echo 0;
+    exit;
+  }
 
   function gravar($codigos, $nomeArquivo, $nomePasta){
     $endereco = $nomePasta."/".$nomeArquivo.".txt";
@@ -19,7 +23,7 @@
 
   function baixarArquivo($enderecoArquivo){
     if(file_exists($enderecoArquivo)){
-      header("Location: $enderecoArquivo");
+      echo $enderecoArquivo;
     }
   }
 
@@ -60,6 +64,7 @@
 
     $zip->close();
 
+    $nomePasta = "downloads/".$mes."-".$ano;
     baixarArquivo($nomePasta."/consulta_local.zip");
 
   } else {

@@ -44,4 +44,27 @@
     return $resultado;
   }
 
+  function verificarLogin($nivel){
+    if(isset($_SESSION['usuario'])){
+
+      $usuario = $_SESSION['usuario'];
+      $senha = $_SESSION['senha'];
+      $u_nivel = $_SESSION['nivel'];
+
+      if($u_nivel >= $nivel){
+        $sql = mysqli_query($GLOBALS['conectar'], "SELECT * FROM usuarios WHERE usuario='{$usuario}' AND senha='{$senha}'");
+        if(verificarSql($sql)){
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+
+    } else {
+      return false;
+    }
+  }
+
 ?>

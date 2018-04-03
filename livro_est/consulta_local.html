@@ -16,14 +16,14 @@
 </head>
 <body class="bodyPadrao">
 
-    <!-- LOADING CASO PRECISE PERMISSÃO PARA ENTRAR
+
     <div id="carregando" style="display: block; padding-top: 10%;">
 
         <center><i class="fas fa-spinner fa-spin fa-10x" style="color: #00487F;"></i></center>
 
     </div>
-    -->
 
+    <div id="passou" style="display: none">
       <!-- CABEÇALHO -->
       <div class="container containerSombra">
         <div class="row" style="background-image: url('../img/bg-azul.jpg');">
@@ -63,7 +63,7 @@
                   </div>
 
                   </br>
-                  <center><button type="submit" class="btn btn-primary">Registrar</button></center>
+                  <center><button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Registrar</button></center>
 
                 </form>
 
@@ -90,11 +90,11 @@
 
                 <div class="btn-group-vertical btn-block">
                   <button id="downloadBtn" type="button" class="btn btn-success" data-toggle="modal" data-target="#download">
-                    Baixar
+                    <i class="fas fa-download"></i> Baixar
                   </button>
 
                   <a id="contadorUsuariosBtn" href="../restrito/area_restrita.php" class="btn btn-danger">
-                    Sair
+                    <i class="fas fa-sign-out-alt"></i> Sair
                   </a>
                 </div>
 
@@ -143,7 +143,7 @@
 
                               </div>
 
-                              <button type="submit" class="btn btn-outline-primary mb-2">Baixar</button>
+                              <button type="submit" class="btn btn-outline-primary mb-2"><i class="fas fa-file-archive"></i> Baixar</button>
 
                           </form>
 
@@ -172,6 +172,7 @@
         </div>
       </div>
       <!-- FIM FOOTER -->
+    </div>
 
         <script>
 
@@ -191,6 +192,20 @@
               $('#successCodigo').hide();
               $('#erroDownload').hide();
               $('#codigo_consulta').focus();
+
+              $.ajax({
+                  url: "../verificar.php",
+                  type: "post",
+                  data: "executarFuncao="+6+"&nivel="+3,
+                  success: function(result){
+                      if(result == true){
+                          document.getElementById("carregando").style.display = "none";
+                          document.getElementById("passou").style.display = "block";
+                      }else{
+                          window.location='../index.html';
+                      }
+                  }
+              })
 
               $('#inserirCodigo').submit(function(){
                   var codigoBarras = $('#codigo_consulta').val();
@@ -228,6 +243,7 @@
                          if(result == 0){
                              $('#erroDownload').show();
                          } else {
+                             location.href="http://biblioteca.felipesobral.xyz/livro_est/"+result;
                              $('#erroDownload').hide();
                          }
                      }
