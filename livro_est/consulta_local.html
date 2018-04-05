@@ -58,14 +58,9 @@
                   <div class="input-group">
 
                     <div class="input-group-prepend">
-                      <div class="input-group-text"><a href="http://zxing.appspot.com/scan?ret=http://biblioteca.felipesobral.xyz/livro_est/consulta_local.html?codigo=" onclick="pegarCodigo()"><i class="fas fa-barcode"></a></i></div>
-                      <script>
-                        function pegarCodigo(){
-                            console.log(location.search);
-                        }
-                      </script>
+                      <div class="input-group-text"><i class="fas fa-barcode"></i></div>
                     </div>
-                    <input type="text" maxlength="8" id="codigo_consulta" class="form-control" placeholder="00329902" value="<?php = $_GET['codigo'] ?>">
+                    <input type="text" maxlength="8" id="codigo_consulta" class="form-control" placeholder="00329902">
                   </div>
 
                   </br>
