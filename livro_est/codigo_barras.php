@@ -10,11 +10,21 @@
 
   include "codigos_registrados.php";
   include "inserir_funcao.php";
+  include "codigo_qr.php";
 
-  if(isset($_POST['codigo'])){
+  if(isset($_POST['codigo']) && isset($_POST['autenticacao'])){
     $codigo = $_POST['codigo'];
-    if(inserirCodigo($codigo) == 1){
-      echo "/registrado";
+    $autenticar = $_POST['autenticacao'];
+
+    echo "</br> ".$autenticar." </br>";
+
+    if(validarQR($autenticar)){
+      if(inserirCodigo($codigo)){
+        echo "/registrado";
+      }
+    }else{
+      echo "/falhaAutenticacao";
     }
+
   }
 ?>

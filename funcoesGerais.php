@@ -18,7 +18,7 @@
 
   function verificarSql($sql){
     $v_sql = mysqli_num_rows($sql);
-    if($v_sql>0){
+    if($v_sql != null){
       return true;
     } else {
       return false;

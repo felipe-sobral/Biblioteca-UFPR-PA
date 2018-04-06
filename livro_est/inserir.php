@@ -7,7 +7,11 @@
 
   if(verificarNivel(3)){
     $codigo = $_POST['codigoBarras'];
-    inserirCodigo($codigo);
+    if(inserirCodigo($codigo) == true){
+        echo 1;
+    } else {
+        echo 0;
+    }
   }
 
 

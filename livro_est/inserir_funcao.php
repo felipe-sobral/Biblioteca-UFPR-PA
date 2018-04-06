@@ -5,8 +5,7 @@ function inserirCodigo($codigo){
   $ano = retornaData(mysqli_query($GLOBALS['conectar'], "SELECT YEAR(CURRENT_TIMESTAMP)"));
 
   if(strlen($codigo) != 8){
-    echo 0;
-    exit;
+    return false;
   }
 
   $ehNumero = intval($codigo); // TRANSFORMA STRING EM NÚMERO
@@ -25,23 +24,20 @@ function inserirCodigo($codigo){
 
       mysqli_query($GLOBALS['conectar'], "UPDATE consulta_local SET codigos='{$novo_text}' WHERE mes='{$mes}' AND dia='{$dia}' AND ano='{$ano}'");
 
-      echo 1;
-      exit;
+      return true;
 
     } else {
 
       mysqli_query($GLOBALS['conectar'], "INSERT INTO `consulta_local`(`dia`, `ano`, `mes`, `codigos`) VALUES ('$dia', '$ano', '$mes','$codigo')");
 
-      echo 1;
-      exit;
+      return true;
 
     }
 
   }else{
-    echo 0;
-    exit;
-  }
+    return false;
 
+  }
 
 }
 ?>
