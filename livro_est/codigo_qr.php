@@ -33,7 +33,6 @@
     $sql = mysqli_query($GLOBALS['conectar'], "SELECT codigo FROM QRcode");
 
     $linhas = mysqli_num_rows($sql);
-    $dados = mysqli_fetch_row($sql);
 
     if($linhas == null){
 
@@ -43,8 +42,9 @@
     } else {
 
       $numero = rand(0, $linhas);
-      $endereco = $dados[$numero];  /// ARRUMAR AQUI PARA RECEBER ENDEREÇO DA IMAGEM E O RETORNAR
-      echo $endereco;
+      $endereco = $linhas[$numero];  /// ARRUMAR AQUI PARA RECEBER ENDEREÇO DA IMAGEM E A RETORNAR
+      $endereco = mysqli_fetch_array($endereco);
+      echo $endereco['caminho'];
       return $endereco;
 
     }
