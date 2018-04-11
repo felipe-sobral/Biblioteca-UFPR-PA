@@ -10,7 +10,17 @@
 
   include "codigos_registrados.php";
   include "inserir_funcao.php";
-  include "codigo_qr.php";
+
+  function validarQR($codigo){
+    $sql = mysqli_query($GLOBALS['conectar'], "SELECT * FROM QRcode WHERE codigo = '{$codigo}'");
+
+    if(verificarSql($sql)){
+      return true;
+    } else {
+      return false;
+    }
+
+  }
 
   if(isset($_POST['codigo']) && isset($_POST['autenticacao'])){
     $codigo = $_POST['codigo'];
