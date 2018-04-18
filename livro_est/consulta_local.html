@@ -120,6 +120,10 @@
               <div class="card-body">
 
                 <div class="btn-group-vertical btn-block">
+                  <button id="alterarBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#alterar">
+                    <i class="fas fa-download"></i> Alterar
+                  </button>
+
                   <button id="downloadBtn" type="button" class="btn btn-success" data-toggle="modal" data-target="#download">
                     <i class="fas fa-download"></i> Baixar
                   </button>
@@ -183,6 +187,76 @@
                  </div>
                 </div>
                 <!--- fim Histórico usuarios -->
+
+                <!-- alterar registros -->
+                <div class="modal fade" id="alterar" tabindex="-1" role="dialog" aria-labelledby="alterarTittle" aria-hidden="true">
+                 <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="altararTittle">Modificar registros</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+
+                          <form id="alterarForm" class="form">
+
+                              <div id="alterarFALSE" class="alert alert-danger" role="alert">
+                                  <b>Algo está errado</b>. Não foi possível encontrar registros da data desejada!
+                              </div>
+
+                              <div id="alterarTRUE" class="alert alert-success" role="alert">
+                                  <b>Modificações cadastradas!</b>
+                              </div>
+
+                              <div class="form-row">
+                                  <div class="col-2">
+
+                                      <label for="diaAlterar" class="sr-only">Dia</label>
+                                      <input type="text" class="form-control" id="diaAlterar" placeholder="Dia">
+
+                                  </div>
+
+                                  <div class="col-auto">
+
+                                      <select id="mesAlterar" class="form-control">
+                                          <option selected>Mês</option>
+                                          <option value="1">Janeiro</option>
+                                          <option value="2">Fevereiro</option>
+                                          <option value="3">Março</option>
+                                          <option value="4">Abril</option>
+                                          <option value="5">Maio</option>
+                                          <option value="6">Junho</option>
+                                          <option value="7">Julho</option>
+                                          <option value="8">Agosto</option>
+                                          <option value="9">Setembro</option>
+                                          <option value="10">Outubro</option>
+                                          <option value="11">Novembro</option>
+                                          <option value="12">Dezembro</option>
+                                      </select>
+
+                                  </div>
+
+                                  <div class="col-3">
+
+                                      <input type="text" class="form-control" id="anoAlterar" value="2018">
+
+                                  </div>
+
+                                  <div class="col-auto">
+                                      <button type="submit" class="btn btn-outline-primary mb-2" ><i class="fas fa-file-archive"></i> Buscar</button>
+                                  </div>
+                              </div>
+
+
+                          </form>
+
+                      </div>
+                  </div>
+                 </div>
+                </div>
+                <!--- fim alterar registros -->
 
 
 
@@ -294,6 +368,39 @@
                  })
 
                  return false;
+             })
+
+             $('#alterarForm').submit(function(){
+                 var anoAlterar = $('#anoAlterar').val();
+                 var mesAlterar = $('#mesAlterar').val();
+                 var diaAlterar = $('#diaAlterar').val();
+
+                 $.ajax({
+                     url: "alterar.php",
+                     type: "post",
+                     data: "ano="+anoAlterar+"&mes="+mesAlterar+"&dia="+diaAlterar+"&pegarCodigos="+1,
+                     success: function(result){
+                         console.log(result);
+                     }
+                 })
+
+                 return false;
+             })
+
+             $('#modificarForm').submit(function(){
+               var alterarCodigos = $('#codigosAlterar').val();
+               var iden = $('#iden').val();
+
+               $.ajax({
+                   url: "alterar.php",
+                   type: "post",
+                   data: "alterarCodigos="+alterarCodigos+"&iden="+iden,
+                   success: function(result){
+                       console.log(result);
+                   }
+               })
+
+               return false;
              })
 
 

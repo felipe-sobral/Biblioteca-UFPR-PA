@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang='pt-br'>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Biblioteca UFPR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="../js/main.js"></script>
+    <script src="../js/jquery-3.3.1.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+    <link rel="stylesheet" href="../css/main.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body class="bodyPadrao">
+
+    <!-- CABEÇALHO -->
+      <div class="container">
+
+        <h1 style="text-align: center">Olá, tudo bem?</h1>
+        <p>O programa da Consulta Local atualizou, estou aqui para te mostrar o novo sistema, mais atualizado e com menos problemas em questão de sincronização, pois agora será usado um banco de dados para armazenar os devidos dados e tudo ficará na nuvem.</p>
+        <p>Esta documentação ainda não está finalizada, então é sugerido que guarde o endereço desta página para quando houver dúvidas ou alguma atualização vir conferir-lá.</p>
+
+        <hr>
+        <div id="#ConsultaLocal">
+          <h3 style="text-align: center"><b>1. Consulta Local</b></h3>
+
+          <p>Para registrarmos um livro na consulta local é necessário fazer um login, por enquanto eu irei disponibilizar um usuário temporário e depois irei desativá-lo, até cada um estiver devidamente cadastrado.</p>
+          <p>Para começarmos, entre neste site: <a href="http://bibliotecaufprpa.hol.es/login.html">bibliotecaufprpa.hol.es/login.html</a></p>
+
+          <figure class="figure">
+            <img src="img/doc/1.jpg" class="figure-img img-fluid rounded"/>
+            <figcaption class="figure-caption">Tela de login</figcaption>
+          </figure>
+
+          <p>Você deverá preencher o campo do <i>usuário</i> com: <b>temporario</b>; e no campo <i>senha</i>: <b>temporario</b>; e clicar em “Entrar”. Ao fazer o login, você irá se deparar com essa página:</p>
+
+          <figure class="figure">
+            <img src="img/doc/2.jpg" class="figure-img img-fluid rounded"/>
+            <figcaption class="figure-caption">Painel de controle</figcaption>
+          </figure>
+
+          <p>Quando ela carregar, você poderá clicar no botão “Consulta Local”, como grifado na imagem acima. Irá abrir esta página:</p>
+
+          <figure class="figure">
+            <img src="img/doc/3.jpg" class="figure-img img-fluid rounded"/>
+            <figcaption class="figure-caption">Consulta Local</figcaption>
+          </figure>
+
+          <ul>
+            <li>Campo vermelho: Caixa de texto onde deverá ser inserido o código do livro.</li>
+            <li>Campo amarelo: Botão para inserir.</li>
+            <li>Campo verde: Últimos códigos registrados, irá mostrar os três últimos códigos.</li>
+            <li>Campo preto: Botão que irá abrir uma caixa de texto para fazer o download do histórico de um mês desejado.</li>
+            <li>Campo azul: Botão para autenticar o aplicativo no Android para que faça a inserção dos códigos de barras diretamente nele. (Em experimentação / Ainda não disponível para o uso).</li>
+          </ul>
+
+          <p style="text-align: center"><b>Qualquer dúvida sobre este tópico me contate registrando um erro/bug.</b></p>
+        </div>
+
+        <hr>
+
+        <div id="#ContadorDeUsuarios">
+          <h3 style="text-align: center"><b>2. Contador de usuários</b></h3>
+
+          <p>Seguindo os mesmos passos para entrar no sistema no tópico anterior (1. Consulta Local), iremos pular diretamente para o painel de controle.</p>
+
+          <figure class="figure">
+            <img src="img/doc/4.jpg" class="figure-img img-fluid rounded"/>
+            <figcaption class="figure-caption">Painel de controle</figcaption>
+          </figure>
+
+          <p>Logo após, a página representada pela figura abaixo será aberta.</p>
+
+          <figure class="figure">
+            <img src="img/doc/5.jpg" class="figure-img img-fluid rounded"/>
+            <figcaption class="figure-caption">Contador de usuários</figcaption>
+          </figure>
+
+          <ul>
+            <li>Campo laranja: Número de usuários registrados durante o turno.</li>
+            <li>Campo azul: Botões “+” e “-” para adicionar um usuário ou remover do contador.</li>
+            <li>Campo verde: Botão adicionar, ao ser pressionado, ele irá abrir um pop-up com formulário para adicionar um dia que não tenha sido registrado no sistema.</li>
+            <li>Campo vermelho: Irá abrir um pop-up, ao selecionar o mês e o ano desejado, irá ser carregado uma tabela com todas informações registradas sobre aquele mês.</li>
+            <li>Campo amarelo: Irá abrir um pop-up com um formulário para ser inserido o dia que deseja fazer a alteração, mas atenção, a forma que deve ser inserida é: ANO/MES/DIA.</li>
+          </ul>
+
+          <p style="text-align: center"><b>Qualquer dúvida sobre este tópico me contate registrando um erro/bug.</b></p>
+        </div>
+
+        <hr>
+
+        <div id="#Contato">
+         <center>
+            <h3>Contato</h3>
+            <p>Para relatar bugs ou sugerir algo, por favor, entre em contato.</p>
+            <p><b>E-mail</b>: xfelipesobral@gmail.com</p>
+            <p><b>Whatsapp</b>: (44) 9 9814-0644</p>
+         </center>
+        </div>
+
+
+        <h4 style="text-align: center; padding-bottom: 5%; padding-top: 2%">Documentação em desenvolvimento.<h4>
+
+
+
+      </div>
+
+      <script>
+          // CODIGO JS
+      </script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
