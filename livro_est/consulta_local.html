@@ -252,6 +252,21 @@
 
                           </form>
 
+                          <div id="esconderAlterar">
+                              <hr>
+
+                              <form id="modificarForm" class="form">
+
+                                  <div class="form-group">
+                                      <a id="alterarAQUI"></a>
+                                  </div>
+
+                                  <center>
+                                      <button type="submit" class="btn btn-primary">Modificar</button>
+                                  </center>
+                              </form>
+                          </div>
+
                       </div>
                   </div>
                  </div>
@@ -297,6 +312,7 @@
               $('#successCodigo').hide();
               $('#erroDownload').hide();
               $('#codigo_consulta').focus();
+              $('#esconderAlterar').hide();
 
               $.ajax({
                   url: "../verificar.php",
@@ -370,6 +386,9 @@
                  return false;
              })
 
+             $('#alterarTRUE').hide();
+             $('#alterarFALSE').hide();
+
              $('#alterarForm').submit(function(){
                  var anoAlterar = $('#anoAlterar').val();
                  var mesAlterar = $('#mesAlterar').val();
@@ -381,6 +400,8 @@
                      data: "ano="+anoAlterar+"&mes="+mesAlterar+"&dia="+diaAlterar+"&pegarCodigos="+1,
                      success: function(result){
                          console.log(result);
+                         $('#alterarAQUI').html(result);
+                         $('#esconderAlterar').show();
                      }
                  })
 
@@ -389,14 +410,18 @@
 
              $('#modificarForm').submit(function(){
                var alterarCodigos = $('#codigosAlterar').val();
-               var iden = $('#iden').val();
-
+               
                $.ajax({
                    url: "alterar.php",
                    type: "post",
                    data: "alterarCodigos="+alterarCodigos+"&iden="+iden,
                    success: function(result){
-                       console.log(result);
+                       if(result == 1){
+                         $('#alterarFALSE').hide();
+                         $('#alterarTRUE').show();
+
+                         console.log(result);
+                       }
                    }
                })
 

@@ -3,33 +3,61 @@
   include "../cfg.php";
   include "../funcoesGerais.php";
 
-  $ano = $_POST["ano"];
-  $dia = $_POST["dia"];
-  $mes = $_POST["mes"];
+  //if(verificarNivel(3)){ // ARRUMAR AQUI - PERMISSÕES ## ARRUMAR HTML
 
-  $sql = mysqli_query($conectar, "SELECT * FROM consulta_local WHERE ano='{$ano}' AND dia='{$dia}' AND mes='{$mes}'");
+    if(isset($_POST["pegarCodigos"])){
 
-  if(verificarSql($sql)){
-    if(verificarNivel(3)){ // ARRUMAR AQUI - PERMISSÕES ## ARRUMAR HTML
+      $ano = $_POST["ano"];
+      $dia = $_POST["dia"];
+      $mes = $_POST["mes"];
 
-      if(isset($_POST["pegarCodigos"])){
-        $codigos = mysqli_fetch_array($sql);
-        echo "<textarea class='form-control' id='codigosAlterar' rows='10'>".$codigos['codigos']."</textarea><a id='iden'>".$codigos['id']."</a>";
-      } elseif (isset($_POST["alterarCodigos"])) {
-        $new_cod = $_POST["alterarCodigos"];
-        $id = $_POST["iden"];
+      $sql = mysqli_query($conectar, "SELECT * FROM consulta_local WHERE ano='{$ano}' AND dia='{$dia}' AND mes='{$mes}'");
 
-        mysqli_query($conectar, "UPDATE consulta_local SET codigos='{$new_cod}' WHERE id='{$id}'");
+      if(verificarSql($sql)){
+        $dado = mysqli_fetch_array($sql);
+
+        echo "<textarea class='form-control' id='codigosAlterar' rows='10'>".$dado['codigos']."</textarea><script>var iden=".$dado['id']."</script>";
       } else {
-        echo "0 ERRO 1";
+        echo 0;
       }
 
+    } elseif (isset($_POST["alterarCodigos"])) {
+      $new_cod = nl2br($_POST["alterarCodigos"]);
+      $id = $_POST["iden"];
+
+      //<br />
+      //str_replace('&', 'e', $string)
+
+      $inserir = str_replace('\n', '\r\n', $_POST["alterarCodigos"]);
+
+      mysqli_query($conectar, "UPDATE consulta_local SET codigos='{$inserir}' WHERE id='{$id}'");
+
+      /*
+      $dados = explode("<br />", $new_cod);
+
+      $i = 0;
+
+      while(isset($dados[$i])){
+        $inserir = $dados[$i];
+
+        if($i == 0){
+          mysqli_query($conectar, "UPDATE consulta_local SET codigos='{$inserir}' WHERE id='{$id}'");
+        } else {
+          $inserir = "\r\n".$inserir;
+          mysqli_query($conectar, "UPDATE consulta_local SET codigos='{$inserir}' WHERE id='{$id}'");
+        }
+
+        $i++;
+      }*/
+
     } else {
-      echo "0 ERRO 2";
+      echo "0 ERRO 1";
     }
-  } else {
-    echo "0 ERRO 3";
-  }
+
+  /*} else {
+    echo "0 ERRO 2";
+  }*/
+
 
 
 
