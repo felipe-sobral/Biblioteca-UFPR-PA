@@ -52,7 +52,7 @@
                 <div class="card">
                   <div class="card-body">
                     <h5 class="card-title" id="bemvindo">Bem-vindo</h5>
-                    <a><i class="fas fa-exclamation-triangle"></i> Para melhor utilização, é recomendado que use o navegador <b><i class="fab fa-chrome"></i> Google Chrome</b>.</a>
+                    <!-- AVISOS <a><i class="fas fa-exclamation-triangle"></i> Para melhor utilização, é recomendado que use o navegador <b><i class="fab fa-chrome"></i> Google Chrome</b>.</a> -->
                   </div>
                 </div>
 
@@ -68,6 +68,14 @@
                   <div class="card-body">
 
                     <div class="btn-group-vertical btn-block">
+                       <a id="contadorUsuariosBtn" href="../usuario_est/estatistica_usuarios.html" class="btn btn-primary">
+                          <i class="fas fa-users"></i> Contador de Usuários
+                       </a>
+
+                       <a id="consultaLocalBtn" href="../livro_est/consulta_local.html" class="btn btn-primary">
+                         <i class="fas fa-file-alt"></i> Consulta Local
+                      </a>
+
                       <button id="registrarUsuarioBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#registrarUsuario">
                         <i class="fas fa-user-plus"></i> Registrar Usuário
                       </button>
@@ -84,13 +92,6 @@
                         <i class="fas fa-clipboard-list"></i> Livros Registrados
                      </a>
 
-                     <a id="contadorUsuariosBtn" href="../usuario_est/estatistica_usuarios.html" class="btn btn-primary">
-                       <i class="fas fa-users"></i> Contador de Usuários
-                    </a>
-
-                    <a id="consultaLocalBtn" href="../livro_est/consulta_local.html" class="btn btn-primary">
-                      <i class="fas fa-file-alt"></i> Consulta Local
-                   </a>
                     </div>
 
                     <!-- MODAL REGISTRAR USUARIO -->

@@ -4,7 +4,7 @@
   include "../cfg.php";
   include "../funcoesGerais.php";
 
-  if(verificarNivel(3)){ // ARRUMAR AQUI - PERMISSÕES ## ARRUMAR HTML
+  if(verificarNivel(3)){
 
     if(isset($_POST["pegarCodigos"])){
 
@@ -23,7 +23,6 @@
       }
 
     } elseif (isset($_POST["alterarCodigos"])) {
-      $new_cod = nl2br($_POST["alterarCodigos"]);
       $id = $_POST["iden"];
 
       $inserir = str_replace('
@@ -32,7 +31,7 @@
       mysqli_query($conectar, "UPDATE consulta_local SET codigos='{$inserir}' WHERE id='{$id}'");
 
       echo "1";
-      
+
     } else {
       echo "0";
     }
