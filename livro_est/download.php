@@ -40,7 +40,7 @@
     $nomePasta = "./downloads/".$mes."-".$ano;
 
     if(!file_exists($nomePasta)){
-      mkdir($nomePasta);
+      mkdir($nomePasta, 0755, true);
     }
 
     $zip = new ZipArchive();
@@ -70,9 +70,5 @@
   } else {
     echo 0;
   }
-
-
-
-  // CONTINUAR DAQUI
 
 ?>
