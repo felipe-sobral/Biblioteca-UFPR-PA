@@ -68,10 +68,27 @@
 
           break;
 
-        case 5: // VERIFICAR SE JÁ TEM SESSÃO
-          if(isset($_SESSION['usuario'])){
-            $resultado = 1;
+        case 5: // VERIFICAR LOGIN
+          echo 0;
+          exit;
+          if(isset($_SESSION)){
+            $resultado = verificarLogin($_SESSION['nivel']);
+            /*if($resultado == false){
+              session_destroy();
+              echo 0;
+              exit;
+            } else {
+              echo 1;
+              exit;
+            }*/
+            echo 0;
+            exit;
+
+          } else {
+            echo 0;
+            exit;
           }
+
           break;
 
         case 6:

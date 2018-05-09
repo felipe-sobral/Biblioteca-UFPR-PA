@@ -27,6 +27,9 @@
 
     <link rel="stylesheet" href="../css/main.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+
+
 </head>
 <body class="bodyPadrao">
 
@@ -53,6 +56,41 @@
                   <div class="card-body">
                     <h5 class="card-title" id="bemvindo">Bem-vindo</h5>
                     <!-- AVISOS <a><i class="fas fa-exclamation-triangle"></i> Para melhor utilização, é recomendado que use o navegador <b><i class="fab fa-chrome"></i> Google Chrome</b>.</a> -->
+
+                    <button class="ui basic button" onclick="$('.ui.basic.modal').modal('show');"><i class="pencil alternate icon"></i> Alterar senha</button>
+
+                    <!-- MUDAR SENHA MODAL -->
+                    <div class="ui basic modal">
+                      <div class="ui icon header">
+                        <i class="pencil alternate icon"></i>
+                        Alterar Senha
+                      </div>
+                      <div class="content">
+                        <div class="ui success message" id="alterarSenha_sucesso"><i class="checkmark icon"></i> Senha alterada com sucesso.</div>
+                        <div class="ui red message" id="alterarSenha_erro"><i class="remove icon"></i> Não foi possível alterar a senha, tente novamente.</div>
+
+                        <script>$('#alterarSenha_sucesso').hide(); $('#alterarSenha_erro').hide();</script>
+
+                        <form class="ui form" id="alterarSenha_form">
+                          <div class="field">
+                            <input type="password" id="alterarSenha_antiga" placeholder="Senha antiga">
+                          </div>
+                          <div class="field">
+                            <input type="password" maxlength="10" id="alterarSenha_nova" placeholder="Nova senha">
+                          </div>
+                          <div class="field">
+                            <input type="password" id="alterarSenha_conferir" placeholder="Repita a nova senha">
+                          </div>
+
+                          <button class="ui green ok inverted button" type="submit"><i class="checkmark icon"></i> Alterar</button>
+                        </form>
+
+                      </div>
+                      <div class="actions">
+                        <div class="ui red basic cancel inverted button"><i class="remove icon"></i> Cancelar</div>
+                      </div>
+                    </div>
+                    <!-- MUDAR SENHA MODAL-->
                   </div>
                 </div>
 
@@ -516,6 +554,31 @@
                 return false;
             })
 
+            $('#alterarSenha_form').submit(function(){
+              var alterarSenha_nova = $('#alterarSenha_nova').val();
+              var alterarSenha_antiga = $('#alterarSenha_antiga').val();
+              var alterarSenha_conferir = $('#alterarSenha_conferir').val();
+
+              console.log(alterarSenha_nova+"+"+alterarSenha_antiga+"+"+alterarSenha_conferir);
+
+              $.ajax({
+                url: "alterarsenha.php",
+                type: "post",
+                data: "alterarSenha_nova="+alterarSenha_nova+"&alterarSenha_antiga="+alterarSenha_antiga+"&alterarSenha_conferir="+alterarSenha_conferir,
+                success: function(result){
+                  if(result == 1){
+                    $('#alterarSenha_sucesso').show();
+                    $('#alterarSenha_erro').hide();
+                  } else {
+                    $('#alterarSenha_sucesso').hide();
+                    $('#alterarSenha_erro').show();
+                  }
+                }
+              })
+
+              return false;
+            })
+
             $.ajax({
               url: "livrosPendentes.php",
               type: "post",
@@ -550,5 +613,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
 </body>
 </html>

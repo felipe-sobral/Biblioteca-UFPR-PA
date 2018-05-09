@@ -213,8 +213,9 @@
   function verificarLogin($conectar){
     if(isset($_SESSION)){
       $user = $_SESSION['usuario'];
+      $senha = $_SESSION['senha'];
 
-      $sql = mysqli_query($conectar, "SELECT nivel FROM usuarios WHERE usuario='{$user}'");
+      $sql = mysqli_query($conectar, "SELECT nivel FROM usuarios WHERE usuario='{$user}' AND senha='{$senha}'");
       $dado = mysqli_fetch_array($sql);
 
       if($dado['nivel'] >= 3){
