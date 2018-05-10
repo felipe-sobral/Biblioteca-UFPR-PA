@@ -69,24 +69,10 @@
           break;
 
         case 5: // VERIFICAR LOGIN
-          echo 0;
-          exit;
-          if(isset($_SESSION)){
-            $resultado = verificarLogin($_SESSION['nivel']);
-            /*if($resultado == false){
-              session_destroy();
-              echo 0;
-              exit;
-            } else {
-              echo 1;
-              exit;
-            }*/
-            echo 0;
-            exit;
-
+          if(verificarLogin(0)){
+              $resultado = 1;
           } else {
-            echo 0;
-            exit;
+              $resultado = 0;
           }
 
           break;

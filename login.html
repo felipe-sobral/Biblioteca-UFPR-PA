@@ -12,12 +12,15 @@
 
     <link rel="stylesheet" href="css/main.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
 </head>
 <body style="background-color: black; background-image: url('img/bg.jpg'); background-attachment: fixed;" onload="document.getElementById('usuario').focus();">
 
     <div id="carregando" style="display: block; padding-top: 10%;">
 
-      <center><i class="fas fa-spinner fa-spin fa-10x" style="color: #fff;"></i></center>
+        <div class="ui active dimmer">
+          <div class="ui massive text loader">Carregando</div>
+        </div>
 
     </div>
 
@@ -110,5 +113,6 @@
 
     </script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
 </body>
 </html>

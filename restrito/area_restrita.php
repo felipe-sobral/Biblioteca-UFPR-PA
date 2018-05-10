@@ -57,10 +57,10 @@
                     <h5 class="card-title" id="bemvindo">Bem-vindo</h5>
                     <!-- AVISOS <a><i class="fas fa-exclamation-triangle"></i> Para melhor utilização, é recomendado que use o navegador <b><i class="fab fa-chrome"></i> Google Chrome</b>.</a> -->
 
-                    <button class="ui basic button" onclick="$('.ui.basic.modal').modal('show');"><i class="pencil alternate icon"></i> Alterar senha</button>
+                    <button class="ui basic button" onclick="$('.ui.basic.mini.modal').modal('show');"><i class="pencil alternate icon"></i> Gerenciar conta</button>
 
                     <!-- MUDAR SENHA MODAL -->
-                    <div class="ui basic modal">
+                    <div class="ui basic mini modal">
                       <div class="ui icon header">
                         <i class="pencil alternate icon"></i>
                         Alterar Senha
@@ -83,11 +83,11 @@
                           </div>
 
                           <button class="ui green ok inverted button" type="submit"><i class="checkmark icon"></i> Alterar</button>
-                        </form>
 
+                        </form>
                       </div>
                       <div class="actions">
-                        <div class="ui red basic cancel inverted button"><i class="remove icon"></i> Cancelar</div>
+                        <div class="ui red basic cancel inverted button"><i class="remove icon"></i> Fechar</div>
                       </div>
                     </div>
                     <!-- MUDAR SENHA MODAL-->
