@@ -25,46 +25,47 @@
     </div>
 
     <div id="passou" style="display: none">
-    <div class="container-fluid cabecalho text-light">
-        <img src="img/branco_UFPR.png"/>
-    </div>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-sm">
+      <div class="container-fluid cabecalho text-light">
+          <img src="img/branco_UFPR.png"/>
+      </div>
 
-          <div class="card mb-3">
-            <img class="card-img-top" src="img/bg-login.jpg">
-            <div class="card-body">
-              <h5 class="card-title">Bem-vindo</h5>
-              <p class="card-text">Esta área é reservada a servidores.</p>
-              <p class="card-text"><small class="text-muted"><a href="index.html">Clique aqui para voltar</a></small></p>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+
+            <div class="card mb-3">
+              <img class="card-img-top" src="img/bg-login.jpg">
+              <div class="card-body">
+                <h5 class="card-title">Bem-vindo</h5>
+                <p class="card-text">Esta área é reservada a servidores.</p>
+                <p class="card-text"><small class="text-muted"><a href="index.html">Clique aqui para voltar</a></small></p>
+              </div>
             </div>
+
           </div>
+          <div class="col-sm-4 text-light">
 
-        </div>
-        <div class="col-sm-4 text-light">
+            <div id="errologin" class="alert alert-danger" role="alert">
+                <b>Algo está errado</b>. Pode ser suas informações que estejam incorretas ou apenas algum campo está vazio!
+            </div>
+            <form id="loginform">
+                <div class="form-group">
+                    <label for="usuario"> <i class="fas fa-user"></i> Usuário</label>
+                    <input type="text" class="form-control" id="usuario" placeholder="Digite o usuário">
+                </div>
+                <div class="form-group">
+                    <label for="senha"> <i class="fas fa-key"></i> Senha</label>
+                    <input type="password" class="form-control" id="senha" placeholder="Digite sua senha">
+                </div>
 
-          <div id="errologin" class="alert alert-danger" role="alert">
-              <b>Algo está errado</b>. Pode ser suas informações que estejam incorretas ou apenas algum campo está vazio!
+                <button type="submit" class="btn btn-primary btn-block"> <i class="fas fa-sign-in-alt"></i> Entrar</button>
+
+            </form>
+
           </div>
-          <form id="loginform">
-              <div class="form-group">
-                  <label for="usuario"> <i class="fas fa-user"></i> Usuário</label>
-                  <input type="text" class="form-control" id="usuario" placeholder="Digite o usuário">
-              </div>
-              <div class="form-group">
-                  <label for="senha"> <i class="fas fa-key"></i> Senha</label>
-                  <input type="password" class="form-control" id="senha" placeholder="Digite sua senha">
-              </div>
-
-              <button type="submit" class="btn btn-primary btn-block"> <i class="fas fa-sign-in-alt"></i> Entrar</button>
-
-          </form>
-
         </div>
       </div>
-    </div>
     </div>
 
 

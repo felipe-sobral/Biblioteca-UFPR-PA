@@ -57,10 +57,11 @@
                     <h5 class="card-title" id="bemvindo">Bem-vindo</h5>
                     <!-- AVISOS <a><i class="fas fa-exclamation-triangle"></i> Para melhor utilização, é recomendado que use o navegador <b><i class="fab fa-chrome"></i> Google Chrome</b>.</a> -->
 
-                    <button class="ui basic button" onclick="$('.ui.basic.mini.modal').modal('show');"><i class="pencil alternate icon"></i> Gerenciar conta</button>
-
                     <!-- MUDAR SENHA MODAL -->
                     <div class="ui basic mini modal">
+                      <div class="actions">
+                          <div class="ui red basic cancel inverted button"><i class="remove icon"></i> Fechar</div>
+                      </div>
                       <div class="ui icon header">
                         <i class="pencil alternate icon"></i>
                         Alterar Senha
@@ -86,9 +87,7 @@
 
                         </form>
                       </div>
-                      <div class="actions">
-                        <div class="ui red basic cancel inverted button"><i class="remove icon"></i> Fechar</div>
-                      </div>
+
                     </div>
                     <!-- MUDAR SENHA MODAL-->
                   </div>
@@ -114,21 +113,38 @@
                          <i class="fas fa-file-alt"></i> Consulta Local
                       </a>
 
-                      <button id="registrarUsuarioBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#registrarUsuario">
-                        <i class="fas fa-user-plus"></i> Registrar Usuário
-                      </button>
+                      <div class="btn-group">
+                          <button id="gerenciarConta" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" disabled>
+                              <i class="user icon"></i> Gerenciar conta
+                          </button>
+                          <div class="dropdown-menu">
+                              <button class="btn btn-light" onclick="$('.ui.basic.mini.modal').modal('show');">Alterar senha</button>
+                              <button class="btn btn-light" disabled>Excluir conta</button>
+                          </div>
+                      </div>
 
-                      <button id="registrarLivroBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#registrarLivro">
-                        <i class="fas fa-plus-square"></i> Registrar Livro
-                      </button>
+                      <div class="btn-group">
+                          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" disabled>
+                              <i class="book icon"></i> Livros
+                          </button>
+                          <div class="dropdown-menu">
+                              <button id="registrarLivroBtn" type="button" class="btn btn-light" data-toggle="modal" data-target="#registrarLivro">Registrar Livro</button>
+                              <button id="alterarLivroBtn" type="button" class="btn btn-light" data-toggle="modal" data-target="#alterarLivro">Alterar Livro</button>
+                              <a href="../listarLivros.php" target="_blank" class="btn btn-light">Livros Registrados</a>
+                          </div>
+                      </div>
 
-                      <button id="alterarLivroBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#alterarLivro">
-                        <i class="fas fa-pencil-alt"></i> Alterar Livro
-                      </button>
+                      <div class="btn-group">
+                          <button id="admOptions" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" disabled>
+                              <i class="fas fa-lock"></i> Administrador
+                          </button>
+                          <div class="dropdown-menu">
+                              <button id="registrarUsuarioBtn" type="button" class="btn btn-light" data-toggle="modal" data-target="#registrarUsuario">Registrar Usuário</button>
+                              <button type="button" class="btn btn-light" data-toggle="modal" disabled>Alterar usuário</button>
+                          </div>
+                      </div>
 
-                      <a href="../listarLivros.php" target="_blank" class="btn btn-primary">
-                        <i class="fas fa-clipboard-list"></i> Livros Registrados
-                     </a>
+
 
                     </div>
 
@@ -164,9 +180,16 @@
                               <label for="senha">Senha <small class="text-muted">Máximo de caracteres: 10</small></label>
                               <input type="password" maxlength="10" class="form-control" id="r_senha" placeholder="Senha">
                           </div>
+
                           <div class="form-group">
                               <label for="nivel">Nível do usuário</label>
-                              <input type="number" class="form-control" id="r_nivel" placeholder="Min: 1 ~ Max: 5" min="1" max="5">
+                              <select class="form-control" id="exampleFormControlSelect1">
+                                  <option value="1">[1] Registrado</option>
+                                  <option value="2">[2] Provisório</option>
+                                  <option value="3">[3] Comum</option>
+                                  <option value="4">[4] Moderador</option>
+                                  <option value="5">[5] Administrador</option>
+                              </select>
                           </div>
 
                           <center>
@@ -397,6 +420,10 @@
                       $('#registrarLivro').prop('disabled', false);
                     }
 
+                    if(result>1){
+                        $('#gerenciarConta').prop('disabled', false);
+                    }
+
                     if(result>=3){
                       $('#alterarLivroBtn').prop('disabled', false);
                       $('#contadorUsuariosBtn').prop('disabled', false);
@@ -404,6 +431,7 @@
 
                     if(result==5){
                       $("#registrarUsuarioBtn").prop('disabled', false);
+                      $("#admOptions").prop('disabled', false);
                     }
                 }
 
