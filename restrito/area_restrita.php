@@ -60,7 +60,7 @@
                     <!-- MUDAR SENHA MODAL -->
                     <div class="ui basic mini modal">
                       <div class="actions">
-                          <div class="ui red basic cancel inverted button"><i class="remove icon"></i> Fechar</div>
+                          <button type="button" class="btn btn-outline-danger cancel"><i class="remove icon"></i> Fechar</button>
                       </div>
                       <div class="ui icon header">
                         <i class="pencil alternate icon"></i>
@@ -83,7 +83,7 @@
                             <input type="password" id="alterarSenha_conferir" placeholder="Repita a nova senha">
                           </div>
 
-                          <button class="ui green ok inverted button" type="submit"><i class="checkmark icon"></i> Alterar</button>
+                          <button class="btn btn-outline-success" type="submit"><i class="checkmark icon"></i> Alterar</button>
 
                         </form>
                       </div>
@@ -140,13 +140,80 @@
                           </button>
                           <div class="dropdown-menu">
                               <button id="registrarUsuarioBtn" type="button" class="btn btn-light" data-toggle="modal" data-target="#registrarUsuario">Registrar Usuário</button>
+                              <button id="alterarUserBtn" type="button" class="btn btn-light" data-toggle="modal" onclick="
+
+                              $('#alterarUsuarioModals')
+                                .modal({allowMultiple: false});
+                                $('#alterarUsuario').modal('show');
+
+                              ">Alterar usuário</button>
                               <button type="button" class="btn btn-light" data-toggle="modal" disabled>Alterar usuário</button>
                           </div>
                       </div>
 
-
-
                     </div>
+
+                    <!-- MODAL ALTERAR USUÁRIO -->
+                    <div id="alterarUsuarioModals" class="coupled modal">
+                        <div id="alterarUsuario" class="ui basic modal">
+                            <div class="modal-dialog" role="document" style="color: #000">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title">Alterar usuário</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="$('#alterarUsuario').modal('hide');">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+
+                                      <form id="alterarUsuarioForm1">
+                                          <div class="form-group">
+                                              <label for="alterarUser_usuario">Usuário</label>
+                                              <input type="text" class="form-control" id="alterarUser_usuario">
+                                          </div>
+                                          <center>
+                                              <button type="submit" class="btn btn-primary">Procurar</button>
+                                          <center>
+                                      </form>
+
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+
+                        <div id="alterarUsuario2" class="ui basic modal">
+                            <div class="modal-dialog" role="document" style="color: #000">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title">Alterar usuário</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="$('#alterarUsuario2').modal('hide');">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+
+                                      <form id='alterarUsuarioForm2'>
+                                          <a id="formularioAlterarAqui"></a>
+                                          <center>
+                                              <button type='submit' class='btn btn-primary'>Alterar</button>
+                                          <center>
+                                      </form>
+
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+
+                    <div id="mensagemSucessoAlterarU" class="ui page dimmer">
+                        <div class="content">
+                            <h2 class="ui inverted icon header">
+                                <i class="check icon"></i>
+                                Sucesso!
+                            </h2>
+                        </div>
+                    </div>
+                    <!-- FIM MODAL -->
 
                     <!-- MODAL REGISTRAR USUARIO -->
                     <div class="modal fade" id="registrarUsuario" tabindex="-1" role="dialog" aria-labelledby="registrarUsuario" aria-hidden="true">
@@ -183,7 +250,7 @@
 
                           <div class="form-group">
                               <label for="nivel">Nível do usuário</label>
-                              <select class="form-control" id="exampleFormControlSelect1">
+                              <select class="form-control" id="r_nivel">
                                   <option value="1">[1] Registrado</option>
                                   <option value="2">[2] Provisório</option>
                                   <option value="3">[3] Comum</option>
@@ -632,6 +699,43 @@
                     }
                 })
 
+                return false;
+            })
+
+            $('#alterarUsuarioForm1').submit(function(){
+                $.ajax({
+                    url: "alterarUsuario.php",
+                    type: "post",
+                    data: "fn="+1+"&$alterarUser_usuario="+$('#alterarUser_usuario').val(),
+                    success: function(result){
+                        if(result==0){
+                            // erro
+                        } else {
+                            $('#formularioAlterarAqui').html(result);
+                            $('#alterarUsuario').modal('hide');
+                            $('#alterarUsuario2').modal('show');
+                        }
+                    }
+                })
+                return false;
+            })
+
+            $('#alterarUsuarioForm2').submit(function(){
+                $.ajax({
+                    url: "alterarUsuario.php",
+                    type: "post",
+                    data: "fn="+2+"&$alterarUser_usuario2="+$('#alterarUser_usuario2').val()+
+                                  "&$alterarUser_id="+$('#alterarUser_id').val()+
+                                  "&$alterarUser_nome="+$('#alterarUser_nome').val()+
+                                  "&$alterarUser_senha="+$('#alterarUser_senha').val()+
+                                  "&$alterarUser_nivel="+$('#alterarUser_nivel').val(),
+                    success: function(result){
+                        if(result==1){
+                            $('#alterarUsuario2').modal('hide');
+                            $('#mensagemSucessoAlterarU').dimmer('show');
+                        }
+                    }
+                })
                 return false;
             })
 
