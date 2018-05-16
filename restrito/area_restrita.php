@@ -728,7 +728,8 @@
                                   "&$alterarUser_id="+$('#alterarUser_id').val()+
                                   "&$alterarUser_nome="+$('#alterarUser_nome').val()+
                                   "&$alterarUser_senha="+$('#alterarUser_senha').val()+
-                                  "&$alterarUser_nivel="+$('#alterarUser_nivel').val(),
+                                  "&$alterarUser_nivel="+$('#alterarUser_nivel').val()+
+                                  "&$alterarUser_alterar="+$('#alterarUser_alterar').val(),
                     success: function(result){
                         if(result==1){
                             $('#alterarUsuario2').modal('hide');
