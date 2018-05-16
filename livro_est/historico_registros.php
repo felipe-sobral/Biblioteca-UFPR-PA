@@ -21,19 +21,26 @@
     }
   }
 
-  function vasculhar($ano, $mes, $dia){
+  function vasculhar($ano, $mes, $dia, $total){
     if($dia>32){
-      return;
+      return $total;
     } else {
       $i = contarLivrosDia($ano, $mes, $dia);
       if($i != 0){
-        // PRINTF ..
+        printf("
+
+        <tr>
+          <td class='collapsing'>%d-%d-%d</td>
+          <td>%d</td>
+        </tr>
+
+        ", $dia, $mes, $ano, $i);
       }
       $dia++;
-      vasculhar($ano, $mes, $dia);
+      $total = $total+$i;
+      vasculhar($ano, $mes, $dia, $total);
     }
 
-    // PRINTF TOTAL
   }
 
   $ano = retornaData(mysqli_query($conectar, "SELECT YEAR(CURRENT_TIMESTAMP)"));
@@ -49,7 +56,26 @@
 
   if(isset($_POST['fn']) && $_POST['fn'] == 2){
 
-    vasculhar($_POST['ano'], $_POST['mes'], 1);
+    printf("
+
+    <table class='ui celled striped table'>
+      <thead>
+        <tr><th colspan='2'>
+          Histórico consulta local %d-%d
+        </th>
+      </tr></thead>
+      <tbody>
+
+    ", $_POST['mes'], $_POST['ano']);
+
+    $total = vasculhar($_POST['ano'], $_POST['mes'], 1, 0);
+
+    printf("
+
+      </tbody>
+    </table>
+
+    ");
 
     exit;
 
