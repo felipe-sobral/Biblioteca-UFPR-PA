@@ -12,6 +12,7 @@
 
     <link rel="stylesheet" href="../css/main.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
 
 </head>
 <body class="bodyPadrao">
@@ -19,7 +20,9 @@
 
     <div id="carregando" style="display: block; padding-top: 10%;">
 
-        <center><i class="fas fa-spinner fa-spin fa-10x" style="color: #00487F;"></i></center>
+        <div class="ui active dimmer">
+            <div class="ui massive text loader">Carregando</div>
+        </div>
 
     </div>
 
@@ -103,8 +106,7 @@
                   <h5>Últimos códigos registrados</h5>
                   <p id="tresCodigos">Nenhum código registrado hoje.</p>
 
-                  <p id="livrosRegistradosHoje">Livros registrados hoje: <b>10</b>.</p>
-
+                  <p id="livrosRegistradosHoje"></p>
                 </center>
 
               </div>
@@ -134,7 +136,7 @@
                   </button>
 
                   <button id="downloadBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#download">
-                    <i class="fas fa-download"></i> Histórico
+                    <i class="fas fa-history"></i> Histórico
                   </button>
 
                   <a id="contadorUsuariosBtn" href="../restrito/area_restrita.php" class="btn btn-danger">
@@ -142,7 +144,76 @@
                   </a>
                 </div>
 
-                <!-- MODAL REGISTRAR USUARIO -->
+                <!-- MODAL HISTÓRICO -->
+                <div id="HistoricoCL_modals" class="coupled modal">
+                    <div id="HistoricoCL_md1" class="ui basic modal">
+                        <div class="modal-dialog" role="document" style="color: #000">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title">Livros registrados no mês</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="$('#HistoricoCL_md1').modal('hide');">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+
+                                  <form id="HistoricoCL_form" class="form-inline">
+                                      <div id="HistoricoCL_erro" class="alert alert-danger" role="alert">
+                                          <b>Algo está errado</b>. Não foi possível encontrar históricos da data desejada!
+                                      </div>
+                                      <div class="form-group mb-2">
+                                          <select id="HistoricoCL_mes" class="form-control">
+                                              <option selected>Mês</option>
+                                              <option value="1">Janeiro</option>
+                                              <option value="2">Fevereiro</option>
+                                              <option value="3">Março</option>
+                                              <option value="4">Abril</option>
+                                              <option value="5">Maio</option>
+                                              <option value="6">Junho</option>
+                                              <option value="7">Julho</option>
+                                              <option value="8">Agosto</option>
+                                              <option value="9">Setembro</option>
+                                              <option value="10">Outubro</option>
+                                              <option value="11">Novembro</option>
+                                              <option value="12">Dezembro</option>
+                                          </select>
+                                      </div>
+                                      <div class="form-group mx-sm-3 mb-2">
+                                          <label for="HistoricoCL_ano" class="sr-only">Ano</label>
+                                          <input type="text" class="form-control" id="HistoricoCL_ano" value="2018">
+                                      </div>
+
+                                      <button type="submit" class="btn btn-outline-primary mb-2" ><i class="fas fa-search"></i> Buscar</button>
+                                  </form>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+
+                    <div id="HistoricoCL_md2" class="ui basic modal">
+                        <div class="modal-dialog" role="document" style="color: #000">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title">Livros registrados no mês</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="$('#HistoricoCL_md2').modal('hide');">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+
+                                  <!-- TABEL -->
+
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                    
+                </div>
+                <!-- FIM MODAL HISTÓRICO -->
+
+                <!-- MODAL REGISTRAR MÊS -->
                 <div class="modal fade" id="adicionarConsulta" tabindex="-1" role="dialog" aria-labelledby="adicionarConsulta" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -382,8 +453,20 @@
               })
           }
 
+          function atualizarLivrosHoje(){
+              $.ajax({
+                  url: "historico_registros.php",
+                  type: "post",
+                  data: "fn="+1,
+                  success: function(result){
+                      $("#livrosRegistradosHoje").html(result);
+                  }
+              })
+          }
+
           $(document).ready(function(){
               atualizarUltimosLivros();
+              atualizarLivrosHoje();
 
               $('#erroCodigo').hide();
               $('#successCodigo').hide();
@@ -424,6 +507,7 @@
                               $('#codigo_consulta').focus();
                               document.getElementById('codigo_consulta').value = "";
                               atualizarUltimosLivros();
+                              atualizarLivrosHoje();
                           }
                       }
                   })
@@ -547,5 +631,6 @@
         </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
   </body>
 </html>
