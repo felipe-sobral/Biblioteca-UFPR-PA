@@ -26,7 +26,7 @@
 
     </div>
 
-    <div id="passou" style="display: none">
+    <div id="passou" style="display: none; padding-bottom: 2%;">
       <!-- CABEÇALHO -->
       <div class="container containerSombra">
         <div class="row" style="background-image: url('../img/bg-azul.jpg');">
@@ -123,12 +123,12 @@
               <div class="card-body">
 
                 <div class="btn-group-vertical btn-block">
-                  <button id="adicionarBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#adicionarConsulta">
-                    <i class="fas fa-plus"></i> Adicionar
+                  <button id="adicionarBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#adicionarConsulta" disabled>
+                    <i class="fas fa-plus"></i> Adicionar *
                   </button>
 
-                  <button id="alterarBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#alterar">
-                    <i class="fas fa-pencil-alt"></i> Alterar
+                  <button id="alterarBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#alterar" disabled>
+                    <i class="fas fa-pencil-alt"></i> Alterar *
                   </button>
 
                   <button id="downloadBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#download">
@@ -158,9 +158,9 @@
                               <div class="modal-body">
 
                                   <form id="HistoricoCL_form" class="form-inline">
-                                      <div id="HistoricoCL_erro" class="alert alert-danger" role="alert">
+                                      <!-- <div id="HistoricoCL_erro" class="alert alert-danger" role="alert">
                                           <b>Algo está errado</b>. Não foi possível encontrar históricos da data desejada!
-                                      </div>
+                                      </div> -->
                                       <div class="form-group mb-2">
                                           <select id="HistoricoCL_mes" class="form-control">
                                               <option selected>Mês</option>
@@ -201,9 +201,9 @@
                                   <span aria-hidden="true">&times;</span>
                                 </button>
                               </div>
-                              <div class="modal-body">
+                              <div class="modal-body scrolling content">
 
-                                  <p id="HistoricoCL_tabela"></p>
+                                  <p id="HistoricoCL_tabela" style="padding-bottom: 3%"></p>
 
                               </div>
                             </div>
