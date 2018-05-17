@@ -17,24 +17,44 @@
         $i++;
       }
 
-      return $i;
+      if($i==0){
+        return $dado['id'];
+      } else {
+        return $i;
+      }
+    } else {
+      return false;
     }
   }
 
   function vasculhar($ano, $mes, $dia, $total){
     if($dia>32){
-      return $total;
+      printf("
+          <tr>
+            <td class='collapsing'>TOTAL</td>
+            <td>%d</td>
+          </tr>
+        </tbody>
+      </table>
+
+      ", $total);
+
+      return;
     } else {
       $i = contarLivrosDia($ano, $mes, $dia);
-      if($i != 0){
-        printf("
+      if($i != false){
+        if($i > 0){
+          printf("
 
-        <tr>
-          <td class='collapsing'>%d-%d-%d</td>
-          <td>%d</td>
-        </tr>
+          <tr>
+            <td class='collapsing'>%d-%d-%d</td>
+            <td>%d</td>
+          </tr>
 
-        ", $dia, $mes, $ano, $i);
+          ", $dia, $mes, $ano, $i);
+        } else {
+          mysqli_query($GLOBALS['conectar'], "DELETE FROM `consulta_local` WHERE id='{$id}'");
+        }
       }
       $dia++;
       $total = $total+$i;
@@ -68,14 +88,7 @@
 
     ", $_POST['mes'], $_POST['ano']);
 
-    $total = vasculhar($_POST['ano'], $_POST['mes'], 1, 0);
-
-    printf("
-
-      </tbody>
-    </table>
-
-    ");
+    vasculhar($_POST['ano'], $_POST['mes'], 1, 0);
 
     exit;
 

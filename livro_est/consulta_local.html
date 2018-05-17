@@ -426,7 +426,7 @@
             </div>
 
           </div>
-        </div>
+
 
         <!-- FOOTER -->
         <div class="row text-light grid" style="background-image: url('../img/bg.jpg');">
@@ -623,8 +623,9 @@
                $.ajax({
                  url: 'historico_registros.php',
                  type: 'post',
-                 data: 'fn='+2+'&ano='+$('#HistoricoCL_ano').val()+'&mes='+$('HistoricoCL_mes'),
+                 data: 'fn='+2+'&ano='+$('#HistoricoCL_ano').val()+'&mes='+$('#HistoricoCL_mes').val(),
                  success: function(result){
+                   console.log(result);
                    $('#HistoricoCL_tabela').html(result);
                    $('#HistoricoCL_md1').modal('hide');
                    $('#HistoricoCL_md2').modal('show');
@@ -633,13 +634,6 @@
 
                return false;
              })
-
-
-
-
-
-
-
 
           })
         </script>
