@@ -25,23 +25,23 @@
     } elseif (isset($_POST["alterarCodigos"])) {
       $id = $_POST["iden"];
 
-      $inserir = str_replace('
-', '\r\n', $_POST["alterarCodigos"]);
-
-      mysqli_query($conectar, "UPDATE consulta_local SET codigos='{$inserir}' WHERE id='{$id}'");
+      if($_POST["alterarCodigos"] != null){
+        $inserir = str_replace('<br />', '\r', nl2br($_POST["alterarCodigos"]));
+        mysqli_query($conectar, "UPDATE consulta_local SET codigos='{$inserir}' WHERE id='{$id}'");
+      }else{
+        mysqli_query($conectar, "DELETE FROM consulta_local WHERE id='{$id}'");
+      }
 
       echo "1";
 
     } else {
       echo "0";
+
     }
 
   } else {
     echo "0";
+
   }
-
-
-
-
 
 ?>

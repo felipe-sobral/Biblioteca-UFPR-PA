@@ -20,8 +20,7 @@
     $sql = mysqli_query($conectar, "SELECT * FROM consulta_local WHERE dia='{$dia}' AND mes='{$mes}' AND ano='{$ano}'");
 
     if(!verificarSql($sql)){
-      $inserir = str_replace('
-', '\r\n', $codigos);
+      $inserir = str_replace('<br />', '\r', nl2br($codigos));
 
       mysqli_query($conectar, "INSERT INTO consulta_local(dia, ano, mes, codigos) VALUES ('{$dia}', '{$ano}', '{$mes}', '{$inserir}')");
       echo 1;

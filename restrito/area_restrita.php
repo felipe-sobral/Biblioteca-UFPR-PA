@@ -104,54 +104,46 @@
                   <h5 class="card-header"><i class="fas fa-cog"></i> Opções</h5>
                   <div class="card-body">
 
-                    <div class="btn-group-vertical btn-block">
-                       <a id="contadorUsuariosBtn" href="../usuario_est/estatistica_usuarios.html" class="btn btn-primary">
-                          <i class="fas fa-users"></i> Contador de Usuários
-                       </a>
-
-                       <a id="consultaLocalBtn" href="../livro_est/consulta_local.html" class="btn btn-primary">
-                         <i class="fas fa-file-alt"></i> Consulta Local
-                      </a>
-
+                    <div class="list-group">
+                      <a id="contadorUsuariosBtn" href="../usuario_est/estatistica_usuarios.html" class="list-group-item list-group-item-action"><i class="fas fa-users"></i> Contador de Usuários</a>
+                      <a id="consultaLocalBtn" href="../livro_est/consulta_local.html" class="list-group-item list-group-item-action"><i class="fas fa-file"></i> Consulta Local</a>
                       <div class="btn-group">
-                          <button id="gerenciarConta" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" disabled>
-                              <i class="user icon"></i> Gerenciar conta
+                          <button id="gerenciarConta" type="button" class="list-group-item list-group-item-action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" disabled>
+                              <i class="fas fa-cogs"></i> Gerenciar conta
                           </button>
                           <div class="dropdown-menu">
-                              <button class="btn btn-light" onclick="$('.ui.basic.mini.modal').modal('show');">Alterar senha</button>
-                              <button class="btn btn-light" disabled>Excluir conta</button>
+                              <button class="btn btn-light btn-block" onclick="$('.ui.basic.mini.modal').modal('show');">Alterar senha</button>
+                              <button class="btn btn-light btn-block" disabled>Excluir conta</button>
                           </div>
                       </div>
-
                       <div class="btn-group">
-                          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" disabled>
-                              <i class="book icon"></i> Livros
+                          <button type="button" class="list-group-item list-group-item-action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" disabled>
+                              <i class="fas fa-book"></i> Livros
                           </button>
                           <div class="dropdown-menu">
-                              <button id="registrarLivroBtn" type="button" class="btn btn-light" data-toggle="modal" data-target="#registrarLivro">Registrar Livro</button>
-                              <button id="alterarLivroBtn" type="button" class="btn btn-light" data-toggle="modal" data-target="#alterarLivro">Alterar Livro</button>
-                              <a href="../listarLivros.php" target="_blank" class="btn btn-light">Livros Registrados</a>
+                              <button id="registrarLivroBtn" type="button" class="btn btn-light btn-block" data-toggle="modal" data-target="#registrarLivro">Registrar Livro</button>
+                              <button id="alterarLivroBtn" type="button" class="btn btn-light btn-block" data-toggle="modal" data-target="#alterarLivro">Alterar Livro</button>
+                              <a href="../listarLivros.php" target="_blank" class="btn btn-light btn-block">Livros Registrados</a>
                           </div>
                       </div>
-
                       <div class="btn-group">
-                          <button id="admOptions" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" disabled>
+                          <button id="admOptions" type="button" class="list-group-item list-group-item-action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" disabled>
                               <i class="fas fa-lock"></i> Administrador
                           </button>
                           <div class="dropdown-menu">
-                              <button id="registrarUsuarioBtn" type="button" class="btn btn-light" data-toggle="modal" data-target="#registrarUsuario">Registrar Usuário</button>
-                              <button id="alterarUserBtn" type="button" class="btn btn-light" data-toggle="modal" onclick="
+                              <button id="registrarUsuarioBtn" type="button" class="btn btn-light btn-block" data-toggle="modal" data-target="#registrarUsuario">Registrar Usuário</button>
+                              <button id="alterarUserBtn" type="button" class="btn btn-light btn-block" data-toggle="modal" onclick="
 
                               $('#alterarUsuarioModals')
                                 .modal({allowMultiple: false});
                                 $('#alterarUsuario').modal('show');
 
                               ">Alterar usuário</button>
-                              <button type="button" class="btn btn-light" data-toggle="modal" disabled>Alterar usuário</button>
                           </div>
                       </div>
 
                     </div>
+
 
                     <!-- MODAL ALTERAR USUÁRIO -->
                     <div id="alterarUsuarioModals" class="coupled modal">
@@ -410,8 +402,7 @@
 
           </div>
 
-          <div class="col-sm padding-bottom: 2%;">
-
+          <div class="col-sm">
 
             <div class="card mb-3">
               <img class="card-img-top" src="../img/bg-adm.jpg">

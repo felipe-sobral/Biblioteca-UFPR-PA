@@ -27,6 +27,14 @@
     }
   }
 
+  function colocaZero($num){
+    if($num > 0 && $num < 10){
+      return "0"."$num";
+    } else {
+      return $num;
+    }
+  }
+
   function vasculhar($ano, $mes, $dia, $total){
     if($dia>32){
       printf("
@@ -47,13 +55,11 @@
           printf("
 
           <tr>
-            <td class='collapsing'>%d-%d-%d</td>
+            <td class='collapsing'>%s-%s-%d</td>
             <td>%d</td>
           </tr>
 
-          ", $dia, $mes, $ano, $i);
-        } else {
-          mysqli_query($GLOBALS['conectar'], "DELETE FROM `consulta_local` WHERE id='{$id}'");
+          ", colocaZero($dia), colocaZero($mes), $ano, $i);
         }
       }
       $dia++;
@@ -81,12 +87,12 @@
     <table class='ui celled striped table'>
       <thead>
         <tr><th colspan='2'>
-          Histórico consulta local %d-%d
+          Histórico consulta local %s-%d
         </th>
       </tr></thead>
       <tbody>
 
-    ", $_POST['mes'], $_POST['ano']);
+    ", colocaZero($_POST['mes']), $_POST['ano']);
 
     vasculhar($_POST['ano'], $_POST['mes'], 1, 0);
 
