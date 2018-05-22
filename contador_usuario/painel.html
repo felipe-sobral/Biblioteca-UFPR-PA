@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang='pt-br'>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Biblioteca UFPR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <style>
+        header, main, footer, body {
+            padding-left: 300px;
+        }
+
+        @media only screen and (max-width : 992px) {
+            header, main, footer, body {
+                padding-left: 0;
+            }
+        }
+
+    </style>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+
+</head>
+<body>
+
+  <div id="carregando">
+
+      <div class="ui active dimmer">
+        <div class="progress">
+          <div class="indeterminate"></div>
+        </div>
+      </div>
+
+  </div>
+
+  <div id="passou">
+
+      <ul id="slide-out" class="sidenav sidenav-fixed">
+        <li><div class="user-view">
+          <div class="background">
+            <img src="../img/bg.jpg">
+          </div>
+          <center><a><img class="circle" src="https://refsheet.net/assets/default.png"></a>
+          <a><span class="white-text name">John Doe</span></a>
+          <a><span class="white-text email">jdandturk@gmail.com</span></a></center>
+        </div></li>
+
+        <!-- MENU -->
+        <li>
+          <ul class="collapsible collapsible-accordion">
+            <li class="active">
+              <a class="collapsible-header waves-effect"><i class="material-icons">people</i>Contador de Usuários<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li class="active"><a class="waves-effect">Painel</a></li>
+                  <li><a class="waves-effect">Adicionar</a></li>
+                  <li><a class="waves-effect">Histórico</a></li>
+                  <li><a class="waves-effect">Alterar</a></li>
+                  <li><div class="divider"></div></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect"><i class="material-icons">assignment_turned_in</i>Consulta Local<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a class="waves-effect">Painel</a></li>
+                  <li><a class="waves-effect">Adicionar</a></li>
+                  <li><a class="waves-effect">Histórico</a></li>
+                  <li><a class="waves-effect">Alterar</a></li>
+                  <li><a class="waves-effect">Baixar</a></li>
+                  <li><div class="divider"></div></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect"><i class="material-icons">settings</i>Gerenciar conta<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a class="waves-effect">Alterar senha</a></li>
+                  <li><a class="waves-effect">Excluir conta</a></li>
+                  <li><div class="divider"></div></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+
+        <li><a class="collapsible-header waves-effect waves-yellow"><i class="material-icons">lock</i>Administração</a></li>
+        <li><a class="collapsible-header waves-effect waves-red" href="logout.php"><i class="material-icons">exit_to_app</i>Sair</a></li>
+
+      </ul>
+      <!-- FIM MENU -->
+
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <a href="#" data-target="slide-out" class="sidenav-trigger waves-effect"><i class="material-icons" style="color: #000;">menu</i></a>
+          <center><h1 class="display-4">Contador de usuários</h1></center>
+        </div>
+      </div>
+      <div class="container">
+          <div class="card text-center">
+             <div class="card-header">
+                <a id="turno"><i class="fas fa-cloud"></i> <i>Turno</i></a>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Contador de usuários</h5>
+                <h1 class="card-text" id="contador">00</h1>
+                <a class="btn waves-effect waves-light green" onclick="adicionar()"><i class="material-icons" style="color: #fff">add</i></a>
+                <a class="btn waves-effect waves-light red" onclick="remover()"><i class="material-icons" style="color: #fff">remove</i></a>
+              </div>
+              <div class="card-footer text-muted">
+                <i id="ultAtualizacao">Última atualização</i>
+              </div>
+            </div>
+       </div>
+
+   </div>
+
+    <!-- SCRIPTS -->
+    <script src="main.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
+
+</body>
+</html>

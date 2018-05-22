@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang='pt-br'>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Biblioteca UFPR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="../js/main.js"></script>
+    <script src="../js/jquery-3.3.1.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+    <link rel="stylesheet" href="../css/main.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+
+</head>
+<body class="bodyPadrao">
+
+
+    <div id="carregando" style="display: block; padding-top: 10%;">
+
+        <div class="ui active dimmer">
+            <div class="ui massive text loader">Carregando</div>
+        </div>
+
+    </div>
+
+    <div id="passou" style="display: none; padding-bottom: 2%;">
+      <!-- CABEÇALHO -->
+      <div class="container containerSombra">
+        <div class="row" style="background-image: url('../img/bg-azul.jpg');">
+          <div class="col-sm">
+            <div class="text-light container-principal-espacemento">
+              <img src="../img/branco_UFPR.png"/>
+            </div>
+          </div>
+      	</div>
+        <!-- FIM CABEÇALHO -->
+
+        <div class="row" style="background-color: #fff; padding-top: 2%; padding-bottom: 2%">
+          <div class="col-sm">
+
+            <div class="card">
+              <div class="card-header">
+                <b>Consulta Local</b>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Insira o código do livro</h5>
+
+                <form id="inserirCodigo">
+
+                  <div class="alert alert-danger" role="alert" id="erroCodigo">
+                        <b>ERRO</b>. Por favor, reinsira o código!
+                  </div>
+
+                  <div class="alert alert-danger" role="alert" id="successCodigo">
+                        Código inserido com sucesso!
+                  </div>
+
+                  <div class="input-group">
+
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><button id="qrButton" type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#qrcode"><i class="fas fa-qrcode"></i></button></div>
+                    </div>
+
+                    <input type="text" maxlength="8" id="codigo_consulta" class="form-control" placeholder="00329902">
+                  </div>
+
+                  </br>
+                  <center><button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Registrar</button></center>
+
+                </form>
+
+                <!-- GERAR CÓDIGO QR -->
+                <div class="modal fade" id="qrcode" tabindex="-1" role="dialog" aria-labelledby="qrcodeTittle" aria-hidden="true">
+                 <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="qrcodeTittle">QR Code</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+
+                          <form id="qrcodeForm">
+
+                              <center>
+
+                                  <button type="submit" class="btn btn-outline-primary mb-2"><i class="fas fa-qrcode"></i> Gerar QR Code</button>
+                                  <p id="pegarQR">Clique em gerar código!</p>
+
+                              </center>
+
+                          </form>
+
+                      </div>
+                  </div>
+                 </div>
+                </div>
+                <!--- fim GERAR CÓDIGO QR -->
+                <hr>
+                <center>
+
+                  <h5>Últimos códigos registrados</h5>
+                  <p id="tresCodigos">Nenhum código registrado hoje.</p>
+
+                  <p id="livrosRegistradosHoje"></p>
+                </center>
+
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-sm-3">
+
+            <div class="card">
+              <div class="card-header">
+                Menu
+              </div>
+              <div class="card-body">
+
+                <div class="btn-group-vertical btn-block">
+                  <button id="adicionarBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#adicionarConsulta">
+                    <i class="fas fa-plus"></i> Adicionar
+                  </button>
+
+                  <button id="alterarBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#alterar">
+                    <i class="fas fa-pencil-alt"></i> Alterar
+                  </button>
+
+                  <button id="downloadBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#download">
+                    <i class="fas fa-download"></i> Baixar
+                  </button>
+
+                  <button type="button" class="btn btn-primary" onclick="$('#HistoricoCL_modals').modal({allowMultiple: false}); $('#HistoricoCL_md1').modal('show');">
+                    <i class="fas fa-history"></i> Histórico
+                  </button>
+
+                  <a id="contadorUsuariosBtn" href="../restrito/area_restrita.php" class="btn btn-danger">
+                    <i class="fas fa-sign-out-alt"></i> Sair
+                  </a>
+                </div>
+
+                <!-- MODAL HISTÓRICO -->
+                <div id="HistoricoCL_modals" class="coupled modal">
+                    <div id="HistoricoCL_md1" class="ui basic modal">
+                        <div class="modal-dialog" role="document" style="color: #000">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title">Livros registrados no mês</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="$('#HistoricoCL_md1').modal('hide');">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+
+                                  <form id="HistoricoCL_form" class="form-inline">
+                                      <!-- <div id="HistoricoCL_erro" class="alert alert-danger" role="alert">
+                                          <b>Algo está errado</b>. Não foi possível encontrar históricos da data desejada!
+                                      </div> -->
+                                      <div class="form-group mb-2">
+                                          <select id="HistoricoCL_mes" class="form-control">
+                                              <option selected>Mês</option>
+                                              <option value="1">Janeiro</option>
+                                              <option value="2">Fevereiro</option>
+                                              <option value="3">Março</option>
+                                              <option value="4">Abril</option>
+                                              <option value="5">Maio</option>
+                                              <option value="6">Junho</option>
+                                              <option value="7">Julho</option>
+                                              <option value="8">Agosto</option>
+                                              <option value="9">Setembro</option>
+                                              <option value="10">Outubro</option>
+                                              <option value="11">Novembro</option>
+                                              <option value="12">Dezembro</option>
+                                          </select>
+                                      </div>
+
+                                      <div class="form-group mx-sm-3 mb-2">
+                                          <label for="HistoricoCL_ano" class="sr-only">Ano</label>
+                                          <input type="text" class="form-control" id="HistoricoCL_ano" value="2018">
+                                      </div>
+
+                                      <button type="submit" class="btn btn-outline-primary mb-2" ><i class="fas fa-search"></i> Buscar</button>
+                                  </form>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+
+                    <div id="HistoricoCL_md2" class="ui basic modal">
+                        <div class="modal-dialog" role="document" style="color: #000">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title">Livros registrados no mês</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="$('#HistoricoCL_md2').modal('hide');">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body scrolling content">
+
+                                  <p id="HistoricoCL_tabela" style="padding-bottom: 3%"></p>
+
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+
+                </div>
+                <!-- FIM MODAL HISTÓRICO -->
+
+                <!-- MODAL REGISTRAR MÊS -->
+                <div class="modal fade" id="adicionarConsulta" tabindex="-1" role="dialog" aria-labelledby="adicionarConsulta" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title" id="adicionarConsulta"> Inserir Consulta Local</h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                                <form id="adicionarConsultaForm">
+                                    <div id="adicionarConsultaFALSE" class="alert alert-danger" role="alert">
+                                        <b>Algo está errado</b>. Algum dado já consta no banco de dados ou campos estão vazios!
+                                    </div>
+                                    <div id="adicionarConsultaTRUE" class="alert alert-success" role="alert">
+                                        <b>Consulta Local registrado!</b>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <textarea class='form-control' id='i_codigos' rows='10'></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="number" max="32" min="0" class="form-control" id="i_dia" placeholder="DIA - Exemplo: 31">
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <select id="i_mes" class="form-control">
+                                            <option selected>Mês</option>
+                                            <option value="1">Janeiro</option>
+                                            <option value="2">Fevereiro</option>
+                                            <option value="3">Março</option>
+                                            <option value="4">Abril</option>
+                                            <option value="5">Maio</option>
+                                            <option value="6">Junho</option>
+                                            <option value="7">Julho</option>
+                                            <option value="8">Agosto</option>
+                                            <option value="9">Setembro</option>
+                                            <option value="10">Outubro</option>
+                                            <option value="11">Novembro</option>
+                                            <option value="12">Dezembro</option>
+                                        </select>
+
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" id="i_ano" placeholder="ANO - Exemplo: 2018" min="0">
+                                    </div>
+
+                                    <center>
+                                        <button type="submit" class="btn btn-success"> <i class="fas fa-check"></i> Registrar</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fas fa-times"></i> Fechar</button>
+                                    </center>
+                                </form>
+
+                            </div>
+                            <!-- FOOTER AQUI -->
+                        </div>
+                    </div>
+                </div>
+                <!-- FIM MODAL -->
+
+                <!-- Histórico usuarios -->
+                <div class="modal fade" id="download" tabindex="-1" role="dialog" aria-labelledby="downloadTittle" aria-hidden="true">
+                 <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="downloadTittle">Fazer Download</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+
+                          <form id="downloadForm" class="form-inline">
+
+                              <div id="erroDownload" class="alert alert-danger" role="alert">
+                                  <b>Algo está errado</b>. Não foi possível encontrar históricos da data desejada!
+                              </div>
+
+                              <div class="form-group mb-2">
+
+                                  <select id="mesDownload" class="form-control">
+                                      <option selected>Mês</option>
+                                      <option value="1">Janeiro</option>
+                                      <option value="2">Fevereiro</option>
+                                      <option value="3">Março</option>
+                                      <option value="4">Abril</option>
+                                      <option value="5">Maio</option>
+                                      <option value="6">Junho</option>
+                                      <option value="7">Julho</option>
+                                      <option value="8">Agosto</option>
+                                      <option value="9">Setembro</option>
+                                      <option value="10">Outubro</option>
+                                      <option value="11">Novembro</option>
+                                      <option value="12">Dezembro</option>
+                                  </select>
+
+                              </div>
+
+                              <div class="form-group mx-sm-3 mb-2">
+
+                                  <label for="anoDownload" class="sr-only">Ano</label>
+                                  <input type="text" class="form-control" id="anoDownload" value="2018">
+
+                              </div>
+
+                              <button type="submit" class="btn btn-outline-success mb-2"><i class="fas fa-file-archive"></i> Baixar</button>
+
+                          </form>
+
+                      </div>
+                  </div>
+                 </div>
+                </div>
+                <!--- fim Histórico usuarios -->
+
+                <!-- alterar registros -->
+                <div class="modal fade" id="alterar" tabindex="-1" role="dialog" aria-labelledby="alterarTittle" aria-hidden="true">
+                 <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="altararTittle">Modificar registros</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+
+                          <form id="alterarForm" class="form">
+
+                              <div id="alterarFALSE" class="alert alert-danger" role="alert">
+                                  <b>Algo está errado</b>. Não foi possível encontrar registros da data desejada!
+                              </div>
+
+                              <div id="alterarTRUE" class="alert alert-success" role="alert">
+                                  <b>Modificações cadastradas!</b>
+                              </div>
+
+                              <div class="form-row">
+                                  <div class="col-2">
+
+                                      <label for="diaAlterar" class="sr-only">Dia</label>
+                                      <input type="text" class="form-control" id="diaAlterar" placeholder="Dia">
+
+                                  </div>
+
+                                  <div class="col-auto">
+
+                                      <select id="mesAlterar" class="form-control">
+                                          <option selected>Mês</option>
+                                          <option value="1">Janeiro</option>
+                                          <option value="2">Fevereiro</option>
+                                          <option value="3">Março</option>
+                                          <option value="4">Abril</option>
+                                          <option value="5">Maio</option>
+                                          <option value="6">Junho</option>
+                                          <option value="7">Julho</option>
+                                          <option value="8">Agosto</option>
+                                          <option value="9">Setembro</option>
+                                          <option value="10">Outubro</option>
+                                          <option value="11">Novembro</option>
+                                          <option value="12">Dezembro</option>
+                                      </select>
+
+                                  </div>
+
+                                  <div class="col-3">
+
+                                      <input type="text" class="form-control" id="anoAlterar" value="2018">
+
+                                  </div>
+
+                                  <div class="col-auto">
+                                      <button type="submit" class="btn btn-outline-primary mb-2" ><i class="fas fa-search"></i> Buscar</button>
+                                  </div>
+                              </div>
+
+
+                          </form>
+
+                          <div id="esconderAlterar">
+                              <hr>
+
+                              <form id="modificarForm" class="form">
+
+                                  <div class="form-group">
+                                      <a id="alterarAQUI"></a>
+                                  </div>
+
+                                  <center>
+                                      <button type="submit" class="btn btn-primary">Modificar</button>
+                                  </center>
+                              </form>
+                          </div>
+
+                      </div>
+                  </div>
+                 </div>
+                </div>
+                <!--- fim alterar registros -->
+
+
+
+
+              </div>
+            </div>
+
+          </div>
+
+
+        <!-- FOOTER -->
+        <div class="row text-light grid" style="background-image: url('../img/bg.jpg');">
+          <div class="col-sm">
+            <div class="container-fluid" style="text-align: center">
+              <a href="https://www.facebook.com/krepper.fs" target="_blank"><img src="../img/minha_logo.png" alt="Felipe Sobral" style="padding-top: 0.5%; padding-bottom: 0.5%"/></a>  UFPR Biblioteca PA
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- FIM FOOTER -->
+    </div>
+
+        <script>
+
+          function atualizarUltimosLivros(){
+              $.ajax({
+                  url: "codigos_registrados.php",
+                  success: function(result){
+                      if(result != 0){
+                         $("#tresCodigos").html(result);
+                      }
+                  }
+              })
+          }
+
+          function atualizarLivrosHoje(){
+              $.ajax({
+                  url: "historico_registros.php",
+                  type: "post",
+                  data: "fn="+1,
+                  success: function(result){
+                      $("#livrosRegistradosHoje").html(result);
+                  }
+              })
+          }
+
+          $(document).ready(function(){
+              atualizarUltimosLivros();
+              atualizarLivrosHoje();
+
+              $('#erroCodigo').hide();
+              $('#successCodigo').hide();
+              $('#erroDownload').hide();
+              $('#codigo_consulta').focus();
+              $('#esconderAlterar').hide();
+              $('#adicionarConsultaFALSE').hide();
+              $('#adicionarConsultaTRUE').hide();
+
+              $.ajax({
+                  url: "../verificar.php",
+                  type: "post",
+                  data: "executarFuncao="+6+"&nivel="+3,
+                  success: function(result){
+                      if(result == true){
+                          document.getElementById("carregando").style.display = "none";
+                          document.getElementById("passou").style.display = "block";
+                      }else{
+                          window.location='../index.html';
+                      }
+                  }
+              })
+
+              $('#inserirCodigo').submit(function(){
+                  var codigoBarras = $('#codigo_consulta').val();
+
+                  $.ajax({
+                      url: "inserir.php",
+                      type: "post",
+                      data: "codigoBarras="+codigoBarras,
+                      success: function(result){
+                          if(result != 1){
+                              $('#erroCodigo').show();
+                              $('#codigo_consulta').focus();
+                              document.getElementById('codigo_consulta').value = "";
+                          } else {
+                              $('#erroCodigo').hide();
+                              $('#codigo_consulta').focus();
+                              document.getElementById('codigo_consulta').value = "";
+                              atualizarUltimosLivros();
+                              atualizarLivrosHoje();
+                          }
+                      }
+                  })
+
+                  return false;
+             })
+
+             $('#downloadForm').submit(function(){
+                 var anoDownload = $('#anoDownload').val();
+                 var mesDownload = $('#mesDownload').val();
+
+                 $.ajax({
+                     url: "download.php",
+                     type: "POST",
+                     data: "ano="+anoDownload+"&mes="+mesDownload,
+                     success: function(result){
+                         if(result == 0){
+                             $('#erroDownload').show();
+                         } else {
+                             location.href="/livro_est/"+result;
+                             $('#erroDownload').hide();
+                         }
+                     }
+                 })
+
+                 return false;
+             })
+
+             $('#qrcodeForm').submit(function(){
+                 $.ajax({
+                     url: "codigo_qr.php",
+                     type: "post",
+                     data: "gerarQRcode="+0,
+                     success: function(result){
+                         $("#pegarQR").html("<p id='pegarQR'><img src='"+result.toString()+"'/></p>");
+                     }
+                 })
+
+                 return false;
+             })
+
+             $('#alterarTRUE').hide();
+             $('#alterarFALSE').hide();
+
+             $('#alterarForm').submit(function(){
+                 var anoAlterar = $('#anoAlterar').val();
+                 var mesAlterar = $('#mesAlterar').val();
+                 var diaAlterar = $('#diaAlterar').val();
+
+                 $.ajax({
+                     url: "alterar.php",
+                     type: "post",
+                     data: "ano="+anoAlterar+"&mes="+mesAlterar+"&dia="+diaAlterar+"&pegarCodigos="+1,
+                     success: function(result){
+                         if(result == 0){
+                             $('#alterarFALSE').show();
+                             $('#alterarTRUE').hide();
+                         } else {
+                             $('#alterarTRUE').hide();
+                             $('#alterarFALSE').hide();
+                             $('#alterarAQUI').html(result);
+                             $('#esconderAlterar').show();
+                         }
+                     }
+                 })
+
+                 return false;
+             })
+
+             $('#modificarForm').submit(function(){
+               var alterarCodigos = $('#codigosAlterar').val();
+
+               $.ajax({
+                   url: "alterar.php",
+                   type: "post",
+                   data: "alterarCodigos="+alterarCodigos+"&iden="+iden,
+                   success: function(result){
+                       if(result == 1){
+                         $('#alterarFALSE').hide();
+                         $('#alterarTRUE').show();
+                       }
+                   }
+               })
+
+               return false;
+             })
+
+             $('#adicionarConsultaForm').submit(function(){
+                 var ano = $('#i_ano').val();
+                 var mes = $('#i_mes').val();
+                 var dia = $('#i_dia').val();
+                 var codigos = $('#i_codigos').val();
+
+                 $.ajax({
+                     url: "inserirConsulta.php",
+                     type: "post",
+                     data: "ano="+ano+"&mes="+mes+"&dia="+dia+"&codigos="+codigos,
+                     success: function(result){
+                         if(result==1){
+                             $('#adicionarConsultaTRUE').show();
+                             $('#adicionarConsultaFALSE').false();
+                         } else {
+                             $('#adicionarConsultaTRUE').false();
+                             $('#adicionarConsultaFALSE').show();
+                         }
+                     }
+                 })
+
+                 return false;
+             })
+
+             $('#HistoricoCL_form').submit(function(){
+               $.ajax({
+                 url: 'historico_registros.php',
+                 type: 'post',
+                 data: 'fn='+2+'&ano='+$('#HistoricoCL_ano').val()+'&mes='+$('#HistoricoCL_mes').val(),
+                 success: function(result){
+                   $('#HistoricoCL_tabela').html(result);
+                   $('#HistoricoCL_md1').modal('hide');
+                   $('#HistoricoCL_md2').modal('show');
+                 }
+               })
+
+               return false;
+             })
+
+          })
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+  </body>
+</html>

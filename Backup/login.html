@@ -80,7 +80,7 @@
                   document.getElementById("carregando").style.display = "none";
                   document.getElementById("passou").style.display = "block";
                 }else{
-                  window.location='home_restrita.html';
+                  window.location='restrito/area_restrita.php';
                 }
 
               }
@@ -99,7 +99,7 @@
                           "&funcao="+0,
                     success: function(result){
                         if(result==1){
-                            location.href='home_restrita.html';
+                            location.href='/restrito/area_restrita.php';
                         }
                         if(result==0){
                             $('#errologin').show();

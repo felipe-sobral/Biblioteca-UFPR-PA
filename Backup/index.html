@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang='pt-br'>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Biblioteca UFPR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="js/main.js"></script>
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body class="bodyPadrao">
+
+    <div class="container containerSombra">
+      <div class="row" style="background-image: url('img/bg-azul.jpg');">
+        <div class="col-sm">
+          <div class="text-light container-principal-espacemento">
+            <img src="img/branco_UFPR.png"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="background-color: #fff; padding-top: 2%; padding-bottom: 2%;">
+        <div class="col-sm">
+
+          <form id="buscarLivro">
+              <div class="form-group" style="padding-top: 3%">
+                  <div id="erroBuscar" class="alert alert-danger" role="alert">
+                      <b>Algo está errado</b>. O livro não pode ser encontrado ou ainda não está disponível!
+                  </div>
+                  <label for="barra">CÓDIGO OU CHAMADA DO LIVRO</label>
+                  <input type="text" class="form-control" id="barra" placeholder="Exemplo: 000">
+              </div>
+
+              <center><button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Procurar</button></center>
+          </form>
+
+        </div>
+
+        <div class="col-sm">
+
+          <div class="container-fluid" style="padding-top: 5%">
+
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"><i class="fas fa-location-arrow"></i></span>
+                  </div>
+                  <a class="form-control" aria-describedby="basic-addon1" id="prateleira"> Prateleira </a>
+              </div>
+
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"> <i class="fas fa-book"></i> </span>
+                  </div>
+                  <a class="form-control" aria-describedby="basic-addon1" id="nome"> Nome </a>
+              </div>
+
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"> <i class="fas fa-link"></i> </span>
+                  </div>
+                  <a class="form-control" aria-describedby="basic-addon1" id="link"> Link </a>
+              </div>
+
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"> <i class="fas fa-map-marker"></i></span>
+                  </div>
+                  <a class="form-control" aria-describedby="basic-addon1" id="chamada"> Chamada </a>
+              </div>
+
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"> <i class="fas fa-qrcode"></i></span>
+                  </div>
+                  <a class="form-control" aria-describedby="basic-addon1" id="codigo"> Código </a>
+              </div>
+
+              <!--
+              <div><p><h5> <i class="fas fa-location-arrow"></i> <a id="prateleira"> Prateleira </a></h4></p></div>
+              <div><p><h5> <i class="fas fa-book"></i> <a id="nome"> Nome </a></h4></p></div>
+              <div><p><h5> <i class="fas fa-link"></i> <a id="link"> Link </a></h4></p></div>
+              <div><p><h5> <i class="fas fa-map-marker"></i> <a id="chamada"> Chamada </a></h4></p></div>
+              <div><p><h5> <i class="fas fa-qrcode"></i> <a id="codigo"> Código </a></h4></p></div>
+              -->
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="row text-light grid rodape">
+        <div class="col-sm">
+
+          <div class="container-fluid rodape-texto">
+            <a href="https://www.facebook.com/krepper.fs" target="_blank"><img src="img/minha_logo.png" alt="Felipe Sobral"/></a>  UFPR Biblioteca PA - <a href="login.html">Entrar</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <script>
+
+        $(document).ready(function(){
+            location.href = "login.html";
+
+            $('#erroBuscar').hide();
+            $('#buscarLivro').submit(function(){
+                var barra=$('#barra').val();
+                $.ajax({
+                    url: "buscarLivro.php",
+                    type: "post",
+                    data: "barra="+barra+
+                          "&item="+0,
+                    success: function(result){
+                        if(result==0){
+                            $('#erroBuscar').show();
+                            jQuery("#prateleira").html("<a>ERRO</a>");
+                        } else {
+                            jQuery("#prateleira").html("<a>"+result.toString()+"</a>");
+                            $('#erroBuscar').hide();
+                        }
+
+                    }
+                })
+
+                $.ajax({
+                    url: "buscarLivro.php",
+                    type: "post",
+                    data: "barra="+barra+
+                          "&item="+1,
+                    success: function(result){
+                        if(result==0){
+                            $('#erroBuscar').show();
+                            jQuery("#nome").html("<a>ERRO</a>");
+                        } else {
+                            jQuery("#nome").html("<a>"+result.toString()+"</a>");
+                            $('#erroBuscar').hide();
+                        }
+
+                    }
+                })
+
+                $.ajax({
+                    url: "buscarLivro.php",
+                    type: "post",
+                    data: "barra="+barra+
+                          "&item="+2,
+                    success: function(result){
+                        if(result==0){
+                            $('#erroBuscar').show();
+                            jQuery("#link").html("<a>ERRO</a>");
+                        } else {
+                            jQuery("#link").html("<a href='"+result.toString()+"' target='_blank'>Ir para página</a>");
+                            $('#erroBuscar').hide();
+                        }
+
+                    }
+                })
+
+                $.ajax({
+                    url: "buscarLivro.php",
+                    type: "post",
+                    data: "barra="+barra+
+                          "&item="+3,
+                    success: function(result){
+                        if(result==0){
+                            $('#erroBuscar').show();
+                            jQuery("#chamada").html("<a>ERRO</a>");
+                        } else {
+                            jQuery("#chamada").html("<a>"+result.toString()+"</a>");
+                            $('#erroBuscar').hide();
+                        }
+
+                    }
+                })
+
+                $.ajax({
+                    url: "buscarLivro.php",
+                    type: "post",
+                    data: "barra="+barra+
+                          "&item="+4,
+                    success: function(result){
+                        if(result==0){
+                            $('#erroBuscar').show();
+                            jQuery("#codigo").html("<a>ERRO</a>");
+                        } else {
+                            jQuery("#codigo").html("<a>"+result.toString()+"</a>");
+                            $('#erroBuscar').hide();
+                        }
+
+                    }
+                })
+
+
+
+                return false;
+            })
+        })
+
+
+    </script>
+
+</body>
+</html>
