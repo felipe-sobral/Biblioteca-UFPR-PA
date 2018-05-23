@@ -1,5 +1,5 @@
 function atualizaContador(){
-    $.ajax({
+  $.ajax({
         url: "funcoes.php",
         type: "post",
         data: "funcao="+1+
@@ -59,7 +59,54 @@ function remover(){
     })
 }
 
+$('#cadastrarDiaForm').submit(function(){
+  var data=$('#data').val();
+  var manha=$('#manha').val();
+  var tarde=$('#tarde').val();
+  var noite=$('#noite').val();
+  var mes=$('#mes').val();
+  var ano=$('#ano').val();
+
+  $.ajax({
+    url: "registrar_dia.php",
+    type: "post",
+    data: "data="+data+
+          "&manha="+manha+
+          "&tarde="+tarde+
+          "&noite="+noite+
+          "&mes="+mes+
+          "&ano="+ano,
+    success: function(result){
+      if(result==1){
+        M.toast({html: "<i class='material-icons' style='color: #85ff51'>add</i>"});
+      } else {
+        M.toast({html: "<i class='material-icons' style='color: #ff5151'>clear</i>"});
+      }
+    }
+
+  })
+
+  return false;
+})
+
 $(document).ready(function(){
+      $.ajax({
+        url: "../verificar.php",
+        type: "post",
+        data: "executarFuncao="+4,
+        success: function(result){
+          jQuery("#nomeID").html("<a id='nomeID'><span class='white-text name'>"+result.toString()+"</h5>");
+        }
+
+      })
+
+      $.ajax({
+        url: '../templates/menu.php',
+        success: function(menu){
+        $('#menuID').html(menu);
+        }
+
+      });
 
       atualizaContador();
       atualizaUlt();
@@ -91,8 +138,8 @@ $(document).ready(function(){
           }
      })
 
+     $('select').formSelect();
      $('.dropdown-trigger').dropdown();
      $('.sidenav').sidenav();
-     $('.collapsible').collapsible();
      $('.tabs').tabs();
 });

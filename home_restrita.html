@@ -13,9 +13,17 @@
             padding-left: 300px;
         }
 
+        .carregando{
+            padding-top: 35vh;
+            padding-right: 300px;
+        }
+
         @media only screen and (max-width : 992px) {
-            header, main, footer, body {
+            header, main, footer, body{
                 padding-left: 0;
+            }
+            .carregando{
+                padding-right: 0;
             }
         }
     </style>
@@ -28,12 +36,15 @@
 </head>
 <body style="background-image: url('../img/bg-azul.jpg'); background-attachment: fixed;">
 
-  <div id="carregando">
+  <div id="carregando" class="carregando">
 
       <div class="ui active dimmer">
-        <div class="progress">
-          <div class="indeterminate"></div>
-        </div>
+        <center>
+          <div class="progress">
+            <div class="indeterminate"></div>
+          </div>
+          <h1 class="display-4">Verificando credenciais...</h1>
+        </center>
       </div>
 
   </div>
@@ -49,63 +60,7 @@
           <a><span class="white-text name">John Doe</span></a>
           <a><span class="white-text email">jdandturk@gmail.com</span></a></center>
         </div></li>
-
-
-        <li>
-          <ul class="collapsible collapsible-accordion">
-            <li>
-              <a class="collapsible-header waves-effect active"><i class="material-icons">people</i>Contador de Usuários<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
-              <div class="collapsible-body">
-                <ul>
-                  <li><a class="waves-effect">Painel</a></li>
-                  <li><a class="waves-effect">Adicionar</a></li>
-                  <li><a class="waves-effect">Histórico</a></li>
-                  <li><a class="waves-effect">Alterar</a></li>
-                  <li><div class="divider"></div></li>
-                </ul>
-              </div>
-            </li>
-          </ul>
-        </li>
-
-        <li>
-          <ul class="collapsible collapsible-accordion">
-            <li>
-              <a class="collapsible-header waves-effect"><i class="material-icons">assignment_turned_in</i>Consulta Local<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
-              <div class="collapsible-body">
-                <ul>
-                  <li><a class="waves-effect">Painel</a></li>
-                  <li><a class="waves-effect">Adicionar</a></li>
-                  <li><a class="waves-effect">Histórico</a></li>
-                  <li><a class="waves-effect">Alterar</a></li>
-                  <li><a class="waves-effect">Baixar</a></li>
-                  <li><div class="divider"></div></li>
-                </ul>
-              </div>
-            </li>
-          </ul>
-        </li>
-
-        <li>
-          <ul class="collapsible collapsible-accordion">
-            <li>
-              <a class="collapsible-header waves-effect"><i class="material-icons">settings</i>Gerenciar conta<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
-              <div class="collapsible-body">
-                <ul>
-                  <li><a class="waves-effect">Alterar senha</a></li>
-                  <li><a class="waves-effect">Excluir conta</a></li>
-                  <li><div class="divider"></div></li>
-                </ul>
-              </div>
-            </li>
-          </ul>
-        </li>
-
-        <li><a class="collapsible-header waves-effect waves-yellow"><i class="material-icons">lock</i>Administração</a></li>
-        <li><a class="collapsible-header waves-effect waves-red" href="logout.php"><i class="material-icons">exit_to_app</i>Sair</a></li>
-
-
-
+        <p id="menuID">Aguarde...</p>
       </ul>
 
       <div class="jumbotron jumbotron-fluid text-light" style="background-image: url('../img/bg-azul.jpg'); background-attachment: fixed; height: 100vh;">
@@ -118,10 +73,19 @@
       </div>
    </div>
 
-     <script>
 
+      <!-- SCRIPTS -->
+     <script>
         $(document).ready(function(){
           $('#passou').hide();
+          $.ajax({
+            url: 'templates/menu.php',
+            success: function(menu){
+              $('#menuID').html(menu);
+            }
+
+          });
+
           $.ajax({
               url: "verificar.php",
               type: "post",
@@ -138,13 +102,11 @@
 
           $('.dropdown-trigger').dropdown();
           $('.sidenav').sidenav();
-          $('.collapsible').collapsible();
           $('.tabs').tabs();
         });
 
      </script>
 
-    <!-- SCRIPTS -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>

@@ -96,6 +96,7 @@
           if($contagem['manha'] != 0){
             $pessoas = $contagem['manha'] - $pessoas;
             mysqli_query($conectar, "UPDATE estatistica_usuarios SET manha = '{$pessoas}' WHERE data = '{$data[0]}'");
+
           } else {
             echo 0;
           }
