@@ -32,6 +32,7 @@
                 padding-right: 0;
             }
         }
+
     </style>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -39,7 +40,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 
 </head>
-<body style="background-image: url('../img/bg_teste.jpg')">
+<body style="background-image: url('../img/bg_teste.jpg'); background-attachment: fixed;">
 
   <div id="carregando" class="carregando">
     <center>
@@ -69,51 +70,41 @@
       <div class="jumbotron jumbotron-fluid cab text-light" style="background-image: url('../img/bg.jpg')">
         <div class="container">
           <a href="#" data-target="slide-out" class="sidenav-trigger waves-effect waves-light"><i class="material-icons" style="color: #fff;">menu</i></a>
-          <center><h1 class="display-4">Adicionar dia</h1></center>
+          <center><h1 class="display-4">Alterar estatística de usuários</h1></center>
         </div>
       </div>
-      <div class="container">
-          <div class="card text-center">
+      <div id="containerHistorico" class="container">
+          <div class="card">
               <div class="card-body">
 
-              <div class="row">
-                <form class="col" id="historicoUsuarioForm">
-                  <div class="row">
-                    <div class="input-field col s6">
-                      <input type='number' min='0' id='manha'>
-                      <label for='manha'>Quantidade/ Manhã</label>
+                <div class="row">
+                  <form class="col" id="alterarDiaForm">
+                    <div class="row">
+                      <div class="input-field col s6">
+                        <input type='text' maxlength='10' id='data_alterar' placeholder='2018-12-31'>
+                        <label for='data_alterar'>Data (AAAA-MM-DD)</label>
+                      </div>
                     </div>
-                    <div class="input-field col s6">
-                      <input type='number' min='0' id='tarde'>
-                      <label for='tarde'>Quantidade/ Tarde</label>
-                    </div>
-                  </div>
+                    <center><button type="submit" class="btn waves-effect waves-light">Buscar</button></center>
+                  </form>
+                </div>
 
+                <div id="aposProcurarData"  style="display: none">
                   <div class="row">
-                    <div class="input-field col s6">
-                      <input type='number' min='0' id='noite'>
-                      <label for='noite'>Quantidade/ Noite</label>
-                    </div>
-                    <div class="input-field col s6">
-                      <input type='number' min='0' max='12' id='mes'>
-                      <label for='mes'>Mês (Número)</label>
-                    </div>
+                    <form class="col" id='alterarDiaFormX'>
+                      <div id="alterarDiaX"></div>
+                      <div class='row'>
+                        <div class='input-field col s6'>
+                          <select id="alterarORexcluir">
+                            <option value="1" selected>Apenas alterar</option>
+                            <option value="2">Excluir dia</option>
+                          </select>
+                        </div>
+                      </div>
+                      <center><button type='submit' class='btn waves-effect waves-light'>ENVIAR</button></center>
+                    </form>
                   </div>
-
-                  <div class="row">
-                    <div class="input-field col s6">
-                      <input type='number' min='0' id='ano' placeholder='2018'>
-                      <label for='noite'>Ano</label>
-                    </div>
-                    <div class="input-field col s6">
-                      <input type='text' maxlength='10' id='data' placeholder='2018-12-31'>
-                      <label for='data'>Data (AAAA-MM-DD)</label>
-                    </div>
-                  </div>
-                  <center><button type="submit" class="btn waves-effect waves-light">REGISTRAR</button></center>
-                </form>
               </div>
-
             </div>
         </div>
       </div>

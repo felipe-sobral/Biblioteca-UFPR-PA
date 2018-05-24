@@ -54,6 +54,8 @@
 
           $pessoas = $pessoas + $contagem['manha'];
           mysqli_query($conectar, "UPDATE estatistica_usuarios SET manha = '{$pessoas}' WHERE data = '{$data[0]}'");
+          echo $pessoas;
+
 
         break;
 
@@ -61,6 +63,7 @@
 
           $pessoas = $pessoas + $contagem['tarde'];
           mysqli_query($conectar, "UPDATE estatistica_usuarios SET tarde = '{$pessoas}' WHERE data = '{$data[0]}'");
+          echo $pessoas;
 
         break;
 
@@ -68,6 +71,7 @@
 
           $pessoas = $pessoas + $contagem['noite'];
           mysqli_query($conectar, "UPDATE estatistica_usuarios SET noite = '{$pessoas}' WHERE data = '{$data[0]}'");
+          echo $pessoas;
 
         break;
 
@@ -96,6 +100,7 @@
           if($contagem['manha'] != 0){
             $pessoas = $contagem['manha'] - $pessoas;
             mysqli_query($conectar, "UPDATE estatistica_usuarios SET manha = '{$pessoas}' WHERE data = '{$data[0]}'");
+            echo $pessoas;
 
           } else {
             echo 0;
@@ -108,6 +113,7 @@
           if($contagem['tarde'] != 0){
             $pessoas = $contagem['tarde'] - $pessoas;
             mysqli_query($conectar, "UPDATE estatistica_usuarios SET tarde = '{$pessoas}' WHERE data = '{$data[0]}'");
+            echo $pessoas;
           } else {
             echo 0;
           }
@@ -119,6 +125,7 @@
           if($contagem['noite'] != 0){
             $pessoas = $contagem['noite'] - $pessoas;
             mysqli_query($conectar, "UPDATE estatistica_usuarios SET noite = '{$pessoas}' WHERE data = '{$data[0]}'");
+            echo $pessoas;
           } else {
             echo 0;
           }
