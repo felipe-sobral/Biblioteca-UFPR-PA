@@ -173,16 +173,6 @@ $('#alterarDiaFormX').submit(function(){
 
 $(document).ready(function(){
       $.ajax({
-        url: "../verificar.php",
-        type: "post",
-        data: "executarFuncao="+4,
-        success: function(result){
-          jQuery("#nomeID").html("<a id='nomeID'><span class='white-text name'>"+result.toString()+"</h5>");
-        }
-
-      })
-
-      $.ajax({
         url: '../templates/menu.php',
         success: function(menu){
         $('#menuID').html(menu);
