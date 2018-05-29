@@ -15,6 +15,9 @@
 	  <h5 id='nomeID' class='card-title'>%s</h5>
 		<hr width='200vh''/>
 	</div></li>
+	<li><a class='waves-effect' style='text-decoration:none' href='../contador_usuario/painel.html'><i class='material-icons'>star_rate</i>Contador de usuários</a></li>
+	<li><a class='waves-effect' style='text-decoration:none' href='../consulta_local/registrar_codigos.html'><i class='material-icons'>star_rate</i>Registrador consulta local</a></li>
+	<hr width='200vh''/>
 	<li>
 	  <ul class='collapsible collapsible-accordion'>
 	    <li>
@@ -40,7 +43,7 @@
 	        <ul>
 	          <li><a class='waves-effect' style='text-decoration:none' href='../consulta_local/registrar_codigos.html'>Registrar códigos</a></li>
 	          <li><a class='waves-effect' style='text-decoration:none' href='../consulta_local/adicionar.html'>Adicionar</a></li>
-	          <li><a class='waves-effect' style='text-decoration:none'>Histórico</a></li>
+	          <li><a class='waves-effect' style='text-decoration:none' href='../consulta_local/historico.html'>Histórico</a></li>
 	          <li><a class='waves-effect' style='text-decoration:none'>Alterar</a></li>
 	          <li><a class='waves-effect' style='text-decoration:none'>Baixar</a></li>
 	          <li><div class='divider'></div></li>

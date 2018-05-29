@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang='pt-br'>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Biblioteca UFPR</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+  <style>
+    header,
+    main,
+    footer,
+    body {
+      padding-left: 300px;
+    }
+
+    .carregando {
+      padding-top: 35vh;
+      padding-right: 300px;
+    }
+
+    .cab {
+      -webkit-box-shadow: 0px 4px 19px -6px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 0px 4px 19px -6px rgba(0, 0, 0, 0.75);
+      box-shadow: 0px 4px 19px -6px rgba(0, 0, 0, 0.75);
+    }
+
+    @media only screen and (max-width: 992px) {
+      header,
+      main,
+      footer,
+      body {
+        padding-left: 0;
+      }
+      .carregando {
+        padding-right: 0;
+      }
+    }
+  </style>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+
+</head>
+
+<body style="background-image: url('../img/bg_teste.jpg'); background-attachment: fixed;">
+
+  <div id="carregando" class="carregando">
+    <center>
+      <div class="progress">
+        <div class="indeterminate"></div>
+      </div>
+      <h1 class="display-4">Verificando seu usuário...</h1>
+    </center>
+  </div>
+
+  <div id="passou">
+
+    <ul id="slide-out" class="sidenav sidenav-fixed">
+      <p id="menuID">Aguarde...</p>
+    </ul>
+
+    <div class="jumbotron jumbotron-fluid cab text-light" style="background-image: url('../img/bg.jpg')">
+      <div class="container">
+        <a href="#" data-target="slide-out" class="sidenav-trigger waves-effect waves-light"><i class="material-icons" style="color: #fff;">menu</i></a>
+        <center>
+          <h1 class="display-4">Alterar estatística de usuários</h1></center>
+      </div>
+    </div>
+    <div id="containerHistorico" class="container">
+      <div class="card">
+        <div class="card-body">
+
+          <div class="row">
+            <form class="col" id="alterarForm">
+              <div class="row">
+                <div class="input-field col s6">
+                  <input type='text' id='diaAlterar'>
+                  <label for='diaAlterar'>Dia</label>
+                </div>
+                <div class="input-field col s6">
+                  <select id="mesAlterar">
+                      <option disabled selected>Mês</option>
+                      <option value="1">Janeiro</option>
+                      <option value="2">Fevereiro</option>
+                      <option value="3">Março</option>
+                      <option value="4">Abril</option>
+                      <option value="5">Maio</option>
+                      <option value="6">Junho</option>
+                      <option value="7">Julho</option>
+                      <option value="8">Agosto</option>
+                      <option value="9">Setembro</option>
+                      <option value="10">Outubro</option>
+                      <option value="11">Novembro</option>
+                      <option value="12">Dezembro</option>
+                  </select>
+                </div>
+                <div class="input-field col s6">
+                  <input type="text" id="anoAlterar" value="2018">
+                </div>
+              </div>
+              <center><button type="submit" class="btn waves-effect waves-light">Buscar</button></center>
+            </form>
+          </div>
+
+          <div id="aposProcurarDataAlterar">
+            <div class="row">
+              <form class="col" id='modificarForm'>
+                <div id="alterarAQUI"></div>
+                <center><button type='submit' class='btn waves-effect waves-light'>ENVIAR</button></center>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SCRIPTS -->
+  <script>
+    $('#passou').hide();
+    $('#aposProcurarDataAlterar').hide();
+  </script>
+  <script src="main.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
+
+</body>
+
+</html>

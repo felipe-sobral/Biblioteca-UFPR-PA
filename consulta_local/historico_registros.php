@@ -38,8 +38,8 @@
   function vasculhar($ano, $mes, $dia, $total){
     if($dia>32){
       printf("
-          <tr>
-            <td class='collapsing'>TOTAL</td>
+          <tr style='background-color: #dee2e8; font-weight: bold;'>
+            <td>TOTAL</td>
             <td>%d</td>
           </tr>
         </tbody>
@@ -55,7 +55,7 @@
           printf("
 
           <tr>
-            <td class='collapsing'>%s-%s-%d</td>
+            <td>%s-%s-%d</td>
             <td>%d</td>
           </tr>
 
@@ -84,12 +84,13 @@
 
     printf("
 
-    <table class='ui celled striped table'>
+    <table class='responsive-table'>
       <thead>
-        <tr><th colspan='2'>
-          Histórico consulta local %s-%d
-        </th>
-      </tr></thead>
+        <tr>
+          <th>Data</th>
+          <th>livros</th>
+        </tr>
+      </thead>
       <tbody>
 
     ", colocaZero($_POST['mes']), $_POST['ano']);

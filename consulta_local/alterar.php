@@ -17,7 +17,7 @@
       if(verificarSql($sql)){
         $dado = mysqli_fetch_array($sql);
 
-        echo "<textarea class='form-control' id='codigosAlterar' rows='10'>".$dado['codigos']."</textarea><script>var iden=".$dado['id']."</script>";
+        echo "<textarea id='codigosAlterar' class='materialize-textarea'>".$dado['codigos']."</textarea><script>var iden=".$dado['id']."; M.textareaAutoResize($('#codigosAlterar'));</script>";
       } else {
         echo "0";
       }
