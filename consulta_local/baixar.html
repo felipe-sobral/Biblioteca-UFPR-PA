@@ -68,7 +68,7 @@
       <div class="container">
         <a href="#" data-target="slide-out" class="sidenav-trigger waves-effect waves-light"><i class="material-icons" style="color: #fff;">menu</i></a>
         <center>
-          <h1 class="display-4">Alterar estatística de usuários</h1></center>
+          <h1 class="display-4">Download consulta local</h1></center>
       </div>
     </div>
     <div id="containerHistorico" class="container">
@@ -76,45 +76,40 @@
         <div class="card-body">
 
           <div class="row">
-            <form class="col" id="alterarForm">
+            <form class="col" id="downloadForm">
               <div class="row">
                 <div class="input-field col s6">
-                  <input type='text' id='diaAlterar'>
-                  <label for='diaAlterar'>Dia</label>
+                  <select id="mesDownload">
+                          <option value="" disabled selected>Escolha o mês</option>
+                          <option value="1">Janeiro</option>
+                          <option value="2">Fevereiro</option>
+                          <option value="3">Março</option>
+                          <option value="4">Abril</option>
+                          <option value="5">Maio</option>
+                          <option value="6">Junho</option>
+                          <option value="7">Julho</option>
+                          <option value="8">Agosto</option>
+                          <option value="9">Setembro</option>
+                          <option value="10">Outubro</option>
+                          <option value="11">Novembro</option>
+                          <option value="12">Dezembro</option>
+                        </select>
+                  <label>Mês</label>
                 </div>
                 <div class="input-field col s6">
-                  <select id="mesAlterar">
-                      <option disabled selected>Mês</option>
-                      <option value="1">Janeiro</option>
-                      <option value="2">Fevereiro</option>
-                      <option value="3">Março</option>
-                      <option value="4">Abril</option>
-                      <option value="5">Maio</option>
-                      <option value="6">Junho</option>
-                      <option value="7">Julho</option>
-                      <option value="8">Agosto</option>
-                      <option value="9">Setembro</option>
-                      <option value="10">Outubro</option>
-                      <option value="11">Novembro</option>
-                      <option value="12">Dezembro</option>
-                  </select>
-                </div>
-                <div class="input-field col s6">
-                  <input type="text" id="anoAlterar" value="2018">
+                  <input type="text" id="anoDownload" value="2018">
+                  <label for="anoDownload">Ano</label>
                 </div>
               </div>
               <center><button type="submit" class="btn waves-effect waves-light">Buscar</button></center>
             </form>
           </div>
 
-          <div id="aposProcurarDataAlterar">
+
+          <div id="aposProcurar" style="display: none">
             <hr>
-            <div class="row">
-              <form class="col" id='modificarForm'>
-                <div id="alterarAQUI"></div>
-                <center><button type='submit' class='btn waves-effect waves-light'>ENVIAR</button></center>
-              </form>
-            </div>
+            <button class="btn waves-effect" onclick="imprimirTabela('HistoricoCL_tabela')"><i class="material-icons">print</i></button>
+            <div id="HistoricoCL_tabela"></div>
           </div>
         </div>
       </div>
@@ -125,7 +120,6 @@
   <!-- SCRIPTS -->
   <script>
     $('#passou').hide();
-    $('#aposProcurarDataAlterar').hide();
 
     $(document).ready(function() {
       $.ajax({

@@ -120,6 +120,22 @@
 		<!-- SCRIPTS -->
 		<script>
 			$('#passou').hide();
+
+			$(document).ready(function() {
+				$.ajax({
+					url: "../verificar.php",
+					type: "post",
+					data: "executarFuncao=" + 6 + "&nivel=" + 3,
+					success: function(result) {
+						if (result == true) {
+							document.getElementById("carregando").style.display = "none";
+							document.getElementById("passou").style.display = "block";
+						} else {
+							window.location = '../index.html';
+						}
+					}
+				})
+			})
 		</script>
 		<script src="main.js"></script>
 		<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
