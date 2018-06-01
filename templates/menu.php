@@ -59,6 +59,7 @@
 	<li><a class='collapsible-header waves-effect waves-red' style='text-decoration:none' href='../logout.php'><i class='material-icons'>exit_to_app</i>Sair</a></li>
 
 	</ul>
+	<div style='padding-bottom: 2vh'></div>
 
 	<script>$('.collapsible').collapsible();", $nome);
 ?>
