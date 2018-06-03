@@ -6,66 +6,79 @@
     <title>Biblioteca UFPR</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <style>
+      header,
+      main,
+      footer,
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+      .carregando {
+        padding-top: 35vh;
+        padding-left: 300px;
+        padding-right: 300px;
+      }
+
+      .cab {
+        -webkit-box-shadow: 0px 4px 19px -6px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 0px 4px 19px -6px rgba(0, 0, 0, 0.75);
+        box-shadow: 0px 4px 19px -6px rgba(0, 0, 0, 0.75);
+      }
+
+      @media only screen and (max-width: 992px) {
+        header,
+        main,
+        footer,
+        body {
+          padding-left: 0;
+        }
+        .carregando {
+          padding-right: 0;
+        }
+      }
+    </style>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 </head>
 <body style="background-color: black; background-image: url('img/bg.jpg'); background-attachment: fixed;" onload="document.getElementById('usuario').focus();">
 
-    <div id="carregando" style="display: block; padding-top: 10%;">
-
-        <div class="ui active dimmer">
-          <div class="ui massive text loader">Carregando</div>
+    <div id="carregando" class="carregando text-light" style="display: block;">
+      <center>
+        <div class="progress">
+          <div class="indeterminate"></div>
         </div>
-
+        <h1 class="display-4">Verificando...</h1>
+      </center>
     </div>
 
     <div id="passou" style="display: none">
-
-      <div class="container-fluid cabecalho text-light">
-          <img src="img/branco_UFPR.png"/>
-      </div>
-
       <div class="container">
-        <div class="row">
-          <div class="col-sm">
-
-            <div class="card mb-3">
-              <img class="card-img-top" src="img/bg-login.jpg">
-              <div class="card-body">
-                <h5 class="card-title">Bem-vindo</h5>
-                <p class="card-text">Esta área é reservada a servidores.</p>
-                <p class="card-text"><small class="text-muted"><a href="index.html">Clique aqui para voltar</a></small></p>
-              </div>
-            </div>
-
-          </div>
-          <div class="col-sm-4 text-light">
-
-            <div id="errologin" class="alert alert-danger" role="alert">
-                <b>Algo está errado</b>. Pode ser suas informações que estejam incorretas ou apenas algum campo está vazio!
-            </div>
-            <form id="loginform">
-                <div class="form-group">
-                    <label for="usuario"> <i class="fas fa-user"></i> Usuário</label>
-                    <input type="text" class="form-control" id="usuario" placeholder="Digite o usuário">
+        <center><img src="img/branco_UFPR.png" width="250px"/></center>
+        <div class="card" style="opacity: 0.9; border-radius: 25px;">
+          <div class="card-content">
+            <h5 style="text-align: center">Fazer login</h5>
+            <div class="row">
+              <form class="col s12" id="loginform">
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input type="text" id="usuario"></input>
+                    <label for="usuario">Usuário</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input type="password" id="senha"></input>
+                    <label for="senha">Senha</label>
+                  </div>
                 </div>
-                <div class="form-group">
-                    <label for="senha"> <i class="fas fa-key"></i> Senha</label>
-                    <input type="password" class="form-control" id="senha" placeholder="Digite sua senha">
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-block"> <i class="fas fa-sign-in-alt"></i> Entrar</button>
-
-            </form>
-
+                <center><button class="btn waves-effect waves-light" type="submit">Entrar</button></center>
+              </form>
+            </div>
+            <center><a href="#">Algum problema?</a></center>
           </div>
         </div>
       </div>
     </div>
-
 
     <script>
         $(document).ready(function(){
@@ -100,7 +113,9 @@
                             location.href='home_restrita.html';
                         }
                         if(result==0){
-                            $('#errologin').show();
+                          M.toast({
+                            html: "<i class='material-icons' style='color: #ff5151'>clear</i>"
+                          });
                         }
                     }
                 })
@@ -111,6 +126,10 @@
         })
 
     </script>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 
 </body>
 </html>
