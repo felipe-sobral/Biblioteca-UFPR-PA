@@ -20,40 +20,22 @@
 
       printf("
 
-        <div class='form-group'>
-          <label for='usuario'>Usuário <small class='text-muted'>Máximo de caracteres: 20</small></label>
-            <input type='text' maxlength='20' class='form-control' id='alterarUser_usuario2' value='%s'>
+      <div class='row'>
+        <div class='input-field col s6'>
+          <input id='alterarUser_usuario2' maxlength='10' type='text' value='%s'></input>
+          <span class='helper-text'>Usuário|Máximo 10 caracteres.</span>
         </div>
-        <div class='form-group'>
-          <label for='nome'>Nome <small class='text-muted'>Máximo de caracteres: 60</small></label>
-          <input type='text' maxlength='60' class='form-control' id='alterarUser_nome' value='%s'>
+        <div class='input-field col s6'>
+          <input id='alterarUser_nome' value='%s' maxlength='60' type='text'></input>
+          <span class='helper-text'>Nome|Máximo 60 caracteres.</span>
         </div>
-        <div class='form-group'>
-          <label for='senha'>Senha <small class='text-muted'>Máximo de caracteres: 10</small></label>
-          <input type='password' maxlength='10' class='form-control' id='alterarUser_senha' placeholder='Senha'>
-        </div>
-        <div class='form-group'>
-          <label for='nivel'>Nível do usuário (Atual: %s)</label>
-          <select class='form-control' id='alterarUser_nivel'>
-            <option value='1'>[1] Registrado</option>
-            <option value='2'>[2] Provisório</option>
-            <option value='3'>[3] Comum</option>
-            <option value='4'>[4] Moderador</option>
-            <option value='5'>[5] Administrador</option>
-          </select>
-        </div>
+      </div>
 
-        <div class='form-group'>
-          <label for='nivel'>O que fazer?</label>
-          <select class='form-control' id='alterarUser_alterar'>
-            <option value='1'>Apenas alterar</option>
-            <option value='2'>Excluir conta</option>
-          </select>
-        </div>
+      <input id='alterarUser_id' value='%d' style='display: none;'>
 
-        <input id='alterarUser_id' value='%d' style='display: none;'>
+      <script> var nivelUsuario = %d </script>
 
-      ", $dados['usuario'], $dados['nome'], $dados['nivel'], $dados['id']);
+      ", $dados['usuario'], $dados['nome'], $dados['id'], $dados['nivel']);
       exit;
     } else {
       echo 0;

@@ -8,11 +8,11 @@
 
 	printf("
 	<li><div class='user-view'>
-		<!--<div class='background'>
-    	<img src='../img/bg-azul.jpg'>
-    </div>-->
-	  <center><a href='http://biblioteca.felipesobral.xyz/home_restrita.html'><img src='../img/preto_UFPR.png' width='188vh'></a>
-	  <h5 id='nomeID' class='card-title'>%s</h5>
+		<div class='background'>
+    	<img src='../img/bg.jpg'>
+    </div>
+	  <center><a href='http://biblioteca.felipesobral.xyz/home_restrita.html'><img src='../img/branco_UFPR.png' width='188vh'></a>
+	  <h5 id='nomeID' class='card-title text-light'>%s</h5>
 		<hr width='200vh''/>
 	</div></li>
 	<li><a class='collapsible-header waves-effect' style='text-decoration:none' href='../contador_usuario/painel.html'><i class='material-icons'>star_rate</i>Contador de usuários</a></li>
@@ -24,10 +24,10 @@
 	      <a class='collapsible-header waves-effect' style='text-decoration:none; outline: 0;'><i class='material-icons'>people</i>Estatística de Usuários</a>
 	      <div class='collapsible-body'>
 	        <ul>
-	          <li><a class='waves-effect' style='text-decoration:none' href='../contador_usuario/painel.html'>Contador</a></li>
-	          <li><a class='waves-effect' style='text-decoration:none' href='../contador_usuario/adicionar.html'>Adicionar</a></li>
-	          <li><a class='waves-effect' style='text-decoration:none' href='../contador_usuario/historico.html'>Histórico</a></li>
-	          <li><a class='waves-effect' style='text-decoration:none' href='../contador_usuario/alterar.html'>Alterar</a></li>
+	          <li><a class='waves-effect' style='text-decoration:none' href='../contador_usuario/painel.html'><i class='material-icons'>group_add</i>Contador</a></li>
+	          <li><a class='waves-effect' style='text-decoration:none' href='../contador_usuario/adicionar.html'><i class='material-icons'>add</i>Adicionar</a></li>
+	          <li><a class='waves-effect' style='text-decoration:none' href='../contador_usuario/historico.html'><i class='material-icons'>history</i>Histórico</a></li>
+	          <li><a class='waves-effect' style='text-decoration:none' href='../contador_usuario/alterar.html'><i class='material-icons'>edit</i>Alterar</a></li>
 	          <li><div class='divider'></div></li>
 	        </ul>
 	      </div>
@@ -41,11 +41,11 @@
 	      <a class='collapsible-header waves-effect' style='text-decoration:none; outline: 0;'><i class='material-icons'>assignment_turned_in</i>Estatística Consulta Local</a>
 	      <div class='collapsible-body'>
 	        <ul>
-	          <li><a class='waves-effect' style='text-decoration:none' href='../consulta_local/registrar_codigos.html'>Registrar códigos</a></li>
-	          <li><a class='waves-effect' style='text-decoration:none' href='../consulta_local/adicionar.html'>Adicionar</a></li>
-	          <li><a class='waves-effect' style='text-decoration:none' href='../consulta_local/historico.html'>Histórico</a></li>
-	          <li><a class='waves-effect' style='text-decoration:none' href='../consulta_local/alterar.html'>Alterar</a></li>
-	          <li><a class='waves-effect' style='text-decoration:none' href='../consulta_local/baixar.html'>Baixar</a></li>
+	          <li><a class='waves-effect' style='text-decoration:none' href='../consulta_local/registrar_codigos.html'><i class='material-icons'>note_add</i>Registrar códigos</a></li>
+	          <li><a class='waves-effect' style='text-decoration:none' href='../consulta_local/adicionar.html'><i class='material-icons'>add</i>Adicionar</a></li>
+	          <li><a class='waves-effect' style='text-decoration:none' href='../consulta_local/historico.html'><i class='material-icons'>history</i>Histórico</a></li>
+	          <li><a class='waves-effect' style='text-decoration:none' href='../consulta_local/alterar.html'><i class='material-icons'>edit</i>Alterar</a></li>
+	          <li><a class='waves-effect' style='text-decoration:none' href='../consulta_local/baixar.html'><i class='material-icons'>cloud_download</i>Baixar</a></li>
 	          <li><div class='divider'></div></li>
 	        </ul>
 	      </div>

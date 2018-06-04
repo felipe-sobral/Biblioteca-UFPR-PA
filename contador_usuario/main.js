@@ -22,18 +22,24 @@ function atualizaContador() {
 }
 
 function atualizaUlt() {
-  $.ajax({
-    url: "funcoes.php",
-    type: "post",
-    data: "funcao=" + 4 +
-      "&numero=" + 0,
-    success: function(result) {
+  agora = new Date;
 
-      if (result != null) {
-        $("#ultAtualizacao").html(result);
-      }
-    }
-  })
+  var horas = agora.getHours();
+  var minutos = agora.getMinutes();
+  var segundos = agora.getSeconds();
+
+  if (agora.getHours() < 10) {
+    horas = "0" + agora.getHours();
+  }
+  if (agora.getMinutes() < 10) {
+    minutos = "0" + agora.getMinutes();
+  }
+  if (agora.getSeconds() < 10) {
+    segundos = "0" + agora.getSeconds();
+  }
+
+  $("#ultAtualizacao").html(horas + ":" + minutos + ":" + segundos);
+
 }
 
 function adicionar() {

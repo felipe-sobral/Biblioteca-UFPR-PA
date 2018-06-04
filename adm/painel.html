@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang='pt-br'>
 
+<!--
+    - Felipe Vieira Sobral
+    - xfelipesobral@gmail.com
+    - felipesobral@ufpr.br
+    - https://felipesobral.xyz
+    - https://github.com/krepper/Biblioteca-UFPR-PA/
+-->
+
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -64,7 +72,7 @@
       <p id="menuID">Aguarde...</p>
     </ul>
 
-    <div class="jumbotron jumbotron-fluid cab text-light" style="background-image: url('../img/bg.jpg')">
+    <div class="jumbotron jumbotron-fluid cab text-light" style="background-image: url('../img/bg.jpg'); background-attachment: fixed;">
       <div class="container">
         <a href="#" data-target="slide-out" class="sidenav-trigger waves-effect waves-light"><i class="material-icons" style="color: #fff;">menu</i></a>
         <center>
@@ -122,23 +130,58 @@
             <li>
               <div class="collapsible-header" style='outline: 0;'><i class="material-icons">edit</i>Alterar usuário</div>
               <div class="collapsible-body">
-                <form>
+                <form id="alterarUsuarioForm1">
                   <div class="input-field">
-                    <input id="alterarUsuarioForm1" maxlength="10" type="text"></input>
-                    <label for="alterarUsuarioForm1">Usuário</label>
+                    <input id="alterarUser_usuario" maxlength="10" type="text"></input>
+                    <label for="alterarUser_usuario">Usuário</label>
                   </div>
                   <center><button class="btn waves-effect waves-light" type="submit">Buscar usuário</button></center>
                 </form>
 
-                <div id="#">
+                <div id="alterarUsuario" style="display: none">
                   <hr/>
                   <div class="row">
                     <form class="col s12" id="alterarUsuarioForm2">
+                      <p id='formularioAlterarAqui'></p>
 
+                      <div class='row'>
+                        <div class='input-field col s6'>
+                          <input id='alterarUser_senha' placeholder='Senha' maxlength='10' type='password'></input>
+                          <span class='helper-text'>Senha|Máximo 10 caracteres.</span>
+                        </div>
+                        <div class='input-field col s6'>
+                          <select id='alterarUser_nivel'>
+                            <option selected disabled>Nível do usuário</option>
+                            <option value='1'>[1] Registrado</option>
+                            <option value='2'>[2] Provisório</option>
+                            <option value='3'>[3] Comum</option>
+                            <option value='4'>[4] Moderador</option>
+                            <option value='5'>[5] Administrador</option>
+                          </select>
+                          <span class='helper-text'>Nível atual: <a id='nivelUsuario'></a></span>
+                        </div>
+                      </div>
+
+                      <div class='input-field'>
+                        <select id='alterarUser_alterar'>
+                          <option selected disabled>O que fazer?</option>
+                          <option value='1'>Apenas alterar</option>
+                          <option value='2'>Excluir conta</option>
+                        </select>
+                      </div>
                       <center><button class="btn waves-effect waves-light" type="submit">Fazer alterações</button></center>
                     </form>
                   </div>
                 </div>
+            </li>
+            <li>
+              <div class="collapsible-header" style='outline: 0;'><i class="material-icons">people</i>Usuários registrados</div>
+              <div class="collapsible-body">
+                <center><button disabled class="btn waves-effect">Verificar</button>
+                  <a id="usuariosRegistrados" style="display: none"></a>
+                  <p>Função não disponível no momento :(</p>
+                </center>
+              </div>
             </li>
           </ul>
 
