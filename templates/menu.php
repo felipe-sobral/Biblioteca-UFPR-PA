@@ -57,6 +57,7 @@
 	<li><a class='collapsible-header waves-effect' style='text-decoration:none; outline: 0;' href='../gerenciar_conta/painel.html'><i class='material-icons'>settings</i>Gerenciar conta</a></li>
 	<li><a class='collapsible-header waves-effect waves-yellow' style='text-decoration:none' href='../adm/painel.html'><i class='material-icons'>lock</i>Administração</a></li>
 	<li><a class='collapsible-header waves-effect waves-red' style='text-decoration:none' href='../logout.php'><i class='material-icons'>exit_to_app</i>Sair</a></li>
+	<li><a class='collapsible-header waves-effect waves-orange' style='text-decoration:none'><i class='material-icons'>priority_high</i>SITE TESTE</a></li>
 
 	</ul>
 	<div style='padding-bottom: 2vh'></div>

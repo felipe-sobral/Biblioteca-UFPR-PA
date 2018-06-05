@@ -191,6 +191,38 @@ $('#alterarDiaFormX').submit(function() {
 
 })
 
+$('#cadastrarDiaForm').submit(function(){
+  var data=$('#data').val();
+  var manha=$('#manha').val();
+  var tarde=$('#tarde').val();
+  var noite=$('#noite').val();
+  var mes=$('#mes').val();
+  var ano=$('#ano').val();
+
+  $.ajax({
+    url: "registrar_dia.php",
+    type: "post",
+    data: "data="+data+
+                    "&manha="+manha+
+                    "&tarde="+tarde+
+                    "&noite="+noite+
+                    "&mes="+mes+
+                    "&ano="+ano,
+    success: function(result){
+      if(result==1){
+        $('#erroDia').hide();
+        $('#certoDia').show();
+      } else {
+        $('#erroDia').show();
+        $('#certoDia').hide();
+      }
+    }
+
+  })
+
+  return false;
+})
+
 $(document).ready(function() {
   $.ajax({
     url: '../templates/menu.php',
