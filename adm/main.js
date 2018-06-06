@@ -1,3 +1,19 @@
+function usuarios_registrados(){
+  $.ajax({
+    url: "usuarios_registrados.php",
+    success: function(result){
+      if(result != 0){
+        $('#usuariosRegistrados').html(result);
+      } else {
+        M.toast({
+          html: "<i class='material-icons' style='color: #ff5151'>clear</i>"
+        });
+      }
+
+    }
+  })
+}
+
 $('#registrarForm').submit(function() {
   var r_usuario = $('#r_usuario').val();
   var r_nome = $('#r_nome').val();
