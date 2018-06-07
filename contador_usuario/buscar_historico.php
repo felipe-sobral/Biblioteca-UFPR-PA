@@ -3,6 +3,7 @@
   session_start();
 
   include "../cfg.php";
+  include "../funcoesGerais.php";
 
   $mes = $_POST['mesHistorico'];
   $ano = $_POST['anoHistorico'];
@@ -14,6 +15,8 @@
     echo 0;
     exit;
   }
+
+  gravar_log("Consultou estatística usuário [".$mes."-".$ano."] * [121]");
 
   $manha = 0;
   $tarde = 0;
@@ -80,7 +83,4 @@
       </table>
 
   ",  $manha, $tarde, $noite, $total);
-
-
-
 ?>

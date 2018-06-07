@@ -23,6 +23,7 @@
       $inserir = str_replace('<br />', '\r', nl2br($codigos));
 
       mysqli_query($conectar, "INSERT INTO consulta_local(dia, ano, mes, codigos) VALUES ('{$dia}', '{$ano}', '{$mes}', '{$inserir}')");
+      gravar_log("Adicionou Consulta Local [".$dia."-".$mes."-".$ano."] * [122]");
       echo 1;
       exit;
 

@@ -1,5 +1,6 @@
 <?php
     include "cfg.php";
+    include "funcoesGerais.php";
 
     $user = $_POST['usuario'];
     $pass = $_POST['senha'];
@@ -25,6 +26,7 @@
                 $_SESSION['nivel'] = $dado['nivel'];
             }
             $retorno = 1;
+            gravar_log("Fez login * [125]");
         }
     }
 

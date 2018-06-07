@@ -28,12 +28,13 @@
       }
       printf("</tbody> </table>");
 
-      gravar_log("Mostrar usuários [5]");
+      gravar_log("Consultou os usuários registrados * [113]");
     } else {
       echo 0;
     }
   } else {
     header("Location: ../error.html");
+    exit;
   }
 
 ?>

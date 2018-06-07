@@ -34,6 +34,7 @@
 
           if($resultado_r == 0){
             $registrar = mysqli_query($conectar, "INSERT INTO usuarios(usuario, nome, senha, nivel) VALUES ('$r_usuario', '$r_nome', '$r_senha', '$r_nivel')");
+            gravar_log("Registrou usuário [".$r_usuario."] * [126]");
             $resultado = 1;
           }
 

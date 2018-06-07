@@ -63,6 +63,7 @@
             mysqli_query($conectar, "UPDATE usuarios SET usuario='{$usuario}', nome='{$nome}', nivel='{$nivel}' WHERE id='{$id}'");
           }
 
+          gravar_log("Alterou o usuário [ID:".$id."] * [111]");
           echo 1;
           exit;
         }
@@ -77,6 +78,8 @@
       $sql = mysqli_query($conectar, "SELECT * FROM usuarios WHERE usuario='{$usuario}'");
       if(verificarSql($sql)){
         mysqli_query($conectar, "DELETE FROM usuarios WHERE id='{$id}'");
+
+        gravar_log("Deletou o usuário [ID:".$id."] * [112]");
         echo 1;
         exit;
       }

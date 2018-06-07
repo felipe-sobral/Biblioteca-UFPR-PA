@@ -67,20 +67,39 @@
     }
   }
 
-  function gravar_log($mensagem){
-    if($_SESSION){
-      $id = $_SESSION['id'];
-      $ip = $_SERVER['REMOTE_ADDR'];
-      $usr = "[".$ip."][".date("Y-m-d H:i:s")."]";
+  function registrar_log($mensagem){
+    date_default_timezone_set('America/Sao_Paulo');
 
-      $text = $usr." - ".$mensagem;
+    $id = $_SESSION['id'];
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $usr = "[".$ip."][".date("d-m-Y H:i:s")."]";
 
-      $sql = mysqli_query($GLOBALS['conectar'], "SELECT * FROM usuarios WHERE id='{$id}'");
-      $dado = mysqli_fetch_array($sql);
+    $text = $usr." - ".$mensagem;
 
+    $sql = mysqli_query($GLOBALS['conectar'], "SELECT * FROM usuarios WHERE id='{$id}'");
+    $dado = mysqli_fetch_array($sql);
+
+    if($dado['log']==null){
+      $full_mensagem = $text;
+    } else {
       $full_mensagem = $dado['log']."\r\n".$text;
+    }
 
-      mysqli_query($GLOBALS['conectar'], "UPDATE usuarios SET log='{$full_mensagem}' WHERE id='{$id}'");
+    mysqli_query($GLOBALS['conectar'], "UPDATE usuarios SET log='{$full_mensagem}' WHERE id='{$id}'");
+  }
+
+  function gravar_log($mensagem){
+    if(isset($_SESSION)){
+      registrar_log($mensagem);
+    } else {
+      session_start();
+      if(isset($_SESSION['usuario']) && $_SESSION['usuario']!=null){
+        registrar_log($mensagem);
+      } else {
+        header("Location: ../error.html");
+        exit;
+      }
+
     }
   }
 
