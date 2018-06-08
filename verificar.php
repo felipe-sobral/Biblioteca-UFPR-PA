@@ -25,16 +25,17 @@
         $r_senha = $_POST['r_senha'];
         $r_nome = $_POST['r_nome'];
         $r_nivel = $_POST['r_nivel'];
+        $r_email = $_POST['r_email'];
 
-        if ((!$r_usuario) || (!$r_senha) || (!$r_nome) || (!$r_nivel)){
+        if ((!$r_usuario) || (!$r_senha) || (!$r_nome) || (!$r_nivel) || (!$r_email) || $r_nivel == 0){
           $resultado = 0;
         } else {
           $sql_r = mysqli_query($conectar, "SELECT * FROM usuarios WHERE usuario = '{$r_usuario}'") or die (mysql_error());
           $resultado_r = mysqli_num_rows($sql_r);
 
           if($resultado_r == 0){
-            $registrar = mysqli_query($conectar, "INSERT INTO usuarios(usuario, nome, senha, nivel) VALUES ('$r_usuario', '$r_nome', '$r_senha', '$r_nivel')");
-            gravar_log("Registrou usuário [".$r_usuario."] * [126]");
+            $registrar = mysqli_query($conectar, "INSERT INTO usuarios(usuario, nome, senha, nivel, email) VALUES ('$r_usuario', '$r_nome', '$r_senha', '$r_nivel', '$r_email')");
+            gravar_log("Registrou usuário [".$r_usuario."] * [#126#]");
             $resultado = 1;
           }
 

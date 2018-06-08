@@ -103,4 +103,9 @@
     }
   }
 
+  function error(){
+    header("Location: ../error.html");
+    exit;
+  }
+
 ?>

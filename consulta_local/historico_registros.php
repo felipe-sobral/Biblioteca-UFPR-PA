@@ -83,7 +83,7 @@
   if(isset($_POST['fn']) && $_POST['fn'] == 2){
     $ano = $_POST['ano'];
     $mes = $_POST['mes'];
-    gravar_log("Consultou histórico consulta local [".$mes."-".$ano."] * [117]");
+    gravar_log("Consultou histórico consulta local [".$mes."-".$ano."] * [#117#]");
 
     printf("
 

@@ -108,7 +108,7 @@
 
         if($alterarDados == 2){
           mysqli_query($GLOBALS['conectar'], "DELETE FROM estatistica_usuarios WHERE data = '{$data}'");
-          gravar_log("Deletou estatística usuário [DATA:".$data."] * [118]");
+          gravar_log("Deletou estatística usuário [DATA:".$data."] * [#118#]");
           echo 1;
         }
 
@@ -118,7 +118,7 @@
           $noite = $_POST['noite'];
 
           mysqli_query($GLOBALS['conectar'], "UPDATE estatistica_usuarios SET manha = '{$manha}', tarde = '{$tarde}', noite = '{$noite}' WHERE data = '{$data}'");
-          gravar_log("Alterou estatística usuário [DATA:".$data."] * [119]");
+          gravar_log("Alterou estatística usuário [DATA:".$data."] * [#119#]");
           echo 1;
         }
 

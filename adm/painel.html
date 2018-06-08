@@ -92,21 +92,18 @@
                   <form class="col s12" id="registrarForm">
                     <div class="row">
                       <div class="input-field col s6">
-                        <input id="r_usuario" maxlength="10" type="text"></input>
+                        <input id="r_usuario" data-length="10" maxlength="10" type="text"></input>
                         <label for="r_usuario">Usuário</label>
-                        <span class="helper-text">Máximo 10 caracteres.</span>
                       </div>
                       <div class="input-field col s6">
                         <input id="r_nome" maxlength="60" type="text"></input>
                         <label for="r_nome">Nome</label>
-                        <span class="helper-text">Máximo 60 caracteres.</span>
                       </div>
                     </div>
                     <div class="row">
                       <div class="input-field col s6">
-                        <input id="r_senha" maxlength="10" type="password"></input>
+                        <input id="r_senha" data-length="10" maxlength="10" type="password"></input>
                         <label for="r_senha">Senha</label>
-                        <span class="helper-text">Máximo 10 caracteres.</span>
                       </div>
                       <div class="input-field col s6">
                         <select id="r_nivel">
@@ -119,6 +116,10 @@
                         </select>
                       </div>
                     </div>
+                    <div class="input-field">
+                      <input id="r_email" maxlength="60" type="text"></input>
+                      <label for="r_email">E-Mail</label>
+                    </div>
 
                     <center><button class="btn waves-effect waves-light" type="submit">Registrar</button></center>
                   </form>
@@ -130,6 +131,7 @@
             <li>
               <div class="collapsible-header" style='outline: 0;'><i class="material-icons">edit</i>Alterar usuário</div>
               <div class="collapsible-body">
+                <h4 style="text-align: center">Alterar usuário</h4>
                 <form id="alterarUsuarioForm1">
                   <div class="input-field">
                     <input id="alterarUser_usuario" maxlength="10" type="text"></input>
@@ -143,11 +145,20 @@
                   <div class="row">
                     <form class="col s12" id="alterarUsuarioForm2">
                       <p id='formularioAlterarAqui'></p>
-
                       <div class='row'>
                         <div class='input-field col s6'>
-                          <input id='alterarUser_senha' placeholder='Senha' maxlength='10' type='password'></input>
-                          <span class='helper-text'>Senha|Máximo 10 caracteres.</span>
+                          <input id='alterarUser_usuario2' data-length="10" maxlength='10' type='text'></input>
+                          <span class='helper-text'>Usuário</span>
+                        </div>
+                        <div class='input-field col s6'>
+                          <input id='alterarUser_nome' maxlength='60'></input>
+                          <span class='helper-text'>Nome</span>
+                        </div>
+                      </div>
+                      <div class='row'>
+                        <div class='input-field col s6'>
+                          <input id='alterarUser_senha' data-length="10" maxlength='10' type='password'></input>
+                          <label for='alterarUser_senha'>Senha</span>
                         </div>
                         <div class='input-field col s6'>
                           <select id='alterarUser_nivel'>
@@ -161,14 +172,21 @@
                           <span class='helper-text'>Nível atual: <a id='nivelUsuario'></a></span>
                         </div>
                       </div>
+                      <div class="row">
+                        <div class="input-field col s6">
+                          <input id="alterarUser_email" maxlength="60" type="text"></input>
+                          <span class="helper-text">E-Mail</label>
+                        </div>
 
-                      <div class='input-field'>
-                        <select id='alterarUser_alterar'>
-                          <option selected disabled>O que fazer?</option>
-                          <option value='1'>Apenas alterar</option>
-                          <option value='2'>Excluir conta</option>
-                        </select>
+                        <div class='input-field col s6'>
+                          <select id='alterarUser_alterar'>
+                            <option selected disabled>O que fazer?</option>
+                            <option value='1'>Apenas alterar</option>
+                            <option value='2'>Excluir conta</option>
+                          </select>
+                        </div>
                       </div>
+
                       <center><button class="btn waves-effect waves-light" type="submit">Fazer alterações</button></center>
                     </form>
                   </div>
@@ -177,9 +195,23 @@
             <li>
               <div class="collapsible-header" style='outline: 0;'><i class="material-icons">people</i>Usuários registrados</div>
               <div class="collapsible-body">
+                <h4 style="text-align: center">Usuário registrados</h4>
                 <center><button class="btn waves-effect" onclick="usuarios_registrados()">Verificar</button>
                   <a id="usuariosRegistrados"></a>
                 </center>
+              </div>
+            </li>
+            <li>
+              <div class="collapsible-header" style='outline: 0;'><i class="material-icons">history</i>Log de usuário</div>
+              <div class="collapsible-body">
+                <h4 style="text-align: center">Log do usuário</h4>
+                <form id="pegarLog">
+                  <div class="input-field">
+                    <input type="text" id="log_usuario"></input>
+                    <label for="log_usuario">Usuário</input>
+                  </div>
+                  <center><button type="submit" class="btn waves-effect">Consultar</button></center>
+                </form>
               </div>
             </li>
           </ul>
@@ -208,6 +240,8 @@
             }
           }
         })
+
+        $('input#r_usuario, input#r_senha, input#alterarUser_usuario2, input#alterarUser_senha').characterCounter();
       })
     </script>
     <script src="main.js"></script>

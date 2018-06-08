@@ -20,22 +20,13 @@
 
       printf("
 
-      <div class='row'>
-        <div class='input-field col s6'>
-          <input id='alterarUser_usuario2' maxlength='10' type='text' value='%s'></input>
-          <span class='helper-text'>Usuário|Máximo 10 caracteres.</span>
-        </div>
-        <div class='input-field col s6'>
-          <input id='alterarUser_nome' value='%s' maxlength='60' type='text'></input>
-          <span class='helper-text'>Nome|Máximo 60 caracteres.</span>
-        </div>
-      </div>
+        <script>var usuarioUsuario = '%s';</script>
+        <script>var nomeUsuario = '%s';</script>
+        <script>var alterarUser_id = %d;</script>
+        <script>var nivelUsuario = %d;</script>
+        <script>var emailUsuario = '%s';</script>
 
-      <input id='alterarUser_id' value='%d' style='display: none;'>
-
-      <script> var nivelUsuario = %d </script>
-
-      ", $dados['usuario'], $dados['nome'], $dados['id'], $dados['nivel']);
+      ", $dados['usuario'], $dados['nome'], $dados['id'], $dados['nivel'], $dados['email']);
       exit;
     } else {
       echo 0;
@@ -44,26 +35,31 @@
   }
 
   if(isset($_POST['fn']) && $_POST['fn']==2){
-    $verificarA = $_POST['$alterarUser_alterar'];
+    $verificarA = $_POST['alterarUser_alterar'];
 
     if($verificarA == 1){
-      $usuario = $_POST['$alterarUser_usuario2'];
-      $id = $_POST['$alterarUser_id'];
-      $nome = $_POST['$alterarUser_nome'];
-      $senha = $_POST['$alterarUser_senha'];
-      $nivel = $_POST['$alterarUser_nivel'];
+      $usuario = $_POST['alterarUser_usuario2'];
+      $id = $_POST['alterarUser_id'];
+      $nome = $_POST['alterarUser_nome'];
+      $senha = $_POST['alterarUser_senha'];
+      $nivel = $_POST['alterarUser_nivel'];
+      $email = $_POST['alterarUser_email'];
 
       $sql = mysqli_query($conectar, "SELECT * FROM usuarios WHERE usuario='{$usuario}'");
       if(verificarSql($sql)){
         $v_sql = mysqli_num_rows($sql);
         if($v_sql == 1){
-          if($senha != null){
-            mysqli_query($conectar, "UPDATE usuarios SET usuario='{$usuario}', nome='{$nome}', senha='{$senha}', nivel='{$nivel}' WHERE id='{$id}'");
+          if((!$usuario) || (!$id) || (!$nome) || (!$nivel) || (!$email) || $nivel==0){
+            echo 0;
+            exit;
           } else {
-            mysqli_query($conectar, "UPDATE usuarios SET usuario='{$usuario}', nome='{$nome}', nivel='{$nivel}' WHERE id='{$id}'");
+            if($senha != null){
+              mysqli_query($conectar, "UPDATE usuarios SET usuario='{$usuario}', nome='{$nome}', senha='{$senha}', nivel='{$nivel}', email='{$email}' WHERE id='{$id}'");
+            } else {
+              mysqli_query($conectar, "UPDATE usuarios SET usuario='{$usuario}', nome='{$nome}', nivel='{$nivel}', email='{$email}' WHERE id='{$id}'");
+            }
           }
-
-          gravar_log("Alterou o usuário [ID:".$id."] * [111]");
+          gravar_log("Alterou o usuário [ID:".$id."] * [#111#]");
           echo 1;
           exit;
         }
@@ -73,13 +69,13 @@
     }
 
     if($verificarA == 2) {
-      $usuario = $_POST['$alterarUser_usuario2'];
-      $id = $_POST['$alterarUser_id'];
+      $usuario = $_POST['alterarUser_usuario2'];
+      $id = $_POST['alterarUser_id'];
       $sql = mysqli_query($conectar, "SELECT * FROM usuarios WHERE usuario='{$usuario}'");
       if(verificarSql($sql)){
         mysqli_query($conectar, "DELETE FROM usuarios WHERE id='{$id}'");
 
-        gravar_log("Deletou o usuário [ID:".$id."] * [112]");
+        gravar_log("Deletou o usuário [ID:".$id."][".$usuario."] * [#112#]");
         echo 1;
         exit;
       }

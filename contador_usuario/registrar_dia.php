@@ -25,7 +25,7 @@
 			exit;
 		} else {
 			mysqli_query($conectar, "INSERT INTO estatistica_usuarios(manha, tarde, noite, n_mes, data, ano) VALUES ($manha, $tarde, $noite, $mes, '{$data}', $ano)");
-			gravar_log("Adicionou estatística usuário [".$data."] * [123]");
+			gravar_log("Adicionou estatística usuário [".$data."] * [#123#]");
 			echo 1;
 			exit;
 		}

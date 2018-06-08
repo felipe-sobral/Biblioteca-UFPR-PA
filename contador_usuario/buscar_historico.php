@@ -16,7 +16,7 @@
     exit;
   }
 
-  gravar_log("Consultou estatística usuário [".$mes."-".$ano."] * [121]");
+  gravar_log("Consultou estatística usuário [".$mes."-".$ano."] * [#121#]");
 
   $manha = 0;
   $tarde = 0;

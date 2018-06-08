@@ -28,7 +28,7 @@
       }
       printf("</tbody> </table>");
 
-      gravar_log("Consultou os usuários registrados * [113]");
+      gravar_log("Consultou os usuários registrados * [#113#]");
     } else {
       echo 0;
     }

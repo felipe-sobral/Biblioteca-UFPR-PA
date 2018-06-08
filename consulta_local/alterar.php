@@ -28,10 +28,10 @@
       if($_POST["alterarCodigos"] != null){
         $inserir = str_replace('<br />', '\r', nl2br($_POST["alterarCodigos"]));
         mysqli_query($conectar, "UPDATE consulta_local SET codigos='{$inserir}' WHERE id='{$id}'");
-        gravar_log("Alterou Consulta Local [ID:".$id."] * [115]");
+        gravar_log("Alterou Consulta Local [ID:".$id."] * [#115#]");
       }else{
         mysqli_query($conectar, "DELETE FROM consulta_local WHERE id='{$id}'");
-        gravar_log("Excluiu Consulta Local [ID:".$id."] * [116]");
+        gravar_log("Excluiu Consulta Local [ID:".$id."] * [#116#]");
       }
 
       echo "1";
