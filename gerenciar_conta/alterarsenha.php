@@ -17,7 +17,7 @@
 
   if(verificarSql($sql)){
     mysqli_query($conectar, "UPDATE usuarios SET senha='{$n_senha}' WHERE usuarios.usuario='{$usuario}'");
-    gravar_log("Alterou sua própria senha * [124]");
+    gravar_log("Alterou sua própria senha * [#124#]");
     echo 1;
     exit;
   } else {

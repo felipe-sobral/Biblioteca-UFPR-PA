@@ -66,7 +66,7 @@
 
     $nomePasta = "downloads/".$mes."-".$ano;
     baixarArquivo($nomePasta."/consulta_local.zip");
-    gravar_log("Baixou consulta local [".$mes."-".$ano."] * [114]");
+    gravar_log("Baixou consulta local [".$mes."-".$ano."] * [#114#]");
 
   } else {
     echo 0;

@@ -26,7 +26,7 @@
                 $_SESSION['nivel'] = $dado['nivel'];
             }
             $retorno = 1;
-            gravar_log("Fez login * [125]");
+            gravar_log("Fez login * [#125#]");
         }
     }
 

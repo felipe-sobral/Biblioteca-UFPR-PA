@@ -45,11 +45,11 @@
       $nivel = $_POST['alterarUser_nivel'];
       $email = $_POST['alterarUser_email'];
 
-      $sql = mysqli_query($conectar, "SELECT * FROM usuarios WHERE usuario='{$usuario}'");
+      $sql = mysqli_query($conectar, "SELECT * FROM usuarios WHERE id='{$id}'");
       if(verificarSql($sql)){
         $v_sql = mysqli_num_rows($sql);
         if($v_sql == 1){
-          if((!$usuario) || (!$id) || (!$nome) || (!$nivel) || (!$email) || $nivel==0){
+          if((!$usuario) || (!$id) || (!$nome) || (!$email) || ($nivel==0)){
             echo 0;
             exit;
           } else {
@@ -84,8 +84,6 @@
       exit;
     }
 
-    echo 0;
-    exit;
   } else {
     echo 0;
     exit;
