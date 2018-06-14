@@ -86,7 +86,7 @@
   </div>
 
   <script>
-    $(document).ready(function() {
+    function liberar(){
       $.ajax({
         url: "verificar.php",
         type: "post",
@@ -100,6 +100,20 @@
           }
         }
       })
+    }
+
+    $(document).ready(function() {
+      $.ajax({
+        url: "seguranca.php",
+        success: function(x){
+          if(x==false){
+            window.location = 'error.html';
+          } else {
+            liberar();
+          }
+        }
+      })
+
 
       $('#loginform').submit(function() {
         var usuario = $('#usuario').val();

@@ -1,15 +1,19 @@
 <?php
 
-  $dados = @unserialize(file_get_contents('http://ip-api.com/php/'.$_SERVER['REMOTE_ADDR']));
   $whitelistISP = "Fundacao da UFPR para o DCTC";
 
-  if($dados['isp'] == $whitelistISP){
-    echo "VOCÊ TEM ACESSO!!!!";
-  } else {
-    echo "VOCÊ NÃO TEM ACESSO!!!";
-  }
 
-  echo "<br/>ISP TESTADO = ".$dados['isp'];
+
+  $dados = json_decode(file_get_contents("http://extreme-ip-lookup.com/json/".$_SERVER['REMOTE_ADDR']));
+
+  $isp = $dados->isp;
+  $host = $dados->ipName;
+  echo "<br/>IP86.cce-servers.ufpr.br";
+  echo "<br/>";
+  echo "<br/>ISP TESTADO = ".$isp;
+  echo "<br/>HOSTNAME TESTADO = ".$host;
+
+   //https://extreme-ip-lookup.com/
 
 
 ?>

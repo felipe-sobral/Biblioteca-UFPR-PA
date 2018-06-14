@@ -24,6 +24,14 @@ $('#alterarSenha_form').submit(function() {
 })
 
 $(document).ready(function() {
+  $.ajax({
+    url: "../seguranca.php",
+    success: function(x){
+      if(x==false){
+        window.location = '../error.html';
+      }
+    }
+  })
 
   $.ajax({
     url: '../templates/menu.php',
