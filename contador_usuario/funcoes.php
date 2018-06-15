@@ -2,6 +2,12 @@
   session_start();
 
   include "../cfg.php";
+  include "../seguranca.php";
+
+  if(!verificaHostIP()){
+    echo 0;
+    exit;
+  }
 
   $funcao = $_POST['funcao'];
   $numero = $_POST['numero'];

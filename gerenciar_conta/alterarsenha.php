@@ -3,7 +3,7 @@
 
   include "../funcoesGerais.php";
   include "../cfg.php";
-
+  
   if($_POST['alterarSenha_nova'] != $_POST['alterarSenha_conferir']){
     echo 0;
     exit;

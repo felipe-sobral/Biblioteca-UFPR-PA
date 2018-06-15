@@ -1,9 +1,9 @@
 <?php
 	session_start();
 
-	include "../funcoesGerais.php";
 	include "../cfg.php";
-
+	include "../funcoesGerais.php";
+	
 	$nome = retornaNome();
 
 	printf("

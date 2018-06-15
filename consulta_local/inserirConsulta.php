@@ -2,9 +2,9 @@
 
   session_start();
 
-  include "../funcoesGerais.php";
   include "../cfg.php";
-
+  include "../funcoesGerais.php";
+  
   if(is_null($_POST['codigos'])){
     echo 0;
     exit;

@@ -1,6 +1,4 @@
 <?php
-  $status = true;
-
   function verificaHostIP(){
     $dadosIP = json_decode(file_get_contents("http://extreme-ip-lookup.com/json/".$_SERVER['REMOTE_ADDR']));
     $ipHUSR = $dadosIP->ipName;
@@ -13,13 +11,9 @@
     }
   }
 
-  if(!verificaHostIP()){
-    if(isset($_SESSION)){
-      session_destroy();
-    }
-
-    $status = false;
+  if(isset($_POST['ajaxS'])){
+    $secSTATUS = verificaHostIP();
+    echo $secSTATUS;
   }
 
-  echo $status;
 ?>

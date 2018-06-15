@@ -5,6 +5,12 @@
   }
 
   include "cfg.php"; */
+  include "seguranca.php";
+
+  if(!verificaHostIP()){
+    echo 0;
+    exit;
+  }
 
   function verificarNivel($nivel){
     if(isset($_SESSION)){

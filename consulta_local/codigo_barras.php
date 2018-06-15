@@ -10,6 +10,12 @@
 
   include "codigos_registrados.php";
   include "inserir_funcao.php";
+  include "../seguranca.php";
+
+  if(!verificaHostIP()){
+    echo 0;
+    exit;
+  }
 
   function validarQR($codigo){
     $sql = mysqli_query($GLOBALS['conectar'], "SELECT * FROM QRcode WHERE codigo = '{$codigo}'");

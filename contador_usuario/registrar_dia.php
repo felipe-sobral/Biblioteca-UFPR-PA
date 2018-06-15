@@ -3,7 +3,7 @@
 	session_start();
 
 	include "../cfg.php";
-  	include "../funcoesGerais.php";
+  include "../funcoesGerais.php";
 
 	if(verificarNivel(5)){
 		$data = $_POST['data'];

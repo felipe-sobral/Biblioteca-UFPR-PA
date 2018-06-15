@@ -1,6 +1,12 @@
 <?php
     include "cfg.php";
     include "funcoesGerais.php";
+    include "seguranca.php";
+
+    if(!verificaHostIP()){
+      echo 0;
+      exit;
+    }
 
     $user = $_POST['usuario'];
     $pass = $_POST['senha'];

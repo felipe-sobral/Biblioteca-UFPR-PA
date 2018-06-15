@@ -3,7 +3,7 @@
 
     include "cfg.php";
     include "funcoesGerais.php";
-
+    
     $funcao = $_POST['executarFuncao'];
 
     $resultado = 0;
