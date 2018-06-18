@@ -75,7 +75,7 @@
 
   if(isset($_POST['fn']) && $_POST['fn'] == 1){
 
-    printf("<p id='livrosRegistradosHoje'>Livros registrados hoje: <b>%d</b>.</p>", contarLivrosDia($ano, $mes, $dia));
+    printf("<span id='livrosRegistradosHoje'>%d</span>", contarLivrosDia($ano, $mes, $dia));
     exit;
 
   }

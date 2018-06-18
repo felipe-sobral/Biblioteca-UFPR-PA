@@ -48,7 +48,18 @@
         <a data-target="slide-out" class="sidenav-trigger waves-effect"><i class="material-icons" style="color: #fff">menu</i></a>
         <center><img src="../img/branco_UFPR.png" />
           <h1 class="display-4">Painel de Controle</h1>
+          <div class="row">
+            <div class="col" style="text-align: right">
+                <h3 id="pessoasRegistradas">00</h3>
+                <p>Total de pessoas registradas.</p>
+            </div>
+            <div class="col" style="text-align: left">
+                <h3><span id="livrosRegistradosHoje">00</span></h3>
+                <p>Total de livros registrados.</p>
+            </div>
+          </div>
           <a href="https://github.com/krepper/Biblioteca-UFPR-PA/blob/master/README.md" target="_blank" class="waves-effect btn white" style="color: #000">Documentação</a>
+          <p>Última atualização do sistema: 18/06/2018</p>
       </div>
     </div>
   </div>
@@ -66,6 +77,15 @@
           } else {
             liberar();
           }
+        }
+      })
+
+      $.ajax({
+        url: "consulta_local/historico_registros.php",
+        type: "post",
+        data: "fn=" + 1,
+        success: function(result) {
+          $("#livrosRegistradosHoje").html(result);
         }
       })
 
