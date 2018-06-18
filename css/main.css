@@ -1,0 +1,29 @@
+header,
+main,
+footer,
+body {
+  padding-left: 300px;
+}
+
+.carregando {
+  padding-top: 35vh;
+  padding-right: 300px;
+}
+
+.cab {
+  -webkit-box-shadow: 0px 4px 19px -6px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 4px 19px -6px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 4px 19px -6px rgba(0, 0, 0, 0.75);
+}
+
+@media only screen and (max-width: 992px) {
+  header,
+  main,
+  footer,
+  body {
+    padding-left: 0;
+  }
+  .carregando {
+    padding-right: 0;
+  }
+}
