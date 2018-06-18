@@ -1,7 +1,6 @@
 <?php
     include "cfg.php";
     include "funcoesGerais.php";
-    include "seguranca.php";
 
     if(!verificaHostIP()){
       echo 0;

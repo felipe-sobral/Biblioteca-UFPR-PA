@@ -5,12 +5,27 @@
   }
 
   include "cfg.php"; */
-  /*include "seguranca.php";
+  function verificaHostIP(){
+    $dadosIP = json_decode(file_get_contents("http://extreme-ip-lookup.com/json/".$_SERVER['REMOTE_ADDR']));
+    $ipHUSR = $dadosIP->ipName;
+    $ipsWHITE = array("ip1", "ip2", "ip3", "ip4");
+
+    if(!in_array($ipHUSR, $ipsWHITE)){ //REMOVER *!* PARA ATIVAR A SEGURANÇA
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  function error(){
+    header("Location: ../error.html");
+    exit;
+  }
 
   if(!verificaHostIP()){
-    echo 0;
+    error();
     exit;
-  }*/
+  }
 
   function verificarNivel($nivel){
     if(isset($_SESSION)){
@@ -107,11 +122,6 @@
       }
 
     }
-  }
-
-  function error(){
-    header("Location: ../error.html");
-    exit;
   }
 
 ?>

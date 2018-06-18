@@ -26,8 +26,6 @@ $('#alterarSenha_form').submit(function() {
 $(document).ready(function() {
   $.ajax({
     url: "../seguranca.php",
-    type: "post",
-    data: "ajaxS="+1,
     success: function(x){
       if(x==false){
         window.location = '../error.html';

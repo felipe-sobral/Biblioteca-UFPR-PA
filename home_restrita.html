@@ -58,6 +58,17 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script>
     $(document).ready(function() {
+      $.ajax({
+        url: "seguranca.php",
+        success: function(x){
+          if(x==false){
+            location.href = 'error.html';
+          } else {
+            liberar();
+          }
+        }
+      })
+
       $('#passou').hide();
       $.ajax({
         url: 'templates/menu.php',
