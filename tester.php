@@ -1,9 +1,10 @@
 <?php
+  session_start();
 
-  include "seguranca.php";
+  include "cfg.php";
+  include "funcoesGerais.php";
 
-  if(verificaHostIP()){
-    echo "DEU PAU";
-  }
+  $dataH = date("Y-m-d");
 
+  
 ?>

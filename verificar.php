@@ -1,9 +1,12 @@
 <?php
+    /*
+      ** REMOVER ESTE ARQUIVO = NOVO ARQ. funcoesGerais.php **
+    */
     session_start();
 
     include "cfg.php";
     include "funcoesGerais.php";
-    
+
     $funcao = $_POST['executarFuncao'];
 
     $resultado = 0;

@@ -50,7 +50,7 @@
           <h1 class="display-4">Painel de Controle</h1>
           <div class="row">
             <div class="col" style="text-align: right">
-                <h3 id="pessoasRegistradas">00</h3>
+                <h3 id="pessoasRegistradasHoje">00</h3>
                 <p>Total de pessoas registradas.</p>
             </div>
             <div class="col" style="text-align: left">
@@ -68,36 +68,7 @@
   <!-- SCRIPTS -->
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script>
-    $(document).ready(function() {
-      $.ajax({
-        url: "seguranca.php",
-        success: function(x){
-          if(x==false){
-            location.href = 'error.html';
-          } else {
-            liberar();
-          }
-        }
-      })
-
-      $.ajax({
-        url: "consulta_local/historico_registros.php",
-        type: "post",
-        data: "fn=" + 1,
-        success: function(result) {
-          $("#livrosRegistradosHoje").html(result);
-        }
-      })
-
-      $('#passou').hide();
-      $.ajax({
-        url: 'templates/menu.php',
-        success: function(menu) {
-          $('#menuID').html(menu);
-        }
-
-      });
-
+    function liberar(){
       $.ajax({
         url: "verificar.php",
         type: "post",
@@ -111,6 +82,47 @@
           }
         }
       })
+    }
+
+    $(document).ready(function() {
+      $.ajax({
+        url: "consulta_local/historico_registros.php",
+        type: "post",
+        data: "fn=" + 1,
+        success: function(result) {
+          $("#livrosRegistradosHoje").html(result);
+        }
+      })
+
+      $.ajax({
+        url: "contador_usuario/funcoes.php",
+        type: "post",
+        data: "funcao=" + 6 + "&numero=" + 0,
+        success: function(result) {
+          $("#pessoasRegistradasHoje").html(result);
+        }
+      })
+
+      $('#passou').hide();
+
+      $.ajax({
+        url: "seguranca.php",
+        success: function(x){
+          if(x==false){
+            location.href = 'error.html';
+          } else {
+            liberar();
+          }
+        }
+      })
+
+      $.ajax({
+        url: 'templates/menu.php',
+        success: function(menu) {
+          $('#menuID').html(menu);
+        }
+
+      });
 
       $('.dropdown-trigger').dropdown();
       $('.sidenav').sidenav();

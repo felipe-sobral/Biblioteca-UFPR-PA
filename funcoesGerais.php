@@ -1,10 +1,5 @@
 <?php
 
-  /* if(!isset($_SESSION)){
-    session_start();
-  }
-
-  include "cfg.php"; */
   function verificaHostIP(){
     $dadosIP = json_decode(file_get_contents("http://extreme-ip-lookup.com/json/".$_SERVER['REMOTE_ADDR']));
     $ipHUSR = $dadosIP->ipName;
@@ -58,6 +53,7 @@
     }
   }
 
+  // CORRIGIR DEPOIS
   function retornaData($sql_retorno){
     $resultado = mysqli_fetch_row($sql_retorno);
     $resultado = $resultado[0];
