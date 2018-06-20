@@ -11,7 +11,7 @@
 		<div class='background'>
     	<img src='../img/bg.jpg'>
     </div>
-	  <center><a href='http://bibliotecaufprpa.hol.es/home_restrita.html'><img src='../img/branco_UFPR.png' width='188vh'></a>
+	  <center><a href='../home_restrita.html'><img src='../img/branco_UFPR.png' width='188vh'></a>
 	  <h5 id='nomeID' class='card-title text-light'>%s</h5>
 		<hr width='200vh''/>
 	</div></li>
