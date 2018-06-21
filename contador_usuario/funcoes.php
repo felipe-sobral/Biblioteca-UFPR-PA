@@ -120,15 +120,27 @@
     $contagem = mysqli_fetch_array($sql);
     switch ($hora_br) {
       case ($hora_br >= 7 && $hora_br < 12):
-        echo $contagem['manha'];
+        if($contagem['manha'] == 0){
+          echo "00";
+        } else {
+          echo $contagem['manha'];
+        }
       break;
 
       case ($hora_br >= 12 && $hora_br < 18):
-        echo $contagem['tarde'];
+        if($contagem['tarde'] == 0){
+          echo "00";
+        } else {
+          echo $contagem['tarde'];
+        }
       break;
 
       case ($hora_br >= 18 && $hora_br < 23):
-        echo $contagem['noite'];
+        if($contagem['noite'] == 0){
+          echo "00";
+        } else {
+          echo $contagem['noite'];
+        }
       break;
     }
   }
