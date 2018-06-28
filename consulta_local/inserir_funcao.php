@@ -1,8 +1,8 @@
 <?php
 function inserirCodigo($codigo){
-  $mes = retornaData(mysqli_query($GLOBALS['conectar'], "SELECT MONTH(CURRENT_TIMESTAMP)"));
-  $dia = retornaData(mysqli_query($GLOBALS['conectar'], "SELECT DAY(CURRENT_TIMESTAMP)"));
-  $ano = retornaData(mysqli_query($GLOBALS['conectar'], "SELECT YEAR(CURRENT_TIMESTAMP)"));
+  $mes = date("m");
+  $dia = date("d");
+  $ano = date("Y");
 
   if(strlen($codigo) != 8){
     return false;
@@ -23,13 +23,14 @@ function inserirCodigo($codigo){
       $novo_text = $dado['codigos']."\r\n".$codigo;
 
       mysqli_query($GLOBALS['conectar'], "UPDATE consulta_local SET codigos='{$novo_text}' WHERE mes='{$mes}' AND dia='{$dia}' AND ano='{$ano}'");
+      gravar_log("Adicionou Consulta [".$codigo."] * [#134#]");
 
       return true;
 
     } else {
 
       mysqli_query($GLOBALS['conectar'], "INSERT INTO `consulta_local`(`dia`, `ano`, `mes`, `codigos`) VALUES ('$dia', '$ano', '$mes','$codigo')");
-
+      gravar_log("Adicionou Consulta [".$codigo."] * [#134#]");
       return true;
 
     }

@@ -51,16 +51,19 @@
       switch ($hora_br) {
         case ($hora_br >= 7 && $hora_br < 12): // PARTE MANHÃ 07:30 ÀS 12:00
           mysqli_query($conectar, "UPDATE estatistica_usuarios SET manha = manha+1 WHERE data = '{$data}'");
+          gravar_log("Contador+Manha * [#128#]");
           echo $contagem['manha']+1;
         break;
 
         case ($hora_br >= 12 && $hora_br < 18): // PARTE TARDE 12:00 ÀS 18:00
           mysqli_query($conectar, "UPDATE estatistica_usuarios SET tarde = tarde+1 WHERE data = '{$data}'");
+          gravar_log("Contador+Tarde * [#129#]");
           echo $contagem['tarde']+1;
         break;
 
         case ($hora_br >= 18 && $hora_br < 23): // PARTE NOITE 18:00 ÀS 19:30
           mysqli_query($conectar, "UPDATE estatistica_usuarios SET noite = noite+1 WHERE data = '{$data}'");
+          gravar_log("Contador+Noite * [#130#]");
           echo $contagem['noite']+1;
         break;
       }
@@ -79,6 +82,7 @@
         case ($hora_br >= 7 && $hora_br < 12):
           if($contagem['manha'] != 0){
             mysqli_query($conectar, "UPDATE estatistica_usuarios SET manha = manha-1 WHERE data = '{$data}'");
+            gravar_log("Contador-Manha * [#131#]");
             echo $contagem['manha']-1;
           } else {
             echo 0;
@@ -88,6 +92,7 @@
         case ($hora_br >= 12 && $hora_br < 18):
           if($contagem['tarde'] != 0){
             mysqli_query($conectar, "UPDATE estatistica_usuarios SET tarde = tarde-1 WHERE data = '{$data}'");
+            gravar_log("Contador-Tarde * [#132#]");
             echo $contagem['tarde']-1;
           } else {
             echo 0;
@@ -97,6 +102,7 @@
         case ($hora_br >= 18 && $hora_br < 23):
           if($contagem['noite'] != 0){
             mysqli_query($conectar, "UPDATE estatistica_usuarios SET noite = noite-1 WHERE data = '{$data}'");
+            gravar_log("Contador-Noite * [#133#]");
             echo $contagem['noite']-1;
           } else {
             echo 0;
