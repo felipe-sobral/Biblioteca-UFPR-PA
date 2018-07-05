@@ -73,6 +73,7 @@ Para registrar um livro no consulta local é bem simples, basta inserir o códig
 - **05/07/2018**;
   - Atualizado a página inicial do painel de controle (home_restrita.html);
     - Adicionado aviso temporário;
+  - Adicionado botão "Atualizações" no menu principal; 
 # Bom, é isso. Por enquanto.
 
 Ainda estou escrevendo esta documentação, fique de olho.

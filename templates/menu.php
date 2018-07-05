@@ -57,6 +57,7 @@
 	<li><a class='collapsible-header waves-effect' style='text-decoration:none; outline: 0;' href='../gerenciar_conta/painel.html'><i class='material-icons'>settings</i>Gerenciar conta</a></li>
 	<li><a class='collapsible-header waves-effect waves-yellow' style='text-decoration:none' href='../adm/painel.html'><i class='material-icons'>lock</i>Administração</a></li>
 	<li><a class='collapsible-header waves-effect' style='text-decoration:none' href='https://goo.gl/forms/QvhPwxZpUs0IT1Ys1' target='_blank'><i class='material-icons'>bug_report</i>Reportar</a></li>
+	<li><a class='collapsible-header waves-effect' style='text-decoration:none' href='https://github.com/krepper/Biblioteca-UFPR-PA/blob/master/README.md#atualizações' target='_blank'><i class='material-icons'>fiber_new</i>Atualizações</a></li>
 	<li><a class='collapsible-header waves-effect waves-red' style='text-decoration:none' href='../logout.php'><i class='material-icons'>exit_to_app</i>Sair</a></li>
 	<li><a class='collapsible-header waves-effect waves-white' style='text-decoration:none; padding-top: 20px'></li>
 
