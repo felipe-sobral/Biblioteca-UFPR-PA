@@ -70,6 +70,9 @@ Para registrar um livro no consulta local é bem simples, basta inserir o códig
 - **21/06/2018**;
   - Corrigido erro gerado pela atualização (20/06/2018) que não mostrava contador de usuários registrados caso fosse 0 (zero);
   - Atualizado esta documentação;
+- **05/07/2018**;
+  - Atualizado a página inicial do painel de controle (home_restrita.html);
+    - Adicionado aviso temporário;
 # Bom, é isso. Por enquanto.
 
 Ainda estou escrevendo esta documentação, fique de olho.

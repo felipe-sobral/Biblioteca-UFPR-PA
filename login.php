@@ -11,7 +11,7 @@
     $pass = $_POST['senha'];
     $funcao = $_POST['funcao'];
 
-    $sql = mysqli_query($conectar, "SELECT * FROM usuarios WHERE usuario = '{$user}' AND senha = '{$pass}'") or die (mysql_error());
+    $sql = mysqli_query($conectar, "SELECT * FROM usuarios WHERE usuario = '{$user}' AND senha = '{$pass}'");
 
     $dado = mysqli_fetch_array($sql);
     $resultado = mysqli_num_rows($sql);
