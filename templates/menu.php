@@ -38,7 +38,7 @@
 	<li>
 	  <ul class='collapsible collapsible-accordion'>
 	    <li>
-	      <a class='collapsible-header waves-effect' style='text-decoration:none; outline: 0;'><i class='material-icons'>assignment_turned_in</i>Estatística Consulta Local</a>
+	      <a class='collapsible-header waves-effect' style='text-decoration:none; outline: 0;'><i class='material-icons'>assignment</i>Estatística Consulta Local</a>
 	      <div class='collapsible-body'>
 	        <ul>
 	          <li><a class='waves-effect' style='text-decoration:none' href='../consulta_local/registrar_codigos.html'><i class='material-icons'>note_add</i>Registrar códigos</a></li>
@@ -53,7 +53,7 @@
 	  </ul>
 	</li>
 
-
+	<li><a class='collapsible-header waves-effect' style='text-decoration:none; outline: 0;' href='../tarefas/home.html'><i class='material-icons'>book</i>Tarefas <span class='badge'>0</span></a></li>
 	<li><a class='collapsible-header waves-effect' style='text-decoration:none; outline: 0;' href='../gerenciar_conta/painel.html'><i class='material-icons'>settings</i>Gerenciar conta</a></li>
 	<li><a class='collapsible-header waves-effect waves-yellow' style='text-decoration:none' href='../adm/painel.html'><i class='material-icons'>lock</i>Administração</a></li>
 	<li><a class='collapsible-header waves-effect' style='text-decoration:none' href='https://goo.gl/forms/QvhPwxZpUs0IT1Ys1' target='_blank'><i class='material-icons'>bug_report</i>Reportar</a></li>

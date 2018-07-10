@@ -1,7 +1,7 @@
 <?php
 
   function verificaHostIP(){
-    $dadosIP = json_decode(file_get_contents("http://extreme-ip-lookup.com/json/".$_SERVER['REMOTE_ADDR']));
+    /*$dadosIP = json_decode(file_get_contents("http://extreme-ip-lookup.com/json/".$_SERVER['REMOTE_ADDR']));
     $ipHUSR = $dadosIP->ipName;
     $ipsWHITE = array("ip1", "ip2", "ip3", "ip4");
 
@@ -9,7 +9,8 @@
       return true;
     }else{
       return false;
-    }
+    }*/
+    return true;
   }
 
   function error(){
