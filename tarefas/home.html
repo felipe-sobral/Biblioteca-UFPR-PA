@@ -49,7 +49,6 @@
     <div class="container">
       <div class="card">
         <div class="card-body">
-
           <ul class="collapsible">
             <li> <!-- Adicionar tarefa -->
               <div class="collapsible-header"><i class="material-icons">note_add</i>Adicionar tarefa</div>
@@ -60,31 +59,17 @@
                     <div class="input-field col s6">
                       <input id="t_usuario" data-length="10" maxlength="10" type="text"></input>
                       <label for="t_usuario">Usuário</label>
+                      <span class="helper-text">Usuário que irá receber a tarefa</span>
                     </div>
                     <div class="input-field col s6">
-                      <input id="r_nome" maxlength="60" type="text"></input>
-                      <label for="r_nome">Nome</label>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="input-field col s6">
-                      <input id="r_senha" data-length="10" maxlength="10" type="password"></input>
-                      <label for="r_senha">Senha</label>
-                    </div>
-                    <div class="input-field col s6">
-                      <select id="r_nivel">
-                        <option selected disabled>Nível do usuário</option>
-                        <option value="1">Registrado</option>
-                        <option value="2">Provisório</option>
-                        <option value="3">Comum</option>
-                        <option value="4">Moderador</option>
-                        <option value="5">Administrador</option>
-                      </select>
+                      <input id="t_titulo" maxlength="100" type="text"></input>
+                      <label for="t_titulo">Título</label>
+                      <span class="helper-text">Título da tarefa</span>
                     </div>
                   </div>
                   <div class="input-field">
-                    <input id="r_email" maxlength="60" type="text"></input>
-                    <label for="r_email">E-Mail</label>
+                    <textarea id="t_descricao" maxlength="1000" class="materialize-textarea"></textarea>
+                    <label for="t_descricao">Descrição</label>
                   </div>
 
                   <center><button class="btn waves-effect waves-light" type="submit">Registrar</button></center>
@@ -113,7 +98,37 @@
             </li>
             <li> <!-- Tarefas finalizadas -->
               <div class="collapsible-header"><i class="material-icons">assignment_turned_in</i>Tarefas finalizadas</div>
-              <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+              <div class="collapsible-body">
+
+                <table class="responsive-table highlight">
+                  <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Criado</th>
+                        <th>Finalizado</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td>Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sen</td>
+                      <td>11-07-2018</td>
+                      <td>20-07-2018</td>
+                    </tr>
+                    <tr>
+                      <td>Alan</td>
+                      <td>11-07-2018</td>
+                      <td>20-07-2018</td>
+                    </tr>
+                    <tr>
+                      <td>Jonathan</td>
+                      <td>11-07-2018</td>
+                      <td>20-07-2018</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </div>
             </li>
           </ul>
 
@@ -125,6 +140,7 @@
 
   <!-- SCRIPTS -->
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
   <script>
     $('#passou').hide();
 
@@ -145,7 +161,6 @@
     })
   </script>
   <script src="main.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 
 
 </body>

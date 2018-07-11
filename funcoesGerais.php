@@ -54,6 +54,12 @@
     }
   }
 
+  function retornaID($usuario){
+    $sql = mysqli_query($GLOBALS['conectar'], "SELECT * FROM usuarios WHERE usuario = '{$usuario}'");
+    $dado = mysqli_fetch_array($sql);
+    return $dado['id'];
+  }
+
   // CORRIGIR DEPOIS
   function retornaData($sql_retorno){
     $resultado = mysqli_fetch_row($sql_retorno);
@@ -119,6 +125,10 @@
       }
 
     }
+  }
+
+  function verificarTabela($conectar, $sql){ // CONTINUAR AQUI
+
   }
 
 ?>
