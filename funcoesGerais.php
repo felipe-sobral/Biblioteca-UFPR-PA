@@ -127,8 +127,4 @@
     }
   }
 
-  function verificarTabela($conectar, $sql){ // CONTINUAR AQUI
-
-  }
-
 ?>
