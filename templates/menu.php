@@ -2,9 +2,12 @@
 	session_start();
 
 	include "../cfg.php";
+	include "../tarefas/cfg2.php";
 	include "../funcoesGerais.php";
 
 	$nome = retornaNome();
+
+	$n_tarefas = mysqli_num_rows(mysqli_query($conectar2, "SELECT * FROM ".$_SESSION['usuario']." WHERE t_status=1"));
 
 	printf("
 	<li><div class='user-view'>
@@ -53,7 +56,7 @@
 	  </ul>
 	</li>
 
-	<li><a class='collapsible-header waves-effect' style='text-decoration:none; outline: 0;' href='../tarefas/home.html'><i class='material-icons'>book</i>Tarefas <span class='badge'>0</span></a></li>
+	<li><a class='collapsible-header waves-effect' style='text-decoration:none; outline: 0;' href='../tarefas/home.html'><i class='material-icons'>book</i>Tarefas <span class='badge'>%d</span></a></li>
 	<li><a class='collapsible-header waves-effect' style='text-decoration:none; outline: 0;' href='../gerenciar_conta/painel.html'><i class='material-icons'>settings</i>Gerenciar conta</a></li>
 	<li><a class='collapsible-header waves-effect waves-yellow' style='text-decoration:none' href='../adm/painel.html'><i class='material-icons'>lock</i>Administração</a></li>
 	<li><a class='collapsible-header waves-effect' style='text-decoration:none' href='https://goo.gl/forms/QvhPwxZpUs0IT1Ys1' target='_blank'><i class='material-icons'>bug_report</i>Reportar</a></li>
@@ -63,5 +66,5 @@
 
 	</ul>
 
-	<script>$('.collapsible').collapsible();", $nome);
+	<script>$('.collapsible').collapsible();", $nome, $n_tarefas);
 ?>

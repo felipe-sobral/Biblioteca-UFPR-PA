@@ -25,6 +25,31 @@ $('#alterarSenha_form').submit(function() {
 })
 */
 
+function atualizar_tarefas(){
+  $.ajax({
+    url: "em_andamento.php",
+    success: function(tarefas){
+      if(tarefas != 0){
+        $("#imprimir_tarefa").html(tarefas);
+      }
+    }
+  });
+}
+
+function finalizar_tarefa(id, funcao){
+  $.ajax({
+    url: "finalizar_tarefa.php",
+    type: "POST",
+    data: "funcao="+funcao+"&id="+id,
+    success: function(result){
+      if(result != 0){
+        M.toast({html: "<i class='material-icons' style='color: #85ff51'>check</i>"});
+        atualizar_tarefas();
+      }
+    }
+  });
+}
+
 $('#registrarTarefa').submit(function(){
   var t_usuario = $("#t_usuario").val();
   var t_titulo = $("#t_titulo").val();
@@ -39,12 +64,13 @@ $('#registrarTarefa').submit(function(){
         M.toast({html: "<i class='material-icons' style='color: #ff5151'>clear</i>"});
       } else {
         M.toast({html: "<i class='material-icons' style='color: #85ff51'>check</i>"});
+        atualizar_tarefas();
       }
     }
-  })
+  });
 
   return false;
-})
+});
 
 $(document).ready(function() {
   $.ajax({
@@ -54,7 +80,9 @@ $(document).ready(function() {
         window.location = '../error.html';
       }
     }
-  })
+  });
+
+  atualizar_tarefas();
 
   $.ajax({
     url: '../templates/menu.php',

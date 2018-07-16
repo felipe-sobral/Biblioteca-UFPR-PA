@@ -51,7 +51,7 @@
         <div class="card-body">
           <ul class="collapsible">
             <li> <!-- Adicionar tarefa -->
-              <div class="collapsible-header"><i class="material-icons">note_add</i>Adicionar tarefa</div>
+              <div class="collapsible-header"><i class="material-icons">note_add</i>Criar tarefa</div>
               <div class="collapsible-body">
 
                 <form class="col s12" id="registrarTarefa">
@@ -83,17 +83,9 @@
                 <h5> Tarefas em andamento </h5>
                 <hr>
 
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">Nome da tarefa</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">10-07-2018</h6>
-                    <p class="card-text">Descrição</p>
-                    <h6 class="card-subtitle mb-2 text-muted">ID: 000</h6>
-                    <button class="green waves-effect waves-light btn-small"><i class="material-icons">check</i></button>
-                    <button class="red waves-effect waves-light btn-small"><i class="material-icons">clear</i></button>
-                  </div>
+                <div id="tarefas">
+                  <a id="imprimir_tarefa">Você não tem tarefas disponíveis no momento, crie uma :)</a>
                 </div>
-
               </div>
             </li>
             <li> <!-- Tarefas finalizadas -->
@@ -103,27 +95,35 @@
                 <table class="responsive-table highlight">
                   <thead>
                     <tr>
-                        <th>Nome</th>
-                        <th>Criado</th>
-                        <th>Finalizado</th>
+                      <th>ID</th>
+                      <th>Título</th>
+                      <th>Criada</th>
+                      <th>Finalizada</th>
+                      <th>Status</th>
                     </tr>
                   </thead>
 
                   <tbody>
                     <tr>
+                      <td>0</td>
                       <td>Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sen</td>
                       <td>11-07-2018</td>
                       <td>20-07-2018</td>
+                      <td><i class="material-icons">done</i></td>
                     </tr>
                     <tr>
+                      <td>1</td>
                       <td>Alan</td>
                       <td>11-07-2018</td>
                       <td>20-07-2018</td>
+                      <td><i class="material-icons">done</i></td>
                     </tr>
                     <tr>
+                      <td>2</td>
                       <td>Jonathan</td>
                       <td>11-07-2018</td>
-                      <td>20-07-2018</td>
+                      <td></td>
+                      <td><i class="material-icons">timer</i></td>
                     </tr>
                   </tbody>
                 </table>
