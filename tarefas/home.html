@@ -51,8 +51,10 @@
         <div class="card-body">
           <ul class="collapsible">
             <li> <!-- Adicionar tarefa -->
-              <div class="collapsible-header"><i class="material-icons">note_add</i>Criar tarefa</div>
+              <div class="collapsible-header" style='outline: 0;'><i class="material-icons">note_add</i>Criar tarefa</div>
               <div class="collapsible-body">
+                <h5> Criar uma nova tarefa </h5>
+                <hr>
 
                 <form class="col s12" id="registrarTarefa">
                   <div class="row">
@@ -78,7 +80,7 @@
               </div>
             </li>
             <li class="active"> <!-- Tarefas disponíveis -->
-              <div class="collapsible-header"><i class="material-icons">assignment_late</i>Tarefas disponíveis</div>
+              <div class="collapsible-header" style='outline: 0;'><i class="material-icons">assignment_late</i>Tarefas disponíveis</div>
               <div class="collapsible-body">
                 <h5> Tarefas em andamento </h5>
                 <hr>
@@ -89,45 +91,12 @@
               </div>
             </li>
             <li> <!-- Tarefas finalizadas -->
-              <div class="collapsible-header"><i class="material-icons">assignment_turned_in</i>Tarefas finalizadas</div>
+              <div class="collapsible-header" style='outline: 0;'><i class="material-icons">assignment_turned_in</i>Tarefas finalizadas</div>
               <div class="collapsible-body">
-
-                <table class="responsive-table highlight">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Título</th>
-                      <th>Criada</th>
-                      <th>Finalizada</th>
-                      <th>Status</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    <tr>
-                      <td>0</td>
-                      <td>Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sen</td>
-                      <td>11-07-2018</td>
-                      <td>20-07-2018</td>
-                      <td><i class="material-icons">done</i></td>
-                    </tr>
-                    <tr>
-                      <td>1</td>
-                      <td>Alan</td>
-                      <td>11-07-2018</td>
-                      <td>20-07-2018</td>
-                      <td><i class="material-icons">done</i></td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Jonathan</td>
-                      <td>11-07-2018</td>
-                      <td></td>
-                      <td><i class="material-icons">timer</i></td>
-                    </tr>
-                  </tbody>
-                </table>
-
+                <h5> Histórico de tabelas </h5>
+                <hr>
+                <button class="btn waves-effect waves-light" onclick="atualizar_tabela()"><i class="material-icons">refresh</i></button>
+                <span id="linhas_tabela_tarefa"></span>
               </div>
             </li>
           </ul>

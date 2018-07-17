@@ -19,13 +19,14 @@
   }
 
   if(verificarNivel(1)){
-
-    if(($_POST['t_usuario'] != $_SESSION['id']) && verificarNivel(4)){
+    if(($_POST['t_usuario'] != $_SESSION['usuario']) && verificarNivel(4)){
       criaTarefa($_POST['t_usuario'], $_POST['t_titulo'], $_POST['t_descricao']);
+      gravar_log("Criou tarefa [".$_POST['t_titulo']."][".$_POST['t_usuario']."] * [#136#]");
       echo 1;
       exit;
-    } elseif ($_POST['t_usuario'] == $_SESSION['id']){
+    } elseif ($_POST['t_usuario'] == $_SESSION['usuario']){
       criaTarefa($_POST['t_usuario'], $_POST['t_titulo'], $_POST['t_descricao']);
+      gravar_log("Criou tarefa [".$_POST['t_titulo']."] * [#135#]");
       echo 1;
       exit;
     } else {

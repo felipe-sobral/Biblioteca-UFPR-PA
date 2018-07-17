@@ -1,3 +1,4 @@
+
 # Consulta Local - UFPR Palotina
 
 Olá! Tudo bem? Aqui está armazenado o projeto do novo **Consulta Local** da UFPR Setor Palotina. :smile:
@@ -59,6 +60,37 @@ Para registrar um livro no consulta local é bem simples, basta inserir o códig
 - **Alterar** - Recebe dia, mês e ano, e então lhe dará um retorno com todos os códigos registrados naquele dia para fazer alguma alteração ou correção de erro manualmente;
 - **Baixar** - Recebe mês e ano para fazer o download em arquivos txt (*text*) da data informada;
   - O arquivo baixado irá vir compactado como **ZIP**, para descompacta-lo basta clicar com o botão direito do mouse sobre ele e selecionar a opção "Extrair para local ...", caso tenha o WinRar instalado no computador, selecione  respectivamente "WinRAR -> Extract to ... / ou / Extrair para ...";
+## Tabela de registros [NÃO FINALIZADA]
+| ID | Descrição | Status |
+|--|--|--|
+|#111#|Alterou usuário|OK
+|#112#|Excluiu usuário|OK
+|#113#|Consultou usuários registrados|OK
+|#114#|Baixou consulta local|OK
+|#115#|Alterou consulta local|OK
+|#116#|Excluiu consulta local|OK
+|#117#|Exibiu histórico consulta local|OK
+|#118#|Excluir estatística usuário|OK
+|#119#|Alterar estatística usuário|OK
+|#121#|Histórico estatística usuário|OK
+|#122#|Adicionar consulta local|OK
+|#123#|Adicionar estatística usuário|OK
+|#124#|Alterar própria senha|OK
+|#125#|Entrou no sistema|OK
+|#126#|Registrar usuário|OK
+|#127#|Exibiu log do usuário|OK
+|#128#|Contador+Manha|OK
+|#129#|Contador+Tarde|OK
+|#130#|Contador+Noite|OK
+|#131#|Contador-Manha|OK
+|#132#|Contador-Tarde|OK
+|#133#|Contador-Noite|OK
+|#134#|Adicionou consulta|OK
+|#135#|Criou tarefa [TITULO]|TESTANDO
+|#136#|Criou tarefa [TITULO][USUÁRIO]|TESTANDO
+|#137#|Concluiu tarefa [TITULO][ID]|TESTANDO
+|#138#|Excluiu tarefa [TITULO][ID]|TESTANDO
+
 
 # Atualizações
 - **20/06/2018**;
@@ -73,7 +105,13 @@ Para registrar um livro no consulta local é bem simples, basta inserir o códig
 - **05/07/2018**;
   - Atualizado a página inicial do painel de controle (home_restrita.html);
     - Adicionado aviso temporário;
-  - Adicionado botão "Atualizações" no menu principal; 
+  - Adicionado botão "Atualizações" no menu principal;
+- **EM ANDAMENTO :fire:**;
+  - Implementando sistema de tarefas;
+    - Criar tarefa;
+    - Tarefas disponíveis;
+    - Tarefas finalizadas;
+
 # Bom, é isso. Por enquanto.
 
 Ainda estou escrevendo esta documentação, fique de olho.

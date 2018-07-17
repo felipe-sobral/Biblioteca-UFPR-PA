@@ -27,18 +27,17 @@
 
   $sql_v = mysqli_query($conectar, "SELECT * FROM usuarios WHERE usuario='{$usuario}'");
   if(verificarSql($sql_v)){
-    $tb_linhas = mysqli_num_rows(mysqli_query($conectar2, "SELECT * FROM ".$usuario.""));
-    if($tb_linhas>0){
-      $sql = mysqli_query($conectar2, "SELECT * FROM ".$usuario."");
-      while($tarefa = mysqli_fetch_array($sql)){
-        if($tarefa['t_status'] == 1){
-
+    if($sql_tarefas = mysqli_query($conectar2, "SELECT * FROM ".$usuario." WHERE t_status=1")){
+  		$tb_linhas = mysqli_num_rows($sql_tarefas);
+      if($tb_linhas>0){
+        while($tarefa = mysqli_fetch_array($sql_tarefas)){
           imprimir_tarefa($tarefa['titulo'], $tarefa['descricao'], $tarefa['id'], $tarefa['data_registro']);
-
         }
+      }else{
+        echo 0;
+        exit;
       }
-
-    }else{
+  	} else {
       echo 0;
       exit;
     }

@@ -6,8 +6,10 @@
 	include "../funcoesGerais.php";
 
 	$nome = retornaNome();
-
-	$n_tarefas = mysqli_num_rows(mysqli_query($conectar2, "SELECT * FROM ".$_SESSION['usuario']." WHERE t_status=1"));
+	$n_tarefas = 0;
+	if($sql_tarefas = mysqli_query($conectar2, "SELECT * FROM ".$_SESSION['usuario']." WHERE t_status=1")){
+		$n_tarefas = mysqli_num_rows($sql_tarefas);
+	}
 
 	printf("
 	<li><div class='user-view'>

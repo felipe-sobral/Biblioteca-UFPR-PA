@@ -1,36 +1,20 @@
-/*
-$('#alterarSenha_form').submit(function() {
-  var alterarSenha_nova = $('#alterarSenha_nova').val();
-  var alterarSenha_antiga = $('#alterarSenha_antiga').val();
-  var alterarSenha_conferir = $('#alterarSenha_conferir').val();
-
-  $.ajax({
-    url: "alterarsenha.php",
-    type: "post",
-    data: "alterarSenha_nova=" + alterarSenha_nova + "&alterarSenha_antiga=" + alterarSenha_antiga + "&alterarSenha_conferir=" + alterarSenha_conferir,
-    success: function(result) {
-      if (result == 1) {
-        M.toast({
-          html: "<i class='material-icons' style='color: #85ff51'>check</i>"
-        });
-      } else {
-        M.toast({
-          html: "<i class='material-icons' style='color: #ff5151'>clear</i>"
-        });
-      }
-    }
-  })
-
-  return false;
-})
-*/
-
 function atualizar_tarefas(){
   $.ajax({
     url: "em_andamento.php",
     success: function(tarefas){
       if(tarefas != 0){
         $("#imprimir_tarefa").html(tarefas);
+      }
+    }
+  });
+}
+
+function atualizar_tabela(){
+  $.ajax({
+    url: "historico_tarefas.php",
+    success: function(linhas){
+      if(linhas != 0){
+        $("#linhas_tabela_tarefa").html(linhas);
       }
     }
   });
@@ -82,6 +66,7 @@ $(document).ready(function() {
     }
   });
 
+  atualizar_tabela();
   atualizar_tarefas();
 
   $.ajax({
