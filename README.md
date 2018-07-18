@@ -1,19 +1,23 @@
 
+
+
 # Consulta Local - UFPR Palotina
 
 Olá! Tudo bem? Aqui está armazenado o projeto do novo **Consulta Local** da UFPR Setor Palotina. :smile:
 
 # [ENTRAR NO SISTEMA](http://bibliotecaufprpa.hol.es/login.html)
->  http://bibliotecaufprpa.hol.es
+>  http://bibliotecaufprpa.hol.es [OFICIAL]
+>    http://biblioteca.felipesobral.xyz [TESTER]
 
 ## Por que esse projeto é melhor do que o anterior?
-- Banco de Dados dedicado :heavy_check_mark:
+- Banco de dados dedicado :heavy_check_mark:
 - Melhor sincronização :heavy_check_mark:
-- Mais facilidade :heavy_check_mark:
+- Maior facilidade :heavy_check_mark:
 - Maior compatibilidade :heavy_check_mark:
 - Novas funções :heavy_check_mark:
 - Possibilidade de backups :heavy_check_mark:
 - Acesso em qualquer lugar **sem precisar baixar/instalar nada** :heavy_check_mark:
+- Sistema todo em nuvem :heavy_check_mark:
 
 ## Projeto em desenvolvimento :fire:
 
@@ -27,14 +31,15 @@ Estou desenvolvendo no momento os seguintes tópicos:
 + Estatística de Usuários - Abre menu com todas opções da estatística de usuários;
   + Contador - Registrar entrada/saída de usuários na biblioteca;
   + Adicionar - Adicionar algum dia que não foi registrado no banco de dados;
-  + Histórico - Exibir o histórico detalhado do número de entradas/saidas da biblioteca;
+  + Histórico - Exibir o histórico detalhado do número de entradas/saídas da biblioteca;
   + Alterar - Opção de alterar alguma data, caso tenha ocorrido algum erro;
-+ Estatística Consulta Local - Abre menu com todas consulta local;
-  + Registrar códigos - Registrar códigos dos livros para fazer a estatística de consulta local;
++ Estatística Consulta Local - Abre menu com todas opções para a estatística da consulta local;
+  + Registrar códigos - Registrar códigos dos livros para fazer a estatística da consulta local;
   + Adicionar - Adicionar algum dia que não foi registrado no banco de dados;
   + Histórico - Exibir o histórico detalhado de quantos livros foram registrados no mês;
   + Alterar - Opção de alterar alguma data, caso tenha ocorrido algum erro;
   + Baixar - Fazer *download* dos códigos registrados no mês;
++ Tarefas - Permite você criar tarefas como forma de lembretes. Ao lado deste botão existe um contador que permite você visualizar, de maneira prática, quantas tarefas pendentes estão registradas ao seu usuário.
 + Gerenciar conta - Configurações que o usuário pode alterar em sua conta (Exemplo: trocar senha; excluir conta);
 + Administração - Configurações administrativas (Exemplo: registrar usuário; alterar usuário; exibir usuários registrados; log do usuário);
 + Reportar - Formulário para reportar erros/bugs ou sugerir melhorias;
@@ -42,10 +47,10 @@ Estou desenvolvendo no momento os seguintes tópicos:
 
 
 ## Como utilizo o Contador de Usuários?
+
 Para registrar um usuário basta clicar no botão **+** contido na tela inicial e verificar se foi incrementado +1 no contador. Caso você adicione pessoas por engano, poderá clicar no botão **-** para remover -1 do contador.
 
 #### Outras opções
-
 - **Adicionar** - Adicionar estatística do usuário de um dia que não foi marcado, o formulário irá receber quantos usuários entrou pela manhã, tarde e noite. Utilize como exemplo as demonstrações contidas no próprio formulário;
 - **Histórico** - Ao setar o mês e o ano desejado, o sistema lhe retornará um resumo detalhado da estatística de usuários da data escolhida;
 - **Alterar** - Ao colocar uma data digitada da forma "AAAA-MM-DD" (Exemplo: 2018-06-21) irá te retornar campos para fazer a edição, tais como a quantia de usuários registrados nos períodos da *manhã*, *tarde* e *noite*. No final do formulário selecione se você quer *alterar* ou *excluir* os dados da data informada;
@@ -60,7 +65,25 @@ Para registrar um livro no consulta local é bem simples, basta inserir o códig
 - **Alterar** - Recebe dia, mês e ano, e então lhe dará um retorno com todos os códigos registrados naquele dia para fazer alguma alteração ou correção de erro manualmente;
 - **Baixar** - Recebe mês e ano para fazer o download em arquivos txt (*text*) da data informada;
   - O arquivo baixado irá vir compactado como **ZIP**, para descompacta-lo basta clicar com o botão direito do mouse sobre ele e selecionar a opção "Extrair para local ...", caso tenha o WinRar instalado no computador, selecione  respectivamente "WinRAR -> Extract to ... / ou / Extrair para ...";
-## Tabela de registros [NÃO FINALIZADA]
+
+## Como utilizo o Sistema de Tarefas?
+Ao clicar no botão **Tarefas** localizado no menu, você irá no sistema de tarefas. [Nesta](http://bibliotecaufprpa.hol.es/tarefas/home.html) página você terá três sessões, sendo elas, criar tarefa, tarefas disponíveis e por fim, tarefas finalizadas.
+
+- **Criar tarefa** - Nesta sessão você poderá registrar novas tarefas para você ou para outros usuários (caso tenha um cargo maior que moderador). Você irá ter três campos que precisam ser preenchidos.
+  - Usuário: Colocar o nome do usuário que irá receber a tarefa;
+  - Título: Título da tarefa;
+  - Descrição: Descrição da tarefa, observações, etc;
+- **Tarefas disponíveis** - Nesta sessão você poderá visualizar suas tarefas pendentes. Poderá concluir e excluir tarefas nos botões indicados na mesma;
+- **Tarefas finalizadas** - Aqui irá mostrar seu histórico de tarefas concluídas;
+
+**OBS**: Ao excluir uma tarefa você estará excluindo ela PERMANENTEMENTE.
+
+* **Descrição personalizada**
+Você pode utilizar propriedades HTML para personalizar a descrição de sua tarefa;
+Neste link você encontra comandos básicos que poderá servir como ajuda: [http://www.lsi.usp.br/~help/html/comandos.html](http://www.lsi.usp.br/~help/html/comandos.html)
+
+
+## Tabela de registros log
 | ID | Descrição | Status |
 |--|--|--|
 |#111#|Alterou usuário|OK
@@ -70,26 +93,26 @@ Para registrar um livro no consulta local é bem simples, basta inserir o códig
 |#115#|Alterou consulta local|OK
 |#116#|Excluiu consulta local|OK
 |#117#|Exibiu histórico consulta local|OK
-|#118#|Excluir estatística usuário|OK
-|#119#|Alterar estatística usuário|OK
-|#121#|Histórico estatística usuário|OK
-|#122#|Adicionar consulta local|OK
-|#123#|Adicionar estatística usuário|OK
-|#124#|Alterar própria senha|OK
+|#118#|Excluiu estatística usuário|OK
+|#119#|Alterou estatística usuário|OK
+|#121#|Exibiu histórico estatística usuário|OK
+|#122#|Adicionou consulta local|OK
+|#123#|Adicionou estatística usuário|OK
+|#124#|Alterou própria senha|OK
 |#125#|Entrou no sistema|OK
-|#126#|Registrar usuário|OK
+|#126#|Registrou usuário|OK
 |#127#|Exibiu log do usuário|OK
-|#128#|Contador+Manha|OK
-|#129#|Contador+Tarde|OK
-|#130#|Contador+Noite|OK
-|#131#|Contador-Manha|OK
-|#132#|Contador-Tarde|OK
-|#133#|Contador-Noite|OK
+|#128#|Adicionou contador manha|OK
+|#129#|Adicionou contador tarde|OK
+|#130#|Adicionou contador noite|OK
+|#131#|Removeu contador manha|OK
+|#132#|Removeu contador tarde|OK
+|#133#|Removeu contador noite|OK
 |#134#|Adicionou consulta|OK
-|#135#|Criou tarefa [TITULO]|TESTANDO
-|#136#|Criou tarefa [TITULO][USUÁRIO]|TESTANDO
-|#137#|Concluiu tarefa [TITULO][ID]|TESTANDO
-|#138#|Excluiu tarefa [TITULO][ID]|TESTANDO
+|#135#|Criou tarefa|TESTANDO
+|#136#|Criou tarefa p/ outro usuário|TESTANDO
+|#137#|Concluiu tarefa|TESTANDO
+|#138#|Excluiu tarefa|TESTANDO
 
 
 # Atualizações
@@ -106,11 +129,16 @@ Para registrar um livro no consulta local é bem simples, basta inserir o códig
   - Atualizado a página inicial do painel de controle (home_restrita.html);
     - Adicionado aviso temporário;
   - Adicionado botão "Atualizações" no menu principal;
-- **EM ANDAMENTO :fire:**;
-  - Implementando sistema de tarefas;
+- **18/07/2018**;
+  - Atualizado a página inicial do painel de controle (home_restrita.html);
+    - Removido aviso temporário;
+  - Adicionado botão "Tarefas" ao menu principal;
+  - Atualizações no código;
+  - Implementação do sistema de tarefas [Em testes, erros poderão acontecer];
     - Criar tarefa;
     - Tarefas disponíveis;
     - Tarefas finalizadas;
+  - Adicionado nos títulos atalhos para acessar a documentação e obter informações sobre;
 
 # Bom, é isso. Por enquanto.
 

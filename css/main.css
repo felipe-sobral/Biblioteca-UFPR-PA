@@ -27,3 +27,13 @@ body {
     padding-right: 0;
   }
 }
+
+.titulo{
+  text-decoration:none;
+  color: #fff;
+}
+
+.titulo:hover{
+  text-decoration:none;
+  color: #C7C7C7;
+}
