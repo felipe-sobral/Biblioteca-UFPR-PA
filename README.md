@@ -139,7 +139,8 @@ Neste link você encontra comandos básicos que poderá servir como ajuda: [http
     - Tarefas disponíveis;
     - Tarefas finalizadas;
   - Adicionado nos títulos atalhos para acessar a documentação e obter informações sobre;
-
+- **19/07/2018**;
+ - Pequena modificação na página de login (login.html);
 # Bom, é isso. Por enquanto.
 
 Ainda estou escrevendo esta documentação, fique de olho.
