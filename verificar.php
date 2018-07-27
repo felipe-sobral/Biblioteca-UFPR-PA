@@ -7,7 +7,7 @@
     include "cfg.php";
     include "funcoesGerais.php";
 
-    $funcao = preg_replace('/[^0-9_]/', '',$_POST['executarFuncao']);
+    $funcao = $_POST['executarFuncao'];
 
     $resultado = 0;
 
