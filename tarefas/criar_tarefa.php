@@ -19,14 +19,18 @@
   }
 
   if(verificarNivel(1)){
-    if(($_POST['t_usuario'] != $_SESSION['usuario']) && verificarNivel(4)){
-      criaTarefa($_POST['t_usuario'], $_POST['t_titulo'], $_POST['t_descricao']);
-      gravar_log("Criou tarefa [".$_POST['t_titulo']."][".$_POST['t_usuario']."] * [#136#]");
+    $t_usuario = preg_replace('/[^a-z_]/', '',$_POST['t_usuario']);
+    $t_titulo = addslashes($_POST['t_titulo']);
+    $t_descricao = addslashes($_POST['t_descricao']);
+
+    if(($t_usuario != $_SESSION['usuario']) && verificarNivel(4)){
+      criaTarefa($t_usuario, $t_titulo, $t_descricao);
+      gravar_log("Criou tarefa [".$t_titulo."][".$t_usuario."] * [#136#]");
       echo 1;
       exit;
-    } elseif ($_POST['t_usuario'] == $_SESSION['usuario']){
-      criaTarefa($_POST['t_usuario'], $_POST['t_titulo'], $_POST['t_descricao']);
-      gravar_log("Criou tarefa [".$_POST['t_titulo']."] * [#135#]");
+    } elseif ($t_usuario == $_SESSION['usuario']){
+      criaTarefa($t_usuario, $t_titulo, $t_descricao);
+      gravar_log("Criou tarefa [".$t_titulo."] * [#135#]");
       echo 1;
       exit;
     } else {

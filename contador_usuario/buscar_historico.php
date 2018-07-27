@@ -5,8 +5,8 @@
   include "../cfg.php";
   include "../funcoesGerais.php";
 
-  $mes = $_POST['mesHistorico'];
-  $ano = $_POST['anoHistorico'];
+  $mes = preg_replace('/[^0-9_]/', '',$_POST['mesHistorico']);
+  $ano = preg_replace('/[^0-9_]/', '',$_POST['anoHistorico']);
 
   $sql = mysqli_query($conectar, "SELECT * FROM estatistica_usuarios WHERE ano='{$ano}' AND n_mes='{$mes}'");
   $verificar_existe = mysqli_num_rows($sql);

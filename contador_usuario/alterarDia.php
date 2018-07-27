@@ -5,8 +5,8 @@
   include "../cfg.php";
   include "../funcoesGerais.php";
 
-  $data_procurar = $_POST['data'];
-  $verificar = $_POST['verificar'];
+  $data_procurar = preg_replace('/[^0-9\-_]/', '',$_POST['data']);
+  $verificar = preg_replace('/[^0-9_]/', '',$_POST['verificar']);
 
   switch ($verificar) {
     case 0:
@@ -113,9 +113,9 @@
         }
 
         if($alterarDados == 1){
-          $manha = $_POST['manha'];
-          $tarde = $_POST['tarde'];
-          $noite = $_POST['noite'];
+          $manha = preg_replace('/[^0-9_]/', '',$_POST['manha']);
+          $tarde = preg_replace('/[^0-9_]/', '',$_POST['tarde']);
+          $noite = preg_replace('/[^0-9_]/', '',$_POST['noite']);
 
           mysqli_query($GLOBALS['conectar'], "UPDATE estatistica_usuarios SET manha = '{$manha}', tarde = '{$tarde}', noite = '{$noite}' WHERE data = '{$data}'");
           gravar_log("Alterou estatística usuário [DATA:".$data."] * [#119#]");

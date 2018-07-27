@@ -5,7 +5,7 @@
   include "../funcoesGerais.php";
 
   if(verificarLogin(5)){
-    $usr = $_POST['log_usuario'];
+    $usr = preg_replace('/[^a-z_]/', '',$_POST['log_usuario']);
 
     $sql = mysqli_query($conectar, "SELECT * FROM usuarios WHERE usuario='{$usr}'");
     if(verificarSql($sql)){

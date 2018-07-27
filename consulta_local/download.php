@@ -27,8 +27,8 @@
     }
   }
 
-  $mes = $_POST['mes'];
-  $ano = $_POST['ano'];
+  $mes = preg_replace('/[^0-9_]/', '',$_POST['mes']);
+  $ano = preg_replace('/[^0-9_]/', '',$_POST['ano']);
 
   $sql = mysqli_query($conectar, "SELECT * FROM consulta_local WHERE mes='{$mes}' AND ano='{$ano}'");
 

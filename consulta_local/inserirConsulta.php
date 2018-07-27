@@ -4,16 +4,16 @@
 
   include "../cfg.php";
   include "../funcoesGerais.php";
-  
+
   if(is_null($_POST['codigos'])){
     echo 0;
     exit;
   }
 
-  $codigos = $_POST['codigos'];
-  $dia = $_POST['dia'];
-  $mes = $_POST['mes'];
-  $ano = $_POST['ano'] ;
+  $codigos = addslashes($_POST['codigos']);
+  $dia = preg_replace('/[^0-9_]/', '',$_POST['dia']);
+  $mes = preg_replace('/[^0-9_]/', '',$_POST['mes']);
+  $ano = preg_replace('/[^0-9_]/', '',$_POST['ano']);
 
   if(verificarNivel(3)){
 

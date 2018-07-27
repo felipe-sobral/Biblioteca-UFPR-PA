@@ -8,7 +8,7 @@
     $funcao = $_POST['funcao'];
   }
   if(isset($_POST['numero'])){
-    $numero = $_POST['numero'];
+    $numero = preg_replace('/[^0-9_]/', '',$_POST['numero']);
   }
 
   $data = date("Y-m-d");

@@ -10,7 +10,7 @@
   }
 
   if(isset($_POST['fn']) && $_POST['fn']==1){
-    $usuario = $_POST['$alterarUser_usuario'];
+    $usuario = preg_replace('/[^a-z_]/', '',$_POST['$alterarUser_usuario']);
 
     $sql = mysqli_query($conectar, "SELECT * FROM usuarios WHERE usuario='{$usuario}'");
     $resultado = verificarSql($sql);
@@ -38,12 +38,12 @@
     $verificarA = $_POST['alterarUser_alterar'];
 
     if($verificarA == 1){
-      $usuario = $_POST['alterarUser_usuario2'];
-      $id = $_POST['alterarUser_id'];
-      $nome = $_POST['alterarUser_nome'];
-      $senha = $_POST['alterarUser_senha'];
-      $nivel = $_POST['alterarUser_nivel'];
-      $email = $_POST['alterarUser_email'];
+      $usuario = preg_replace('/[^a-z_]/', '',$_POST['alterarUser_usuario2']);
+      $id = preg_replace('/[^0-9_]/', '',$_POST['alterarUser_id']);
+      $nome = preg_replace('/[^a-zA-Z\ _]/', '',$_POST['alterarUser_nome']);
+      $senha = md5(preg_replace('/[^a-zA-Z0-9_]/', '',$_POST['alterarUser_senha']));
+      $nivel = preg_replace('/[^0-9_]/', '',$_POST['alterarUser_nivel']);
+      $email = preg_replace('/[^a-zA-Z0-9@._\-_]/', '',$_POST['alterarUser_email']);
 
       $sql = mysqli_query($conectar, "SELECT * FROM usuarios WHERE id='{$id}'");
       if(verificarSql($sql)){
@@ -69,8 +69,8 @@
     }
 
     if($verificarA == 2) {
-      $usuario = $_POST['alterarUser_usuario2'];
-      $id = $_POST['alterarUser_id'];
+      $usuario = preg_replace('/[^a-z_]/', '',$_POST['alterarUser_usuario2']);
+      $id = preg_replace('/[^0-9_]/', '',$_POST['alterarUser_id']);
       $sql = mysqli_query($conectar, "SELECT * FROM usuarios WHERE usuario='{$usuario}'");
       if(verificarSql($sql)){
         mysqli_query($conectar, "DELETE FROM usuarios WHERE id='{$id}'");

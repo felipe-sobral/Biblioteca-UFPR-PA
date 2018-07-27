@@ -7,9 +7,10 @@
       exit;
     }
 
-    $user = $_POST['usuario'];
-    $pass = $_POST['senha'];
-    $funcao = $_POST['funcao'];
+
+    $user = preg_replace('/[^a-z_]/', '',$_POST['usuario']);
+    $pass = md5(preg_replace('/[^a-zA-Z0-9_]/', '',$_POST['senha']));
+    $funcao = preg_replace('/[^[:alnum:]_]/', '',$_POST['funcao']);
 
     $sql = mysqli_query($conectar, "SELECT * FROM usuarios WHERE usuario = '{$user}' AND senha = '{$pass}'");
 

@@ -7,7 +7,7 @@
     include "cfg.php";
     include "funcoesGerais.php";
 
-    $funcao = $_POST['executarFuncao'];
+    $funcao = preg_replace('/[^0-9_]/', '',$_POST['executarFuncao']);
 
     $resultado = 0;
 
@@ -24,11 +24,11 @@
         break;
 
       case 2: // REGISTRAR USUÁRIO
-        $r_usuario = $_POST['r_usuario'];
-        $r_senha = $_POST['r_senha'];
-        $r_nome = $_POST['r_nome'];
-        $r_nivel = $_POST['r_nivel'];
-        $r_email = $_POST['r_email'];
+        $r_usuario = preg_replace('/[^a-z_]/', '',$_POST['r_usuario']);
+        $r_senha = md5(preg_replace('/[^a-zA-Z0-9_]/', '',$_POST['r_senha']));
+        $r_nome = preg_replace('/[^a-zA-Z\ _]/', '',$_POST['r_nome']);
+        $r_nivel = preg_replace('/[^0-9_]/', '',$_POST['r_nivel']);
+        $r_email = preg_replace('/[^a-zA-Z0-9@._\-_]/', '',$_POST['r_email']);
 
         if ((!$r_usuario) || (!$r_senha) || (!$r_nome) || (!$r_nivel) || (!$r_email) || $r_nivel == 0){
           $resultado = 0;
@@ -83,8 +83,9 @@
           break;
 
         case 6:
-          if(isset($_POST['nivel'])){
-              $resultado = verificarLogin($_POST['nivel']);
+          $nivel = preg_replace('/[^0-9_]/', '',$_POST['nivel']);
+          if(isset($nivel)){
+              $resultado = verificarLogin($nivel);
           } else {
               $resultado = verificarLogin(0);
           }

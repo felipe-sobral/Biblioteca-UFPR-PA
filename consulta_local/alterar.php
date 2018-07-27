@@ -8,9 +8,9 @@
 
     if(isset($_POST["pegarCodigos"])){
 
-      $ano = $_POST["ano"];
-      $dia = $_POST["dia"];
-      $mes = $_POST["mes"];
+      $ano = preg_replace('/[^0-9_]/', '',$_POST["ano"]);
+      $dia = preg_replace('/[^0-9_]/', '',$_POST["dia"]);
+      $mes = preg_replace('/[^0-9_]/', '',$_POST["mes"]);
 
       $sql = mysqli_query($conectar, "SELECT * FROM consulta_local WHERE ano='{$ano}' AND dia='{$dia}' AND mes='{$mes}'");
 
@@ -23,10 +23,10 @@
       }
 
     } elseif (isset($_POST["alterarCodigos"])) {
-      $id = $_POST["iden"];
+      $id = preg_replace('/[^0-9_]/', '',$_POST["iden"]);
 
       if($_POST["alterarCodigos"] != null){
-        $inserir = str_replace('<br />', '\r', nl2br($_POST["alterarCodigos"]));
+        $inserir = str_replace('<br />', '\r', nl2br(addslashes($_POST["alterarCodigos"])));
         mysqli_query($conectar, "UPDATE consulta_local SET codigos='{$inserir}' WHERE id='{$id}'");
         gravar_log("Alterou Consulta Local [ID:".$id."] * [#115#]");
       }else{

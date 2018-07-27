@@ -81,8 +81,8 @@
   }
 
   if(isset($_POST['fn']) && $_POST['fn'] == 2){
-    $ano = $_POST['ano'];
-    $mes = $_POST['mes'];
+    $ano = preg_replace('/[^0-9_]/', '',$_POST['ano']);
+    $mes = preg_replace('/[^0-9_]/', '',$_POST['mes']);
     gravar_log("Consultou histórico consulta local [".$mes."-".$ano."] * [#117#]");
 
     printf("
@@ -96,9 +96,9 @@
       </thead>
       <tbody>
 
-    ", colocaZero($_POST['mes']), $_POST['ano']);
+    ", colocaZero($mes), $ano);
 
-    vasculhar($_POST['ano'], $_POST['mes'], 1, 0);
+    vasculhar($ano, $mes, 1, 0);
 
     exit;
 
