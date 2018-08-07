@@ -1,5 +1,4 @@
 <?php
-
   /*
     E-MAIL: preg_replace('/[^a-zA-Z0-9@._\-_]/', '',$variável);
     USUÁRIO: preg_replace('/[^a-z_]/', '',$variável);

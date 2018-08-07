@@ -58,6 +58,23 @@
 	  </ul>
 	</li>
 
+	<li>
+	  <ul class='collapsible collapsible-accordion'>
+	    <li>
+	      <a class='collapsible-header waves-effect' style='text-decoration:none; outline: 0;'><i class='material-icons'>print</i>Estatística de Impressão</a>
+	      <div class='collapsible-body'>
+	        <ul>
+	          <li><a class='waves-effect' style='text-decoration:none' href='../contador_impressoes/painel.html'><i class='material-icons'>playlist_add</i>Contador</a></li>
+	          <li><a class='waves-effect' style='text-decoration:none' href='../contador_impressoes/adicionar.html'><i class='material-icons'>add</i>Adicionar</a></li>
+	          <li><a class='waves-effect' style='text-decoration:none' href='../contador_impressoes/historico.html'><i class='material-icons'>history</i>Histórico</a></li>
+	          <li><a class='waves-effect' style='text-decoration:none' href='../contador_impressoes/alterar.html'><i class='material-icons'>edit</i>Alterar</a></li>
+	          <li><div class='divider'></div></li>
+	        </ul>
+	      </div>
+	    </li>
+	  </ul>
+	</li>
+
 	<li><a class='collapsible-header waves-effect' style='text-decoration:none; outline: 0;' href='../tarefas/home.html'><i class='material-icons'>book</i>Tarefas <span class='badge'>%d</span></a></li>
 	<li><a class='collapsible-header waves-effect' style='text-decoration:none; outline: 0;' href='../gerenciar_conta/painel.html'><i class='material-icons'>settings</i>Gerenciar conta</a></li>
 	<li><a class='collapsible-header waves-effect waves-yellow' style='text-decoration:none' href='../adm/painel.html'><i class='material-icons'>lock</i>Administração</a></li>
