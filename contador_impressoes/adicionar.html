@@ -55,35 +55,12 @@
           <div class="row">
             <form class="col" id="cadastrarDiaForm">
               <div class="row">
-                <div class="input-field col s6">
-                  <input type='number' min='0' id='manha'>
-                  <label for='manha'>Quantidade/ Manhã</label>
+                <div class="form-group col s6">
+                  <input type="text" class="form-control" id="valorIMP" placeholder="Insira a quantidade de cópias"/>
+                  <small id="valorIMP" class="form-text text-muted">Obs: insira apenas números.</small>
                 </div>
-                <div class="input-field col s6">
-                  <input type='number' min='0' id='tarde'>
-                  <label for='tarde'>Quantidade/ Tarde</label>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="input-field col s6">
-                  <input type='number' min='0' id='noite'>
-                  <label for='noite'>Quantidade/ Noite</label>
-                </div>
-                <div class="input-field col s6">
-                  <input type='number' min='0' max='12' id='mes'>
-                  <label for='mes'>Mês (Número)</label>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="input-field col s6">
-                  <input type='number' min='0' id='ano' placeholder='2018'>
-                  <label for='noite'>Ano</label>
-                </div>
-                <div class="input-field col s6">
-                  <input type='text' maxlength='10' id='data' placeholder='2018-12-31'>
-                  <label for='data'>Data (AAAA-MM-DD)</label>
+                <div class="form-group col s6">
+                  <input type="text" class="form-control" id="dataIMP" placeholder="Insira a data (DD-MM-AAAA)"/>
                 </div>
               </div>
               <center><button type="submit" class="btn waves-effect waves-light">REGISTRAR</button></center>

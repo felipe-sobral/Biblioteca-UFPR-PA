@@ -110,10 +110,13 @@ Neste link você encontra comandos básicos que poderá servir como ajuda: [http
 |#132#|Removeu contador tarde|OK
 |#133#|Removeu contador noite|OK
 |#134#|Adicionou consulta|OK
-|#135#|Criou tarefa|TESTANDO
-|#136#|Criou tarefa p/ outro usuário|TESTANDO
-|#137#|Concluiu tarefa|TESTANDO
-|#138#|Excluiu tarefa|TESTANDO
+|#135#|Criou tarefa|OK
+|#136#|Criou tarefa p/ outro usuário|OK
+|#137#|Concluiu tarefa|OK
+|#138#|Excluiu tarefa|OK
+|#139#|Adicionou contador impressora|TESTANDO
+|#140#|Removeu contador impressora|TESTANDO
+|#141#|Adicionou estatística impressora|TESTANDO
 
 
 # Atualizações

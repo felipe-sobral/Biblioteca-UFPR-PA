@@ -14,32 +14,11 @@ function atualizaContador() {
       "&numero=" + 0,
     success: function(result) {
       if (result != null) {
-        $("#contador").html("<h1 id='contador'>" + result.toString() + "</h1>");
+        $("#contadorIMP").html("<h1 id='contadorIMP'>" + result.toString() + "</h1>");
       }
 
     }
   })
-}
-
-function atualizaUlt() {
-  agora = new Date;
-
-  var horas = agora.getHours();
-  var minutos = agora.getMinutes();
-  var segundos = agora.getSeconds();
-
-  if (agora.getHours() < 10) {
-    horas = "0" + agora.getHours();
-  }
-  if (agora.getMinutes() < 10) {
-    minutos = "0" + agora.getMinutes();
-  }
-  if (agora.getSeconds() < 10) {
-    segundos = "0" + agora.getSeconds();
-  }
-
-  $("#ultAtualizacao").html(horas + ":" + minutos + ":" + segundos);
-
 }
 
 function adicionar() {
@@ -48,11 +27,10 @@ function adicionar() {
     url: "funcoes.php",
     type: "post",
     data: "funcao=" + 0 +
-      "&numero=" + 1,
+      "&numero=" + $('#valorIMP').val(),
     success: function(result) {
 
-      $("#contador").html("<h1 id='contador'>" + result.toString() + "</h1>");
-      atualizaUlt();
+      $("#contadorIMP").html("<h1 id='contadorIMP'>" + result.toString() + "</h1>");
 
     }
   })
@@ -63,29 +41,24 @@ function remover() {
   $.ajax({
     url: "funcoes.php",
     type: "post",
-    data: "funcao=" + 2 + "&numero=" + 1,
+    data: "funcao=" + 2 + "&numero=" + $('#valorIMP').val(),
     success: function(result) {
 
-      $("#contador").html("<h1 id='contador'>" + result.toString() + "</h1>");
-      atualizaUlt();
+      $("#contadorIMP").html("<h1 id='contadorIMP'>" + result.toString() + "</h1>");
 
     }
   })
 }
 
 $('#cadastrarDiaForm').submit(function() {
-  var data = $('#data').val();
-  var total = $('#total').val();
-  var mes = $('#mes').val();
-  var ano = $('#ano').val();
+  var data = $('#dataIMP').val();
+  var total = $('#valorIMP').val();
 
   $.ajax({
     url: "registrar_dia.php",
     type: "post",
     data: "data=" + data +
-      "&total=" + total +
-      "&mes=" + mes +
-      "&ano=" + ano,
+      "&total=" + total,
     success: function(result) {
       if (result == 1) {
         M.toast({
@@ -185,46 +158,7 @@ $('#alterarDiaFormX').submit(function() {
 
 })
 
-$('#cadastrarDiaForm').submit(function(){
-  var data=$('#data').val();
-  var total=$('#total').val();
-  var mes=$('#mes').val();
-  var ano=$('#ano').val();
-
-  $.ajax({
-    url: "registrar_dia.php",
-    type: "post",
-    data: "data="+data+
-                    "&manha="+manha+
-                    "&tarde="+tarde+
-                    "&noite="+noite+
-                    "&mes="+mes+
-                    "&ano="+ano,
-    success: function(result){
-      if(result==1){
-        $('#erroDia').hide();
-        $('#certoDia').show();
-      } else {
-        $('#erroDia').show();
-        $('#certoDia').hide();
-      }
-    }
-
-  })
-
-  return false;
-})
-
 $(document).ready(function() {
-  $.ajax({
-    url: "../seguranca.php",
-    success: function(x){
-      if(x==false){
-        window.location = '../error.html';
-      }
-    }
-  })
-
   $.ajax({
     url: '../templates/menu.php',
     success: function(menu) {
@@ -234,20 +168,6 @@ $(document).ready(function() {
   });
 
   atualizaContador();
-  atualizaUlt();
-
-  $.ajax({
-    url: "funcoes.php",
-    type: "post",
-    data: "funcao=" + 3 + "&numero=" + 0,
-    success: function(result) {
-
-      if (result != null) {
-        $("#turno").html(result);
-      }
-
-    }
-  })
 
   $('select').formSelect();
   $('.dropdown-trigger').dropdown();
