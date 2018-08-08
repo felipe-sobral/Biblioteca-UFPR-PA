@@ -1,7 +1,3 @@
-
-
-
-
 # Consulta Local - UFPR Palotina
 
 Olá! Tudo bem? Aqui está armazenado o projeto do novo **Consulta Local** da UFPR Setor Palotina. :smile:
@@ -28,11 +24,17 @@ Estou desenvolvendo no momento os seguintes tópicos:
 ## Menu
 
 + **Contador de usuários** - Atalho para registrar entrada/saída de usuários na biblioteca;
++ **Contador de impressões** - Atalho para registrar o número de folhas que foram impressas no dia;
 + **Registrador consulta local** - Atalho para registrar códigos dos livros para fazer a estatística de consulta local;
 + Estatística de Usuários - Abre menu com todas opções da estatística de usuários;
   + Contador - Registrar entrada/saída de usuários na biblioteca;
   + Adicionar - Adicionar algum dia que não foi registrado no banco de dados;
   + Histórico - Exibir o histórico detalhado do número de entradas/saídas da biblioteca;
+  + Alterar - Opção de alterar alguma data, caso tenha ocorrido algum erro;
++ Estatística de Impressão - Abre menu com todas opçãos para o controle de impressões;
+  + Contador - Registrar o número de folhas que foram impressas no dia;
+  + Adicionar - Adicionar algum dia que não foi registrado no banco de dados;
+  + Histórico - Exibir o histórico de quantas folhas foram impressas no mês escolhido;
   + Alterar - Opção de alterar alguma data, caso tenha ocorrido algum erro;
 + Estatística Consulta Local - Abre menu com todas opções para a estatística da consulta local;
   + Registrar códigos - Registrar códigos dos livros para fazer a estatística da consulta local;
@@ -114,10 +116,16 @@ Neste link você encontra comandos básicos que poderá servir como ajuda: [http
 |#136#|Criou tarefa p/ outro usuário|OK
 |#137#|Concluiu tarefa|OK
 |#138#|Excluiu tarefa|OK
-|#139#|Adicionou contador impressora|TESTANDO
-|#140#|Removeu contador impressora|TESTANDO
-|#141#|Adicionou estatística impressora|TESTANDO
+|#139#|Adicionou contador impressão|BETA
+|#140#|Removeu contador impressão|BETA
+|#141#|Adicionou estatística impressão|BETA
+|#142#|Consultou estatística de impressão|BETA
+|#143#|Deletou estatística de impressão|BETA
+|#144#|Alterou estatística de impressão|BETA
 
+**OK**: Funcionalidades testadas, disponíveis e funcionais;
+**BETA**: Funcionalidades implementadas, porém em fase de testes;
+**ALPHA**: Funcionalidades em desenvolvimento e indisponível para os usuários;
 
 # Atualizações
 - **20/06/2018**;
@@ -147,6 +155,14 @@ Neste link você encontra comandos básicos que poderá servir como ajuda: [http
   - Pequena modificação na página de login (login.html);
 - **27/07/2018**;
   - Atualização de segurança;
+- **08/08/2018**;
+  - Inserido registrador de cópias para estatística;
+    - Contador
+    - Adicionar
+    - Histórico
+    - Alterar
+  - Otimização de código;
+  - Corrigido algumas falhas;
 # Bom, é isso. Por enquanto.
 
 Ainda estou escrevendo esta documentação, fique de olho.

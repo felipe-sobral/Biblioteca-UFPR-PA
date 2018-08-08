@@ -52,13 +52,17 @@ function remover() {
 
 $('#cadastrarDiaForm').submit(function() {
   var data = $('#dataIMP').val();
+  var ano = $('#anoIMP').val();
+  var mes = $('#mesIMP').val();
   var total = $('#valorIMP').val();
 
   $.ajax({
     url: "registrar_dia.php",
     type: "post",
     data: "data=" + data +
-      "&total=" + total,
+      "&total=" + total+
+      "&ano=" + ano+
+      "&mes=" + mes,
     success: function(result) {
       if (result == 1) {
         M.toast({
@@ -76,15 +80,15 @@ $('#cadastrarDiaForm').submit(function() {
   return false;
 })
 
-$('#historicoUsuarioForm').submit(function() {
-  var anoHistorico = $('#anoHistorico').val();
-  var mesHistorico = $('#mesHistorico').val();
+$('#historicoImpForm').submit(function() {
+  var ano = $('#anoIMP').val();
+  var mes = $('#mesIMP').val();
 
   $.ajax({
     url: "buscar_historico.php",
     type: "post",
-    data: "anoHistorico=" + anoHistorico +
-      "&mesHistorico=" + mesHistorico,
+    data: "ano=" + ano +
+      "&mes=" + mes,
     success: function(result) {
       if (result == 0) {
         M.toast({
@@ -105,7 +109,7 @@ $('#historicoUsuarioForm').submit(function() {
 })
 
 $('#alterarDiaForm').submit(function() {
-  var data = $('#data_alterar').val();
+  var data = $('#data_alterarIMP').val();
   $.ajax({
     url: "alterarDia.php",
     type: "post",
@@ -128,17 +132,15 @@ $('#alterarDiaForm').submit(function() {
 })
 
 $('#alterarDiaFormX').submit(function() {
-  var data = $('#data_alterar').val();
-  var total = $('#total_alterar').val();
-  var alterarDados = $('#alterarORexcluir').val();
+  var data = $('#a_dataIMP').val();
+  var total = $('#a_valorIMP').val();
+  var alterarDados = $('#a_confirmIMP').val();
 
   $.ajax({
     url: "alterarDia.php",
     type: "post",
     data: "data=" + data +
-      "&manha=" + manha +
-      "&tarde=" + tarde +
-      "&noite=" + noite +
+      "&total=" + total +
       "&alterarDados=" + alterarDados +
       "&verificar=" + 1,
     success: function(result) {

@@ -55,12 +55,39 @@
           <div class="row">
             <form class="col" id="cadastrarDiaForm">
               <div class="row">
-                <div class="form-group col s6">
-                  <input type="text" class="form-control" id="valorIMP" placeholder="Insira a quantidade de cópias"/>
-                  <small id="valorIMP" class="form-text text-muted">Obs: insira apenas números.</small>
+                <div class="input-field col s6">
+                  <input type="text" class="form-control" id="valorIMP"/>
+                  <small class="form-text text-muted">Obs: insira apenas números.</small>
+                  <label for="valorIMP">Quantidade de impressões</label>
                 </div>
-                <div class="form-group col s6">
-                  <input type="text" class="form-control" id="dataIMP" placeholder="Insira a data (DD-MM-AAAA)"/>
+                <div class="input-field col s6">
+                  <input type="text" class="form-control" id="dataIMP"/>
+                  <small class="form-text text-muted">Exemplo: 08-08-2018</small>
+                  <label for="dataIMP">Data completa (DD-MM-AAAA)</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s6">
+                  <select id="mesIMP">
+                    <option value="" disabled selected>Escolha o mês</option>
+                    <option value="1">Janeiro</option>
+                    <option value="2">Fevereiro</option>
+                    <option value="3">Março</option>
+                    <option value="4">Abril</option>
+                    <option value="5">Maio</option>
+                    <option value="6">Junho</option>
+                    <option value="7">Julho</option>
+                    <option value="8">Agosto</option>
+                    <option value="9">Setembro</option>
+                    <option value="10">Outubro</option>
+                    <option value="11">Novembro</option>
+                    <option value="12">Dezembro</option>
+                  </select>
+                  <label for="mesIMP">Mês</label>
+                </div>
+                <div class="input-field col s6">
+                  <input type="text" class="form-control" value="2018" id="anoIMP"/>
+                  <label for="dataIMP">Ano</label>
                 </div>
               </div>
               <center><button type="submit" class="btn waves-effect waves-light">REGISTRAR</button></center>

@@ -5,10 +5,12 @@
   include "../cfg.php";
   include "../funcoesGerais.php";
 
-  $mes = preg_replace('/[^0-9_]/', '',$_POST['mesHistorico']);
-  $ano = preg_replace('/[^0-9_]/', '',$_POST['anoHistorico']);
+  $ano = preg_replace('/[^0-9_]/', '',$_POST['ano']);
+  $mes = preg_replace('/[^0-9_]/', '',$_POST['mes']);
 
-  $sql = mysqli_query($conectar, "SELECT * FROM estatistica_usuarios WHERE ano='{$ano}' AND n_mes='{$mes}'");
+  $total = 0;
+
+  $sql = mysqli_query($conectar, "SELECT * FROM impressao WHERE ano=$ano AND mes=$mes");
   $verificar_existe = mysqli_num_rows($sql);
 
   if($verificar_existe==0){
@@ -16,12 +18,7 @@
     exit;
   }
 
-  gravar_log("Consultou estatística usuário [".$mes."-".$ano."] * [#121#]");
-
-  $manha = 0;
-  $tarde = 0;
-  $noite = 0;
-  $total = 0;
+  gravar_log("Consultou estatística impressão [".$mes."-".$ano."] * [#142#]");
 
   printf("
 
@@ -29,9 +26,6 @@
               <thead>
                 <tr>
                   <th>Data</th>
-                  <th>Manha</th>
-                  <th>Tarde</th>
-                  <th>Noite</th>
                   <th>Total</th>
                 </tr>
                 </thead>
@@ -40,10 +34,10 @@
   ");
   while($dado = mysqli_fetch_array($sql)){
 
-    if(($dado['manha']+$dado['tarde']+$dado['noite']) == 0){
+    if($dado['total'] == 0){
 
-      $data = $dado['data'];
-      mysqli_query($conectar, "DELETE FROM estatistica_usuarios WHERE data='{$data}'");
+      $data = $dado['xdata'];
+      mysqli_query($conectar, "DELETE FROM impressao WHERE xdata='{$data}'");
 
     } else {
 
@@ -52,17 +46,11 @@
             <tr>
               <td>%s</td>
               <td>%d</td>
-              <td>%d</td>
-              <td>%d</td>
-              <td>%d</td>
             </tr>
 
-      ", $dado['data'], $dado['manha'], $dado['tarde'], $dado['noite'], $dado['manha']+$dado['tarde']+$dado['noite']);
+      ", $dado['xdata'], $dado['total']);
 
-      $manha = $manha + $dado['manha'];
-      $tarde = $tarde + $dado['tarde'];
-      $noite = $noite + $dado['noite'];
-      $total = $total + ($dado['manha']+$dado['tarde']+$dado['noite']);
+      $total = $total + $dado['total'];
 
     }
 
@@ -73,14 +61,11 @@
           <b>
           <td>TOTAL</td>
           <td>%d</td>
-          <td>%d</td>
-          <td>%d</td>
-          <td>%d</td>
           </b>
         </tr>
 
        </tbody>
       </table>
 
-  ",  $manha, $tarde, $noite, $total);
+  ",  $total);
 ?>

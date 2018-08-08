@@ -21,6 +21,7 @@
 		<hr width='200vh''/>
 	</div></li>
 	<li><a class='collapsible-header waves-effect' style='text-decoration:none' href='../contador_usuario/painel.html'><i class='material-icons'>star_rate</i>Contador de usuários</a></li>
+	<li><a class='collapsible-header waves-effect' style='text-decoration:none' href='../contador_impressoes/painel.html'><i class='material-icons'>star_rate</i>Contador de impressões</a></li>
 	<li><a class='collapsible-header waves-effect' style='text-decoration:none' href='../consulta_local/registrar_codigos.html'><i class='material-icons'>star_rate</i>Registrador consulta local</a></li>
 	<hr width='200vh''/>
 	<li>

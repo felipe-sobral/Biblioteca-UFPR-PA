@@ -23,18 +23,16 @@
     $falhou = 0;
 
     if($autorizar){
-      $sql = mysqli_query($GLOBALS['conectar'], "SELECT * FROM estatistica_usuarios WHERE data='{$codigo_procurar}'");
+      $sql = mysqli_query($GLOBALS['conectar'], "SELECT * FROM impressao WHERE xdata='{$codigo_procurar}'");
 
       if(verificarSql($sql)){
 
         $dado = mysqli_fetch_array($sql);
 
-          $manha = $dado['manha'];
-          $tarde = $dado['tarde'];
-          $noite = $dado['noite'];
-          $mes = $dado['n_mes'];
+          $total = $dado['total'];
+          $mes = $dado['mes'];
           $ano = $dado['ano'];
-          $data = $dado['data'];
+          $data = $dado['xdata'];
 
 
 
@@ -42,39 +40,28 @@
 
                       <div class='row'>
                         <div class='input-field col s6'>
-                          <input placeholder='x' type='number' min='0' id='manha_alterar' value='%d'>
-                          <span class='helper-text' data-error='wrong' data-success='right'>Quantidade/ Manhã</span>
-                        </div>
-                        <div class='input-field col s6'>
-                          <input placeholder='x' value='%d' type='number' min='0' id='tarde_alterar'>
-                          <span class='helper-text' data-error='wrong' data-success='right'>Quantidade/ Tarde</span>
-                        </div>
-                      </div>
-
-                      <div class='row'>
-                        <div class='input-field col s6'>
-                          <input placeholder='x' type='number' min='0' id='noite_alterar' value='%d'>
-                          <span class='helper-text' data-error='wrong' data-success='right'>Quantidade/ Noite</span>
-                        </div>
-                        <div class='input-field col s6'>
-                          <input disabled placeholder='x' value='%d' type='number' min='0' max='12' id='mes_alterar' >
-                          <span class='helper-text' data-error='wrong' data-success='right'>Mês (Número)</span>
-                        </div>
-                      </div>
-
-                      <div class='row'>
-                        <div class='input-field col s6'>
-                          <input disabled placeholder='x' type='number' min='0' id='ano_alterar' value='%d'>
-                          <span class='helper-text' data-error='wrong' data-success='right'>Ano</span>
+                          <input type='text' class='form-control' id='a_valorIMP' value='%d'/>
+                          <span class='helper-text'>Total</span>
                         </div>
                         <div class='input-field col s6 disabled'>
-                          <input disabled placeholder='x' type='text' maxlength='10' id='data_alterar' value='%s'>
-                          <span class='helper-text' data-error='wrong' data-success='right'>Data (AAAA-MM-DD)</span>
+                          <input disabled type='text' maxlength='10' id='a_dataIMP' value='%s'>
+                          <span class='helper-text'>Data (AAAA-MM-DD)</span>
+                        </div>
+                      </div>
+                      <div class='row'>
+                        <div class='input-field col s6'>
+                          <input disabled value='%d' type='number' id='a_mesIMP'>
+                          <span class='helper-text'>Mês (Número)</span>
+                        </div>
+                        <div class='input-field col s6'>
+                          <input disabled type='number' id='a_anoIMP' value='%d'>
+                          <span class='helper-text'>Ano</span>
                         </div>
                       </div>
 
 
-                  ", $manha, $tarde, $noite, $mes, $ano, $data);
+
+                  ", $total, $data, $mes, $ano);
 
 
         } else {
@@ -98,7 +85,7 @@
 
   function alterarDiaFuncao($data){
 
-    $sql = mysqli_query($GLOBALS['conectar'], "SELECT * FROM estatistica_usuarios WHERE data = '{$data}'");
+    $sql = mysqli_query($GLOBALS['conectar'], "SELECT * FROM impressao WHERE xdata = '{$data}'");
 
     if(verificarNivel(3)){
 
@@ -107,18 +94,16 @@
         $alterarDados = $_POST['alterarDados'];
 
         if($alterarDados == 2){
-          mysqli_query($GLOBALS['conectar'], "DELETE FROM estatistica_usuarios WHERE data = '{$data}'");
-          gravar_log("Deletou estatística usuário [DATA:".$data."] * [#118#]");
+          mysqli_query($GLOBALS['conectar'], "DELETE FROM impressao WHERE xdata = '{$data}'");
+          gravar_log("Deletou estatística impressões [DATA:".$data."] * [#143#]");
           echo 1;
         }
 
         if($alterarDados == 1){
-          $manha = preg_replace('/[^0-9_]/', '',$_POST['manha']);
-          $tarde = preg_replace('/[^0-9_]/', '',$_POST['tarde']);
-          $noite = preg_replace('/[^0-9_]/', '',$_POST['noite']);
+          $total = preg_replace('/[^0-9_]/', '',$_POST['total']);
 
-          mysqli_query($GLOBALS['conectar'], "UPDATE estatistica_usuarios SET manha = '{$manha}', tarde = '{$tarde}', noite = '{$noite}' WHERE data = '{$data}'");
-          gravar_log("Alterou estatística usuário [DATA:".$data."] * [#119#]");
+          mysqli_query($GLOBALS['conectar'], "UPDATE impressao SET total = $total WHERE xdata = '{$data}'");
+          gravar_log("Alterou estatística impressões [DATA:".$data."] * [#144#]");
           echo 1;
         }
 

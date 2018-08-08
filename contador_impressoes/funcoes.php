@@ -72,11 +72,13 @@
   // ATUALIZAR CONTADOR
   function atualizarContador(){
     $data = date("m-d-Y");
+    $mes = date("m");
+    $ano = date("Y");
     $conectar = $GLOBALS['conectar'];
     $sql = mysqli_query($conectar, "SELECT * FROM impressao WHERE xdata = '{$data}'");
 
     if(!verificarSql($sql)){
-      mysqli_query($conectar, "INSERT INTO impressao(total, xdata) VALUES ('0','{$data}') ");
+      mysqli_query($conectar, "INSERT INTO impressao(total, xdata, mes, ano) VALUES ('0','{$data}', $mes, $ano) ");
     }
 
     $contagem = mysqli_fetch_array($sql);
