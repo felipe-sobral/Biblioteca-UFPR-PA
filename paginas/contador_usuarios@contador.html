@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang='pt-br'>
+
+<!--
+    - Felipe Vieira Sobral
+    - xfelipesobral@gmail.com
+    - felipesobral@ufpr.br
+    - https://felipesobral.xyz
+    - https://github.com/krepper/Biblioteca-UFPR-PA/
+-->
+
+	<head>
+  		<meta charset="utf-8" />
+  		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  		<title>Biblioteca UFPR</title>
+  		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+      <link rel="stylesheet" href="default.css";
+   </head>
+   
+   <body style="background-image: url('../img/bg-azul.jpg'); background-attachment: fixed;">
+
+      <div id="carregando" class="carregando" style="display: none">
+         <div class="ui active dimmer">
+            <div class="progress">
+               <div class="indeterminate"></div>
+            </div>
+            <h1 class="display-4 centralizar" style="color: #fff">Verificando credenciais...</h1>
+         </div>
+      </div>
+
+      <div id="passou">
+
+         <ul id="slide-out" class="sidenav sidenav-fixed">
+            <div id="menuID">Aguarde...</div>
+         </ul>
+
+         <div class="container" style="background-image: url('../img/bg-azul.jpg'); background-attachment: fixed; color: #fff">
+            <a data-target="slide-out" class="sidenav-trigger waves-effect"><i class="material-icons" style="color: #fff">menu</i></a>
+
+            <div class="centralizar">
+               <h1 class="display-4">Contador de usuários</h1>
+            </div>
+            
+            <div class="card-panel" style="color: #000">
+               <h5 class="card-title">Contador de usuários</h5>
+               <h1 class="card-text" id="contador">00</h1>
+               <a class="btn waves-effect waves-light green" onclick="adicionar()"><i class="material-icons" style="color: #fff">add</i></a>
+               <a class="btn waves-effect waves-light red" onclick="remover()"><i class="material-icons" style="color: #fff">remove</i></a>
+            </div>
+
+         </div>
+
+      </div>
+
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+      <script type="text/javascript" src="ponte.js"></script>
+      <script>
+			$(document).ready(function() {
+            //autenticacao_restrita();	
+            menu();
+            $('.sidenav').sidenav();
+    		});
+  		</script>  
+   </body>
+</html>
