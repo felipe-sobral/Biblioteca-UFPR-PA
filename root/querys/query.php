@@ -95,7 +95,62 @@
 
         return $resposta;
     }
-  
+
+    /* NEW */
+
+    class Query{
+        private $query;
+        private $db;
+        private $valores;
+
+        function __construct(){
+            $this->query = null;
+            $this->db = null;
+            $this->valores = [];
+        }
+
+        public function select($tabelas, $colunas){
+            $this->query = "SELECT ".implode(", ", $colunas)." FROM ".implode(", ", $tabelas)." WHERE ";
+            return $this;
+        }
+
+        function parametro($linha, $cond, $valor){
+            $this->query .= "{$linha} {$cond} :{$linha}";
+            $this->valores[] = [$linha => $valor];
+            //array_push($this->valores, [$linha => $valor]);
+            return $this;
+        }
+
+        function and(){
+            $this->query .= " AND ";
+            return $this;
+        }
+
+        function construir(){
+            $this->db = db_prepare($this->query);
+            print_r($this->valores);
+            print_r(["usuario" => "Felipe", "senha" => "Teste"]);
+            //$this->db->execute($this->valores);
+            return $this;
+        }
+
+        function array_num(){
+            return $this->db->fetch(PDO::FETCH_NUM);
+        }
+
+        function array_assoc(){
+            return $this->db->fetch(PDO::FETCH_ASSOC);
+        }
+
+        function array_obj(){
+            return $this->db->fetch(PDO::FETCH_OBJ);
+        }
+
+        function print(){
+            echo $this->query;
+        }
+
+    }
 
 
 

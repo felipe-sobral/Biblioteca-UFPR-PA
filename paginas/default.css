@@ -1,18 +1,3 @@
-.toast-vermelho {
-   background-color: #ff4848 !important;
-   color: #fff !important;
-}
-
-.toast-amarelo {
-   background-color: #bfa600 !important;
-   color: #000 !important;
-}
-
-.toast-verde {
-   background-color: #609832 !important;
-   color: #fff !important;
-}
-
 header,
 main,
 footer,
@@ -22,7 +7,6 @@ body {
 
 .carregando {
 	padding-top: 35vh;
-	padding-right: 300px;
 }
 
 .cab {

@@ -1,5 +1,4 @@
 <?php
-
     define('DB_MAIN', 'Localhost');
     define('DB_MAIN_USR', 'root');
     define('DB_MAIN_PASS', 'root');
@@ -9,3 +8,4 @@
     error_reporting(E_ALL);
 
     require("querys/query.php");
+    require("seguranca.php");

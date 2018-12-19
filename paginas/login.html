@@ -52,116 +52,36 @@
 
 		<div id="passou" style="display: none">
 
-			<div class="ui container">
+			<div class="ui container" style="height: 20px">
 				<img class="centralizar" src="../img/branco_UFPR.png" width="250px"/>
 
-				<form class="ui large form">
-						<div class="ui stacked segment">
-						  <div class="field">
-							 <div class="ui left icon input">
+				<form class="ui large form" id="loginform">
+					<div class="ui stacked segment centralizar" style="width: 50%">
+
+					  <div class="field" style="margin-top: 2%">
+							<div class="ui left icon input">
 								<i class="user icon"></i>
-								<input type="text" name="email" placeholder="E-mail address">
-							 </div>
-						  </div>
-						  <div class="field">
-							 <div class="ui left icon input">
+								<input type="text" id="usuario" name="email" placeholder="Usuário">
+							</div>
+						</div>
+
+						<div class="field">
+							<div class="ui left icon input">
 								<i class="lock icon"></i>
-								<input type="password" name="password" placeholder="Password">
-							 </div>
-						  </div>
-						  <div class="ui fluid large teal submit button">Login</div>
+								<input type="password" id="senha" name="password" placeholder="Senha">
+							</div>
 						</div>
-				
-						<div class="ui error message"></div>
-				
-					 </form>
+
+						<button type="submit" class="ui fluid large teal submit button">Entrar</button>
+
+						<div id="mensagemID" style="margin-top: 2%"></div>
+					</div>
+
+				</form>
 				
 			</div>
-			<!--
-			<div class="ui middle aligned center aligned grid">
-					<div class="column">
-					  <h2 class="ui teal image header">
-						 <img src="assets/images/logo.png" class="image">
-						 <div class="content">
-							Log-in to your account
-						 </div>
-					  </h2>
-					  <form class="ui large form">
-						 <div class="ui stacked segment">
-							<div class="field">
-							  <div class="ui left icon input">
-								 <i class="user icon"></i>
-								 <input type="text" name="email" placeholder="E-mail address">
-							  </div>
-							</div>
-							<div class="field">
-							  <div class="ui left icon input">
-								 <i class="lock icon"></i>
-								 <input type="password" name="password" placeholder="Password">
-							  </div>
-							</div>
-							<div class="ui fluid large teal submit button">Login</div>
-						 </div>
-				 
-						 <div class="ui error message"></div>
-				 
-					  </form>
-				 
-					  <div class="ui message">
-						 New to us? <a href="#">Sign Up</a>
-					  </div>
-					</div>
-				 </div>-->
-			<!---
-			
-			<section>
-				<img class="centralizar" src="../img/branco_UFPR.png" width="250px"/>
-
-				<div class="ui card">
-					<div class="ui slide masked reveal image">
-						<img src="https://www.w3schools.com/w3css/img_lights.jpg" class="visible content">
-						<img src="https://media-cdn.tripadvisor.com/media/photo-s/11/7a/07/b1/northern-lights-chase.jpg" class="hidden content">
-					</div>
-					<div class="content">
-						<a class="header">Team Fu &amp; Hess</a>
-						<div class="meta">
-							<span class="date">Created in Sep 2014</span>
-						</div>
-					</div>
-					<div class="extra content">
-						<a><i class="users icon"></i>2 Members</a>
-					</div>
-				</div>
-			</section>
-
-			<div class="container" style="padding-top: 5%">
-				
-
-				<div class="card-panel">
-					<h5 class="centralizar">Painel de controle</h5>
-
-					<div class="row">
-						<form class="col s12" id="loginform">
-							<div class="row">
-								<div class="input-field col s6">
-									<input type="text" id="usuario"></input>
-									<label for="usuario">Usuário</label>
-								</div>
-								<div class="input-field col s6">
-									<input type="password" id="senha"></input>
-									<label for="senha">Senha</label>
-								</div>
-							</div>
-							<button class="btn waves-effect waves-light centralizar" type="submit">Entrar</button>
-						</form>
-					</div>
-
-				</div>
-
-			</div>
-
-    	</div>
-	-->
+	
+		</div>			
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 		<script type="text/javascript" src="ponte.js"></script>  
