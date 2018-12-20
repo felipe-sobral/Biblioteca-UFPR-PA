@@ -1,7 +1,9 @@
 <?php
-   /*if(!isset($_SESSION['usuario'])){
+   session_start();
+
+   if(!isset($_SESSION, $_SESSION['usuario'], $_SESSION['email'])){
       return;
-   }*/
+   }
 
    class Menu{
       private $comeco;
@@ -9,16 +11,16 @@
 
       public function __construct(){
          $this->comeco = "
-            <li><div class='user-view'>
-               <div class='background'>
-                  <img src='../img/bg.jpg'>
-               </div>
-               <center><a href='../home_restrita.html'><img src='../img/branco_UFPR.png' width='188vh'></a>
-               <h5 id='nomeID' class='card-title text-light'>teste</h5>
+               <li><div class='user-view' style='line-height: 25px !important;'>
+                  <div class='background'>
+                     <img src='../img/bg.jpg'>
+                  </div>
+                  <a href='#home'><img class='circle' src='https://images.vexels.com/media/users/3/137047/isolated/preview/5831a17a290077c646a48c4db78a81bb-perfil-do-usu-rio-blue-icon-by-vexels.png'></a>
+                  <a id='menu_nome'><span class='white-text name'>".$_SESSION['nome']."</span></a>
+                  <a id='menu_email'><span class='white-text email'>".$_SESSION['email']."</span></a>
             </div></li>";
 
          $this->itens = "";
-         
       }
 
       //<li><a class='collapsible-header waves-effect' style='text-decoration:none' href='../contador_usuario/painel.html'><i class='material-icons'>star_rate</i>Contador de usuários</a></li>
@@ -51,7 +53,7 @@
       }
 
       public function addSpacer(){
-         $this->itens .= "<hr width='200vh'/>";
+         $this->itens .= "<hr style='width: 12vh; border: 0; border-top: 1px solid rgba(0, 0, 0, 0.1);'>";
       }
 
       public function addItem($str){
@@ -60,6 +62,10 @@
 
       public function menuJS(){
          echo $this->comeco.$this->itens;
+      }
+
+      public function menu(){
+         return ($this->comeco.$this->itens);
       }
 
    }

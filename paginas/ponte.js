@@ -42,8 +42,9 @@ function autenticacao_restrita(){
 }
 
 function menu(){
-   $.get("../root/secoes/menu.php", function(data){
+   $.get("../root/templates/menu.php", function(data){
       var str = data+"<script>$('.collapsible').collapsible();</script>";
-      $('#menuID').html(str);
+		$('#menuID').html(str);
+		console.log(str);
    });
 }

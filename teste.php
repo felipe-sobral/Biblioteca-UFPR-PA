@@ -9,4 +9,10 @@
                       ->construir();
                       */
          
-   $teste->select(["usuarios", "livros"], ["nome"])->parametro("usuario", "=", "Felipe")->print();
+   $teste->select(["usuarios", "livros"], ["nome"])
+         ->parametro("usuario", "=", "Felipe")
+         ->and()
+         ->parametro("teste", "=", "Teste")
+         ->and()
+         ->parametro("outro", "=", "Teste")
+         ->construir();

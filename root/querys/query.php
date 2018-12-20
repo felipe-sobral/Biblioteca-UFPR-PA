@@ -116,8 +116,7 @@
 
         function parametro($linha, $cond, $valor){
             $this->query .= "{$linha} {$cond} :{$linha}";
-            $this->valores[] = [$linha => $valor];
-            //array_push($this->valores, [$linha => $valor]);
+            $this->valores += [$linha => $valor];
             return $this;
         }
 
@@ -128,9 +127,7 @@
 
         function construir(){
             $this->db = db_prepare($this->query);
-            print_r($this->valores);
-            print_r(["usuario" => "Felipe", "senha" => "Teste"]);
-            //$this->db->execute($this->valores);
+            $this->db->execute($this->valores);
             return $this;
         }
 
