@@ -19,10 +19,10 @@
         if($stat == 0){
             #SELECT turno FROM e_usuarios WHERE data=data;
             $query = new Query;
-            $contador = $query->select(["e_usuarios"], ['*'])->parametro("data", "=", "\'2018-12-23\'")->construir()->array_assoc();
+            $contador = $query->select(["e_usuarios"], ['*'])->parametro("data", "=", $date)->construir()->array_assoc();
             
             if($contador == null){
-                $query->insert("e_usuarios", ['2018-12-23', 0, 0, 0])->construir();
+                $query->insert("e_usuarios", [$date, 0, 0, 0])->construir();
                 echo "0";
                 return;
             }
