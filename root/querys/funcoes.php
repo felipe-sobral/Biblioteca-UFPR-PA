@@ -19,7 +19,19 @@
 		$str[1] = substr_replace($str[1], ")", -2);
 
 	    return $str;
-    }
+	}
+	
+	function itens($array){
+		#["2018-12-21", "0", "0", "0"] ---> ('2018-12-21','0', '0', '0')
+
+		$str = "(";
+
+		foreach($array as $item){
+			$str .= "'".$item."', ";
+		}
+
+		return substr_replace($str, ")", -2);
+	}
 
     ## ['id', 'usuario', 'nome', 'senha'] => "id = :id, usuario = :usuario, nome = :nome, senha = :senha"
 	function update_values($valores){

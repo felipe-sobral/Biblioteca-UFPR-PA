@@ -48,3 +48,16 @@ function menu(){
 		console.log(str);
    });
 }
+
+/*
+ 	x = 0 -> ATUALIZAR CONTADOR
+	x = 1 -> ADICIONAR
+	x = -1 -> DECREMENTAR
+*/
+function atualizar_contador(x){
+	$.post("../root/secoes/contador_usuarios/contar.php", {stat: x}, function(data){
+		if(data != null){
+			$("#contador").html("<h1 id='contador' style='color: #161616'>" + data.toString() + "</h1>");
+		}
+	});
+}

@@ -109,8 +109,28 @@
             $this->valores = [];
         }
 
-        public function select($tabelas, $colunas){
+        function select($tabelas, $colunas){
             $this->query = "SELECT ".implode(", ", $colunas)." FROM ".implode(", ", $tabelas)." WHERE ";
+            return $this;
+        }
+
+        function insert($tabela, $values){
+            $this->query = "INSERT INTO {$tabela} VALUES ".itens($values).";";
+            return $this;
+        }
+
+        function update($tabela){
+            $this->query = "UPDATE {$tabela} SET ";
+            return $this;
+        }
+        
+        function addQuery($query){
+            $this->query = $query;
+            return $this;
+        }
+
+        function where(){
+            $this->query .= " WHERE ";
             return $this;
         }
 
@@ -141,6 +161,10 @@
 
         function array_obj(){
             return $this->db->fetch(PDO::FETCH_OBJ);
+        }
+
+        function retornarQuery(){
+            return $this->query;
         }
 
         function print(){

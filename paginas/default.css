@@ -54,3 +54,14 @@ body {
    margin-right: -50%;
    transform: translate(-50%, -50%) 
 }
+
+.vertical-centro{
+	position: absolute;
+    top: 50%;
+    left: 25%;
+    width: 50%;
+    text-align: center;
+    -webkit-transform: translateY( -50% );
+    -moz-transform: translateY( -50% );
+    transform: translateY( -50% );
+}
