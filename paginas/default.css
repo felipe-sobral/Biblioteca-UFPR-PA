@@ -65,3 +65,11 @@ body {
     -moz-transform: translateY( -50% );
     transform: translateY( -50% );
 }
+
+.thin{
+	font-weight: 100;
+}
+
+.menu-item{
+	color: #404040 !important;
+}

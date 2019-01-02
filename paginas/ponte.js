@@ -25,7 +25,7 @@ function autenticacao(){
 			document.getElementById("carregando").style.display = "none";
 			document.getElementById("passou").style.display = "block";
 		} else {
-         window.location = 'painel.html';
+         window.location = 'painel.php';
 		}
 	});
 }

@@ -140,6 +140,11 @@
             return $this;
         }
 
+        function parametro_direto($linha, $cond, $valor){
+            $this->query .= "{$linha} {$cond} {$valor}";
+            return $this;
+        }
+
         function and(){
             $this->query .= " AND ";
             return $this;
@@ -148,6 +153,12 @@
         function construir(){
             $this->db = db_prepare($this->query);
             $this->db->execute($this->valores);
+            return $this;
+        }
+
+        function construir_direto(){
+            $this->db = db_prepare($this->query);
+            $this->db->execute();
             return $this;
         }
 
@@ -169,6 +180,11 @@
 
         function print(){
             echo $this->query;
+        }
+
+        function print_assoc($value){
+            $values = $this->array_assoc();
+            echo $values[$value];
         }
 
     }

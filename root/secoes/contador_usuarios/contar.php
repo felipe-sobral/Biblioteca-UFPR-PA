@@ -31,19 +31,20 @@
             return;
         }
 
+        
+
         if($stat < 0){
             $quantidade = -1;
         }
 
-        ## CONTINUAR DAQUI
-
         $select = new Query;
         $update = new Query;
 
-        $select = $select->select(["e_usuarios"], [$turno])->parametro("data", "=", $hoje)->retornarQuery();
-        $update = $update->update("e_usuarios")->parametro($turno, "= {$turno} +", $quantidade)->where()->parametro("data", "=", $hoje)->retornarQuery();
-        
-        $final = $final->addQuery($update."; ".$select)->print();
+        $update->update("e_usuarios")->parametro($turno, "= {$turno} +", $quantidade)->where()->parametro("data", "=", $hoje)->construir();
+        echo $select->select(["e_usuarios"], [$turno])->parametro_direto("data", "=", "'$hoje'")->construir()->print_assoc($turno);
+
+        exit;
+        return;
 
     }
 
