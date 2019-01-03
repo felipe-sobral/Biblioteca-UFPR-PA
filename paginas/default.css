@@ -73,3 +73,19 @@ body {
 .menu-item{
 	color: #404040 !important;
 }
+
+.barra{
+	background-color: #c1c1c1;
+	padding-bottom: 5px;
+}
+
+/* TOAST */
+.toast-vermelho{
+	background-color: #ff4949 !important;
+	color: #fff;
+}
+
+.toast-verde{
+	background-color: #72d626 !important;
+	color: #fff;
+}

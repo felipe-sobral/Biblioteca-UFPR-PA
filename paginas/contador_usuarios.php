@@ -34,12 +34,10 @@
 <!--
 
    PAINEL DE CONTROLE - Contador Usuários
-   ATUALIZADO: 21/12/2018
-
-
-
+   ATUALIZADO: 03/01/2018
 
 -->
+
 <div id="main">
 
    <ul id='menu' class='side-nav fixed'>
@@ -68,9 +66,10 @@
          <div class="row">
             <div class="col s12">
                <div class="card">
+                  <div class="barra"></div>
                   <div class="card-content black-text">
                      <h1 id="contador" style="color: #2d2d2d">00</h1>
-                     <span class="card-title">02/01/2019</span>
+                     <span class="card-title"><?php echo date('d/m/Y'); ?></span>
                   </div>
                   <div class="card-action">
                      <a class="waves-effect waves-light btn-large green" onClick="atualizar_contador(1)"><i class="material-icons">add</i></a>
@@ -99,7 +98,7 @@
          <div class="row">
             <div class="col s12">
                <div class="card">
-
+                  <div class="barra"></div>
                   <form id="form_adicionar_dia_EU">
                      <div class="card-content black-text">
                         
@@ -120,7 +119,7 @@
 
                         <div class="row">
                            <div class="input-field col s4">
-                              <input type='number' min='0' id='dia'>
+                              <input type='number' min='0' max='32' id='dia'>
                               <label for='dia'>Dia</label>
                            </div>
                            <div class="input-field col s4">
@@ -154,7 +153,7 @@
    <div id="h">
       
       <div class="center-align z-depth-3" style="background-image: url('../img/bg-azul.jpg'); padding-top: 2%; padding-bottom: 2%">
-         <i class="material-icons" style="font-size: 100px">add</i>
+         <i class="material-icons" style="font-size: 100px">history</i>
          <h1 class="thin">Histórico</h1>
       </div>
 
@@ -163,20 +162,20 @@
          <div class="row">
             <div class="col s12">
                <div class="card">
-
+                  <div class="barra"></div>
                   <form id="form_historico_EU">
                      <div class="card-content black-text">
                         
                         <div class="row">
                            <div class="input-field col s6">
-                              <select id="mes">
+                              <select id="mes_historico_EU">
                                  <?php drop_mes() ?>
                               </select>
                               <label>Mês</label>
                            </div>
 
                            <div class="input-field col s6">
-                              <input type='number' min='2018' max='<?php echo date('Y') ?>' id='ano'>
+                              <input type='number' min='2018' max='<?php echo date('Y') ?>' id='ano_historico_EU'>
                               <label for='ano'>Ano</label>
                            </div>
                         </div>
@@ -187,6 +186,12 @@
                      </div>
 
                   </form>
+
+                  <div id="aposProcurar" style="display: none">
+                     <hr>
+                     <button class="btn waves-effect" onclick="imprimirTabela('historicoLista')"><i class="material-icons">print</i></button>
+                     <div id="historicoLista"></div>
+                  </div>
 
                </div>
             </div>

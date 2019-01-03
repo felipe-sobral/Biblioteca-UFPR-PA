@@ -152,13 +152,17 @@
 
         function construir(){
             $this->db = db_prepare($this->query);
-            $this->db->execute($this->valores);
+            if(!$this->db->execute($this->valores)){
+                return false;
+            }
             return $this;
         }
 
         function construir_direto(){
             $this->db = db_prepare($this->query);
-            $this->db->execute();
+            if(!$this->db->execute()){
+                return false;
+            }
             return $this;
         }
 
