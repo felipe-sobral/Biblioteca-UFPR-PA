@@ -71,6 +71,14 @@ function atualizar_contador(x){
 	});
 }
 
+function imprimirTabela(conteudo) {
+  var imprimir = document.getElementById(conteudo).innerHTML;
+  tela_impressao = window.open('about:blank');
+  tela_impressao.document.write(imprimir);
+  tela_impressao.window.print();
+  tela_impressao.window.close();
+}
+
 // login.html
 $('#loginform').submit(function() {
    var usuario = $('#usuario').val();

@@ -72,7 +72,7 @@
 
    $menu = new Menu;
 
-   $dropUsuarios = [["group_add", "Contador", "#"], ["add", "Adicionar", "#"], ["history", "Histórico", "#"], ["edit", "Alterar", "#"]];
+   $dropUsuarios = [["group_add", "Contador", "contador_usuarios.php"], ["add", "Adicionar", "contador_usuarios.php#add"], ["history", "Histórico", "contador_usuarios.php#h"], ["edit", "Alterar", "contador_usuarios.php#alt"]];
    $dropConsultaLivros = [["note_add", "Registrar códigos", "#"], ["add", "Adicionar", "#"], ["history", "Histórico", "#"], ["edit", "Alterar", "#"], ["cloud_download", "Baixar", "#"]];
 
    $menu->addItem($menu->item("star_rate", "Contador de usuários", "contador_usuarios.php"));

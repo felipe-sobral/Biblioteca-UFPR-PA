@@ -135,8 +135,10 @@
         }
 
         function parametro($linha, $cond, $valor){
-            $this->query .= "{$linha} {$cond} :{$linha}";
-            $this->valores += [$linha => $valor];
+            $parametro = preg_replace("/[()]/", "", $linha);
+
+            $this->query .= "{$linha} {$cond} :{$parametro}";
+            $this->valores += [$parametro => $valor];
             return $this;
         }
 
@@ -174,6 +176,15 @@
             return $this->db->fetch(PDO::FETCH_ASSOC);
         }
 
+        function array_assoc_multi(){
+            $itens = [];
+            while($item = $this->db->fetch(PDO::FETCH_ASSOC)){
+                $itens[]= $item;        
+            }
+
+            return $itens;
+        }
+
         function array_obj(){
             return $this->db->fetch(PDO::FETCH_OBJ);
         }
@@ -189,6 +200,10 @@
         function print_assoc($value){
             $values = $this->array_assoc();
             echo $values[$value];
+        }
+
+        function print_valores(){
+            echo var_dump($this->valores);
         }
 
     }

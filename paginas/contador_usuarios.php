@@ -45,6 +45,7 @@
    </ul>
 
    <ul id="tabs-swipe-demo" class="tabs">
+      <a href="#" data-activates="menu" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons" style="color: #000">menu</i></a>
       <li class="tab col s3"><a class="active menu-item" href="#c">Contador</a></li>
       <li class="tab col s3"><a class="menu-item" href="#add">Adicionar</a></li>
       <li class="tab col s3"><a class="menu-item" href="#h">Histórico</a></li>
@@ -150,6 +151,9 @@
       
    </div>
 
+   <!--
+      HISTÓRICO
+   -->
    <div id="h">
       
       <div class="center-align z-depth-3" style="background-image: url('../img/bg-azul.jpg'); padding-top: 2%; padding-bottom: 2%">
@@ -175,8 +179,8 @@
                            </div>
 
                            <div class="input-field col s6">
-                              <input type='number' min='2018' max='<?php echo date('Y') ?>' id='ano_historico_EU'>
-                              <label for='ano'>Ano</label>
+                              <input type='number' min='2018' max='<?php echo date('Y') ?>' id='ano_historico_EU' value='<?php echo date('Y') ?>'>
+                              <label for='ano_historico_EU'>Ano</label>
                            </div>
                         </div>
                      </div>
@@ -187,10 +191,9 @@
 
                   </form>
 
-                  <div id="aposProcurar" style="display: none">
-                     <hr>
+                  <div id="aposProcurar" class="container left-align" style="display: none; color: #000">
                      <button class="btn waves-effect" onclick="imprimirTabela('historicoLista')"><i class="material-icons">print</i></button>
-                     <div id="historicoLista"></div>
+                     <div id="historicoLista" style="padding-top: 20px; padding-bottom: 20px"></div>
                   </div>
 
                </div>
@@ -201,7 +204,57 @@
 
    </div>
 
-   <div id="alt">Test 4</div>
+   <!--
+      ALTERAR DATA
+   -->
+   <div id="alt">
+   
+      <div class="center-align z-depth-3" style="background-image: url('../img/bg-azul.jpg'); padding-top: 2%; padding-bottom: 2%">
+         <i class="material-icons" style="font-size: 100px">edit</i>
+         <h1 class="thin">Alterar data</h1>
+      </div>
+
+      <div class="container center-align" style="margin-top: 5%;">
+         
+         <div class="row">
+            <div class="col s12">
+               <div class="card">
+                  <div class="barra"></div>
+                  <form id="form_alterar_dia_EU">
+                     <div class="card-content black-text">
+
+                        <div class="row">
+                           <div class="input-field col s4">
+                              <input type='number' min='0' max='32' id='dia_alterar_EU'>
+                              <label for='dia_alterar_EU'>Dia</label>
+                           </div>
+                           <div class="input-field col s4">
+                              <select id="mes_alterar_EU">
+                                 <?php drop_mes() ?>
+                              </select>
+                              <label>Mês</label>
+                           </div>
+                           <div class="input-field col s4">
+                              <input type='number' min='2018' max='<?php echo date('Y') ?>' id='ano_alterar_EU' value='<?php echo date('Y') ?>'>
+                              <label for='ano_alterar_EU'>Ano</label>
+                           </div>
+                        </div>
+
+                     </div>
+
+                     <div class="card-action">
+                        <button type="submit" class="btn waves-effect waves-light">BUSCAR</button>
+                     </div>
+
+                  </form>
+
+               </div>
+            </div>
+         </div>
+                  
+      </div>
+
+   </div>
          
 </div>
 
