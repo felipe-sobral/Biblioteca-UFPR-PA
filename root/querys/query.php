@@ -115,7 +115,7 @@
         }
 
         function insert($tabela, $values){
-            $this->query = "INSERT INTO {$tabela} VALUES ".itens($values).";";
+            $this->query = "INSERT INTO {$tabela} VALUES ".$this->itens($values).";";
             return $this;
         }
 
@@ -134,8 +134,21 @@
             return $this;
         }
 
+        function itens($valores){
+            #["07-01-2019", "0", "0", "0"] ---> (:07012019, :0, :0, :0)
+
+            $str = "(";
+
+            foreach($valores as $item){
+                $str .= ":".sha1($item).", ";
+                $this->valores += [sha1($item) => $item];
+            }
+
+            return substr_replace($str, ")", -2);
+        }
+
         function parametro($linha, $cond, $valor){
-            $parametro = preg_replace("/[()]/", "", $linha);
+            $parametro = sha1($linha);
 
             $this->query .= "{$linha} {$cond} :{$parametro}";
             $this->valores += [$parametro => $valor];
@@ -166,6 +179,11 @@
                 return false;
             }
             return $this;
+        }
+
+        function testar(){
+            $this->db = db_prepare($this->query);
+            print_r($this->db->execute($this->valores)->getMessage());
         }
 
         function array_num(){
@@ -208,5 +226,14 @@
 
     }
 
+    function inserir_padrao($tabela, $valores){
+        $sql = new Query;
+
+        if($sql->insert($tabela, $valores)->construir()){
+            return true;
+        }
+
+        return false;
+    }
 
 

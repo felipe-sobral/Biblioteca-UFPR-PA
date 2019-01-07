@@ -109,7 +109,7 @@ $("#form_adicionar_dia_EU").submit(function() {
 	
 	var data = data_formatada($("#dia").val(), $("#mes").val(), $("#ano").val());
 
-	$.post("../root/secoes/contador_usuarios/adicionar.php", {manha: zero_frente($("#manha").val()), tarde: zero_frente($("#tarde").val()), noite: zero_frente($("#noite").val()), data: data}, function(retorno){
+	$.post("../root/funcoes/adicionar.php", {cod: "2de4e93f2993257dcc359660930ad0e57afd1886", data: data, manha: zero_frente($("#manha").val()), tarde: zero_frente($("#tarde").val()), noite: zero_frente($("#noite").val())}, function(retorno){
 		if(retorno == "#true"){
 			criar_toast("<i class='material-icons'>check</i>", 1000, "toast-verde");
 		} else {
@@ -122,13 +122,12 @@ $("#form_adicionar_dia_EU").submit(function() {
 });
 
 $("#form_historico_EU").submit(function() {
-	/*if(campos_vazios(["mes", "ano"])){
+	if(campos_vazios(["mes_historico_EU", "ano_historico_EU"])){
 		criar_toast("<i class='material-icons'>close</i> Campos vazios!", 1000, "toast-vermelho");
 		return false;
-	}*/
-	console.log($("#mes_historico_EU").val()+"___"+$("#ano_historico_EU").val());
+	}
 
-	$.post("../root/secoes/contador_usuarios/historico.php", {mes: zero_frente($("#mes_historico_EU").val()), ano: $("#ano_historico_EU").val()}, function(retorno){
+	$.post("../root/secoes/contador_usuarios/historico.php", {cod: "2de4e93f2993257dcc359660930ad0e57afd1886", mes: zero_frente($("#mes_historico_EU").val()), ano: $("#ano_historico_EU").val()}, function(retorno){
 		if(retorno != "#false"){
 			criar_toast("<i class='material-icons'>check</i>", 1000, "toast-verde");
 
@@ -137,6 +136,30 @@ $("#form_historico_EU").submit(function() {
 		} else {
 			criar_toast("<i class='material-icons'>close</i>", 1000, "toast-vermelho");
 		}
+	});
+
+	//SELECT * FROM e_usuarios WHERE MONTH(data) = 1 AND YEAR(data) = 2019;
+
+	return false;
+});
+
+$("#form_alterar_dia_EU").submit(function() {
+	/*if(campos_vazios(["dia_alterar_EU", "mes_alterar_EU", "ano_alterar_EU"])){
+		criar_toast("<i class='material-icons'>close</i> Campos vazios!", 1000, "toast-vermelho");
+		return false;
+	}*/
+
+	$.post("../root/secoes/contador_usuarios/alterar.php", {dia: zero_frente($("#dia_alterar_EU").val()), mes: zero_frente($("#mes_alterar_EU").val()), ano: $("#ano_alterar_EU").val(), stat: 'BUSCAR'}, function(retorno){
+		if(retorno != "#false"){
+			criar_toast("<i class='material-icons'>check</i>", 1000, "toast-verde");
+
+			/*$("#historicoLista").html(retorno);
+        	document.getElementById("aposProcurar").style.display = "block";*/
+		} else {
+			criar_toast("<i class='material-icons'>close</i>", 1000, "toast-vermelho");
+		}
+
+		console.log(retorno);
 	});
 
 	//SELECT * FROM e_usuarios WHERE MONTH(data) = 1 AND YEAR(data) = 2019;

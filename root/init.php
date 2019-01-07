@@ -9,3 +9,4 @@
 
     require("querys/query.php");
     require("seguranca.php");
+    require("construtor.php");

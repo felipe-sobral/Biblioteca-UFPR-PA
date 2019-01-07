@@ -43,7 +43,7 @@
       }
 
       $query = new Query;
-      if($sql->select(['e_usuarios'], ['*'])
+      if($query->select(['e_usuarios'], ['*'])
              ->parametro('DAY(data)', '=', $_POST['dia'])
              ->and()
              ->parametro('MONTH(data)', '=', $_POST['mes'])
@@ -51,14 +51,14 @@
              ->parametro('YEAR(data)', '=', $_POST['ano'])
              ->construir()){
          
-         $dia = $sql->array_assoc();
+         $dia = $query->array_assoc();
 
          if($dia == null){
             echo "#false";
             exit;
-         }      
+         }   
 
-         // CONTINUAR DAQUI -----------------
+         var_dump($dia);
 
       }
    }
