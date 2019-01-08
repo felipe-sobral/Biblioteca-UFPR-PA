@@ -2,6 +2,7 @@
    session_start();
 
    require "../init.php";
+   include "../templates/formulario.php";
 
    $dados = $_POST;
 
@@ -9,5 +10,5 @@
 
    unset($dados["cod"]);
    
-   $exec->historico($dados, 2);
-   $exec->tabela();
+   
+   $exec->formulario($exec->buscar($dados, 2));

@@ -1,5 +1,6 @@
 <?php
    require "../root/init.php";
+   include "../root/templates/formulario.php";
 
    session_start();
  
@@ -13,21 +14,24 @@
    }
 
    function drop_mes(){
-      echo "
-         <option disabled selected>Escolha o mês</option>
-         <option value='1'>Janeiro</option>
-         <option value='2'>Fevereiro</option>
-         <option value='3'>Março</option>
-         <option value='4'>Abril</option>
-         <option value='5'>Maio</option>
-         <option value='6'>Junho</option>
-         <option value='7'>Julho</option>
-         <option value='8'>Agosto</option>
-         <option value='9'>Setembro</option>
-         <option value='10'>Outubro</option>
-         <option value='11'>Novembro</option>
-         <option value='12'>Dezembro</option>
-      ";
+      $x = [
+            "<option disabled selected>Escolha o mês</option>",
+            "<option value='1'>Janeiro</option>",
+            "<option value='2'>Fevereiro</option>",
+            "<option value='3'>Março</option>",
+            "<option value='4'>Abril</option>",
+            "<option value='5'>Maio</option>",
+            "<option value='6'>Junho</option>",
+            "<option value='7'>Julho</option>",
+            "<option value='8'>Agosto</option>",
+            "<option value='9'>Setembro</option>",
+            "<option value='10'>Outubro</option>",
+            "<option value='11'>Novembro</option>",
+            "<option value='12'>Dezembro</option>"
+           ];
+
+      //echo $x;
+      return $x;
    }
 ?>
 
@@ -44,13 +48,13 @@
       <div id="menuID"></div>
    </ul>
 
-   <ul id="tabs-swipe-demo" class="tabs">
-      <a href="#" data-activates="menu" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons" style="color: #000">menu</i></a>
+   <ul id="tabs-swipe-demo" class="tabs" style="background-image: url('../img/bg-azul.jpg'); background-attachment: fixed">
+      <a href="#" data-activates="menu" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons" style="color: #fff">menu</i></a>
       <li class="tab col s3"><a class="active menu-item" href="#c">Contador</a></li>
-      <li class="tab col s3"><a class="menu-item" href="#add">Adicionar</a></li>
       <li class="tab col s3"><a class="menu-item" href="#h">Histórico</a></li>
+      <li class="tab col s3"><a class="menu-item" href="#add">Adicionar</a></li>
       <li class="tab col s3"><a class="menu-item" href="#alt">Alterar</a></li>
-      <li class="indicator" style="right: 974px;left: 0px; background-color: #404040;"></li>
+      <li class="indicator" style="right: 974px;left: 0px; background-color: #fff;"></li>
    </ul>
 
    <!--
@@ -58,7 +62,7 @@
    -->
    <div id="c">
       
-      <div class="center-align z-depth-3" style="background-image: url('../img/bg-azul.jpg'); padding-top: 2%; padding-bottom: 2%">
+      <div class="center-align z-depth-3" style="background-image: url('../img/bg-azul.jpg'); background-attachment: fixed; padding-top: 2%; padding-bottom: 2%">
          <i class="material-icons" style="font-size: 100px">group_add</i>
          <h1 class="thin">Contador de usuários</h1>
       </div>
@@ -66,15 +70,15 @@
          
          <div class="row">
             <div class="col s12">
-               <div class="card">
+               <div class="card" style="background-image: url('../img/bg.jpg')">
                   <div class="barra"></div>
-                  <div class="card-content black-text">
-                     <h1 id="contador" style="color: #2d2d2d">00</h1>
+                  <div class="card-content">
+                     <h1 id="contador">00</h1>
                      <span class="card-title"><?php echo date('d/m/Y'); ?></span>
                   </div>
-                  <div class="card-action">
-                     <a class="waves-effect waves-light btn-large green" onClick="atualizar_contador(1)"><i class="material-icons">add</i></a>
-                     <a class="waves-effect waves-light btn-large red" onClick="atualizar_contador(-1)"><i class="material-icons">remove</i></a>
+                  <div style="padding-bottom: 25px">
+                     <a class="waves-effect waves-light btn green" onClick="atualizar_contador(1)"><i class="material-icons">add</i></a>
+                     <a class="waves-effect waves-light btn red" onClick="atualizar_contador(-1)"><i class="material-icons">remove</i></a>
                   </div>
                </div>
             </div>
@@ -89,7 +93,7 @@
    -->
    <div id="add">
 
-      <div class="center-align z-depth-3" style="background-image: url('../img/bg-azul.jpg'); padding-top: 2%; padding-bottom: 2%">
+      <div class="center-align z-depth-3" style="background-image: url('../img/bg-azul.jpg'); background-attachment: fixed; padding-top: 2%; padding-bottom: 2%">
          <i class="material-icons" style="font-size: 100px">add</i>
          <h1 class="thin">Adicionar estatística do dia</h1>
       </div>
@@ -100,6 +104,7 @@
             <div class="col s12">
                <div class="card">
                   <div class="barra"></div>
+                  
                   <form id="form_adicionar_dia_EU">
                      <div class="card-content black-text">
                         
@@ -156,7 +161,7 @@
    -->
    <div id="h">
       
-      <div class="center-align z-depth-3" style="background-image: url('../img/bg-azul.jpg'); padding-top: 2%; padding-bottom: 2%">
+      <div class="center-align z-depth-3" style="background-image: url('../img/bg-azul.jpg'); background-attachment: fixed;  padding-top: 2%; padding-bottom: 2%">
          <i class="material-icons" style="font-size: 100px">history</i>
          <h1 class="thin">Histórico</h1>
       </div>
@@ -209,7 +214,7 @@
    -->
    <div id="alt">
    
-      <div class="center-align z-depth-3" style="background-image: url('../img/bg-azul.jpg'); padding-top: 2%; padding-bottom: 2%">
+      <div class="center-align z-depth-3" style="background-image: url('../img/bg-azul.jpg'); background-attachment: fixed;  padding-top: 2%; padding-bottom: 2%">
          <i class="material-icons" style="font-size: 100px">edit</i>
          <h1 class="thin">Alterar data</h1>
       </div>
@@ -247,6 +252,10 @@
                      </div>
 
                   </form>
+
+                  <div id="aposProcurarAlterar" class="container left-align card-action" style="display: none; color: #000">
+                     <div id="alterarFormulario" style="padding-top: 20px; padding-bottom: 20px"></div>
+                  </div>
 
                </div>
             </div>

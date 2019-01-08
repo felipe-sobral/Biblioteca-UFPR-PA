@@ -50,7 +50,6 @@
 
          $this->verificar_tabela($tabela);
 
-
       }
 
       function adicionar($dados, $permissao){
@@ -83,22 +82,28 @@
             }
 
             $this->data_tabela = $itens;
+            
          }
       }
 
+      function get_dataTabela(){
+         return $this->data_tabela;
+      }
+
       function buscar($dados, $permissao){
-         if(!isset($_POST['dia'], $_POST['mes'], $_POST['ano'])){
+
+         if(!isset($dados['dia'], $dados['mes'], $dados['ano'])){
             echo "#false";
             exit;
          }
    
          $query = new Query;
-         if($query->select($this->tabela, ['*'])
-                ->parametro('DAY(data)', '=', $_POST['dia'])
+         if($query->select([$this->tabela], ['*'])
+                ->parametro('DAY(data)', '=', $dados['dia'])
                 ->and()
-                ->parametro('MONTH(data)', '=', $_POST['mes'])
+                ->parametro('MONTH(data)', '=', $dados['mes'])
                 ->and()
-                ->parametro('YEAR(data)', '=', $_POST['ano'])
+                ->parametro('YEAR(data)', '=', $dados['ano'])
                 ->construir()){
             
             $dia = $query->array_assoc();
@@ -107,23 +112,23 @@
                echo "#4#";
                exit;
             }   
-   
-            var_dump($dia);
-   
          }
+
+         return $dia;
       }
    }
 
    class EstatisticaUsuarios extends Construtor{
+
       function contar(){
 
       }
 
-      function tabela(){
+      function tabela($itens){
          $tabela = new Tabela(["Data", "Manhã", "Tarde", "Noite", "Total"]);
          $totais = [0, 0, 0];
    
-         foreach($this->itens as $item){
+         foreach($itens as $item){
             $data = new DateTime($item['data']);
             $total = $item['manha']+$item['tarde']+$item['noite'];
    
@@ -138,5 +143,26 @@
    
    
          $tabela->print();
+      }
+
+      function formulario($itens){
+         $formulario = new Formulario('form_EU_editar');
+
+         $formulario->linha([
+                              $formulario->caixa("EU_ed_manha", "Manhã", "number", null, $itens['manha'], 4),
+                              $formulario->caixa("EU_ed_tarde", "Tarde", "number", null, $itens['tarde'], 4),
+                              $formulario->caixa("EU_ed_noite", "Noite", "number", null, $itens['noite'], 4),
+                            ]);
+         
+         $formulario->linha([
+                              $formulario->caixa("EU_ed_data", "Data", "text", null, $itens['data'], 12)
+                            ]);
+                            
+         $formulario->linha([
+                              $formulario->switch("EU_ed_deletar", "Alterar", "Deletar"),
+                              $formulario->botao_enviar("SUBMETER")
+                            ]);
+
+         $formulario->print();
       }
    }

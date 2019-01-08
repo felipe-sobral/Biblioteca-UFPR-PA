@@ -15,7 +15,7 @@
                   <div class='background'>
                      <img src='../img/bg.jpg'>
                   </div>
-                  <a href='localhost'><img class='circle' src='https://images.vexels.com/media/users/3/137047/isolated/preview/5831a17a290077c646a48c4db78a81bb-perfil-do-usu-rio-blue-icon-by-vexels.png'></a>
+                  <a href='http://localhost/paginas/painel.php' style='margin-left: 10%;'><img src='../img/branco_UFPR.png' width='188vh'></a>
                   <a id='menu_nome'><span class='white-text name'>".$_SESSION['nome']."</span></a>
                   <a id='menu_email'><span class='white-text email'>".$_SESSION['email']."</span></a>
             </div></li>";
@@ -72,7 +72,7 @@
 
    $menu = new Menu;
 
-   $dropUsuarios = [["group_add", "Contador", "contador_usuarios.php"], ["add", "Adicionar", "contador_usuarios.php#add"], ["history", "Histórico", "contador_usuarios.php#h"], ["edit", "Alterar", "contador_usuarios.php#alt"]];
+   $dropUsuarios = [["group_add", "Contador", "http://localhost/paginas/contador_usuarios.php"], ["add", "Adicionar", "http://localhost/paginas/contador_usuarios.php#add"], ["history", "Histórico", "http://localhost/paginas/contador_usuarios.php#h"], ["edit", "Alterar", "http://localhost/paginas/contador_usuarios.php#alt"]];
    $dropConsultaLivros = [["note_add", "Registrar códigos", "#"], ["add", "Adicionar", "#"], ["history", "Histórico", "#"], ["edit", "Alterar", "#"], ["cloud_download", "Baixar", "#"]];
 
    $menu->addItem($menu->item("star_rate", "Contador de usuários", "contador_usuarios.php"));

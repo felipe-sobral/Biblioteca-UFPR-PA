@@ -66,7 +66,7 @@ function criar_toast(mensagem, tempo, tipo){
 function atualizar_contador(x){
 	$.post("../root/secoes/contador_usuarios/contar.php", {stat: x}, function(data){
 		if(data != null){
-			$("#contador").html("<h1 id='contador' style='color: #161616'>" + data.toString() + "</h1>");
+			$("#contador").html(data.toString());
 		}
 	});
 }
@@ -127,7 +127,7 @@ $("#form_historico_EU").submit(function() {
 		return false;
 	}
 
-	$.post("../root/secoes/contador_usuarios/historico.php", {cod: "2de4e93f2993257dcc359660930ad0e57afd1886", mes: zero_frente($("#mes_historico_EU").val()), ano: $("#ano_historico_EU").val()}, function(retorno){
+	$.post("../root/funcoes/historico.php", {cod: "2de4e93f2993257dcc359660930ad0e57afd1886", mes: zero_frente($("#mes_historico_EU").val()), ano: $("#ano_historico_EU").val()}, function(retorno){
 		if(retorno != "#false"){
 			criar_toast("<i class='material-icons'>check</i>", 1000, "toast-verde");
 
@@ -149,12 +149,12 @@ $("#form_alterar_dia_EU").submit(function() {
 		return false;
 	}*/
 
-	$.post("../root/secoes/contador_usuarios/alterar.php", {dia: zero_frente($("#dia_alterar_EU").val()), mes: zero_frente($("#mes_alterar_EU").val()), ano: $("#ano_alterar_EU").val(), stat: 'BUSCAR'}, function(retorno){
+	$.post("../root/funcoes/alterar.php", {cod: "2de4e93f2993257dcc359660930ad0e57afd1886", dia: zero_frente($("#dia_alterar_EU").val()), mes: zero_frente($("#mes_alterar_EU").val()), ano: $("#ano_alterar_EU").val(), stat: 'BUSCAR'}, function(retorno){
 		if(retorno != "#false"){
 			criar_toast("<i class='material-icons'>check</i>", 1000, "toast-verde");
 
-			/*$("#historicoLista").html(retorno);
-        	document.getElementById("aposProcurar").style.display = "block";*/
+			$("#aposProcurarAlterar").html(retorno);
+        	document.getElementById("aposProcurarAlterar").style.display = "block";
 		} else {
 			criar_toast("<i class='material-icons'>close</i>", 1000, "toast-vermelho");
 		}
