@@ -8,7 +8,17 @@
 
    $exec = new EstatisticaUsuarios( isset($dados["cod"]) ? $dados["cod"]:null );
 
-   unset($dados["cod"]);
+   $stat = $dados['stat'];
+
+   unset($dados["cod"], $dados['stat']);
+
+   if($stat == 'BUSCAR'){
+      $exec->formulario($exec->buscar($dados, 2));
+      exit;
+   }
+
+   if($stat== 'ALTERAR'){
+      $exec->alterar($dados, 2);
+      exit;
+   }
    
-   
-   $exec->formulario($exec->buscar($dados, 2));

@@ -123,6 +123,18 @@
             $this->query = "UPDATE {$tabela} SET ";
             return $this;
         }
+
+        function alterar($tabela, $dados){
+            //UDPDATE $db SET variaveis[1] = :valores[1], :variaveis[2] = :valores[2] WHERE id = $id;
+            $this->query = "UPDATE $tabela SET ";
+
+            foreach ($dados as $key => $value){
+                $this->parametro($key, "=", $value);
+                $this->query .= ", ";
+            }
+
+            return substr_replace($this->query, "", -2);
+        }
         
         function addQuery($query){
             $this->query = $query;
@@ -130,6 +142,11 @@
         }
 
         function where(){
+            $this->query .= " WHERE ";
+            return $this;
+        }
+
+        function quando($parametros){
             $this->query .= " WHERE ";
             return $this;
         }
@@ -161,6 +178,11 @@
         }
 
         function and(){
+            $this->query .= " AND ";
+            return $this;
+        }
+
+        function e(){
             $this->query .= " AND ";
             return $this;
         }

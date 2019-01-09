@@ -116,6 +116,24 @@
 
          return $dia;
       }
+
+      function alterar($dados, $permissao){
+         // DATA - MANHA - TARDE - NOITE
+         if(!isset($dados['data'])){
+            echo "#false";
+            exit;
+         }
+
+         $query = new Query;
+         if($query->alterar($this->tabela, $dados)
+                  ->quando()
+                  ->parametro('data', '=', $dados['data'])){
+            
+            echo ":)";
+
+         }
+         
+      }
    }
 
    class EstatisticaUsuarios extends Construtor{
@@ -146,23 +164,35 @@
       }
 
       function formulario($itens){
-         $formulario = new Formulario('form_EU_editar');
+         $f = new FormularioComJquery('form_EU_editar');
 
-         $formulario->linha([
-                              $formulario->caixa("EU_ed_manha", "Manhã", "number", null, $itens['manha'], 4),
-                              $formulario->caixa("EU_ed_tarde", "Tarde", "number", null, $itens['tarde'], 4),
-                              $formulario->caixa("EU_ed_noite", "Noite", "number", null, $itens['noite'], 4),
+         $f->linha([
+                              $f->caixa("EU_ed_manha", "Manhã", "number", "value='".$itens['manha']."'", 4),
+                              $f->caixa("EU_ed_tarde", "Tarde", "number", "value='".$itens['tarde']."'", 4),
+                              $f->caixa("EU_ed_noite", "Noite", "number", "value='".$itens['noite']."'", 4),
                             ]);
          
-         $formulario->linha([
-                              $formulario->caixa("EU_ed_data", "Data", "text", null, $itens['data'], 12)
+         $f->linha([
+                              $f->caixa("EU_ed_data", "Data", "text", "value='".$itens['data']."'", 12)
                             ]);
                             
-         $formulario->linha([
-                              $formulario->switch("EU_ed_deletar", "Alterar", "Deletar"),
-                              $formulario->botao_enviar("SUBMETER")
+         $f->linha([
+                              $f->switch("EU_ed_deletar", "Alterar", "Deletar"),
+                              $f->botao_enviar("SUBMETER")
                             ]);
 
-         $formulario->print();
+         
+
+         $f->print();
+
+         $chaves = [
+            "cod" => $f->tabela("e_usuarios"),
+            "data" => $f->valor("EU_ed_data"),
+            "manha" => $f->valor("EU_ed_manha"),
+            "tarde" => $f->valor("EU_ed_tarde"),
+            "noite" => $f->valor("EU_ed_noite"),
+            "stat" => $f->item("ALTERAR")
+         ];
+         $f->criar_chamada($f->item("../root/funcoes/alterar.php"), $chaves, "console.log(retorno)");
       }
    }

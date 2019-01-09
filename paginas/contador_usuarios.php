@@ -14,8 +14,26 @@
    }
 
    function drop_mes(){
-      $x = [
-            "<option disabled selected>Escolha o mês</option>",
+      $x =  "<option disabled selected>Mês</option>
+            <option value='1'>Janeiro</option>
+            <option value='2'>Fevereiro</option>
+            <option value='3'>Março</option>
+            <option value='4'>Abril</option>
+            <option value='5'>Maio</option>
+            <option value='6'>Junho</option>
+            <option value='7'>Julho</option>
+            <option value='8'>Agosto</option>
+            <option value='9'>Setembro</option>
+            <option value='10'>Outubro</option>
+            <option value='11'>Novembro</option>
+            <option value='12'>Dezembro</option>";
+
+      echo $x;
+      //return $x;
+   }
+
+   $meses = [  
+            "<option disabled selected>Mês</option>",
             "<option value='1'>Janeiro</option>",
             "<option value='2'>Fevereiro</option>",
             "<option value='3'>Março</option>",
@@ -28,11 +46,7 @@
             "<option value='10'>Outubro</option>",
             "<option value='11'>Novembro</option>",
             "<option value='12'>Dezembro</option>"
-           ];
-
-      //echo $x;
-      return $x;
-   }
+            ];
 ?>
 
 <!--
@@ -221,43 +235,43 @@
 
       <div class="container center-align" style="margin-top: 5%;">
          
-         <div class="row">
-            <div class="col s12">
-               <div class="card">
-                  <div class="barra"></div>
-                  <form id="form_alterar_dia_EU">
-                     <div class="card-content black-text">
+         <div class="card">
+            <div class="barra"></div>
+                  
+               <?php
+                  $at = new FormularioComJquery('form_alterar_dia_EU');
 
-                        <div class="row">
-                           <div class="input-field col s4">
-                              <input type='number' min='0' max='32' id='dia_alterar_EU'>
-                              <label for='dia_alterar_EU'>Dia</label>
-                           </div>
-                           <div class="input-field col s4">
-                              <select id="mes_alterar_EU">
-                                 <?php drop_mes() ?>
-                              </select>
-                              <label>Mês</label>
-                           </div>
-                           <div class="input-field col s4">
-                              <input type='number' min='2018' max='<?php echo date('Y') ?>' id='ano_alterar_EU' value='<?php echo date('Y') ?>'>
-                              <label for='ano_alterar_EU'>Ano</label>
-                           </div>
-                        </div>
+                  $at->linha([
+                     $at->caixa("dia_alterar_EU", "Dia", "number", " min='0' max='32' ", 4),
+                     $at->selecionar("mes_alterar_EU", "Mês", $meses, 4),
+                     $at->caixa("ano_alterar_EU", "Ano", "number", " min='2018' max='".date('Y')."' value='".date('Y')."' ", 4),
+                  ]);
 
-                     </div>
+                  $at->linha([$at->botao_enviar("BUSCAR")]);
 
-                     <div class="card-action">
-                        <button type="submit" class="btn waves-effect waves-light">BUSCAR</button>
-                     </div>
+                  $at->print();
 
-                  </form>
+                  $chaves = [
+                     "cod" => $at->tabela("e_usuarios"),
+                     "dia" => $at->valor("dia_alterar_EU"),
+                     "mes" => $at->valor("mes_alterar_EU"),
+                     "ano" => $at->valor("ano_alterar_EU"),
+                     "stat" => $at->item("BUSCAR")
+                  ];
+                  
+                  $at->criar_chamada($at->item("../root/funcoes/alterar.php"), $chaves, 
+                     "if(retorno != '#false'){
+                     Materialize.toast('<i class=\"material-icons\">check</i>', 1000, 'toast-verde');
+                     
+                     $('#aposProcurarAlterar').html(retorno);
+                     document.getElementById('aposProcurarAlterar').style.display = 'block';
+                     } else {
+                        Materialize.toast('<i class=\"material-icons\">close</i>', 1000, 'toast-vermelho');
+                     }"
+                  );
+               ?>
 
-                  <div id="aposProcurarAlterar" class="container left-align card-action" style="display: none; color: #000">
-                     <div id="alterarFormulario" style="padding-top: 20px; padding-bottom: 20px"></div>
-                  </div>
-
-               </div>
+               <div id="aposProcurarAlterar" class="container left-align card-action" style="display: none; color: #000"></div>
             </div>
          </div>
                   

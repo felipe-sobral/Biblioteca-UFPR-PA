@@ -2,26 +2,23 @@
 
    class Formulario{
 
+      public $id;
       private $comeco;
       private $fim;
       private $linhas;
 
       function __construct($id){
-         $this->comeco = "<div class='row'><form id='$id' class='col s12'>";
-         $this->fim = "</form></div>";
+         $this->id = $id;
+         $this->comeco = "<form id='$id'><div class='card-content black-text'>";
+         $this->fim = "</div></form>";
       }
 
-      function caixa($id, $nome, $tipo, $placeholder, $valor, $tamanho){
-         $ativo = "";
-
-         if($valor != null){
-            $ativo = "class='active'";
-         }
+      function caixa($id, $nome, $tipo, $adicional, $tamanho){
 
          return   "
                      <div class='input-field col s$tamanho'>
-                        <input placeholder='$placeholder' id='$id' type='$tipo' value='$valor'>
-                        <label for='$id' $ativo>$nome</label>
+                        <input id='$id' type='$tipo' $adicional>
+                        <label for='$id'>$nome</label>
                      </div>
                   ";
 
@@ -36,8 +33,8 @@
 
          return "
          
-                  <div id='$id' class='input-field col s$tamanho'>
-                     <select>$conteudo</select>
+                  <div class='input-field col s$tamanho'>
+                     <select id='$id'>$conteudo</select>
                      <label>$nome</label>
                   </div>
          
@@ -80,11 +77,46 @@
             $conteudo .= $item;
          }
 
-         $this->linhas .= "<div class='row centralizar'>$conteudo</div>";
+         $this->linhas .= "<div class='row'>$conteudo</div>";
       }
 
       function print(){
          echo $this->comeco.$this->linhas.$this->fim;
+      }
+   }
+
+   class FormularioComJquery extends Formulario{
+
+      function criar_chamada($endereco, $itens, $retorno){
+         
+
+         $js = "
+         <script> $('#".$this->id."').submit(function(){ $.post($endereco, { ".$this->param($itens)." }, function(retorno){ $retorno }); return false;}); </script>
+         ";
+
+         echo $js;
+      }
+
+      private function param($itens){
+         $parametros = "";
+
+         foreach($itens as $chave=>$valor){
+            $parametros .= "$chave: $valor, ";
+         }
+
+         return substr_replace($parametros, "", -2);
+      }
+
+      function item($x){
+         return "'$x'";
+      }
+
+      function tabela($tabela){
+         return "'".sha1($tabela)."'";
+      }
+
+      function valor($id){
+         return "$('#$id').val()";
       }
 
    }
