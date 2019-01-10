@@ -118,19 +118,36 @@
       }
 
       function alterar($dados, $permissao){
-         // DATA - MANHA - TARDE - NOITE
+
          if(!isset($dados['data'])){
             echo "#false";
             exit;
+         } else {
+            $data = $dados['data'];
+            unset($dados['data']);
          }
 
          $query = new Query;
+
+         if(isset($dados['deletar'])){
+            if($dados['deletar'] == "true"){
+               if($query->deletar($this->tabela, "data", $data)->construir()){
+                  echo "#true";
+                  exit;
+               }
+            } else {
+               unset($dados['deletar']);
+            }
+         }
+
+         
          if($query->alterar($this->tabela, $dados)
                   ->quando()
-                  ->parametro('data', '=', $dados['data'])){
+                  ->parametro("data", '=', $data)
+                  ->construir()){
             
-            echo ":)";
-
+            echo "#true";
+            exit;
          }
          
       }
@@ -167,19 +184,19 @@
          $f = new FormularioComJquery('form_EU_editar');
 
          $f->linha([
-                              $f->caixa("EU_ed_manha", "Manhã", "number", "value='".$itens['manha']."'", 4),
-                              $f->caixa("EU_ed_tarde", "Tarde", "number", "value='".$itens['tarde']."'", 4),
-                              $f->caixa("EU_ed_noite", "Noite", "number", "value='".$itens['noite']."'", 4),
-                            ]);
+                     $f->caixa("EU_ed_manha", "Manhã", "number", "value='".$itens['manha']."' min='0'", 4),
+                     $f->caixa("EU_ed_tarde", "Tarde", "number", "value='".$itens['tarde']."' min='0'", 4),
+                     $f->caixa("EU_ed_noite", "Noite", "number", "value='".$itens['noite']."' min='0'", 4),
+                  ]);
          
          $f->linha([
-                              $f->caixa("EU_ed_data", "Data", "text", "value='".$itens['data']."'", 12)
-                            ]);
+                     $f->caixa("EU_ed_data", "Data", "text", "disabled value='".$itens['data']."'", 12)
+                  ]);
                             
          $f->linha([
-                              $f->switch("EU_ed_deletar", "Alterar", "Deletar"),
-                              $f->botao_enviar("SUBMETER")
-                            ]);
+                     $f->switch("EU_ed_deletar", "Alterar", "Deletar"),
+                     $f->botao_enviar("SUBMETER")
+                  ], $adicional = "centralizar");
 
          
 
@@ -191,6 +208,7 @@
             "manha" => $f->valor("EU_ed_manha"),
             "tarde" => $f->valor("EU_ed_tarde"),
             "noite" => $f->valor("EU_ed_noite"),
+            "deletar" => "$('#EU_ed_deletar').is(':checked')",
             "stat" => $f->item("ALTERAR")
          ];
          $f->criar_chamada($f->item("../root/funcoes/alterar.php"), $chaves, "console.log(retorno)");

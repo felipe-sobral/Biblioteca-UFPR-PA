@@ -73,10 +73,10 @@
    $menu = new Menu;
 
    $dropUsuarios = [["group_add", "Contador", "http://localhost/paginas/contador_usuarios.php"], ["add", "Adicionar", "http://localhost/paginas/contador_usuarios.php#add"], ["history", "Histórico", "http://localhost/paginas/contador_usuarios.php#h"], ["edit", "Alterar", "http://localhost/paginas/contador_usuarios.php#alt"]];
-   $dropConsultaLivros = [["note_add", "Registrar códigos", "#"], ["add", "Adicionar", "#"], ["history", "Histórico", "#"], ["edit", "Alterar", "#"], ["cloud_download", "Baixar", "#"]];
+   $dropConsultaLivros = [["note_add", "Registrar códigos", "http://localhost/paginas/consulta_local.php"], ["add", "Adicionar", "#"], ["history", "Histórico", "#"], ["edit", "Alterar", "#"], ["cloud_download", "Baixar", "#"]];
 
    $menu->addItem($menu->item("star_rate", "Contador de usuários", "contador_usuarios.php"));
-   $menu->addItem($menu->item("star_rate", "Registrador consulta local", "#"));
+   $menu->addItem($menu->item("star_rate", "Registrador consulta local", "consulta_local.php"));
    $menu->addSpacer();
    $menu->addItem($menu->dropdown("people", "Estatística de Usuários", $dropUsuarios));
    $menu->addItem($menu->dropdown("assignment", "Estatística Consulta Local", $dropConsultaLivros));

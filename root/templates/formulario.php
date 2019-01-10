@@ -14,11 +14,16 @@
       }
 
       function caixa($id, $nome, $tipo, $adicional, $tamanho){
+         $ativo = "";
+
+         if(strpos($adicional, "value") !== false || strpos($adicional, "placeholder") !== false){
+            $ativo = "class='active'";
+         }
 
          return   "
                      <div class='input-field col s$tamanho'>
                         <input id='$id' type='$tipo' $adicional>
-                        <label for='$id'>$nome</label>
+                        <label for='$id' $ativo>$nome</label>
                      </div>
                   ";
 
@@ -55,14 +60,14 @@
                         <span class='lever'></span>
                         $on
                      </label>
-                  </div>
+                  </div><br>
                 ";
 
       }
 
       function botao_enviar($texto){
 
-         return "<br><button type='submit' class='btn waves-effect waves-light'>$texto</button>";
+         return "<button type='submit' class='btn waves-effect waves-light'>$texto</button>";
 
       }
 
@@ -72,12 +77,17 @@
 
       function linha($itens){
          $conteudo = "";
+         $class = "";
+
+         if(isset(func_get_args()[1])){
+            $class = func_get_args()[1];
+         }
 
          foreach($itens as $item){
             $conteudo .= $item;
          }
 
-         $this->linhas .= "<div class='row'>$conteudo</div>";
+         $this->linhas .= "<div class='row $class'>$conteudo</div>";
       }
 
       function print(){

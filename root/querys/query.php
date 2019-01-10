@@ -125,7 +125,6 @@
         }
 
         function alterar($tabela, $dados){
-            //UDPDATE $db SET variaveis[1] = :valores[1], :variaveis[2] = :valores[2] WHERE id = $id;
             $this->query = "UPDATE $tabela SET ";
 
             foreach ($dados as $key => $value){
@@ -133,7 +132,16 @@
                 $this->query .= ", ";
             }
 
-            return substr_replace($this->query, "", -2);
+            $this->query = substr_replace($this->query, "", -2);
+
+            return $this;
+        }
+
+        function deletar($tabela, $id, $key){
+            $this->query = "DELETE FROM $tabela WHERE ";
+            $this->parametro($id, "=", $key);
+
+            return $this;
         }
         
         function addQuery($query){
@@ -146,7 +154,7 @@
             return $this;
         }
 
-        function quando($parametros){
+        function quando(){
             $this->query .= " WHERE ";
             return $this;
         }
