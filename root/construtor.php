@@ -78,7 +78,7 @@
 
             if($itens == null){
                echo "#5#";
-               return false;
+               exit;
             }
 
             $this->data_tabela = $itens;

@@ -13,25 +13,6 @@
       return false;
    }
 
-   function drop_mes(){
-      $x =  "<option disabled selected>Mês</option>
-            <option value='1'>Janeiro</option>
-            <option value='2'>Fevereiro</option>
-            <option value='3'>Março</option>
-            <option value='4'>Abril</option>
-            <option value='5'>Maio</option>
-            <option value='6'>Junho</option>
-            <option value='7'>Julho</option>
-            <option value='8'>Agosto</option>
-            <option value='9'>Setembro</option>
-            <option value='10'>Outubro</option>
-            <option value='11'>Novembro</option>
-            <option value='12'>Dezembro</option>";
-
-      echo $x;
-      //return $x;
-   }
-
    $meses = [  
             "<option disabled selected>Mês</option>",
             "<option value='1'>Janeiro</option>",
@@ -114,56 +95,45 @@
 
       <div class="container center-align" style="margin-top: 5%;">
          
-         <div class="row">
-            <div class="col s12">
-               <div class="card">
-                  <div class="barra"></div>
+         <div class="card">
+            <div class="barra"></div>
+
+            <?php
+               $f = new FormularioComJquery('form_adicionar_dia_EU');
+
+               $f->linha([
+                  $f->caixa("manha", "Manhã", "number", " min='0' ", 4),
+                  $f->caixa("tarde", "Tarde", "number", " min='0' ", 4),
+                  $f->caixa("noite", "Noite", "number", " min='0' ", 4)
+               ]);
+
+               $f->linha([
+                  $f->caixa("dia", "Dia", "number", " min='0' max='32' ", 4),
+                  $f->selecionar("mes", "Mês", $meses, 4),
+                  $f->caixa("ano", "Ano", "number", " min='2018' max='".date('Y')."' value='".date('Y')."' ", 4),
+               ]);
+
+               $f->linha([$f->botao_enviar("INSERIR")]);
+
+               $f->print();
+
+               $chaves = [
+                  "cod" => $f->tabela("e_usuarios"),
+                  "data" => "data_formatada($('#dia').val(), $('#mes').val(), $('#ano').val())",
+                  "manha" => $f->valor("manha"),
+                  "tarde" => $f->valor("tarde"),
+                  "noite" => $f->valor("noite")
+               ];
                   
-                  <form id="form_adicionar_dia_EU">
-                     <div class="card-content black-text">
-                        
-                        <div class="row">
-                           <div class="input-field col s4">
-                              <input type='number' min='0' id='manha'>
-                              <label for='manha'>Manhã</label>
-                           </div>
-                           <div class="input-field col s4">
-                              <input type='number' min='0' id='tarde'>
-                              <label for='tarde'>Tarde</label>
-                           </div>
-                           <div class="input-field col s4">
-                              <input type='number' min='0' id='noite'>
-                              <label for='noite'>Noite</label>
-                           </div>
-                        </div>
+               $f->criar_chamada($f->item("../root/funcoes/adicionar.php"), $chaves, 
+                  "if(retorno == \"#true\"){
+                     criar_toast(\"<i class='material-icons'>check</i>\", 1000, \"toast-verde\");
+                  } else {
+                     criar_toast(\"<i class='material-icons'>close</i>\", 1000, \"toast-vermelho\");
+                  }"
+               );
+            ?>
 
-                        <div class="row">
-                           <div class="input-field col s4">
-                              <input type='number' min='0' max='32' id='dia'>
-                              <label for='dia'>Dia</label>
-                           </div>
-                           <div class="input-field col s4">
-                              <select id="mes">
-                                 <?php drop_mes() ?>
-                              </select>
-                              <label>Mês</label>
-                           </div>
-                           <div class="input-field col s4">
-                              <input type='number' min='2018' max='<?php echo date('Y') ?>' id='ano'>
-                              <label for='ano'>Ano</label>
-                           </div>
-                        </div>
-
-                     </div>
-
-                     <div class="card-action">
-                        <button type="submit" class="btn waves-effect waves-light">REGISTRAR</button>
-                     </div>
-
-                  </form>
-
-               </div>
-            </div>
          </div>
                   
       </div>
@@ -186,29 +156,37 @@
             <div class="col s12">
                <div class="card">
                   <div class="barra"></div>
-                  <form id="form_historico_EU">
-                     <div class="card-content black-text">
-                        
-                        <div class="row">
-                           <div class="input-field col s6">
-                              <select id="mes_historico_EU">
-                                 <?php drop_mes() ?>
-                              </select>
-                              <label>Mês</label>
-                           </div>
 
-                           <div class="input-field col s6">
-                              <input type='number' min='2018' max='<?php echo date('Y') ?>' id='ano_historico_EU' value='<?php echo date('Y') ?>'>
-                              <label for='ano_historico_EU'>Ano</label>
-                           </div>
-                        </div>
-                     </div>
+                  <?php
+                     $at = new FormularioComJquery('form_historico_EU');
 
-                     <div class="card-action">
-                        <button type="submit" class="btn waves-effect waves-light">BUSCAR</button>
-                     </div>
+                     $at->linha([
+                        $at->selecionar("mes_historico_EU", "Mês", $meses, 6),
+                        $at->caixa("ano_historico_EU", "Ano", "number", " min='2018' max='".date('Y')."' value='".date('Y')."' ", 6),
+                     ]);
 
-                  </form>
+                     $at->linha([$at->botao_enviar("BUSCAR")]);
+
+                     $at->print();
+
+                     $chaves = [
+                        "cod" => $at->tabela("e_usuarios"),
+                        "mes" => $at->valor("mes_historico_EU"),
+                        "ano" => $at->valor("ano_historico_EU")
+                     ];
+                     
+                     $at->criar_chamada($at->item("../root/funcoes/historico.php"), $chaves, 
+                        "
+                           if(retorno != \"#false\"){
+                              criar_toast(\"<i class='material-icons'>check</i>\", 1000, \"toast-verde\");
+                     
+                              $(\"#historicoLista\").html(retorno);
+                                document.getElementById(\"aposProcurar\").style.display = \"block\";
+                           } else {
+                              criar_toast(\"<i class='material-icons'>close</i>\", 1000, \"toast-vermelho\");
+                           }
+                        ");
+                  ?>
 
                   <div id="aposProcurar" class="container left-align" style="display: none; color: #000">
                      <button class="btn waves-effect" onclick="imprimirTabela('historicoLista')"><i class="material-icons">print</i></button>
