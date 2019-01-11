@@ -69,12 +69,12 @@
             <div class='card-content black-text'>
                <div class="row">
 
-                  <div class="col s9">
+                  <div class="col s12">
                      <?php
-                        $f = new FormularioComJquery('form_adicionar_dia_EU');
+                        $f = new FormularioComJquery('form_registrar_codigo');
 
                         $f->linha([
-                           $f->caixa("codigos", "Insira o código", "text", "placeholder='00329902'", 12),
+                           $f->caixa("form_rcodigo", "Insira o código", "text", "placeholder='00329902' autofocus", 12),
                         ]);
 
                         $f->linha([$f->botao_enviar("Registrar")]);
@@ -82,15 +82,16 @@
                         $f->print();
 
                         $chaves = [
-                           "cod" => $f->tabela("e_usuarios"),
-                           "data" => "data_formatada($('#dia').val(), $('#mes').val(), $('#ano').val())",
-                           "manha" => $f->valor("manha"),
-                           "tarde" => $f->valor("tarde"),
-                           "noite" => $f->valor("noite")
+                           "cod" => $f->tabela("consulta_local"),
+                           "codigo" => $f->valor("form_rcodigo"),
+                           "data" => $f->item(date("Y-m-d"))
                         ];
                            
                         $f->criar_chamada($f->item("../root/funcoes/adicionar.php"), $chaves, 
-                           "if(retorno == \"#true\"){
+                           "
+                           $('#form_rcodigo').val('');
+                           $('#form_rcodigo').focus();
+                           if(retorno == \"#true\"){
                               criar_toast(\"<i class='material-icons'>check</i>\", 1000, \"toast-verde\");
                            } else {
                               criar_toast(\"<i class='material-icons'>close</i>\", 1000, \"toast-vermelho\");
@@ -99,19 +100,13 @@
                      ?>
                   </div>
 
-                  <div class="col s3 z-depth-1">
-                     <p id="tresCodigos">
-                        <span>00337676</span><br>
-                        <span>00337676</span><br>
-                        <span>00337676</span><br>
-                        <span>00337676</span><br>
-                        <span>00337676</span><br>
-                        <span>00337676</span><br>
-                        
-                     </p>
-                  </div>
-
                </div>
+               <hr style="width: 31vw; border-color: #ffffff70;">
+               <h2 class="thin">Histórico</h2>
+               <span>00615185</span><br>
+               <span>00615185</span><br>
+               <span>00615185</span><br>
+               <br>
                <p>Livros registrados hoje: <b><span id="livrosRegistradosHoje"><span id="livrosRegistradosHoje">0</span></span></b>.</p>
                <br>
             </div>

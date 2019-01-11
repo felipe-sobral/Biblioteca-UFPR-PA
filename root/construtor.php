@@ -54,11 +54,11 @@
 
       function adicionar($dados, $permissao){
 
-         if(!inserir_padrao($this->tabela, $dados)){
-            echo "#3#";
+         if(inserir_padrao($this->tabela, $dados)){
+            echo "#true";
             exit;
          } else {
-            echo "#true";
+            echo "#3#";
             exit;
          }
 
@@ -213,4 +213,29 @@
          ];
          $f->criar_chamada($f->item("../root/funcoes/alterar.php"), $chaves, "console.log(retorno)");
       }
+   }
+
+   class ConsultaLocal extends Construtor{
+
+      function adicionar($dados, $permissao){
+         if(!isset($dados["codigo"]) || strlen($dados["codigo"]) < 4 || strlen($dados["codigo"]) > 9){
+            echo "#4#";
+            exit;
+         }
+
+         $tabela = lista_tabelas($dados["cod"]);
+         unset($dados["cod"]);
+
+         inserir_padrao("livros", [$dados["codigo"], null, null, null]);
+         
+         if(inserir_padrao($tabela, [$dados["codigo"], $dados["data"]])){
+            echo "#true";
+            exit;
+         } else {
+            echo "#3#";
+            exit;
+         }
+         
+      }
+
    }

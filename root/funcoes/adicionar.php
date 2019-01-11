@@ -5,8 +5,23 @@
 
    $dados = $_POST;
 
-   $exec = new Construtor( isset($dados["cod"]) ? $dados["cod"]:null );
+   if(!isset($dados["cod"])){
+      echo "#false";
+      exit;
+   }
 
-   unset($dados["cod"]);
+   switch($dados["cod"]){
+      case sha1("e_usuarios"):
+         $exec = new Construtor($dados["cod"]);
+         break;
+
+      case sha1("consulta_local"):
+         $exec = new ConsultaLocal($dados["cod"]);
+         break;
+
+      default:
+         echo "#false";
+         exit;
+   }
    
    $exec->adicionar($dados, 2);
