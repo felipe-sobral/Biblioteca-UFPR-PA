@@ -304,4 +304,4 @@
 
 <?php
 
-   echo $rodape;
+   print($rodape);
