@@ -99,9 +99,9 @@
     /* NEW */
 
     class Query{
-        private $query;
-        private $db;
-        private $valores;
+        protected $query;
+        protected $db;
+        protected $valores;
 
         function __construct(){
             $this->query = null;
@@ -109,6 +109,59 @@
             $this->valores = [];
         }
 
+        /*
+            NOVAS FUNÇÕES 14/01/2019
+        */
+
+        function selecionar($tabelas, $colunas, $condicao){
+            if(is_array($tabelas)){
+                $tabelas = implode(", ", $tabelas);
+            }
+
+            if(is_array($colunas)){
+                $colunas = implode(", ", $colunas);
+            }
+
+
+            $this->query = "SELECT $tabelas FROM $colunas";
+
+            if(!is_null($condicao)){
+                $this->query .= " WHERE $condicoes";
+            }
+        }
+
+        function executar(){
+            $this->db = db_prepare($this->query);
+            if(!$this->db->execute($this->valores)){
+                return false;
+            }
+
+            return $this;
+        }
+
+        function valor($linha, $valor){
+            $parametro = sha1($linha);
+            $this->valores += [$parametro => $valor];
+
+            return ":".$parametro;
+        }
+
+
+        function assoc_array(){
+            $itens = [];
+            while($item = $this->db->fetch(PDO::FETCH_ASSOC)){
+                $itens[]= $item;        
+            }
+
+            return $itens;
+        }
+
+
+
+        /*
+            FUNÇÕES QUE SERÃO REMOVIDAS
+            ---
+        */
         function select($tabelas, $colunas){
             $this->query = "SELECT ".implode(", ", $colunas)." FROM ".implode(", ", $tabelas)." WHERE ";
             return $this;

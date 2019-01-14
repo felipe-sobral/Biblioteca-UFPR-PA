@@ -59,6 +59,33 @@ function criar_toast(mensagem, tempo, tipo){
 }
 
 /*
+	DATA: 14/01/2019
+	INFO: TRATAR RETORNOS DO PHP
+	ERROR: --
+*/
+function tratar_retorno(data){
+	var retorno = JSON.parse(data);
+
+	if('status' in retorno){
+		if(retorno.status){
+			criar_toast("<i class='material-icons'>check</i>", 1000, "toast-verde");
+		} else {
+			criar_toast("<i class='material-icons'>close</i>", 1000, "toast-vermelho");
+		}
+	} else {
+		console.log(data);
+	}
+
+}
+
+
+function atualizar_codigos(){
+	$.post("../root/funcoes/atualizar.php", {}, function(data){
+		tratar_retorno(data);
+	});
+}
+
+/*
  	x = 0 -> ATUALIZAR CONTADOR
 	x = 1 -> ADICIONAR
 	x = -1 -> DECREMENTAR

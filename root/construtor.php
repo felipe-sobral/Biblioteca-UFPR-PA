@@ -1,15 +1,5 @@
 <?php
 
-   /*
-
-      #1# -> TABELA NÃO SELECIONADA
-      #2# -> TABELA INVÁLIDA
-      #3# -> ERRO INSERIR
-      #4# -> VALORES INCOMPATÍVEIS
-      #5# -> ERRO AO SELECIONAR OU NÃO EXISTE
-
-   */
-
    function lista_tabelas($cod){
       $tabelas = [sha1("consulta_local") => "consulta_local",
                   sha1("e_usuarios")     => "e_usuarios", 
@@ -218,24 +208,41 @@
    class ConsultaLocal extends Construtor{
 
       function adicionar($dados, $permissao){
-         if(!isset($dados["codigo"]) || strlen($dados["codigo"]) < 4 || strlen($dados["codigo"]) > 9){
-            echo "#4#";
+         if(!isset($dados["codigo"])){
+            echo "{\"status\": false, \"mensagem\": \"#4#\"}";
+            exit;
+         }
+
+         $codigo = preg_replace('/[^[:digit:]_]/', '', $dados["codigo"]);
+
+         if(strlen($codigo) != 8){
+            echo "{\"status\": false, \"mensagem\": \"#4#\"}";
             exit;
          }
 
          $tabela = lista_tabelas($dados["cod"]);
          unset($dados["cod"]);
 
-         inserir_padrao("livros", [$dados["codigo"], null, null, null]);
+         inserir_padrao("livros", [$codigo, null, null, null]);
          
-         if(inserir_padrao($tabela, [$dados["codigo"], $dados["data"]])){
-            echo "#true";
+         if(inserir_padrao($tabela, [null, $codigo, $dados["data"]])){
+            echo "{\"status\": true, \"mensagem\": \"CODIGO REGISTRADO!\"}";
             exit;
          } else {
-            echo "#3#";
+            echo "{\"status\": false, \"mensagem\": \"#3#\"}";
             exit;
          }
          
+      }
+
+      function atualizar($data){
+         $q = new Query;
+
+         $v_data = $q->valor("data", $data);
+
+         $q->selecionar("consulta_local", "LIVROS_codigo", "data = '$v_data' ORDER BY LIVROS_codigo DESC LIMIT 3");
+
+         print_r($q->assoc_array());
       }
 
    }

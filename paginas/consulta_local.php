@@ -91,11 +91,8 @@
                            "
                            $('#form_rcodigo').val('');
                            $('#form_rcodigo').focus();
-                           if(retorno == \"#true\"){
-                              criar_toast(\"<i class='material-icons'>check</i>\", 1000, \"toast-verde\");
-                           } else {
-                              criar_toast(\"<i class='material-icons'>close</i>\", 1000, \"toast-vermelho\");
-                           }"
+                           tratar_retorno(retorno);
+                           "
                         );
                      ?>
                   </div>
@@ -297,11 +294,13 @@
       $(".button-collapse").sideNav();
       menu();
       $('ul.tabs').tabs();
-      atualizar_contador(0);
       $('select').material_select();
+
+      // PAREI AQUI :)
+      //atualizar_codigos();
    });
 </script>
 
 <?php
 
-   print($rodape);
+   echo $rodape;
