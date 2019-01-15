@@ -22,7 +22,7 @@
    class Construtor{
 
       protected $tabela;
-      private $data_tabela;
+      protected $data_tabela;
 
       private function verificar_tabela($tabela){
          if($tabela != null){
@@ -145,10 +145,6 @@
 
    class EstatisticaUsuarios extends Construtor{
 
-      function contar(){
-
-      }
-
       function tabela($itens){
          $tabela = new Tabela(["Data", "Manhã", "Tarde", "Noite", "Total"]);
          $totais = [0, 0, 0];
@@ -256,6 +252,55 @@
 
          
          exit;
+      }
+
+      function tabela($itens){
+         $tabela = new Tabela(["Data", "Registros"]);
+         $total = 0;
+
+         foreach($itens as $item){
+            $data = new DateTime($item['data']);
+            $registros = $item['COUNT(*)'];
+
+            $total += $registros;
+            $tabela->addItem([$data->format('d/m/Y'), $registros]);
+         }
+
+         $tabela->addItem(["<strong>TOTAL</strong>", "$total"]);
+
+         $tabela->print();
+      }
+
+      function historico($condicoes, $permissao){
+         if(!isset($condicoes, $condicoes['mes'], $condicoes['ano'])){
+            echo "{\"status\": false, \"mensagem\": \"#4#\"}";
+            exit;
+         }
+
+         $sql = new Query;
+
+         $v_mes = $sql->valor("mes", $condicoes['mes']);
+         $v_ano = $sql->valor("ano", $condicoes['ano']);
+
+         $itens = [];
+
+         for($i = 1; $i < 33; $i++){
+            $v_dia = $sql->valor("dia", $i);
+            $sql->selecionar($this->tabela, ["data", "COUNT(*)"], "DAY(data) = $v_dia AND MONTH(data) = $v_mes AND YEAR(data) = $v_ano");
+            $sql->executar();
+            $item = $sql->array_assoc();
+
+            if($item["data"] !== null && $item["COUNT(*)"] !== 0){
+               $itens[] = $item;
+            } 
+         }
+
+         if($itens === null){
+            echo "{\"status\": false, \"mensagem\": \"#5#\"}";
+            exit;
+         }
+
+         $this->data_tabela = $itens;
       }
 
    }

@@ -59,7 +59,7 @@ function criar_toast(mensagem, tempo, tipo){
 }
 
 /*
-	DATA: 14/01/2019
+	DATA: 15/01/2019
 	INFO: TRATAR RETORNOS DO PHP
 	ERROR: --
 */

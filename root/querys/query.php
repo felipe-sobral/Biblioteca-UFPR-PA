@@ -141,7 +141,12 @@
 
         function valor($linha, $valor){
             $parametro = sha1($linha);
-            $this->valores += [$parametro => $valor];
+
+            if(isset($this->valores[$parametro])){
+                $this->valores[$parametro] = $valor;
+            } else {
+                $this->valores += [$parametro => $valor];
+            }
 
             return ":".$parametro;
         }
