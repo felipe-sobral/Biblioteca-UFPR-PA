@@ -92,6 +92,7 @@
                            $('#form_rcodigo').val('');
                            $('#form_rcodigo').focus();
                            tratarRetorno(retorno);
+                           atualizarCodigos();
                            "
                         );
                      ?>
@@ -99,12 +100,8 @@
 
                </div>
                <hr style="width: 31vw; border-color: #ffffff70;">
-               <h2 class="thin">Histórico</h2>
-               <span>00615185</span><br>
-               <span>00615185</span><br>
-               <span>00615185</span><br>
-               <br>
-               <p>Livros registrados hoje: <b><span id="livrosRegistradosHoje"><span id="livrosRegistradosHoje">0</span></span></b>.</p>
+               <h3 class="thin">Histórico</h3>
+               <div id="historicoCodigos">Nada registrado =(</div>
                <br>
             </div>
          </div>
@@ -112,181 +109,7 @@
       </div>
 
    </div>
-
-   <!--
-      ADICIONAR DIA
-   -->
-   <div id="add">
-
-      <div class="center-align z-depth-3" style="background-image: url('../img/bg-azul.jpg'); background-attachment: fixed; padding-top: 2%; padding-bottom: 2%">
-         <i class="material-icons" style="font-size: 100px">add</i>
-         <h1 class="thin">Adicionar estatística do dia</h1>
-      </div>
-
-      <div class="container center-align" style="margin-top: 5%;">
-         
-         <div class="card">
-            <div class="barra"></div>
-
-            <?php
-               $f = new FormularioComJquery('form_adicionar_dia_EU');
-
-               $f->linha([
-                  $f->caixa("manha", "Manhã", "number", " min='0' ", 4),
-                  $f->caixa("tarde", "Tarde", "number", " min='0' ", 4),
-                  $f->caixa("noite", "Noite", "number", " min='0' ", 4)
-               ]);
-
-               $f->linha([
-                  $f->caixa("dia", "Dia", "number", " min='0' max='32' ", 4),
-                  $f->selecionar("mes", "Mês", $meses, 4),
-                  $f->caixa("ano", "Ano", "number", " min='2018' max='".date('Y')."' value='".date('Y')."' ", 4),
-               ]);
-
-               $f->linha([$f->botao_enviar("INSERIR")]);
-
-               $f->print();
-
-               $chaves = [
-                  "cod" => $f->tabela("e_usuarios"),
-                  "data" => "data_formatada($('#dia').val(), $('#mes').val(), $('#ano').val())",
-                  "manha" => $f->valor("manha"),
-                  "tarde" => $f->valor("tarde"),
-                  "noite" => $f->valor("noite")
-               ];
-                  
-               $f->criar_chamada($f->item("../root/funcoes/adicionar.php"), $chaves, 
-                  "if(retorno == \"#true\"){
-                     criar_toast(\"<i class='material-icons'>check</i>\", 1000, \"toast-verde\");
-                  } else {
-                     criar_toast(\"<i class='material-icons'>close</i>\", 1000, \"toast-vermelho\");
-                  }"
-               );
-            ?>
-
-         </div>
-                  
-      </div>
       
-   </div>
-
-   <!--
-      HISTÓRICO
-   -->
-   <div id="h">
-      
-      <div class="center-align z-depth-3" style="background-image: url('../img/bg-azul.jpg'); background-attachment: fixed;  padding-top: 2%; padding-bottom: 2%">
-         <i class="material-icons" style="font-size: 100px">history</i>
-         <h1 class="thin">Histórico</h1>
-      </div>
-
-      <div class="container center-align" style="margin-top: 5%;">
-         
-         <div class="row">
-            <div class="col s12">
-               <div class="card">
-                  <div class="barra"></div>
-
-                  <?php
-                     $at = new FormularioComJquery('form_historico_EU');
-
-                     $at->linha([
-                        $at->selecionar("mes_historico_EU", "Mês", $meses, 6),
-                        $at->caixa("ano_historico_EU", "Ano", "number", " min='2018' max='".date('Y')."' value='".date('Y')."' ", 6),
-                     ]);
-
-                     $at->linha([$at->botao_enviar("BUSCAR")]);
-
-                     $at->print();
-
-                     $chaves = [
-                        "cod" => $at->tabela("e_usuarios"),
-                        "mes" => $at->valor("mes_historico_EU"),
-                        "ano" => $at->valor("ano_historico_EU")
-                     ];
-                     
-                     $at->criar_chamada($at->item("../root/funcoes/historico.php"), $chaves, 
-                        "
-                           if(retorno != \"#false\"){
-                              criar_toast(\"<i class='material-icons'>check</i>\", 1000, \"toast-verde\");
-                     
-                              $(\"#historicoLista\").html(retorno);
-                                document.getElementById(\"aposProcurar\").style.display = \"block\";
-                           } else {
-                              criar_toast(\"<i class='material-icons'>close</i>\", 1000, \"toast-vermelho\");
-                           }
-                        ");
-                  ?>
-
-                  <div id="aposProcurar" class="container left-align" style="display: none; color: #000">
-                     <button class="btn waves-effect" onclick="imprimirTabela('historicoLista')"><i class="material-icons">print</i></button>
-                     <div id="historicoLista" style="padding-top: 20px; padding-bottom: 20px"></div>
-                  </div>
-
-               </div>
-            </div>
-         </div>
-                  
-      </div>
-
-   </div>
-
-   <!--
-      ALTERAR DATA
-   -->
-   <div id="alt">
-   
-      <div class="center-align z-depth-3" style="background-image: url('../img/bg-azul.jpg'); background-attachment: fixed;  padding-top: 2%; padding-bottom: 2%">
-         <i class="material-icons" style="font-size: 100px">edit</i>
-         <h1 class="thin">Alterar data</h1>
-      </div>
-
-      <div class="container center-align" style="margin-top: 5%;">
-         
-         <div class="card">
-            <div class="barra"></div>
-                  
-               <?php
-                  $at = new FormularioComJquery('form_alterar_dia_EU');
-
-                  $at->linha([
-                     $at->caixa("dia_alterar_EU", "Dia", "number", " min='0' max='32' ", 4),
-                     $at->selecionar("mes_alterar_EU", "Mês", $meses, 4),
-                     $at->caixa("ano_alterar_EU", "Ano", "number", " min='2018' max='".date('Y')."' value='".date('Y')."' ", 4),
-                  ]);
-
-                  $at->linha([$at->botao_enviar("BUSCAR")]);
-
-                  $at->print();
-
-                  $chaves = [
-                     "cod" => $at->tabela("e_usuarios"),
-                     "dia" => $at->valor("dia_alterar_EU"),
-                     "mes" => $at->valor("mes_alterar_EU"),
-                     "ano" => $at->valor("ano_alterar_EU"),
-                     "stat" => $at->item("BUSCAR")
-                  ];
-                  
-                  $at->criar_chamada($at->item("../root/funcoes/alterar.php"), $chaves, 
-                     "if(retorno != '#false'){
-                     Materialize.toast('<i class=\"material-icons\">check</i>', 1000, 'toast-verde');
-                     
-                     $('#aposProcurarAlterar').html(retorno);
-                     document.getElementById('aposProcurarAlterar').style.display = 'block';
-                     } else {
-                        Materialize.toast('<i class=\"material-icons\">close</i>', 1000, 'toast-vermelho');
-                     }"
-                  );
-               ?>
-
-               <div id="aposProcurarAlterar" class="container left-align card-action" style="display: none; color: #000"></div>
-            </div>
-         </div>
-                  
-      </div>
-
-   </div>
-         
 </div>
 
 <script>
@@ -295,9 +118,7 @@
       menu();
       $('ul.tabs').tabs();
       $('select').material_select();
-
-      // PAREI AQUI :)
-      //atualizar_codigos();
+      atualizarCodigos();
    });
 </script>
 

@@ -123,10 +123,10 @@
             }
 
 
-            $this->query = "SELECT $tabelas FROM $colunas";
+            $this->query = "SELECT $colunas FROM $tabelas";
 
             if($condicao !== null){
-                $this->query .= " WHERE $condicoes";
+                $this->query .= " WHERE $condicao";
             }
         }
 
@@ -136,7 +136,7 @@
                 return false;
             }
 
-            return $this;
+            return true;
         }
 
         function valor($linha, $valor){
@@ -146,7 +146,21 @@
             return ":".$parametro;
         }
 
+        function testar(){
+            echo $this->query."\n\n";
+            print_r($this->valores);
+            echo "\n\n";
 
+            $this->db = db_prepare($this->query);
+
+            if(!$this->db->execute($this->valores)){
+                print_r($this->db->errorInfo());
+            } else {
+                echo "TESTE PASSOU";
+            }
+            
+        }
+        
         function assoc_array(){
             $itens = [];
             while($item = $this->db->fetch(PDO::FETCH_ASSOC)){
@@ -262,11 +276,6 @@
                 return false;
             }
             return $this;
-        }
-
-        function testar(){
-            $this->db = db_prepare($this->query);
-            print_r($this->db->execute($this->valores)->getMessage());
         }
 
         function array_num(){

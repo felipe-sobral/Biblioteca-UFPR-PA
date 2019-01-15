@@ -66,22 +66,23 @@ function criar_toast(mensagem, tempo, tipo){
 function tratarRetorno(data){
 	var retorno = JSON.parse(data);
 
-	if('status' in retorno){
+	if("status" in retorno){
 		if(retorno.status){
 			criar_toast('<i class="material-icons">check</i>', 1000, "toast-verde");
 		} else {
 			criar_toast('<i class="material-icons">close</i>', 1000, "toast-vermelho");
 		}
-	} else {
-		Console.log(data);
-	}
+	} 
 
+	if("div" in retorno){
+		$("#"+retorno.div).html(retorno.mensagem);
+	}
 }
 
 
 function atualizarCodigos(){
 	$.post("../root/funcoes/atualizar.php", {}, function(data){
-		tratar_retorno(data);
+		tratarRetorno(data);
 	});
 }
 

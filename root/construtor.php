@@ -21,7 +21,7 @@
 
    class Construtor{
 
-      private $tabela;
+      protected $tabela;
       private $data_tabela;
 
       private function verificar_tabela($tabela){
@@ -220,12 +220,11 @@
             exit;
          }
 
-         $tabela = lista_tabelas($dados["cod"]);
          unset($dados["cod"]);
 
          inserir_padrao("livros", [$codigo, null, null, null]);
          
-         if(inserir_padrao($tabela, [null, $codigo, $dados["data"]])){
+         if(inserir_padrao($this->tabela, [null, $codigo, $dados["data"]])){
             /* @noEscape */
             echo "{\"status\": true, \"mensagem\": \"CODIGO REGISTRADO!\"}";
             exit;
@@ -242,9 +241,21 @@
 
          $v_data = $query->valor("data", $data);
 
-         $query->selecionar("consulta_local", "LIVROS_codigo", "data = '$v_data' ORDER BY LIVROS_codigo DESC LIMIT 3");
+         $query->selecionar("consulta_local", "LIVROS_codigo", "data = $v_data ORDER BY id DESC LIMIT 5");
+         
+         if($query->executar()){
+            $mensagem = "";
+            
+            foreach($query->assoc_array() as $key){
+               $mensagem .= $key['LIVROS_codigo']."<br>";
+            }
 
-         print_r($query->assoc_array());
+            /* @noEscape */
+            echo "{\"div\": \"historicoCodigos\", \"mensagem\": \"$mensagem\"}";
+         }
+
+         
+         exit;
       }
 
    }
