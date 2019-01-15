@@ -63,23 +63,23 @@ function criar_toast(mensagem, tempo, tipo){
 	INFO: TRATAR RETORNOS DO PHP
 	ERROR: --
 */
-function tratar_retorno(data){
+function tratarRetorno(data){
 	var retorno = JSON.parse(data);
 
 	if('status' in retorno){
 		if(retorno.status){
-			criar_toast("<i class='material-icons'>check</i>", 1000, "toast-verde");
+			criar_toast('<i class="material-icons">check</i>', 1000, "toast-verde");
 		} else {
-			criar_toast("<i class='material-icons'>close</i>", 1000, "toast-vermelho");
+			criar_toast('<i class="material-icons">close</i>', 1000, "toast-vermelho");
 		}
 	} else {
-		console.log(data);
+		Console.log(data);
 	}
 
 }
 
 
-function atualizar_codigos(){
+function atualizarCodigos(){
 	$.post("../root/funcoes/atualizar.php", {}, function(data){
 		tratar_retorno(data);
 	});

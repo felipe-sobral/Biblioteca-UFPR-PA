@@ -91,7 +91,7 @@
                            "
                            $('#form_rcodigo').val('');
                            $('#form_rcodigo').focus();
-                           tratar_retorno(retorno);
+                           tratarRetorno(retorno);
                            "
                         );
                      ?>

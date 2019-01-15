@@ -1,3 +1,2 @@
 <?php
-
-  echo sha1("e_usuarios");
+  print_r(date ("d/m/Y", filemtime("teste.php")));

@@ -125,7 +125,7 @@
 
             $this->query = "SELECT $tabelas FROM $colunas";
 
-            if(!is_null($condicao)){
+            if($condicao !== null){
                 $this->query .= " WHERE $condicoes";
             }
         }

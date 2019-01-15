@@ -226,9 +226,11 @@
          inserir_padrao("livros", [$codigo, null, null, null]);
          
          if(inserir_padrao($tabela, [null, $codigo, $dados["data"]])){
+            /* @noEscape */
             echo "{\"status\": true, \"mensagem\": \"CODIGO REGISTRADO!\"}";
             exit;
          } else {
+            /* @noEscape */
             echo "{\"status\": false, \"mensagem\": \"#3#\"}";
             exit;
          }
@@ -236,13 +238,13 @@
       }
 
       function atualizar($data){
-         $q = new Query;
+         $query = new Query;
 
-         $v_data = $q->valor("data", $data);
+         $v_data = $query->valor("data", $data);
 
-         $q->selecionar("consulta_local", "LIVROS_codigo", "data = '$v_data' ORDER BY LIVROS_codigo DESC LIMIT 3");
+         $query->selecionar("consulta_local", "LIVROS_codigo", "data = '$v_data' ORDER BY LIVROS_codigo DESC LIMIT 3");
 
-         print_r($q->assoc_array());
+         print_r($query->assoc_array());
       }
 
    }
