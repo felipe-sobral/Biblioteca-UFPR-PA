@@ -327,8 +327,6 @@
         if(isset($valores["cod"])){
             unset($valores["cod"]);
         }
-        echo var_dump($tabela);
-        echo var_dump($valores);
 
         $sql = new Query;
 
