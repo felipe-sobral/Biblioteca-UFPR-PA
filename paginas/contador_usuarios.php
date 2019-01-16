@@ -126,11 +126,7 @@
                ];
                   
                $f->criar_chamada($f->item("../root/funcoes/adicionar.php"), $chaves, 
-                  "if(retorno == \"#true\"){
-                     criar_toast(\"<i class='material-icons'>check</i>\", 1000, \"toast-verde\");
-                  } else {
-                     criar_toast(\"<i class='material-icons'>close</i>\", 1000, \"toast-vermelho\");
-                  }"
+                  "tratarRetorno(retorno)"
                );
             ?>
 

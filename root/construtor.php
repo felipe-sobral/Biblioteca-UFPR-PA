@@ -45,10 +45,10 @@
       function adicionar($dados, $permissao){
 
          if(inserir_padrao($this->tabela, $dados)){
-            echo "#true";
+            echo "{\"status\": true, \"mensagem\": \"INSERIDO COM SUCESSO!\"}";
             exit;
          } else {
-            echo "#3#";
+            echo "{\"status\": false, \"mensagem\": \"#3#\"}";
             exit;
          }
 
@@ -204,28 +204,21 @@
    class ConsultaLocal extends Construtor{
 
       function adicionar($dados, $permissao){
-         if(!isset($dados["codigo"])){
+         if(!isset($dados["codigo"]) || strlen($codigo) != 8){
             echo "{\"status\": false, \"mensagem\": \"#4#\"}";
             exit;
          }
 
          $codigo = preg_replace('/[^[:digit:]_]/', '', $dados["codigo"]);
 
-         if(strlen($codigo) != 8){
-            echo "{\"status\": false, \"mensagem\": \"#4#\"}";
-            exit;
-         }
-
          unset($dados["cod"]);
 
          inserir_padrao("livros", [$codigo, null, null, null]);
          
          if(inserir_padrao($this->tabela, [null, $codigo, $dados["data"]])){
-            /* @noEscape */
             echo "{\"status\": true, \"mensagem\": \"CODIGO REGISTRADO!\"}";
             exit;
          } else {
-            /* @noEscape */
             echo "{\"status\": false, \"mensagem\": \"#3#\"}";
             exit;
          }
@@ -246,7 +239,6 @@
                $mensagem .= $key['LIVROS_codigo']."<br>";
             }
 
-            /* @noEscape */
             echo "{\"div\": \"historicoCodigos\", \"mensagem\": \"$mensagem\"}";
          }
 

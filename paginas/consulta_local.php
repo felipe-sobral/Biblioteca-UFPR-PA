@@ -13,7 +13,7 @@
       return false;
    }
 
-   $meses = array(  
+   $meses = [  
             "<option disabled selected>Mês</option>",
             "<option value='1'>Janeiro</option>",
             "<option value='2'>Fevereiro</option>",
@@ -27,7 +27,7 @@
             "<option value='10'>Outubro</option>",
             "<option value='11'>Novembro</option>",
             "<option value='12'>Dezembro</option>"
-            );
+            ];
 ?>
 
 <!--
@@ -47,8 +47,8 @@
       <a href="#" data-activates="menu" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons" style="color: #fff">menu</i></a>
       <li class="tab col s3"><a class="active menu-item" href="#c">Registrar</a></li>
       <li class="tab col s3"><a class="menu-item" href="#h">Histórico</a></li>
-      <li class="tab col s3"><a class="menu-item" href="#add">Adicionar</a></li>
       <li class="tab col s3"><a class="menu-item" href="#alt">Alterar</a></li>
+      <li class="tab col s3"><a class="menu-item" href="#add">Adicionar</a></li>
       <li class="tab col s3"><a class="menu-item" href="#b">Baixar</a></li>
       <li class="indicator" style="right: 974px;left: 0px; background-color: #fff;"></li>
    </ul>
@@ -74,7 +74,7 @@
                         $f = new FormularioComJquery('form_registrar_codigo');
 
                         $f->linha([
-                           $f->caixa("form_rcodigo", "Insira o código", "text", "placeholder='00329902' autofocus", 12),
+                           $f->caixa("form_rcodigo", "Insira o código", "text", "placeholder='00329902' autofocus", 12)
                         ]);
 
                         $f->linha([$f->botao_enviar("Registrar")]);
@@ -130,20 +130,20 @@
                   <?php
                      $at = new FormularioComJquery('form_historico_CL');
 
-                     $at->linha(array(
+                     $at->linha([
                         $at->selecionar("mes_historico_CL", "Mês", $meses, 6),
                         $at->caixa("ano_historico_CL", "Ano", "number", " min='2018' max='".date('Y')."' value='".date('Y')."' ", 6)
-                     ));
+                     ]);
 
                      $at->linha([$at->botao_enviar("BUSCAR")]);
 
                      $at->print();
 
-                     $chaves = array(
+                     $chaves = [
                         "cod" => $at->tabela("consulta_local"),
                         "mes" => $at->valor("mes_historico_CL"),
                         "ano" => $at->valor("ano_historico_CL")
-                     );
+                     ];
                      
                      $at->criar_chamada($at->item("../root/funcoes/historico.php"), $chaves, 
                         "
@@ -169,6 +169,56 @@
                   
       </div>
 
+   </div>
+
+   <!--
+      ADICIONAR REGISTROS
+   -->
+   <div id="add">
+
+      <div class="center-align z-depth-3" style="background-image: url('../img/bg-azul.jpg'); background-attachment: fixed; padding-top: 2%; padding-bottom: 2%">
+         <i class="material-icons" style="font-size: 100px">add</i>
+         <h1 class="thin">Adicionar registros</h1>
+      </div>
+
+      <div class="container center-align" style="margin-top: 5%;">
+         
+         <div class="card">
+            <div class="barra"></div>
+
+            <?php
+               $f = new FormularioComJquery('form_adicionar_CL');
+
+               $f->linha([
+                  $f->caixa("codigo_add_CL", "Código", "text", null, 12)
+               ]);
+
+               $f->linha([
+                  $f->caixa("dia", "Dia", "number", " min='0' max='32' ", 4),
+                  $f->selecionar("mes", "Mês", $meses, 4),
+                  $f->caixa("ano", "Ano", "number", " min='2018' max='".date('Y')."' value='".date('Y')."' ", 4),
+               ]);
+
+               $f->linha([$f->botao_enviar("INSERIR")]);
+
+               $f->print();
+
+               $chaves = [
+                  "cod" => $f->tabela("consulta_local_INSERIR"),
+                  "id" => "null",
+                  "codigo" => $f->valor("codigo_add_CL"),
+                  "data" => "data_formatada($('#dia').val(), $('#mes').val(), $('#ano').val())"
+               ];
+                  
+               $f->criar_chamada($f->item("../root/funcoes/adicionar.php"), $chaves, 
+                  "tratarRetorno(retorno)"
+               );
+            ?>
+
+         </div>
+                  
+      </div>
+      
    </div>
       
 </div>

@@ -6,7 +6,7 @@
    $dados = $_POST;
 
    if(!isset($dados["cod"])){
-      echo "#false";
+      echo "{\"status\": false, \"mensagem\": \"#4#\"}";
       exit;
    }
 
@@ -19,8 +19,20 @@
          $exec = new ConsultaLocal($dados["cod"]);
          break;
 
+      case sha1("consulta_local_INSERIR"):
+
+         if(!isset($dados["codigo"]) || strlen(preg_replace('/[^[:digit:]_]/', '', $dados["codigo"])) != 8){
+            echo "{\"status\": false, \"mensagem\": \"#4#\"}";
+            exit;
+         }
+
+         $dados["codigo"] = preg_replace('/[^[:digit:]_]/', '', $dados["codigo"]);
+
+         $exec = new Construtor(sha1("consulta_local"));
+         break;
+
       default:
-         echo "#false";
+         echo "{\"status\": false, \"mensagem\": \"#4#\"}";
          exit;
    }
    
