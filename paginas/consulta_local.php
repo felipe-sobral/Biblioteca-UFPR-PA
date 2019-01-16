@@ -13,7 +13,7 @@
       return false;
    }
 
-   $meses = [  
+   $meses = array(  
             "<option disabled selected>Mês</option>",
             "<option value='1'>Janeiro</option>",
             "<option value='2'>Fevereiro</option>",
@@ -27,7 +27,7 @@
             "<option value='10'>Outubro</option>",
             "<option value='11'>Novembro</option>",
             "<option value='12'>Dezembro</option>"
-            ];
+            );
 ?>
 
 <!--
@@ -130,20 +130,20 @@
                   <?php
                      $at = new FormularioComJquery('form_historico_CL');
 
-                     $at->linha([
+                     $at->linha(array(
                         $at->selecionar("mes_historico_CL", "Mês", $meses, 6),
-                        $at->caixa("ano_historico_CL", "Ano", "number", " min='2018' max='".date('Y')."' value='".date('Y')."' ", 6),
-                     ]);
+                        $at->caixa("ano_historico_CL", "Ano", "number", " min='2018' max='".date('Y')."' value='".date('Y')."' ", 6)
+                     ));
 
                      $at->linha([$at->botao_enviar("BUSCAR")]);
 
                      $at->print();
 
-                     $chaves = [
+                     $chaves = array(
                         "cod" => $at->tabela("consulta_local"),
                         "mes" => $at->valor("mes_historico_CL"),
                         "ano" => $at->valor("ano_historico_CL")
-                     ];
+                     );
                      
                      $at->criar_chamada($at->item("../root/funcoes/historico.php"), $chaves, 
                         "
