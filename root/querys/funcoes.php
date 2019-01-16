@@ -47,7 +47,7 @@
 
 
     function db_prepare($query){
-        $DB = db_main();
-        $exec = $DB->prepare($query);
+        $DataBase = db_main();
+        $exec = $DataBase->prepare($query);
         return $exec;
     }

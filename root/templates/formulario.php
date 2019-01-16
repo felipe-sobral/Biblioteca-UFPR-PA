@@ -2,18 +2,18 @@
 
    class Formulario{
 
-      public $id;
+      public $ident;
       private $comeco;
       private $fim;
       private $linhas;
 
-      function __construct($id){
-         $this->id = $id;
-         $this->comeco = "<form id='$id'><div class='card-content black-text'>";
+      function __construct($ident){
+         $this->ident = $ident;
+         $this->comeco = "<form id='$ident'><div class='card-content black-text'>";
          $this->fim = "</div></form>";
       }
 
-      function caixa($id, $nome, $tipo, $adicional, $tamanho){
+      function caixa($ident, $nome, $tipo, $adicional, $tamanho){
          $ativo = "";
 
          if(strpos($adicional, "value") !== false || strpos($adicional, "placeholder") !== false){
@@ -22,14 +22,14 @@
 
          return   "
                      <div class='input-field col s$tamanho'>
-                        <input id='$id' type='$tipo' $adicional>
-                        <label for='$id' $ativo>$nome</label>
+                        <input id='$ident' type='$tipo' $adicional>
+                        <label for='$ident' $ativo>$nome</label>
                      </div>
                   ";
 
       }
 
-      function selecionar($id, $nome, $itens, $tamanho){
+      function selecionar($ident, $nome, $itens, $tamanho){
          $conteudo = "";
 
          foreach($itens as $item){
@@ -39,7 +39,7 @@
          return "
          
                   <div class='input-field col s$tamanho'>
-                     <select id='$id'>$conteudo</select>
+                     <select id='$ident'>$conteudo</select>
                      <label>$nome</label>
                   </div>
          
@@ -50,15 +50,15 @@
          return "<option value='$valor' $termos>$texto</option>";
       }
 
-      function switch($id, $off, $on){
+      function switch($ident, $indisp, $disp){
 
          return "
                   <div class='switch'>
                      <label>
-                        $off  
-                        <input id='$id' type='checkbox'>
+                        $indisp  
+                        <input id='$ident' type='checkbox'>
                         <span class='lever'></span>
-                        $on
+                        $disp
                      </label>
                   </div><br>
                 ";
@@ -71,8 +71,8 @@
 
       }
 
-      function item_customizado($n){
-         return $n;
+      function item_customizado($item){
+         return $item;
       }
 
       function linha($itens){
@@ -101,7 +101,7 @@
          
 
          $js = "
-         <script> $('#".$this->id."').submit(function(){ $.post($endereco, { ".$this->param($itens)." }, function(retorno){ $retorno }); return false;}); </script>
+         <script> $('#".$this->ident."').submit(function(){ $.post($endereco, { ".$this->param($itens)." }, function(retorno){ $retorno }); return false;}); </script>
          ";
 
          echo $js;
@@ -117,16 +117,16 @@
          return substr_replace($parametros, "", -2);
       }
 
-      function item($x){
-         return "'$x'";
+      function item($item){
+         return "'$item'";
       }
 
       function tabela($tabela){
          return "'".sha1($tabela)."'";
       }
 
-      function valor($id){
-         return "$('#$id').val()";
+      function valor($ident){
+         return "$('#$ident').val()";
       }
 
    }

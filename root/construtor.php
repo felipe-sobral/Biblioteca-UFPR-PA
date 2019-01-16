@@ -167,37 +167,37 @@
       }
 
       function formulario($itens){
-         $f = new FormularioComJquery('form_EU_editar');
+         $form = new FormularioComJquery('form_EU_editar');
 
-         $f->linha([
-                     $f->caixa("EU_ed_manha", "Manhã", "number", "value='".$itens['manha']."' min='0'", 4),
-                     $f->caixa("EU_ed_tarde", "Tarde", "number", "value='".$itens['tarde']."' min='0'", 4),
-                     $f->caixa("EU_ed_noite", "Noite", "number", "value='".$itens['noite']."' min='0'", 4),
+         $form->linha([
+                     $form->caixa("EU_ed_manha", "Manhã", "number", "value='".$itens['manha']."' min='0'", 4),
+                     $form->caixa("EU_ed_tarde", "Tarde", "number", "value='".$itens['tarde']."' min='0'", 4),
+                     $form->caixa("EU_ed_noite", "Noite", "number", "value='".$itens['noite']."' min='0'", 4),
                   ]);
          
-         $f->linha([
-                     $f->caixa("EU_ed_data", "Data", "text", "disabled value='".$itens['data']."'", 12)
+         $form->linha([
+                     $form->caixa("EU_ed_data", "Data", "text", "disabled value='".$itens['data']."'", 12)
                   ]);
                             
-         $f->linha([
-                     $f->switch("EU_ed_deletar", "Alterar", "Deletar"),
-                     $f->botao_enviar("SUBMETER")
+         $form->linha([
+                     $form->switch("EU_ed_deletar", "Alterar", "Deletar"),
+                     $form->botao_enviar("SUBMETER")
                   ], $adicional = "centralizar");
 
          
 
-         $f->print();
+         $form->print();
 
          $chaves = [
-            "cod" => $f->tabela("e_usuarios"),
-            "data" => $f->valor("EU_ed_data"),
-            "manha" => $f->valor("EU_ed_manha"),
-            "tarde" => $f->valor("EU_ed_tarde"),
-            "noite" => $f->valor("EU_ed_noite"),
+            "cod" => $form->tabela("e_usuarios"),
+            "data" => $form->valor("EU_ed_data"),
+            "manha" => $form->valor("EU_ed_manha"),
+            "tarde" => $form->valor("EU_ed_tarde"),
+            "noite" => $form->valor("EU_ed_noite"),
             "deletar" => "$('#EU_ed_deletar').is(':checked')",
-            "stat" => $f->item("ALTERAR")
+            "stat" => $form->item("ALTERAR")
          ];
-         $f->criar_chamada($f->item("../root/funcoes/alterar.php"), $chaves, "console.log(retorno)");
+         $form->criar_chamada($form->item("../root/funcoes/alterar.php"), $chaves, "console.log(retorno)");
       }
    }
 
@@ -215,13 +215,13 @@
 
          inserir_padrao("livros", [$codigo, null, null, null]);
          
-         if(inserir_padrao($this->tabela, [null, $codigo, $dados["data"]])){
-            echo "{\"status\": true, \"mensagem\": \"CODIGO REGISTRADO!\"}";
-            exit;
-         } else {
+         if(!inserir_padrao($this->tabela, [null, $codigo, $dados["data"]])){
             echo "{\"status\": false, \"mensagem\": \"#3#\"}";
             exit;
-         }
+         } 
+         
+         echo "{\"status\": true, \"mensagem\": \"CODIGO REGISTRADO!\"}";
+         exit;
          
       }
 
