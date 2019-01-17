@@ -202,7 +202,7 @@
    class ConsultaLocal extends Construtor{
 
       function adicionar($dados, $permissao){
-         if(!isset($dados["codigo"]) || strlen($codigo) != 8){
+         if(!isset($dados["codigo"]) || strlen($dados["codigo"]) != 8){
             echo "{\"status\": false, \"mensagem\": \"#4#\"}";
             exit;
          }
