@@ -182,7 +182,7 @@
          $form->linha([
                      $form->switch("EU_ed_deletar", "Alterar", "Deletar"),
                      $form->botao_enviar("SUBMETER")
-                  ], $adicional = "centralizar");
+                  ], "centralizar");
 
          
 

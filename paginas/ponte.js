@@ -5,11 +5,11 @@ function mensagem_error(cabecalho, mensagem){
 
 function autenticacao(){
 	$.post("../root/secoes/usuarios/autentica.php", {}, function(data){
-		if (data == "#false") {
+		if (data === "#false") {
 			document.getElementById("carregando").style.display = "none";
 			document.getElementById("passou").style.display = "block";
 		} else {
-         window.location = 'painel.php';
+         window.location = "painel.php";
 		}
 	});
 }
@@ -20,7 +20,7 @@ function autenticacao_restrita(){
 			document.getElementById("carregando").style.display = "none";
 			document.getElementById("passou").style.display = "block";
 		} else {
-         window.location = 'login.html';
+         window.location = "login.html";
 		}
 	});
 }
@@ -28,13 +28,13 @@ function autenticacao_restrita(){
 function menu(){
    $.get("../root/templates/menu.php", function(data){
       var str = data+"<script>$('.collapsible').collapsible();</script>";
-		$('#menuID').html(str);
+		$("#menuID").html(str);
    });
 }
 
-function campos_vazios(campos){
-	for(campo in campos){
-		if($("#"+campos[campo]).val().length == 0){
+function camposVazios(campos){
+	for(var campo in campos){
+		if($("#"+campos[campo]).val().length === 0){
 			return true;
 		}
 	}
@@ -42,16 +42,16 @@ function campos_vazios(campos){
 	return false;
 }
 
-function zero_frente(n){
-	var x = parseInt(n);
+function zeroFrente(n){
+	var x = parseInt(n, base);
 	if(x<10 && x>0){
 		return "0"+x;
 	}
 	return x;
 }
 
-function data_formatada(dia, mes, ano){
-	return ano+"-"+zero_frente(mes)+"-"+zero_frente(dia);
+function dataFormatada(dia, mes, ano){
+	return ano+"-"+zeroFrente(mes)+"-"+zeroFrente(dia);
 }
 
 function criar_toast(mensagem, tempo, tipo){
@@ -101,20 +101,20 @@ function atualizar_contador(x){
 
 function imprimirTabela(conteudo) {
   var imprimir = document.getElementById(conteudo).innerHTML;
-  tela_impressao = window.open('about:blank');
+  tela_impressao = window.open("about:blank");
   tela_impressao.document.write(imprimir);
   tela_impressao.window.print();
   tela_impressao.window.close();
 }
 
 // login.html
-$('#loginform').submit(function() {
-   var usuario = $('#usuario').val();
-   var senha = $('#senha').val();
+$("#loginform").submit(function() {
+   var usuario = $("#usuario").val();
+   var senha = $("#senha").val();
 	
 	$.post("../root/secoes/usuarios/logar.php", {usuario: usuario, senha: senha}, function(data){
-		if(data == "#true"){
-         window.location = 'painel.php';
+		if(data === "#true"){
+         window.location = "painel.php";
       } else {
 			mensagem_error("Opss...", "Nome de usuário ou senha está incorreto");
       }

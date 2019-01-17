@@ -207,7 +207,7 @@
                   "cod" => $f->tabela("consulta_local_INSERIR"),
                   "id" => "null",
                   "codigo" => $f->valor("codigo_add_CL"),
-                  "data" => "data_formatada($('#dia').val(), $('#mes').val(), $('#ano').val())"
+                  "data" => "dataFormatada($('#dia').val(), $('#mes').val(), $('#ano').val())"
                ];
                   
                $f->criar_chamada($f->item("../root/funcoes/adicionar.php"), $chaves, 

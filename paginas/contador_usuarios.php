@@ -119,7 +119,7 @@
 
                $chaves = [
                   "cod" => $f->tabela("e_usuarios"),
-                  "data" => "data_formatada($('#dia').val(), $('#mes').val(), $('#ano').val())",
+                  "data" => "dataFormatada($('#dia').val(), $('#mes').val(), $('#ano').val())",
                   "manha" => $f->valor("manha"),
                   "tarde" => $f->valor("tarde"),
                   "noite" => $f->valor("noite")
