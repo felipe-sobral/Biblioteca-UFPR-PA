@@ -6,7 +6,7 @@
       private $itens;
 
       function __construct($cabecalho){
-         $this->comeco = "<table class='responsive-table striped'> <thead> <tr> ".$this->cabecalho($cabecalho)." </tr> </thead> <tbody>";
+         $this->comeco = "<table class='responsive-table striped centered'> <thead> <tr> ".$this->cabecalho($cabecalho)." </tr> </thead> <tbody>";
          $this->fim = "</tbody></table>";
          $this->itens = "";
       }
@@ -36,6 +36,22 @@
 
       function print(){
          echo $this->comeco.$this->itens.$this->fim;
+      }
+
+      function printDiv($div){
+         //$string = htmlspecialchars($this->comeco.$this->itens.$this->fim, ENT_QUOTES);
+         //$string = preg_replace("/\t\n /", "", $this->comeco.$this->itens.$this->fim);
+         //$string = str_replace(' ', '', $this->comeco.$this->itens.$this->fim);
+
+         $json = [
+            "div" => "$div",
+            "mensagem" => $this->comeco.$this->itens.$this->fim
+         ];
+         //echo "{\"div\": \"$div\", \"mensagem\": \"$string\"}";
+
+         echo json_encode($json);
+
+         
       }
    }
 

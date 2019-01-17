@@ -43,7 +43,7 @@ function camposVazios(campos){
 }
 
 function zeroFrente(n){
-	var x = parseInt(n, base);
+	var x = parseInt(n);
 	if(x<10 && x>0){
 		return "0"+x;
 	}
@@ -66,6 +66,8 @@ function criar_toast(mensagem, tempo, tipo){
 function tratarRetorno(data){
 	var retorno = JSON.parse(data);
 
+	console.log(retorno);
+
 	if("status" in retorno){
 		if(retorno.status){
 			criar_toast('<i class="material-icons">check</i>', 1000, "toast-verde");
@@ -75,6 +77,7 @@ function tratarRetorno(data){
 	} 
 
 	if("div" in retorno){
+		console.log(retorno.div);
 		$("#"+retorno.div).html(retorno.mensagem);
 	}
 }

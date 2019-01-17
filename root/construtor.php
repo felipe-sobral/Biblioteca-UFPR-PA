@@ -81,30 +81,28 @@
       }
 
       function buscar($dados, $permissao){
-
-         if(!isset($dados['dia'], $dados['mes'], $dados['ano'])){
-            echo "#false";
+         if(!isset($dados, $dados["dia"], $dados["mes"], $dados["ano"])){
+            echo "{\"status\": false, \"mensagem\": \"#4#\"}";
             exit;
          }
-   
-         $query = new Query;
-         if($query->select([$this->tabela], ['*'])
-                ->parametro('DAY(data)', '=', $dados['dia'])
-                ->and()
-                ->parametro('MONTH(data)', '=', $dados['mes'])
-                ->and()
-                ->parametro('YEAR(data)', '=', $dados['ano'])
-                ->construir()){
-            
-            $dia = $query->array_assoc();
-   
-            if($dia == null){
-               echo "#4#";
-               exit;
-            }   
+
+         $sql = new Query;
+
+         $vDia = $sql->valor("dia", $dados['dia']);
+         $vMes = $sql->valor("mes", $dados['mes']);
+         $vAno = $sql->valor("ano", $dados['ano']);
+
+         $sql->selecionar($this->tabela, "*", "DAY(data) = $vDia AND MONTH(data) = $vMes AND YEAR(data) = $vAno");
+         $sql->executar();
+
+         $itens = $sql->assoc_array();
+
+         if($itens === null){
+            echo "{\"status\": false, \"mensagem\": \"#5#\"}";
+            exit;
          }
 
-         return $dia;
+         return $itens;
       }
 
       function alterar($dados, $permissao){
@@ -261,6 +259,22 @@
          $tabela->addItem(["<strong>TOTAL</strong>", "$total"]);
 
          $tabela->print();
+      }
+
+      function formulario($itens){
+         $tabela = new Tabela(["Data", "Registros", "Opções"]);
+
+         foreach($itens as $item){
+            $data = new DateTime($item['data']);
+            $registros = $item['LIVROS_codigo'];
+            $botao = "<a class='waves-effect waves-light btn grey lighten-2'>
+                        <i class='material-icons' style='color: #212121' onClick='alterarConsultaLocal(".$item['id'].")'>edit</i>
+                     </a>";
+
+            $tabela->addItem([$data->format('d/m/Y'), $registros, $botao]);
+         }  
+
+         $tabela->printDiv("div-alterarCL");
       }
 
       function historico($condicoes, $permissao){
