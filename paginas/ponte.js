@@ -66,8 +66,6 @@ function criar_toast(mensagem, tempo, tipo){
 function tratarRetorno(data){
 	var retorno = JSON.parse(data);
 
-	console.log(retorno);
-
 	if("status" in retorno){
 		if(retorno.status){
 			criar_toast('<i class="material-icons">check</i>', 1000, "toast-verde");
@@ -77,7 +75,6 @@ function tratarRetorno(data){
 	} 
 
 	if("div" in retorno){
-		console.log(retorno.div);
 		$("#"+retorno.div).html(retorno.mensagem);
 	}
 }
@@ -90,12 +87,24 @@ function atualizarCodigos(){
 }
 
 /*
- 	x = 0 -> ATUALIZAR CONTADOR
-	x = 1 -> ADICIONAR
-	x = -1 -> DECREMENTAR
+	DATA: 18/01/2019
+	ERROR: --
 */
-function atualizar_contador(x){
-	$.post("../root/secoes/contador_usuarios/contar.php", {stat: x}, function(data){
+ function alterarConsultaLocal(numero, codigo){
+	$("#id_alterarCod_CL").attr("value", numero);
+	$("#codigo_alterarCod_CL").attr("value", codigo);
+	$("#modalEditar").modal("open");
+ 	//$.post("../root/funcoes/alterar.php", {cod: "c6de7fbf077bcf8bb10322faac8b6207decb05ab", stat: "ALTERAR", id: numero})
+}
+
+
+/*
+ 	funcao = 0 -> ATUALIZAR CONTADOR
+	funcao = 1 -> ADICIONAR
+	funcao = -1 -> DECREMENTAR
+*/
+function atualizar_contador(funcao){
+	$.post("../root/secoes/contador_usuarios/contar.php", {stat: funcao}, function(data){
 		if(data != null){
 			$("#contador").html(data.toString());
 		}

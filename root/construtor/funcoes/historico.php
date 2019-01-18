@@ -1,8 +1,6 @@
 <?php
-   session_start();
-
-   require "../init.php";
-   include "../templates/tabela.php";
+   require_once "../../init.php";
+   require_once "../templates/classes/Tabela.php";
 
    $dados = $_POST;
 

@@ -1,9 +1,7 @@
 <?php
-   session_start();
-
-   require "../init.php";
-   include "../templates/formulario.php";
-   include "../templates/tabela.php";
+   require_once "../../init.php";
+   require_once "../templates/classes/Formulario.php";
+   require_once "../templates/classes/Tabela.php";
 
    $dados = $_POST;
    $cod = isset($dados["cod"]) ? $dados["cod"]:null;
@@ -23,15 +21,15 @@
          exit;
    }
 
-   $stat = $dados['stat'];
-   unset($dados["cod"], $dados['stat']);
+   $stat = $dados["stat"];
+   unset($dados["cod"], $dados["stat"]);
 
-   if($stat == 'BUSCAR'){
+   if($stat == "BUSCAR"){
       $exec->formulario($exec->buscar($dados, 2));
       exit;
    }
 
-   if($stat== 'ALTERAR'){
+   if($stat == "ALTERAR"){
       $exec->alterar($dados, 2);
       exit;
    }

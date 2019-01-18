@@ -7,7 +7,10 @@
     ini_set('display_errors', true);
     error_reporting(E_ALL);
 
-    require("querys/query.php");
-    require("seguranca.php");
-    require("construtor.php");
-    require("templates/retorno.php");
+    require_once("construtor/funcoes/retorno.php");
+    require_once("construtor/sql/Query.php");
+    require_once("construtor/Construtor.php");
+    require_once("construtor/ConsultaLocal.php");
+    require_once("construtor/EstatísticaUsuarios.php");
+    require_once("seguranca.php");
+    

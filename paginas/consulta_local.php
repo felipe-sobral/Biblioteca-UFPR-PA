@@ -266,6 +266,34 @@
 
                   <div id="div-alterarCL" class="container left-align card-action" style="color: #000"></div>
 
+                  <div id="modalEditar" class="modal">
+                     <div class="modal-content" style="color: #000">
+                        <?php
+                           $at = new FormularioComJquery("form_alterarCod_CL");
+
+                           $at->linha([
+                              $at->caixa("id_alterarCod_CL", "ID", "number", "placeholder='ID' disabled", 3),
+                              $at->caixa("codigo_alterarCod_CL", "Código", "text", "placeholder='Código'", 9)
+                           ]);
+
+                           $at->linha([$at->botao_enviar("ALTERAR"), $at->botao_enviar("EXCLUIR")]);
+
+                           $at->print();
+
+                           $chaves = [
+                              "cod" => $at->tabela("consulta_local"),
+                              "stat" => $at->valor("ALTERAR"),
+                              "id" => $at->valor("id_alterarCod_CL"),
+                              "cod" => $at->valor("codigo_alterarCod_CL")
+                           ];
+                           
+                           $at->criar_chamada($at->item("../root/funcoes/alterar.php"), $chaves, 
+                              "tratarRetorno(retorno)"
+                           );
+                        ?>
+                     </div>
+                  </div>
+
                </div>
             </div>
          </div>
@@ -279,9 +307,10 @@
 <script>
    $(document).ready(function() { 
       $(".button-collapse").sideNav();
+      $(".modal").modal();
+      $("ul.tabs").tabs();
+      $("select").material_select();
       menu();
-      $('ul.tabs').tabs();
-      $('select').material_select();
       atualizarCodigos();
    });
 </script>

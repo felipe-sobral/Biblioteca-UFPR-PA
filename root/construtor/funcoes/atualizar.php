@@ -1,6 +1,5 @@
 <?php
-
-   include "../init.php";
+   require_once "../../init.php";
 
    $att = new ConsultaLocal(sha1("consulta_local"));
 

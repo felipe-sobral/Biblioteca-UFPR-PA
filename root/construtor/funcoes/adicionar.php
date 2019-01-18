@@ -1,7 +1,5 @@
 <?php
-   session_start();
-
-   require "../init.php";
+   require_once "../../init.php";
 
    $dados = $_POST;
 
