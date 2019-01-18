@@ -1,5 +1,9 @@
 <?php
-
+   /**
+    * ### **CLASSE FORMULÁRIO**
+    *
+    * Fabricar formulários simples
+    */
    class Formulario{
 
       public $ident;
@@ -13,6 +17,19 @@
          $this->fim = "</div></form>";
       }
 
+      /**
+       * ### **FUNÇÃO CAIXA**
+       * 
+       * Cria campo de texto ou número
+       * 
+       * @param string $ident ID
+       * @param string $nome
+       * @param string $tipo
+       * @param string $adicional
+       * @param int $tamanho Tamanho do componente
+       * 
+       * @return string
+       */
       function caixa($ident, $nome, $tipo, $adicional, $tamanho){
          $ativo = "";
 
@@ -28,7 +45,19 @@
                   ";
 
       }
-
+      
+      /**
+       * ### **FUNÇÃO SELECIONAR**
+       * 
+       * Cria campo para selecionar opções
+       * 
+       * @param string $ident ID
+       * @param string $nome
+       * @param array $itens
+       * @param int $tamanho Tamanho do componente
+       * 
+       * @return string
+       */
       function selecionar($ident, $nome, $itens, $tamanho){
          $conteudo = "";
 
@@ -46,6 +75,17 @@
                 ";
       }
 
+      /**
+       * ### **FUNÇÃO OPÇÃO**
+       * 
+       * Cria opção para o componente *selecionar*
+       * 
+       * @param string $valor
+       * @param string $termos
+       * @param string $texto
+       * 
+       * @return string
+       */
       function opcao($valor, $termos, $texto){
          return "<option value='$valor' $termos>$texto</option>";
       }
@@ -65,16 +105,44 @@
 
       }
 
+      /**
+       * ### **FUNÇÃO ENVIAR**
+       * 
+       * Cria opção para submeter o formulário
+       * 
+       * @param string $texto
+       * 
+       * @return string
+       */
       function botao_enviar($texto){
 
          return "<button type='submit' class='btn waves-effect waves-light'>$texto</button>";
 
       }
 
+      /**
+       * ### **ITEM CUSTOMIZADO**
+       * 
+       * Recebe um componente de formulário em HTML e o retorna
+       * 
+       * @param string $item
+       * 
+       * @return string
+       */
       function item_customizado($item){
          return $item;
       }
 
+      /**
+       * ### **LINHA**
+       * 
+       * Constrói uma linha com componentes
+       * 
+       * Exemplo: [caixa(.., 6), caixa(.., 6) {...}]
+       * 
+       * @param array $item
+       * @param string $class OPCIONAL
+       */
       function linha($itens){
          $conteudo = "";
          $class = "";
@@ -90,13 +158,38 @@
          $this->linhas .= "<div class='row $class'>$conteudo</div>";
       }
 
+      /**
+       * ### **PRINT**
+       * 
+       * Imprime formulário
+       */
       function print(){
          echo $this->comeco.$this->linhas.$this->fim;
       }
+
+      /**
+       * ### **RETORNA FORMULÁRIO**
+       * 
+       * Retorna código HTML do formulário
+       * 
+       * @return string
+       */
+      function retornaForm(){
+         return $this->comeco.$this->linhas.$this->fim;
+      }
+
    }
 
+   /**
+    * ### **CLASSE FORMULÁRIO COM JQUERY**
+    *
+    * Fabricar formulários com JQuery
+    */
    class FormularioComJquery extends Formulario{
 
+      /**
+       * 
+       */
       function criar_chamada($endereco, $itens, $retorno){
          
 
