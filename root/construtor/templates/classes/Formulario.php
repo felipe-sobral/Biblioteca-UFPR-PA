@@ -187,8 +187,17 @@
     */
    class FormularioComJquery extends Formulario{
 
+
       /**
+       * ### **CRIAR CHAMADA**
        * 
+       * Cria código JavaScript para POST
+       *
+       * @param  string $endereco
+       * @param  array $itens
+       * @param  string $retorno HTML
+       *
+       * @return void
        */
       function criar_chamada($endereco, $itens, $retorno){
          
@@ -200,6 +209,15 @@
          echo $js;
       }
 
+      /**
+       * ### **PARAMETROS**
+       * 
+       * Formata os parâmetros para fazer o POST
+       *
+       * @param array $itens Utilizado na função #criar_chamada
+       *
+       * @return string
+       */
       private function param($itens){
          $parametros = "";
 
@@ -210,14 +228,43 @@
          return substr_replace($parametros, "", -2);
       }
 
+      /**
+       * ### **ITEM**
+       * 
+       * Formata ITEM para ser adicionado em #param
+       *
+       * @param string $item
+       *
+       * @return string
+       */
       function item($item){
          return "'$item'";
       }
 
+      /**
+       * ### **TABELA**
+       * 
+       * Formata TABELA (DO BANCO DE DADOS) para ser adicionado em #param
+       * - Exemplo: felipe
+       * - Retorno: b41e9b8dd61267c8eb3db48acfda473f53d9964b
+       *
+       * @param string $tabela
+       *
+       * @return string
+       */
       function tabela($tabela){
          return "'".sha1($tabela)."'";
       }
 
+      /**
+       * ### **VALOR**
+       * 
+       * Pega valor do campo com o ID passado
+       *
+       * @param string $ident ID / IDENTIDADE
+       *
+       * @return string
+       */
       function valor($ident){
          return "$('#$ident').val()";
       }
