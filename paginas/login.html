@@ -9,88 +9,110 @@
     - https://github.com/krepper/Biblioteca-UFPR-PA/
 -->
 
-	<head>
-  		<meta charset="utf-8" />
-  		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-  		<title>Biblioteca UFPR</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		  
-		<link rel="stylesheet" href="default.css">
-		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
-		  
-		<style>
-			body{
-				padding-left: 0px !important;
-			}
-				
-			.carregando {
-				padding-top: 35vh;
-				padding-left: 300px;
-				padding-right: 300px;
-			}
-	
-			.cab {
-				-webkit-box-shadow: 0px 4px 19px -6px rgba(0, 0, 0, 0.75);
-				-moz-box-shadow: 0px 4px 19px -6px rgba(0, 0, 0, 0.75);
-				box-shadow: 0px 4px 19px -6px rgba(0, 0, 0, 0.75);
-			}
-	
-			@media only screen and (max-width: 992px) {
-				.carregando {
-					padding-right: 0;
-					padding-left: 0;
-				}
-			}
-		</style>
-	</head>
+   <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Biblioteca UFPR</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+         
+      <link rel="stylesheet" href="css/login.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-	<body style="background-color: black; background-image: url('../img/bg.jpg'); background-attachment: fixed;" onload="document.getElementById('usuario').focus();">
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   </head>
+      
+	<body>
 
-		<div id="carregando" class="carregando">
-			<div class="ui massive active centered inverted inline loader"></div>
-  		</div>
-
-		<div id="passou" style="display: none">
-
-			<div class="ui container" style="height: 20px">
-				<img class="centralizar" src="../img/branco_UFPR.png" width="250px"/>
-
-				<form class="ui large form" id="loginform">
-					<div class="ui stacked segment centralizar" style="width: 50%">
-
-					  <div class="field" style="margin-top: 2%">
-							<div class="ui left icon input">
-								<i class="user icon"></i>
-								<input type="text" id="usuario" name="email" placeholder="Usuário">
-							</div>
-						</div>
-
-						<div class="field">
-							<div class="ui left icon input">
-								<i class="lock icon"></i>
-								<input type="password" id="senha" name="password" placeholder="Senha">
-							</div>
-						</div>
-
-						<button type="submit" class="ui fluid large teal submit button">Entrar</button>
-
-						<div id="mensagemID" style="margin-top: 2%"></div>
-					</div>
-
-				</form>
-				
+		<!-- <div id="login-carregar" class="carregando">
+			<div class="progress">
+				<div class="determinate" style="width: 70%"></div>
 			</div>
-	
-		</div>			
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  		</div> -->
 
-		<script type="text/javascript" src="ponte.js"></script>  
-  		<script>
-			$(document).ready(function() {
-				autenticacao();	
-    		});
-  		</script>
-  		<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+		<section id="login-formulario" class="formulario">
 
-	</body>
+			<div class="container">
+				<div class="center-align">
+					<img src="imagens/branco_UFPR.png" class="imagem-topo">
+				</div>
+				
+				<div class="card grey darken-4">
+					<div class="card-tabs">
+						<ul class="tabs tabs-fixed-width tabs-transparent">
+							<li class="tab"><a class="active" href="#entrar">Entrar</a></li>
+							<li class="tab"><a href="#registrar">Registrar-se</a></li>
+						</ul>
+					</div>
+					<div class="card-content grey lighten-4">
+						<div id="entrar">
+						
+							<!--
+								FORMULÁRIO LOGIN
+							-->
+							<div class="row">
+								<form id="fm1_login" class="col s12 center-align">
+									<div class="row">
+										<div class="input-field col s12">
+											<input id="fm1_usuario" type="text" required>
+											<label for="fm1_usuario">Usuário</label>
+										</div>
+
+										<div class="input-field col s12">
+											<input id="fm1_senha" type="password" required>
+											<label for="fm1_senha">Senha</label>
+										</div>
+									</div>		
+
+									<button class="btn waves-effect waves-light" type="submit">ENTRAR</button>				
+			
+								</form>
+							</div>
+						
+						</div>
+						<div id="registrar">
+
+							<!--
+								FORMULÁRIO REGISTRAR-SE
+							-->
+							<div class="row">
+								<form id="fm2_registrar" class="col s12 center-align">
+									<div class="row">
+										<div class="input-field col s12">
+											<input id="fm2_nome" type="text" required>
+											<label for="fm2_nome">Nome</label>
+										</div>
+
+										<div class="input-field col s6">
+											<input id="fm2_usuario" type="text" required>
+											<label for="fm2_usuario">Usuário</label>
+										</div>
+
+										<div class="input-field col s6">
+											<input id="fm2_senha" type="password" required>
+											<label for="fm2_senha">Senha</label>
+										</div>
+
+										<div class="input-field col s12">
+											<input id="fm2_email" type="email" required>
+											<label for="fm2_email">E-Mail</label>
+										</div>
+									</div>	
+
+									<button class="btn waves-effect waves-light" type="submit">SUBMETER</button>				
+			
+								</form>
+							</div>
+						
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</section>			
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script> 
+      
+   </body>
 </html>

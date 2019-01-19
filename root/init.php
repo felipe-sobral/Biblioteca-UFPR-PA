@@ -11,6 +11,6 @@
     require_once("construtor/sql/Query.php");
     require_once("construtor/Construtor.php");
     require_once("construtor/ConsultaLocal.php");
-    require_once("construtor/EstatísticaUsuarios.php");
+    require_once("construtor/EstatisticaUsuarios.php");
     require_once("seguranca.php");
     
