@@ -4,6 +4,8 @@
     *
     * Fabricar formulários simples
     */
+   require_once "../init.php";
+
    class Formulario{
 
       public $ident;

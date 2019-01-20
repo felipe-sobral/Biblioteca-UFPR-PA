@@ -23,14 +23,20 @@
          case 5:
             return "ERRO AO SELECIONAR OU NÃO EXISTE";
             break;
+
+         case 6:
+            return "USUÁRIO NÃO ESTÁ ATIVO";
+            break;
       }
    }
 
    function retornoPadrao($status, $string){
-      $status = bool($status);
+      $status = json_encode($status);
       $string = htmlspecialchars($string, ENT_QUOTES);
 
-      echo "{\"status\": $status, \"mensagem\": \"$string\"}";
+      $json = ["status" => $status, "mensagem" => $string];
+
+      echo json_encode($json);
    }
 
    function retornoHtml($stringHTML){

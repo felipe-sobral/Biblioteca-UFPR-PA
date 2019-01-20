@@ -185,7 +185,7 @@
         function assoc_array(){
             $itens = [];
             while($item = $this->db->fetch(PDO::FETCH_ASSOC)){
-                $itens[]= $item;        
+                $itens[] = $item;        
             }
 
             return $itens;
