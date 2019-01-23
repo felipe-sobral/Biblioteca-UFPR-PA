@@ -1,16 +1,16 @@
 <?php
-   require "../root/init.php";
+   require_once "../../root/init.php";
+   require_once AUTENTICACAO;
 
-   session_start();
- 
-   if(acesso_restrito(2)){
-      $cabecalho = file_get_contents('../root/templates/cabecalho.html');
-      $rodape = file_get_contents('../root/templates/rodape.html');
-      echo $cabecalho;
+   if(restrito(2)){
+      $cabecalho = file_get_contents("../corpo/cabecalho.html");
+      $rodape = file_get_contents('../corpo/rodape.html"');
    } else {
-      echo "ERROR";
-      return false;
+      retorna(false, "ACESSO NEGADO");
+      exit;
    }
+
+   echo $cabecalho;
 ?>
 
 <!--
@@ -19,6 +19,7 @@
    ATUALIZADO: 20/12/2018
 
 -->
+
 <div id="main">
 
    <ul id='menu' class='side-nav fixed'>
@@ -30,7 +31,7 @@
 			<a href="#" data-activates="menu" class="button-collapse top-nav full hide-on-large-only btn waves-effect grey darken-4"><i class="material-icons">menu</i></a>
 			<a class="btn waves-effect grey darken-4">DOCUMENTAÇÃO</a>
 		</div>
-    	<div class="carousel-item indigo darken-4 white-text " style="background-image: url('../img/bg-azul.jpg');" href="#one!">
+    	<div class="carousel-item indigo darken-4 white-text " style="background-image: url('../imagens/bg-azul.jpg');" href="#one!">
       
 			<div class="centro-div">
 
@@ -64,7 +65,7 @@
   	</div>
          
 </div>
-   
+
 <script>
    $(document).ready(function() { 
       $(".button-collapse").sideNav();

@@ -46,3 +46,10 @@
    function retornoErro($cod){
       echo "{\"status\": false, \"mensagem\": \""+retornaErro($cod)+"\"}";
    }
+
+   function retorna($status, $string){
+      $string = htmlspecialchars($string, ENT_QUOTES);
+
+      $template = ["status" => boolval($status), "mensagem" => $string, "codigo" => "%1"];
+      echo json_encode($template);
+   }

@@ -7,7 +7,7 @@
    $dados = usuario($usuario, $senha);
 
    if(!isset($dados[0])){
-      echo retornoPadrao(false, "USUÁRIO OU SENHA INCORRETOS!");
+      echo retorna(false, "USUÁRIO OU SENHA INCORRETOS!");
       exit;
    }
 
@@ -28,9 +28,9 @@
       $_SESSION['usr_stat'] = $dados['stat'];
       
 
-      retornoPadrao(true, "LOGIN REALIZADO!");
+      retorna(true, "LOGIN REALIZADO!");
       exit;
    }
-    
-   echo retornoPadrao(false, "NÃO FOI POSSÍVEL REALIZAR ESTA OPERAÇÃO!");
+   
+   retorna(false, "NÃO FOI POSSÍVEL REALIZAR ESTA OPERAÇÃO!");
    exit;

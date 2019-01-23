@@ -1,4 +1,6 @@
 <?php
+   require_once QUERY;
+
    class EstatisticaUsuarios extends Construtor{
 
       function tabela($itens){
@@ -54,5 +56,58 @@
             "stat" => $form->item("ALTERAR")
          ];
          $form->criar_chamada($form->item("../root/funcoes/alterar.php"), $chaves, "console.log(retorno)");
+      }
+
+      /**
+       * Retorna o turno correspondete a hora informada
+       * 
+       * @param int $horas
+       * 
+       * @return string
+       */
+      private function turno($horas){
+         switch ($horas) {
+            case ($horas >= 7 && $horas < 12):
+               return "manha";
+               break;
+            
+            case ($horas >= 12 && $horas < 18):
+               return "tarde";
+               break;
+            
+            case ($horas >= 18 && $horas < 23):
+               return "noite";
+               break;
+         }
+      }
+
+      /**
+       * Retorna a quantidade de usuários que foram registrados no dia informado
+       * 
+       * ! PRECISA TESTAR
+       * 
+       * @param string $data
+       * 
+       * @return string
+       */
+      function atualizar($data){
+         $turno = $this->turno(date('G')-3);
+
+         $query = new Query;
+
+         $vData = $query->valor("data", $data);
+
+         $query->selecionar($this->tabela, $turno, "data = $vData");
+         $query->executar();
+
+         $dados = $query->assoc_array();
+
+         if($dados){
+            retorna(true, $dados[$turno]);
+            exit;
+         }
+         
+         retorna(false, "A OPERAÇÃO FALHOU");
+         exit;
       }
    }

@@ -25,13 +25,6 @@
 // 	});
 // }
 
-// function menu(){
-//    $.get("../root/templates/menu.php", function(data){
-//       var str = data+"<script>$('.collapsible').collapsible();</script>";
-// 		$("#menuID").html(str);
-//    });
-// }
-
 // function camposVazios(campos){
 // 	for(var campo in campos){
 // 		if($("#"+campos[campo]).val().length === 0){
@@ -97,20 +90,6 @@
 //  	//$.post("../root/funcoes/alterar.php", {cod: "c6de7fbf077bcf8bb10322faac8b6207decb05ab", stat: "ALTERAR", id: numero})
 // }
 
-
-// /*
-//  	funcao = 0 -> ATUALIZAR CONTADOR
-// 	funcao = 1 -> ADICIONAR
-// 	funcao = -1 -> DECREMENTAR
-// */
-// function atualizar_contador(funcao){
-// 	$.post("../root/secoes/contador_usuarios/contar.php", {stat: funcao}, function(data){
-// 		if(data != null){
-// 			$("#contador").html(data.toString());
-// 		}
-// 	});
-// }
-
 // function imprimirTabela(conteudo) {
 //   var imprimir = document.getElementById(conteudo).innerHTML;
 //   tela_impressao = window.open("about:blank");
@@ -135,10 +114,77 @@
 //    return false;
 // });
 
+function toastTrue(){
+	Materialize.toast("<i class='material-icons'>check</i>", 1000, "toast-verde");
+}
+
+function toastFalse(){
+	Materialize.toast("<i class='material-icons'>close</i>", 1000, "toast-vermelho");
+}
+
+function menu(){
+   $.get("http://localhost/root/construtor/templates/Menu.php", function(data){
+      var str = data+"<script>$('.collapsible').collapsible();</script>";
+		$("#menuID").html(str);
+   });
+}
+
+function tratarRetorno(data){
+	// 	var retorno = JSON.parse(data);
+	
+	// 	if("status" in retorno){
+	// 		if(retorno.status){
+	// 			criar_toast('<i class="material-icons">check</i>', 1000, "toast-verde");
+	// 		} else {
+	// 			criar_toast('<i class="material-icons">close</i>', 1000, "toast-vermelho");
+	// 		}
+	// 	} 
+	
+	// 	if("div" in retorno){
+	// 		$("#"+retorno.div).html(retorno.mensagem);
+	// 	}
+	var docs = data;
+
+	if(typeof data === "string"){
+		try {
+			docs = JSON.parse(data);
+		} catch (e) {
+			return tratarRetorno("{status: false, mensagem: \"DADOS NÃO ESPERADOS\"");
+		}
+	}
+
+
+
+}
+	
+/**
+ * - funcao = 0 -> ATUALIZAR CONTADOR
+ *	- funcao = 1 -> ADICIONAR
+ *	- funcao = -1 -> DECREMENTAR
+ *
+ * @param {int} funcao
+ */
+function atualizar_contador(funcao){
+	$.post("http://localhost/root/construtor/funcoes/atualizar.php", {cod: 2, stat: funcao}, function(data){
+		if(data != null){
+			$("#contador").html(data.toString());
+		}
+	});
+}
+
+
 $("#fm1_login").submit(function(){
 
 	$.post("../../root/construtor/funcoes/sessao/entrar.php", {usuario: $("#fm1_usuario").val(), senha: $("#fm1_senha").val()}, function(retorno){
-		console.log(retorno);
+		data = JSON.parse(retorno);
+		
+		if("status" in data){
+			if(data.status === true){
+				window.location = "painel/painel.php";
+			}
+		}
+
+		return toastFalse();
 	});
 
 	return false;

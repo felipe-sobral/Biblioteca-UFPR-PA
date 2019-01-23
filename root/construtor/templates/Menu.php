@@ -1,7 +1,9 @@
 <?php
-   session_start();
+   if(!isset($_SESSION)){
+      session_start();
+   }
 
-   if(!isset($_SESSION, $_SESSION['usuario'], $_SESSION['email'])){
+   if(!isset($_SESSION, $_SESSION['usr_nome'], $_SESSION['usr_email'])){
       return;
    }
 
@@ -13,11 +15,11 @@
          $this->comeco = "
                <li><div class='user-view' style='line-height: 25px !important;'>
                   <div class='background'>
-                     <img src='../img/bg.jpg'>
+                     <img src='http://localhost/paginas/imagens/bg.jpg'>
                   </div>
-                  <a href='http://localhost/paginas/painel.php' style='margin-left: 10%;'><img src='../img/branco_UFPR.png' width='188vh'></a>
-                  <a id='menu_nome'><span class='white-text name'>".$_SESSION['nome']."</span></a>
-                  <a id='menu_email'><span class='white-text email'>".$_SESSION['email']."</span></a>
+                  <a href='http://localhost/paginas/painel.php' style='margin-left: 10%;'><img src='http://localhost/paginas/imagens/branco_UFPR.png' width='188vh'></a>
+                  <a id='menu_nome'><span class='white-text name'>".$_SESSION['usr_nome']."</span></a>
+                  <a id='menu_email'><span class='white-text email'>".$_SESSION['usr_email']."</span></a>
             </div></li>";
 
          $this->itens = "";
@@ -72,15 +74,14 @@
 
    $menu = new Menu;
 
-   $dropUsuarios = [["group_add", "Contador", "http://localhost/paginas/contador_usuarios.php"], ["add", "Adicionar", "http://localhost/paginas/contador_usuarios.php#add"], ["history", "Histórico", "http://localhost/paginas/contador_usuarios.php#h"], ["edit", "Alterar", "http://localhost/paginas/contador_usuarios.php#alt"]];
-   $dropConsultaLivros = [["note_add", "Registrar códigos", "http://localhost/paginas/consulta_local.php"], ["add", "Adicionar", "#"], ["history", "Histórico", "#"], ["edit", "Alterar", "#"], ["cloud_download", "Baixar", "#"]];
+   $dropUsuarios = [["group_add", "Contador", "http://localhost/paginas/painel/contador_usuarios/contador_usuarios.php"], ["add", "Adicionar", "http://localhost/paginas/painel/contador_usuarios/contador_usuarios.php#add"], ["history", "Histórico", "http://localhost/paginas/painel/contador_usuarios/contador_usuarios.php#h"], ["edit", "Alterar", "http://localhost/paginas/painel/contador_usuarios/contador_usuarios.php#alt"]];
+   $dropConsultaLivros = [["note_add", "Registrar códigos", "http://localhost/paginas/painel/consulta_local.php"], ["add", "Adicionar", "#"], ["history", "Histórico", "#"], ["edit", "Alterar", "#"], ["cloud_download", "Baixar", "#"]];
 
-   $menu->addItem($menu->item("star_rate", "Contador de usuários", "contador_usuarios.php"));
+   $menu->addItem($menu->item("star_rate", "Contador de usuários", "http://localhost/paginas/painel/contador_usuarios/contador_usuarios.php"));
    $menu->addItem($menu->item("star_rate", "Registrador consulta local", "consulta_local.php"));
    $menu->addSpacer();
    $menu->addItem($menu->dropdown("people", "Estatística de Usuários", $dropUsuarios));
    $menu->addItem($menu->dropdown("assignment", "Estatística Consulta Local", $dropConsultaLivros));
    $menu->addItem($menu->item("exit_to_app", "Sair", "../../root/secoes/usuarios/deslogar.php"));
-
 
    $menu->menuJS();

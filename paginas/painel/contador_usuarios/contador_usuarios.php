@@ -1,17 +1,17 @@
 <?php
-   require "../root/init.php";
-   include "../root/templates/formulario.php";
+   require_once "../../../root/init.php";
+   require_once FORMULARIO;
+   require_once AUTENTICACAO;
 
-   session_start();
- 
-   if(acesso_restrito(2)){
-      $cabecalho = file_get_contents('../root/templates/cabecalho.html');
-      $rodape = file_get_contents('../root/templates/rodape.html');
-      echo $cabecalho;
+   if(restrito(2)){
+      $cabecalho = file_get_contents("../../corpo/cabecalho.html");
+      $rodape = file_get_contents('../../corpo/rodape.html"');
    } else {
-      echo "ERROR";
-      return false;
+      retorna(false, "ACESSO NEGADO");
+      exit;
    }
+
+   echo $cabecalho;
 
    $meses = [  
             "<option disabled selected>Mês</option>",
@@ -43,7 +43,7 @@
       <div id="menuID"></div>
    </ul>
 
-   <ul id="tabs-swipe-demo" class="tabs" style="background-image: url('../img/bg-azul.jpg'); background-attachment: fixed">
+   <ul id="tabs-swipe-demo" class="tabs" style="background-image: url('http://localhost/paginas/imagens/bg-azul.jpg'); background-attachment: fixed">
       <a href="#" data-activates="menu" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons" style="color: #fff">menu</i></a>
       <li class="tab col s3"><a class="active menu-item" href="#c">Contador</a></li>
       <li class="tab col s3"><a class="menu-item" href="#h">Histórico</a></li>
@@ -57,7 +57,7 @@
    -->
    <div id="c">
       
-      <div class="center-align z-depth-3" style="background-image: url('../img/bg-azul.jpg'); background-attachment: fixed; padding-top: 2%; padding-bottom: 2%">
+      <div class="center-align z-depth-3" style="background-image: url('http://localhost/paginas/imagens/bg-azul.jpg'); background-attachment: fixed; padding-top: 2%; padding-bottom: 2%">
          <i class="material-icons" style="font-size: 100px">group_add</i>
          <h1 class="thin">Contador de usuários</h1>
       </div>
@@ -65,7 +65,7 @@
          
          <div class="row">
             <div class="col s12">
-               <div class="card" style="background-image: url('../img/bg.jpg')">
+               <div class="card" style="background-image: url('http://localhost/paginas/imagens/bg.jpg')">
                   <div class="barra"></div>
                   <div class="card-content">
                      <h1 id="contador">00</h1>
@@ -88,7 +88,7 @@
    -->
    <div id="add">
 
-      <div class="center-align z-depth-3" style="background-image: url('../img/bg-azul.jpg'); background-attachment: fixed; padding-top: 2%; padding-bottom: 2%">
+      <div class="center-align z-depth-3" style="background-image: url('http://localhost/paginas/imagens/bg-azul.jpg'); background-attachment: fixed; padding-top: 2%; padding-bottom: 2%">
          <i class="material-icons" style="font-size: 100px">add</i>
          <h1 class="thin">Adicionar estatística do dia</h1>
       </div>
@@ -141,7 +141,7 @@
    -->
    <div id="h">
       
-      <div class="center-align z-depth-3" style="background-image: url('../img/bg-azul.jpg'); background-attachment: fixed;  padding-top: 2%; padding-bottom: 2%">
+      <div class="center-align z-depth-3" style="background-image: url('http://localhost/paginas/imagens/bg-azul.jpg'); background-attachment: fixed;  padding-top: 2%; padding-bottom: 2%">
          <i class="material-icons" style="font-size: 100px">history</i>
          <h1 class="thin">Histórico</h1>
       </div>
@@ -202,7 +202,7 @@
    -->
    <div id="alt">
    
-      <div class="center-align z-depth-3" style="background-image: url('../img/bg-azul.jpg'); background-attachment: fixed;  padding-top: 2%; padding-bottom: 2%">
+      <div class="center-align z-depth-3" style="background-image: url('http://localhost/paginas/imagens/bg-azul.jpg'); background-attachment: fixed;  padding-top: 2%; padding-bottom: 2%">
          <i class="material-icons" style="font-size: 100px">edit</i>
          <h1 class="thin">Alterar data</h1>
       </div>
