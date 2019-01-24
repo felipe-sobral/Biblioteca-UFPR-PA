@@ -164,11 +164,18 @@ function tratarRetorno(data){
  *
  * @param {int} funcao
  */
-function atualizar_contador(funcao){
-	$.post("http://localhost/root/construtor/funcoes/atualizar.php", {cod: 2, stat: funcao}, function(data){
-		if(data != null){
-			$("#contador").html(data.toString());
+function atualizarContador(funcao){
+	$.post("http://localhost/root/scripts/CA_contador.php", {stat: funcao}, function(data){
+		data = JSON.parse(data);
+
+		if("status" in data){
+			if(data.status === true){
+				$("#contador").html(data.mensagem);
+				return true;
+			}
 		}
+
+		return toastFalse();
 	});
 }
 

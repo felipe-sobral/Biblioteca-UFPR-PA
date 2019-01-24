@@ -55,7 +55,6 @@
          * @return string
          */
         function valor($linha, $valor){
-            #$parametro = sha1($linha);
             $parametro = preg_replace("/[^[:alnum:]_]/", "", $linha);
 
             if(isset($this->valores[$parametro])){
@@ -67,17 +66,84 @@
             return ":".$parametro;
         }
 
+        /**
+         * Trata os valores passados para executar a query com segurança
+         * 
+         * Chamada de exemplo: valores_para_inserir(["data" => "2019-01-24", "manha" => 0, "tarde" => 0, "noite" => 0]);
+         * 
+         * Retorno: ":data, :manha, :tarde, :noite";
+         * 
+         * @param array $valores
+         * 
+         * @return string
+         */
+        private function valores_para_inserir($valores){
+            $retorno = [];
+            
+            foreach($valores as $chave=>$valor){
+                $retorno[] = $this->valor($chave, $valor);
+            }
+
+            return $this->ehArray($retorno);
+        }
+
+        /**
+         * 
+         * Chamada de exemplo: valores_para_alterar(["data" => "2019-01-24", "nome" => "Felipe"]);
+         * 
+         * Retorno: "data = :data, nome = :nome";
+         * 
+         * @param array $valores
+         * 
+         * @return string
+         */
+        private function valores_para_alterar($valores){
+            $retorno = [];
+
+            foreach($valores as $chave=>$valor){
+
+                if(strpos($valor, "@") !== false){
+                    preg_match('/@(.*?)@/', $valor, $resultado);
+                    $retorno[] = "$chave = ".$resultado[1];
+                    
+                    continue;
+                }
+
+                $retorno[] = "$chave = ".$this->valor($chave, $valor);
+            }
+
+            return $this->ehArray($retorno);
+        }
+
         // ---------------------------------
 
         /**
-         * #### **FUNÇÃO SELECIONAR**
-         * Chamada de exemplo: selecionar("*", "cadastros", "usuario = 'Felipe' ");
+         * Chamada de exempço: inserir("cadastros", ["teste1", "teste2", "teste3"]);
+         * 
+         * Query formada: INSERT cadastros VALUES ("teste1", "teste2", "teste3");
+         * 
+         * @param string $tabela
+         * @param array $valores
+         * 
+         * @return void
+         */
+        function inserir($tabela, $valores){
+
+            $valores = $this->valores_para_inserir($valores);
+            $this->query = "INSERT $tabela VALUES ($valores)";
+
+        }
+
+        /**
+         * Chamada de exemplo: selecionar("cadastros", "*", "usuario = 'Felipe' ");
          * 
          * Query formada: SELECT * FROM cadastros WHERE usuario = 'Felipe';
          * 
-         * @param array $tabelas ou string
-         * @param array $colunas ou string
+         * @param array|string $tabelas
+         * @param array|string $colunas
          * @param string $condicao
+         * 
+         * @return void
          */
 
         function selecionar($tabelas, $colunas, $condicao){
@@ -92,6 +158,26 @@
         }
 
         /**
+         * Chamada de exemplo: alterar("cadastro", ["data" => "2019-01-24", "nome" => "Felipe"]);
+         * 
+         * Query formada: UPDATE cadastro SET (data = "2019-01-24", nome = "Felipe");
+         * 
+         * @param string $tabela
+         * @param array $valores
+         * 
+         * @return void
+         */
+        function alterar($tabela, $valores, $condicao){
+            $valores = $this->valores_para_alterar($valores);
+            
+            $this->query = "UPDATE $tabela SET $valores";
+
+            if($condicao !== null){
+                $this->query .= " WHERE $condicao";
+            }
+        }
+
+        /**
          * #### **FUNÇÃO EXCLUIR**
          * Chamada de exemplo: excluir("cadastros", "usuario = 'Felipe' ");
          * 
@@ -99,6 +185,8 @@
          * 
          * @param string tabela
          * @param string condicao
+         * 
+         * @return void
          */
         function excluir($tabela, $condicao){
             
@@ -142,7 +230,11 @@
          */
         function executar(){
             $this->db = $this->preparar_query();
-            if(!$this->db->execute($this->valores)){
+
+            $valores = $this->valores;
+            $this->valores = [];
+
+            if(!$this->db->execute($valores)){
                 return false;
             }
 
@@ -157,9 +249,9 @@
          */
 
         function testar(){
-            echo $this->query."\n\n";
-            print_r($this->valores);
-            echo "\n\n";
+            echo $this->query."<br><br>\n\n";
+            echo var_dump($this->valores);
+            echo "<br><br>\n\n";
 
             $this->db = $this->preparar_query();
 

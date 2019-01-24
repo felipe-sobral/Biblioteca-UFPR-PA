@@ -107,7 +107,7 @@
             exit;
          }
          
-         retorna(false, "A OPERAÇÃO FALHOU");
+         retorna(true, "0");
          exit;
       }
    }

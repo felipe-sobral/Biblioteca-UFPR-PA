@@ -72,8 +72,8 @@
                      <span class="card-title"><?php echo date('d/m/Y'); ?></span>
                   </div>
                   <div style="padding-bottom: 25px">
-                     <a class="waves-effect waves-light btn green" onClick="atualizar_contador(1)"><i class="material-icons">add</i></a>
-                     <a class="waves-effect waves-light btn red" onClick="atualizar_contador(-1)"><i class="material-icons">remove</i></a>
+                     <a class="waves-effect waves-light btn green" onClick="atualizarContador(1)"><i class="material-icons">add</i></a>
+                     <a class="waves-effect waves-light btn red" onClick="atualizarContador(-1)"><i class="material-icons">remove</i></a>
                   </div>
                </div>
             </div>
@@ -260,7 +260,7 @@
       $(".button-collapse").sideNav();
       menu();
       $('ul.tabs').tabs();
-      atualizar_contador(0);
+      atualizarContador(0);
       $('select').material_select();
    });
 </script>
