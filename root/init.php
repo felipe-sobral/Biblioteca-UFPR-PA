@@ -17,27 +17,25 @@
      */
 
     // ROOT
-    define("FUNCOES", $link."/funcoes.php");
-    define("SEGURANCA", $link."/seguranca.php");
 
         // CONSTRUTOR
         define("CONSTRUTOR", $link."/construtor/Construtor.php");
         define("CONSULTA_LOCAL", $link."/construtor/ConsultaLocal.php");
         define("ESTATISTICA_USUARIOS", $link."/construtor/EstatisticaUsuarios.php");
 
-            // CONSTRUTOR/FUNCOES
-            define("RETORNO", $link."/construtor/funcoes/retorno.php");
+        // FUNCOES
+        define("RETORNO", $link."/funcoes/retorno.php");
+        define("AUTENTICACAO", $link."/funcoes/autenticacao.php");
+        define("HTML", $link."/funcoes/tratar_html.php");
+        define("ADICIONAL", $link."/funcoes/adicional.php");
 
-                // CONSTRUTOR/FUNCOES/SESSAO
-                define("AUTENTICACAO", $link."/construtor/funcoes/sessao/autenticacao.php");
+        // SQL
+        define("QUERY", $link."/sql/Query.php");
 
-            // CONSTRUTOR/SQL
-            define("QUERY", $link."/construtor/sql/Query.php");
-
-            // CONSTRUTOR/TEMPLATES
-            define("FORMULARIO", $link."/construtor/templates/Formulario.php");
-            define("MENU", $link."/construtor/templates/Menu.php");
-            define("TABELA", $link."/construtor/templates/Tabela.php");
+        // TEMPLATES
+        define("FORMULARIO", $link."/templates/Formulario.php");
+        define("MENU", $link."/templates/Menu.php");
+        define("TABELA", $link."/templates/Tabela.php");
 
     /**
      * @ EXTRAS
@@ -47,5 +45,5 @@
     error_reporting(E_ALL);
 
     require_once(RETORNO);
-    require_once(FUNCOES);
+    require_once(AUTENTICACAO);
     

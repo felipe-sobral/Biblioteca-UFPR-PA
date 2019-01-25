@@ -1,15 +1,14 @@
 <?php
     require_once $_SERVER["DOCUMENT_ROOT"]."/root/init.php";
     require_once QUERY;
-    require_once AUTENTICACAO;
 
     if(!restrito(2)){
         retorna(false, "ACESSO NEGADO!");
     }
 
-    $horas = date('G')-3;
-    $hoje = date('Y-m-d');
-    $stat = isset($_POST['stat']) ? $_POST['stat']:1;
+    $horas = date("G")-3;
+    $hoje = date("Y-m-d");
+    $stat = isset($_POST["stat"]) ? $_POST["stat"]:1;
     $turno = turno($horas);
     $quantidade = 1;
 

@@ -17,12 +17,21 @@
       session_start();
    }
 
+   /**
+    * Verifica sessão atual como medida de segurança. Isso faz com que o usuário possa enviar comandos apenas da sessão atual
+    * 
+    * @return bool
+    */
    function verificarSessao(){
-      if(isset($_SESSION["usr_id"], $_SESSION["usr_usuario"], $_SESSION["usr_senha"], $_SESSION["usr_nome"], $_SESSION["usr_email"], $_SESSION["usr_nivel"], $_SESSION["usr_stat"])){
+      if(isset($_SESSION["usr_id"], $_SESSION["usr_usuario"], $_SESSION["usr_senha"], $_SESSION["usr_nome"], $_SESSION["usr_email"], $_SESSION["usr_nivel"], $_SESSION["usr_ativo"])){
 
          $dados = usuario($_SESSION["usr_usuario"], $_SESSION["usr_senha"]);
    
          if(!isset($dados[0])){
+            return false;
+         }
+
+         if($dados[0]["sessao"] !== session_id()){
             return false;
          }
          

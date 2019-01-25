@@ -1,9 +1,46 @@
 <?php
+
+   /**
+    * Seleciona construtor por uma string SHA1
+    *
+    * Retorna objeto caso SHA1 exista e FALSE caso contrário
+    *
+    * @param string $tabela
+    *
+    * @return object|bool
+    */
+   function seleciona_construtor($tabela){
+
+      switch($tabela){
+         case sha1("e_usuarios"):
+            $exec = new EstatisticaUsuarios();
+            return $exec;
+   
+         case sha1("consulta_local"):
+            $exec = new ConsultaLocal();
+            return $exec;
+   
+         default:
+            return false;
+      }
+
+   }
+
+
    class Construtor{
 
       protected $tabela;
       protected $data_tabela;
-
+      
+      /**
+       * Contém todas tabelas do banco de dados
+       * 
+       * Usado para selecionar a tabela a partir de uma string criptografada
+       * 
+       * @param string $cod
+       * 
+       * @return string|bool
+       */
       private function lista_tabelas($cod){
          $tabelas = [sha1("consulta_local") => "consulta_local",
                      sha1("e_usuarios")     => "e_usuarios", 
@@ -17,132 +54,56 @@
             }
          }
    
-         retornoErro(2);
-         exit;
-      }
-
-      private function verificar_tabela($tabela){
-         if($tabela != null){
-            
-            $this->tabela = $this->lista_tabelas($tabela);
-
-         } else {
-            retornoErro(1);
-            exit;
-         }
-
+         return false;
       }
 
       function __construct($tabela){
 
-         $this->verificar_tabela($tabela);
+         $tb = $this->lista_tabelas($tabela);
 
+         if(!$tb){
+            return false;
+         }
+         
+         $this->tabela = $tb;
       }
 
-      function adicionar($dados, $permissao){
+      // ADICIONAR
 
-         if(inserir_padrao($this->tabela, $dados)){
-
-            retornoPadrao(true, "INSERIDO COM SUCESSO!");
-            exit;
-
-         }
-
-         retornaErro(3);
-         exit;
-
-      }
-
-      function historico($dados, $permissao){
-
-         if(!isset($dados['mes'], $dados['ano'])){
-            retornaErro(4);
-            exit;
-         }
-
-         $sql = new Query;
-
-         $vMes = $sql->valor("mes", $dados['mes']);
-         $vAno = $sql->valor("ano", $dados['ano']);
-
-         $sql->selecionar($this->tabela, "*", "MONTH(data) = $vMes AND YEAR(data) = $vAno");
-
-         if($sql->executar()){
-
-            $itens = $sql->assoc_array();
-
-            if($itens == null){
-               retornaErro(5);
-               exit;
-            }
-
-            $this->data_tabela = $itens;
-            
-         }
-      }
+      // HISTORICO
 
       function get_dataTabela(){
          return $this->data_tabela;
       }
 
-      function buscar($dados, $permissao){
+      /**
+       * Busca no banco de dados informações correspondentes a data [DIA, MES, ANO] informada ao chamar esta função
+       * 
+       * @param array $dados ["DIA", "MES", "ANO"]
+       * 
+       * @return array|bool 
+       */
+      function buscar($dados){
          if(!isset($dados["dia"], $dados["mes"], $dados["ano"])){
-            retornoErro(4);
-            exit;
+            return false;
          }
 
-         $sql = new Query;
+         $banco = new Query;
 
-         $vDia = $sql->valor("dia", $dados['dia']);
-         $vMes = $sql->valor("mes", $dados['mes']);
-         $vAno = $sql->valor("ano", $dados['ano']);
+         $vDia = $banco->valor("dia", $dados['dia']);
+         $vMes = $banco->valor("mes", $dados['mes']);
+         $vAno = $banco->valor("ano", $dados['ano']);
 
-         $sql->selecionar($this->tabela, "*", "DAY(data) = $vDia AND MONTH(data) = $vMes AND YEAR(data) = $vAno");
-         $sql->executar();
+         $banco->selecionar($this->tabela, "*", "DAY(data) = $vDia AND MONTH(data) = $vMes AND YEAR(data) = $vAno");
+         $banco->executar();
 
-         $itens = $sql->assoc_array();
+         $itens = $banco->assoc_array();
 
-         if($itens === null){
-            retornoErro(5);
-            exit;
+         if(!isset($itens[0])){
+            return false;
          }
 
-         return $itens;
-      }
-
-      function alterar($dados, $permissao){
-
-         if(!isset($dados['data'])){
-            retornoErro(4);
-            exit;
-         }
-         
-         $data = $dados['data'];
-         unset($dados['data']);
-
-         $query = new Query;
-
-         if(isset($dados['deletar'])){
-            if($dados['deletar'] == "true"){
-               if($query->deletar($this->tabela, "data", $data)->construir()){
-                  echo "#true";
-                  exit;
-               }
-            } else {
-               unset($dados['deletar']);
-            }
-         }
-
-         
-         if($query->alterar($this->tabela, $dados)
-                  ->quando()
-                  ->parametro("data", '=', $data)
-                  ->construir()){
-            
-            echo "#true";
-            exit;
-         }
-         
+         return $itens[0];
       }
    }
 

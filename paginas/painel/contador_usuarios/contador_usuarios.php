@@ -1,7 +1,8 @@
 <?php
-   require_once "../../../root/init.php";
+   require_once $_SERVER["DOCUMENT_ROOT"]."/root/init.php";
    require_once FORMULARIO;
    require_once AUTENTICACAO;
+   require_once HTML;
 
    if(restrito(2)){
       $cabecalho = file_get_contents("../../corpo/cabecalho.html");
@@ -11,22 +12,22 @@
       exit;
    }
 
-   echo $cabecalho;
+   imprimir_html($cabecalho);
 
    $meses = [  
-            "<option disabled selected>Mês</option>",
-            "<option value='1'>Janeiro</option>",
-            "<option value='2'>Fevereiro</option>",
-            "<option value='3'>Março</option>",
-            "<option value='4'>Abril</option>",
-            "<option value='5'>Maio</option>",
-            "<option value='6'>Junho</option>",
-            "<option value='7'>Julho</option>",
-            "<option value='8'>Agosto</option>",
-            "<option value='9'>Setembro</option>",
-            "<option value='10'>Outubro</option>",
-            "<option value='11'>Novembro</option>",
-            "<option value='12'>Dezembro</option>"
+               "<option disabled selected>Mês</option>",
+               "<option value='1'>Janeiro</option>",
+               "<option value='2'>Fevereiro</option>",
+               "<option value='3'>Março</option>",
+               "<option value='4'>Abril</option>",
+               "<option value='5'>Maio</option>",
+               "<option value='6'>Junho</option>",
+               "<option value='7'>Julho</option>",
+               "<option value='8'>Agosto</option>",
+               "<option value='9'>Setembro</option>",
+               "<option value='10'>Outubro</option>",
+               "<option value='11'>Novembro</option>",
+               "<option value='12'>Dezembro</option>"
             ];
 ?>
 
@@ -99,18 +100,18 @@
             <div class="barra"></div>
 
             <?php
-               $f = new FormularioComJquery('form_adicionar_dia_EU');
+               $f = new FormularioComJquery('form_ADICIONAR_CU');
 
                $f->linha([
-                  $f->caixa("manha", "Manhã", "number", " min='0' ", 4),
-                  $f->caixa("tarde", "Tarde", "number", " min='0' ", 4),
-                  $f->caixa("noite", "Noite", "number", " min='0' ", 4)
+                  $f->caixa("ADICIONAR_CU_manha", "Manhã", "number", " min='0' ", 4),
+                  $f->caixa("ADICIONAR_CU_tarde", "Tarde", "number", " min='0' ", 4),
+                  $f->caixa("ADICIONAR_CU_noite", "Noite", "number", " min='0' ", 4)
                ]);
 
                $f->linha([
-                  $f->caixa("dia", "Dia", "number", " min='0' max='32' ", 4),
-                  $f->selecionar("mes", "Mês", $meses, 4),
-                  $f->caixa("ano", "Ano", "number", " min='2018' max='".date('Y')."' value='".date('Y')."' ", 4),
+                  $f->caixa("ADICIONAR_CU_dia", "Dia", "number", " min='0' max='32' ", 4),
+                  $f->selecionar("ADICIONAR_CU_mes", "Mês", $meses, 4),
+                  $f->caixa("ADICIONAR_CU_ano", "Ano", "number", " min='2018' max='".date('Y')."' value='".date('Y')."' ", 4),
                ]);
 
                $f->linha([$f->botao_enviar("INSERIR")]);
@@ -119,14 +120,14 @@
 
                $chaves = [
                   "cod" => $f->tabela("e_usuarios"),
-                  "data" => "dataFormatada($('#dia').val(), $('#mes').val(), $('#ano').val())",
-                  "manha" => $f->valor("manha"),
-                  "tarde" => $f->valor("tarde"),
-                  "noite" => $f->valor("noite")
+                  "data" => "formatarData($('#ADICIONAR_CU_dia').val(), $('#ADICIONAR_CU_mes').val(), $('#ADICIONAR_CU_ano').val())",
+                  "manha" => $f->valor("ADICIONAR_CU_manha"),
+                  "tarde" => $f->valor("ADICIONAR_CU_tarde"),
+                  "noite" => $f->valor("ADICIONAR_CU_noite")
                ];
                   
-               $f->criar_chamada($f->item("../root/funcoes/adicionar.php"), $chaves, 
-                  "tratarRetorno(retorno)"
+               $f->criar_chamada($f->item("http://localhost/root/scripts/AA_adicionar.php"), $chaves, 
+                  "console.log(retorno)"
                );
             ?>
 
@@ -154,11 +155,11 @@
                   <div class="barra"></div>
 
                   <?php
-                     $at = new FormularioComJquery('form_historico_EU');
+                     $at = new FormularioComJquery("form_historico_CU");
 
                      $at->linha([
-                        $at->selecionar("mes_historico_EU", "Mês", $meses, 6),
-                        $at->caixa("ano_historico_EU", "Ano", "number", " min='2018' max='".date('Y')."' value='".date('Y')."' ", 6),
+                        $at->selecionar("mes_historico_CU", "Mês", $meses, 6),
+                        $at->caixa("ano_historico_CU", "Ano", "number", " min='2018' max='".date('Y')."' value='".date('Y')."' ", 6),
                      ]);
 
                      $at->linha([$at->botao_enviar("BUSCAR")]);
@@ -167,19 +168,19 @@
 
                      $chaves = [
                         "cod" => $at->tabela("e_usuarios"),
-                        "mes" => $at->valor("mes_historico_EU"),
-                        "ano" => $at->valor("ano_historico_EU")
+                        "mes" => $at->valor("mes_historico_CU"),
+                        "ano" => $at->valor("ano_historico_CU")
                      ];
                      
-                     $at->criar_chamada($at->item("../root/funcoes/historico.php"), $chaves, 
+                     $at->criar_chamada($at->item("http://localhost/root/scripts/AA_historico.php"), $chaves, 
                         "
                            if(retorno != \"#false\"){
-                              criar_toast(\"<i class='material-icons'>check</i>\", 1000, \"toast-verde\");
+                              toastTrue();
                      
                               $(\"#historicoLista\").html(retorno);
                                 document.getElementById(\"aposProcurar\").style.display = \"block\";
                            } else {
-                              criar_toast(\"<i class='material-icons'>close</i>\", 1000, \"toast-vermelho\");
+                              toastFalse();
                            }
                         ");
                   ?>
@@ -213,12 +214,12 @@
             <div class="barra"></div>
                   
                <?php
-                  $at = new FormularioComJquery('form_alterar_dia_EU');
+                  $at = new FormularioComJquery('form_ALTERAR_CU');
 
                   $at->linha([
-                     $at->caixa("dia_alterar_EU", "Dia", "number", " min='0' max='32' ", 4),
-                     $at->selecionar("mes_alterar_EU", "Mês", $meses, 4),
-                     $at->caixa("ano_alterar_EU", "Ano", "number", " min='2018' max='".date('Y')."' value='".date('Y')."' ", 4),
+                     $at->caixa("ALTERAR_CU_dia", "Dia", "number", " min='0' max='32' ", 4),
+                     $at->selecionar("ALTERAR_CU_mes", "Mês", $meses, 4),
+                     $at->caixa("ALTERAR_CU_ano", "Ano", "number", " min='2018' max='".date('Y')."' value='".date('Y')."' ", 4),
                   ]);
 
                   $at->linha([$at->botao_enviar("BUSCAR")]);
@@ -227,20 +228,20 @@
 
                   $chaves = [
                      "cod" => $at->tabela("e_usuarios"),
-                     "dia" => $at->valor("dia_alterar_EU"),
-                     "mes" => $at->valor("mes_alterar_EU"),
-                     "ano" => $at->valor("ano_alterar_EU"),
+                     "dia" => $at->valor("ALTERAR_CU_dia"),
+                     "mes" => $at->valor("ALTERAR_CU_mes"),
+                     "ano" => $at->valor("ALTERAR_CU_ano"),
                      "stat" => $at->item("BUSCAR")
                   ];
                   
-                  $at->criar_chamada($at->item("../root/funcoes/alterar.php"), $chaves, 
+                  $at->criar_chamada($at->item("http://localhost/root/scripts/AA_alterar.php"), $chaves, 
                      "if(retorno != '#false'){
-                     Materialize.toast('<i class=\"material-icons\">check</i>', 1000, 'toast-verde');
+                        toastTrue();
                      
-                     $('#aposProcurarAlterar').html(retorno);
-                     document.getElementById('aposProcurarAlterar').style.display = 'block';
+                        $('#aposProcurarAlterar').html(retorno);
+                        document.getElementById('aposProcurarAlterar').style.display = 'block';
                      } else {
-                        Materialize.toast('<i class=\"material-icons\">close</i>', 1000, 'toast-vermelho');
+                        toastFalse();
                      }"
                   );
                ?>
@@ -267,4 +268,4 @@
 
 <?php
 
-   echo $rodape;
+   imprimir_html($rodape);

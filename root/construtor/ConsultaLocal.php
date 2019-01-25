@@ -1,6 +1,13 @@
 <?php
    class ConsultaLocal extends Construtor{
 
+      function __construct(){
+         $this->tabela = "consulta_local";
+      }
+
+      /**
+       * COLOCAR NO SCRIPT
+       */
       function adicionar($dados, $permissao){
          if(!isset($dados["codigo"]) || strlen($dados["codigo"]) != 8){
             echo "{\"status\": false, \"mensagem\": \"#4#\"}";
@@ -77,10 +84,9 @@
          $tabela->printDiv("div-alterarCL");
       }
 
-      function historico($condicoes, $permissao){
+      function historico($condicoes){
          if(!isset($condicoes, $condicoes['mes'], $condicoes['ano'])){
-            echo "{\"status\": false, \"mensagem\": \"#4#\"}";
-            exit;
+            return false;
          }
 
          $sql = new Query;
@@ -102,8 +108,7 @@
          }
 
          if($itens === null){
-            echo "{\"status\": false, \"mensagem\": \"#5#\"}";
-            exit;
+            return false;
          }
 
          $this->data_tabela = $itens;

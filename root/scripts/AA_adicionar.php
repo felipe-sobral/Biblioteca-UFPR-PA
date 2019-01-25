@@ -1,13 +1,29 @@
 <?php
-   require_once "../../init.php";
+   require_once $_SERVER["DOCUMENT_ROOT"]."/root/init.php";
+   require_once CONSTRUTOR;
+   require_once ESTATISTICA_USUARIOS;
+   require_once CONSULTA_LOCAL;
 
+   if(!isset($_POST, $_POST["cod"])){
+      retorna(false, "NEGADO!");
+      exit;
+   }
+   
    $dados = $_POST;
+   $tabela = $_POST["cod"];
+   unset($dados["cod"]);
 
-   if(!isset($dados["cod"])){
-      echo "{\"status\": false, \"mensagem\": \"#4#\"}";
+   $construtor = seleciona_construtor($tabela);
+   
+   if($construtor->adicionar($dados)){
+      retorna(true, "DADOS ADICIONADOS COM SUCESSO!");
       exit;
    }
 
+   retorna(false, "FALHA AO ADICIONAR");
+
+
+   /*
    switch($dados["cod"]){
       case sha1("INSERIR_usuarios"):
          $exec = new Construtor(sha1("e_usuarios"));
@@ -36,6 +52,6 @@
       default:
          echo "{\"status\": false, \"mensagem\": \"#4#\"}";
          exit;
-   }
+   }*/
    
-   $exec->adicionar($dados, 2);
+   
