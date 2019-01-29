@@ -52,4 +52,5 @@
 
       $template = ["status" => boolval($status), "mensagem" => $string, "codigo" => "%1"];
       echo json_encode($template);
+      exit;
    }

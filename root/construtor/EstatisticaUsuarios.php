@@ -1,6 +1,4 @@
 <?php
-   require_once QUERY;
-
    class EstatisticaUsuarios extends Construtor{
 
       function __construct(){

@@ -6,7 +6,6 @@
 
    if(!isset($_POST, $_POST["cod"])){
       retorna(false, "NEGADO!");
-      exit;
    }
    
    $dados = $_POST;
@@ -17,7 +16,6 @@
    
    if($construtor->adicionar($dados)){
       retorna(true, "DADOS ADICIONADOS COM SUCESSO!");
-      exit;
    }
 
    retorna(false, "FALHA AO ADICIONAR");

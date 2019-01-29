@@ -1,4 +1,6 @@
 <?php
+   require_once $_SERVER["DOCUMENT_ROOT"]."/root/init.php";
+   require_once QUERY;
 
    /**
     * Seleciona construtor por uma string SHA1

@@ -8,7 +8,6 @@
 
    if(!isset($_POST, $_POST["cod"], $_POST["stat"])){
       retorna(false, "NEGADO!");
-      exit;
    }
    
    $dados = $_POST;
@@ -39,14 +38,12 @@
 
          if($construtor->alterar($dados)){
             retorna(true, "INFORMAÇÕES ALTERADAS!");
-            exit;
          }
 
          break;
 
       default:
          retorna(false, "OPERAÇÃO INVÁLIDA");
-         exit;
    }
 
    retorna(false, "TERMINOU INCORRETAMENTE");

@@ -27,11 +27,9 @@
             $query->executar();
 
             retorna(true, "0");
-            return;
         }
 
         retorna(true, $contador[0][$turno]);
-        return;
     }
 
     if($stat < 0){
@@ -52,7 +50,6 @@
     $quantidade_pessoas = $query->assoc_array();
 
     retorna(true, $quantidade_pessoas[0][$turno]);
-    exit;  
 
     function turno($horas){
         switch ($horas) {

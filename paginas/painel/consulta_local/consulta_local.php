@@ -1,16 +1,15 @@
 <?php
-   require "../root/init.php";
-   include "../root/templates/formulario.php";
+  require_once $_SERVER["DOCUMENT_ROOT"]."/root/init.php";
+  require_once FORMULARIO;
+  require_once AUTENTICACAO;
+  require_once HTML;
 
-   session_start();
- 
-   if(acesso_restrito(2)){
-      $cabecalho = file_get_contents('../root/templates/cabecalho.html');
-      $rodape = file_get_contents('../root/templates/rodape.html');
-      echo $cabecalho;
+  if(restrito(2)){
+      $cabecalho = file_get_contents("../../corpo/cabecalho.html");
+      $rodape = file_get_contents('../../corpo/rodape.html"');
+      $registrar;
    } else {
-      echo "ERROR";
-      return false;
+      retorna(false, "ACESSO NEGADO");
    }
 
    $meses = [  
@@ -28,6 +27,8 @@
             "<option value='11'>Novembro</option>",
             "<option value='12'>Dezembro</option>"
             ];
+
+   imprimir_html($cabecalho);
 ?>
 
 <!--
@@ -43,7 +44,7 @@
       <div id="menuID"></div>
    </ul>
 
-   <ul id="tabs-swipe-demo" class="tabs" style="background-image: url('../img/bg-azul.jpg'); background-attachment: fixed">
+   <ul id="tabs-swipe-demo" class="tabs" style="background-image: url('http://localhost/paginas/imagens/bg-azul.jpg'); background-attachment: fixed">
       <a href="#" data-activates="menu" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons" style="color: #fff">menu</i></a>
       <li class="tab col s3"><a class="active menu-item" href="#registrar">Registrar</a></li>
       <li class="tab col s3"><a class="menu-item" href="#historico">Histórico</a></li>
@@ -56,66 +57,18 @@
    <!--
       REGISTRAR
    -->
-   <div id="registrar">
+   <section id="registrar">
       
-      <div class="center-align z-depth-3" style="background-image: url('../img/bg-azul.jpg'); background-attachment: fixed; padding-top: 2%; padding-bottom: 2%">
-         <i class="material-icons" style="font-size: 100px">note_add</i>
-         <h1 class="thin">Registrar códigos</h1>
-      </div>
-      <div class="container center-align" style="margin-top: 5%; color: #000 !important">
-         
-         <div class="card">
-            <div class="barra"></div>
-            <div class='card-content black-text'>
-               <div class="row">
+      <?php imprimir_html() ?>
 
-                  <div class="col s12">
-                     <?php
-                        $f = new FormularioComJquery('form_registrar_codigo');
-
-                        $f->linha([
-                           $f->caixa("form_rcodigo", "Insira o código", "text", "placeholder='00329902' autofocus", 12)
-                        ]);
-
-                        $f->linha([$f->botao_enviar("Registrar")]);
-
-                        $f->print();
-
-                        $chaves = [
-                           "cod" => $f->tabela("consulta_local"),
-                           "codigo" => $f->valor("form_rcodigo"),
-                           "data" => $f->item(date("Y-m-d"))
-                        ];
-                           
-                        $f->criar_chamada($f->item("../root/funcoes/adicionar.php"), $chaves, 
-                           "
-                           $('#form_rcodigo').val('');
-                           $('#form_rcodigo').focus();
-                           tratarRetorno(retorno);
-                           atualizarCodigos();
-                           "
-                        );
-                     ?>
-                  </div>
-
-               </div>
-               <hr style="width: 31vw; border-color: #ffffff70;">
-               <h3 class="thin">Histórico</h3>
-               <div id="historicoCodigos">Nada registrado =(</div>
-               <br>
-            </div>
-         </div>
-                  
-      </div>
-
-   </div>
+   </section>
 
    <!--
       HISTÓRICO
    -->
    <div id="historico">
       
-      <div class="center-align z-depth-3" style="background-image: url('../img/bg-azul.jpg'); background-attachment: fixed;  padding-top: 2%; padding-bottom: 2%">
+      <div class="center-align z-depth-3" style="background-image: url('http://localhost/paginas/imagens/bg-azul.jpg'); background-attachment: fixed;  padding-top: 2%; padding-bottom: 2%">
          <i class="material-icons" style="font-size: 100px">history</i>
          <h1 class="thin">Histórico</h1>
       </div>
@@ -176,7 +129,7 @@
    -->
    <div id="adicionar">
 
-      <div class="center-align z-depth-3" style="background-image: url('../img/bg-azul.jpg'); background-attachment: fixed; padding-top: 2%; padding-bottom: 2%">
+      <div class="center-align z-depth-3" style="background-image: url('http://localhost/paginas/imagens/bg-azul.jpg'); background-attachment: fixed; padding-top: 2%; padding-bottom: 2%">
          <i class="material-icons" style="font-size: 100px">add</i>
          <h1 class="thin">Adicionar registros</h1>
       </div>
@@ -226,7 +179,7 @@
    -->
    <div id="alterar">
       
-      <div class="center-align z-depth-3" style="background-image: url('../img/bg-azul.jpg'); background-attachment: fixed;  padding-top: 2%; padding-bottom: 2%">
+      <div class="center-align z-depth-3" style="background-image: url('http://localhost/paginas/imagens/bg-azul.jpg'); background-attachment: fixed;  padding-top: 2%; padding-bottom: 2%">
          <i class="material-icons" style="font-size: 100px">history</i>
          <h1 class="thin">Histórico</h1>
       </div>
@@ -317,4 +270,4 @@
 
 <?php
 
-   echo $rodape;
+   imprimir_html($rodape);

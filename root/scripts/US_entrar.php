@@ -9,7 +9,6 @@
 
    if(!isset($dados[0])){
       retorna(false, "USUÁRIO OU SENHA INCORRETOS!");
-      exit;
    }
 
    $dados = $dados[0];
@@ -32,10 +31,8 @@
    $query->alterar("usuarios", ["sessao" => session_id()], "usuario = $usuario");
 
    if(!$query->executar()){
-      retorna(false, "FALHA AO LOGAR");
       session_destroy();
-      exit;
+      retorna(false, "FALHA AO LOGAR");
    }      
 
    retorna(true, "LOGIN REALIZADO!");
-   exit;

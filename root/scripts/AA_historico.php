@@ -7,7 +7,6 @@
 
    if(!isset($_POST, $_POST["cod"])){
       retorna(false, "NEGADO!");
-      exit;
    }
    
    $dados = $_POST;
@@ -26,5 +25,4 @@
    }
 
    retorna(false, "FALHA AO CONSULTAR");
-   exit;
    
